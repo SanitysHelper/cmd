@@ -26,15 +26,16 @@ if /i "%1"=="/WIPE" goto :WIPE_NEIGHBORS
 :: =====================================================
 set "DEBUG_DIR=%WORKDIR%_debug"
 set "DEBUG_BACKUPS=%DEBUG_DIR%\backups"
+set "TEST_ENV=%DEBUG_DIR%\_testenv"
 
-REM Create _debug directory if it doesn't exist
+REM Create _debug directory structure if it doesn't exist
 if not exist "%DEBUG_DIR%" mkdir "%DEBUG_DIR%"
+if not exist "%DEBUG_BACKUPS%" mkdir "%DEBUG_BACKUPS%"
 
 REM Move backups to _debug if original backups folder exists
 if exist "%WORKDIR%backups" (
-    if not exist "%DEBUG_BACKUPS%" (
+    if not exist "%DEBUG_BACKUPS%\run_v1.0.bat" (
         echo [INFO] Moving backups to _debug directory...
-        mkdir "%DEBUG_BACKUPS%" 2>nul
         REM Copy all files from backups to _debug\backups
         xcopy "%WORKDIR%backups\*" "%DEBUG_BACKUPS%\" /E /Y >nul 2>&1
         REM Delete original backups folder
@@ -48,12 +49,20 @@ if exist "%WORKDIR%backups" (
 :: =====================================================
 set "SETTINGS_FILE=%~dp0settings.ini"
 
-REM Get parent directory (cmd folder)
-for %%A in ("%WORKDIR:~0,-1%") do set "PARENT_DIR=%%~dpA"
-set "LOG_DIR=%PARENT_DIR%logs"
+REM Set log directory to _debug/logs
+set "LOG_DIR=%DEBUG_DIR%\logs"
 
 REM Create log directory if it doesn't exist
 if not exist "%LOG_DIR%" mkdir "%LOG_DIR%"
+
+REM Set up helper scripts locations
+set "MENU_HELPER=%RUN_DIR%\arrow_menu.ps1"
+set "CLIP_HELPER=%RUN_DIR%\read_clipboard.ps1"
+set "BOM_STRIPPER=%RUN_DIR%\strip_bom.bat"
+set "CODE_EXECUTOR=%RUN_DIR%\execute_code.bat"
+
+REM Create run_space directory if it doesn't exist
+if not exist "%RUN_DIR%" mkdir "%RUN_DIR%"
 
 REM Log file paths with program name prefix
 set "LOG_IMPORTANT=%LOG_DIR%\updatingExecutor_important.log"
@@ -138,7 +147,6 @@ if not exist "%SETTINGS_FILE%" (
     ) > "%SETTINGS_FILE%"
     echo [INFO] Settings file created. Please configure your preferences.
     echo.
-    pause
 )
 
 REM Parse settings from ini file
@@ -173,6 +181,14 @@ set "WAITTIME=%WAITTIME: =%"
 set "ENABLEWIPE=%ENABLEWIPE: =%"
 set "ENABLEPREVIOUSCODE=%ENABLEPREVIOUSCODE: =%"
 
+REM Normalize AUTOINPUT and WAITTIME values
+set "AUTOINPUT=%AUTOINPUT:~0,1%"
+if /i not "%AUTOINPUT%"=="0" if /i not "%AUTOINPUT%"=="1" set "AUTOINPUT=1"
+for /f "delims=" %%W in ("%WAITTIME%") do set "WAITTIME=%%W"
+set /a WAITTIME=WAITTIME >nul 2>&1
+if %WAITTIME% LSS 1 set "WAITTIME=5"
+if %WAITTIME% GTR 120 set "WAITTIME=5"
+
 REM If DEBUG mode on, default WAITTIME to 3 seconds, otherwise 5
 if "%DEBUG%"=="1" (
     if "%WAITTIME%"=="5" set "WAITTIME=3"
@@ -191,9 +207,19 @@ if "%DEBUG%"=="1" (
 ) else (
     echo [INFO] Normal mode - %TIMEOUT% second timeout active
     if "%TIMEOUT%"=="0" (
-        start /min cmd /c "timeout /t 10 /nobreak >nul 2>&1 & taskkill /fi "WINDOWTITLE eq Updating Executor" /f >nul 2>&1"
+        REM Auto-close stray windows after short delay; escape inner quotes for WINDOWTITLE filter
+        start "" /min cmd /c "timeout /t 10 /nobreak >nul 2>&1 & taskkill /fi \"WINDOWTITLE eq Updating Executor\" /f >nul 2>&1"
     )
 )
+
+:: =====================================================
+:: Generate arrow_menu.ps1 helper if needed (before boot)
+:: =====================================================
+if not exist "%MENU_HELPER%" (
+    if "%DEBUG%"=="1" echo [DEBUG] Generating arrow_menu.ps1 helper...
+    call :GENERATE_MENU_HELPER
+)
+
 
 :BOOT_START
 
@@ -228,25 +254,40 @@ echo.
 echo [C] Continue normally (default)
 echo [S] Settings
 if "%ENABLEWIPE%"=="1" echo [W] Wipe entire run_space directory and exit
-echo [Q] Quit without running
+REM Build menu options array
+set "menu_items=Continue normally"
+set "menu_items=!menu_items!;Settings"
+if "%ENABLEWIPE%"=="1" set "menu_items=!menu_items!;Wipe run_space and exit"
+set "menu_items=!menu_items!;Quit"
+
+echo.
+echo Use UP/DOWN arrows to navigate, ENTER to select:
 echo.
 
-REM Handle auto input based on AUTOINPUT setting
-if "%AUTOINPUT%"=="1" (
-    echo Press a key within %WAITTIME% seconds (defaults to C):
-    REM Use PowerShell waiter script to capture input during timeout
-    for /f "delims=" %%A in ('powershell -NoProfile -ExecutionPolicy Bypass -File "%WORKDIR%waiter.ps1" -Timeout %WAITTIME% -Default "C"') do (
-        set "boot_choice=%%A"
-    )
-) else (
-    echo Press a key (unlimited time, defaults to C):
-    REM No timeout - user can take as long as they want
-    set /p "boot_choice=Enter choice (C/S/W/Q): "
-)
+if "%DEBUG%"=="1" echo [DEBUG] menu_items=!menu_items!
+if "%DEBUG%"=="1" echo [DEBUG] MENU_HELPER=%MENU_HELPER%
 
-REM Normalize input to uppercase
-if "%boot_choice%"=="" set "boot_choice=C"
-set "boot_choice=%boot_choice:~0,1%"
+REM Call PowerShell arrow menu
+set "menu_out=%RUN_DIR%\menu_result.tmp"
+set "menu_debug_log=%LOG_DIR%\menu_navigation.log"
+if exist "%menu_out%" del "%menu_out%"
+if exist "%menu_debug_log%" del "%menu_debug_log%"
+set "menu_timeout=0"
+if "%AUTOINPUT%"=="1" set "menu_timeout=%WAITTIME%"
+powershell -NoProfile -ExecutionPolicy Bypass -File "%MENU_HELPER%" -Options "!menu_items!" -Title "BOOT MENU" -DefaultIndex 0 -TimeoutSeconds !menu_timeout! -OutputFile "%menu_out%" -DebugLogFile "%menu_debug_log%"
+set /p menu_idx=<"%menu_out%"
+if exist "%menu_out%" del "%menu_out%"
+
+REM Map selection to choice
+set "boot_choice=C"
+if "!menu_idx!"=="0" set "boot_choice=C"
+if "!menu_idx!"=="1" set "boot_choice=S"
+if "%ENABLEWIPE%"=="1" (
+    if "!menu_idx!"=="2" set "boot_choice=W"
+    if "!menu_idx!"=="3" set "boot_choice=Q"
+) else (
+    if "!menu_idx!"=="2" set "boot_choice=Q"
+)
 
 if /i "%boot_choice%"=="S" goto :SETTINGS_MENU
 if /i "%boot_choice%"=="W" (
@@ -519,7 +560,7 @@ REM Initialize counters
 set "DELETED_FILES=0"
 set "DELETED_DIRS=0"
 
-REM DEBUG MODE: List all files and directories before wiping
+REM DEBUG MODE - List all files and directories before wiping
 if "%DEBUG%"=="1" (
     echo.
     echo [DEBUG] Files to be deleted:
@@ -708,9 +749,6 @@ if not exist "%README_FILE%" (
 del "%RUN_DIR%\*.tmp" >nul 2>&1
 
 set "CLIP_TXT=%RUN_DIR%\clip_input.txt"
-set "CLIP_HELPER=%RUN_DIR%\read_clipboard.ps1"
-set "BOM_STRIPPER=%RUN_DIR%\strip_bom.bat"
-set "CODE_EXECUTOR=%RUN_DIR%\execute_code.bat"
 
 if "%DEBUG%"=="1" (
     echo [DEBUG] Variables set:
@@ -829,11 +867,34 @@ if not exist "%CLIP_TXT%" (
 )
 
 :: =====================================================
-:: Show clipboard content
+:: Show clipboard content in formatted 70-char width array
 :: =====================================================
 echo.
-echo ================== CLIPBOARD CONTENT ====================
-type "%CLIP_TXT%"
+echo ================== CLIPBOARD CONTENT ^(70 char width^) ====================
+set "line_count=0"
+for /f "usebackq delims=" %%L in ("%CLIP_TXT%") do (
+    set "line=%%L"
+    REM Replace newlines with space to get one continuous string
+    set "full_clip=!full_clip! !line!"
+)
+REM Remove spaces to get continuous string, then format in 70-char lines
+set "full_clip=%full_clip: =%"
+if defined full_clip (
+    set "pos=0"
+    set "line_count=0"
+    :format_loop
+    if !line_count! lss 50 (
+        set "line=!full_clip:~!pos!,70!"
+        if defined line (
+            echo !line!
+            set /a pos+=70
+            set /a line_count+=1
+            goto :format_loop
+        )
+    )
+) else (
+    echo [EMPTY]
+)
 echo ======================== END ============================
 echo.
 
@@ -855,34 +916,73 @@ cls
 echo ========================================
 echo          MAIN MENU
 echo ========================================
-echo [R] Run clipboard as script (auto-detects language)
-echo [V] View only (do not run)
-echo [E] Edit text before running
-echo [D] Detect file type
-if "%ENABLEPREVIOUSCODE%"=="1" (
-    if exist "%RUN_DIR%\previous_code.txt" (
-        echo [P] Run previously executed code
-    )
-)
-echo [S] Settings
-echo [Q] Quit
+REM Build main menu options
+set "main_items=Run clipboard as script"
+set "main_items=!main_items!;Edit before running"
+set "main_items=!main_items!;Detect file type"
+if "%ENABLEPREVIOUSCODE%"=="1" if exist "%RUN_DIR%\previous_code.txt" set "main_items=!main_items!;Run previous code"
+set "main_items=!main_items!;Settings"
+set "main_items=!main_items!;Quit"
+
+echo.
+echo Use UP/DOWN arrows to navigate, ENTER to select:
 echo.
 
-REM For automated/non-interactive mode: use AUTO INPUT setting
-if "%AUTOINPUT%"=="1" (
-    echo Press a key within %WAITTIME% seconds (defaults to R):
-    timeout /t %WAITTIME% /nobreak >nul 2>&1
-    set "choice=R"
-) else (
-    echo Press a key (unlimited time, defaults to R):
-    set /p "choice=Enter choice (R/V/E/D/P/S/Q): "
+if "%DEBUG%"=="1" echo [DEBUG] main_items=!main_items!
+if "%DEBUG%"=="1" echo [DEBUG] MENU_HELPER=%MENU_HELPER%
+
+REM Call PowerShell arrow menu
+set "menu_out=%RUN_DIR%\menu_result.tmp"
+set "menu_debug_log=%LOG_DIR%\menu_navigation.log"
+if exist "%menu_out%" del "%menu_out%"
+if exist "%menu_debug_log%" del "%menu_debug_log%"
+set "menu_timeout=0"
+if "%AUTOINPUT%"=="1" set "menu_timeout=%WAITTIME%"
+powershell -NoProfile -ExecutionPolicy Bypass -File "%MENU_HELPER%" -Options "!main_items!" -Title "MAIN MENU" -DefaultIndex 0 -TimeoutSeconds !menu_timeout! -OutputFile "%menu_out%" -DebugLogFile "%menu_debug_log%"
+if exist "%menu_out%" (
+    set /p menu_idx=<"%menu_out%"
+    del "%menu_out%"
 )
 
-if "%choice%"=="" set "choice=R"
-set "choice=%choice:~0,1%"
+REM Map selection to choice letter
+set "choice="
+set "has_prev=0"
+if "%ENABLEPREVIOUSCODE%"=="1" if exist "%RUN_DIR%\previous_code.txt" set "has_prev=1"
+
+REM If menu index was returned, use it
+if defined menu_idx (
+    if "!menu_idx!"=="0" set "choice=R"
+    if "!menu_idx!"=="1" set "choice=E"
+    if "!menu_idx!"=="2" set "choice=D"
+    if "!has_prev!"=="1" (
+        if "!menu_idx!"=="3" set "choice=P"
+        if "!menu_idx!"=="4" set "choice=S"
+        if "!menu_idx!"=="5" set "choice=Q"
+    ) else (
+        if "!menu_idx!"=="3" set "choice=S"
+        if "!menu_idx!"=="4" set "choice=Q"
+    )
+)
 
 if /i "%choice%"=="S" goto :SETTINGS_MENU
 if /i "%choice%"=="Q" goto :END
+
+REM Handle Edit mode - open clipboard file in editor before running
+if /i "%choice%"=="E" (
+    if "%DEBUG%"=="1" echo [DEBUG] Edit mode selected - opening file in editor
+    echo.
+    echo [INFO] Opening code in editor...
+    if exist "%CLIP_TXT%" (
+        REM Use /wait flag to block until Notepad closes
+        start "" /wait notepad "%CLIP_TXT%"
+        echo [INFO] Editor closed. Executing modified code...
+    ) else (
+        echo [ERROR] Clipboard file not found.
+        pause
+        goto :MENU
+    )
+    set "choice=R"
+)
 
 :: =====================================================
 :: Detect file type from clipboard content
@@ -891,23 +991,21 @@ if /i "%choice%"=="Q" goto :END
 if "%DEBUG%"=="1" echo [DEBUG] Entered :DETECT_AND_RUN - choice=%choice%
 
 if /i "%choice%"=="P" (
-    if "%ENABLEPREVIOUSCODE%"=="1" (
-        if exist "%RUN_DIR%\previous_code.txt" (
-            echo.
-            echo [INFO] Loading previously executed code...
-            type "%RUN_DIR%\previous_code.txt" > "%CLIP_TXT%"
-            set "choice=R"
-            goto :DETECT_AND_RUN
-        ) else (
-            echo [ERROR] No previous code found.
-            pause
-            goto :MENU
-        )
-    ) else (
+    if not "%ENABLEPREVIOUSCODE%"=="1" (
         echo [ERROR] Previous code feature is disabled.
         pause
         goto :MENU
     )
+    if not exist "%RUN_DIR%\previous_code.txt" (
+        echo [ERROR] No previous code found.
+        pause
+        goto :MENU
+    )
+    echo.
+    echo [INFO] Loading previously executed code...
+    type "%RUN_DIR%\previous_code.txt" > "%CLIP_TXT%"
+    set "choice=R"
+    goto :DETECT_AND_RUN
 )
 
 if /i "%choice%"=="D" (
@@ -916,28 +1014,21 @@ if /i "%choice%"=="D" (
     setlocal enabledelayedexpansion
     set /p "first_line=" < "%CLIP_TXT%"
     
-    if "!first_line!"=="" (
-        echo [INFO] File appears to be empty
-    ) else (
-        echo First line: !first_line!
-        if "!first_line:~0,1!"=="@" (
-            echo [DETECT] Batch/CMD script detected
-        ) else if "!first_line:~0,1!"==":" (
-            echo [DETECT] Batch/CMD script detected  
-        ) else if "!first_line:~0,1!"=="^#" (
-            if "!first_line:~2,3!"=="python" (
-                echo [DETECT] Python script detected
-            ) else if "!first_line:~2,5!"=="bash" (
-                echo [DETECT] Bash script detected
-            ) else (
-                echo [DETECT] Shell script detected
-            )
-        ) else if "!first_line:~0,2!"=="-*-" (
-            echo [DETECT] Could be various script types
-        ) else (
-            echo [DETECT] Unknown type - will attempt execution
-        )
+    if "!first_line!"=="" echo [INFO] File appears to be empty & goto :D_CHOICE_DONE
+    
+    echo First line: !first_line!
+    if "!first_line:~0,1!"=="@" echo [DETECT] Batch/CMD script detected & goto :D_CHOICE_DONE
+    if "!first_line:~0,1!"==":" echo [DETECT] Batch/CMD script detected & goto :D_CHOICE_DONE
+    if "!first_line:~0,1!"=="#" (
+        if "!first_line:~2,6!"=="python" echo [DETECT] Python script detected & goto :D_CHOICE_DONE
+        if "!first_line:~2,4!"=="bash" echo [DETECT] Bash script detected & goto :D_CHOICE_DONE
+        echo [DETECT] Shell script detected
+        goto :D_CHOICE_DONE
     )
+    if "!first_line:~0,2!"=="-*-" echo [DETECT] Could be various script types & goto :D_CHOICE_DONE
+    echo [DETECT] Unknown type - will attempt execution
+    
+    :D_CHOICE_DONE
     endlocal
     echo.
     goto :MENU
@@ -1050,15 +1141,9 @@ if "%DEBUG%"=="1" echo [DEBUG] Copied %CLIP_TXT% to %RUN_FILE%
 if "%DEBUG%"=="1" echo [DEBUG] Checking choice handlers - choice=%choice%
 
 if /i "%choice%"=="E" (
-    start "" notepad "%RUN_FILE%"
-    echo Edit and save the file, then close Notepad.
-    pause
-)
-
-if /i "%choice%"=="V" (
-    echo [INFO] Not executing. Script saved as:
-    echo   "%RUN_FILE%"
-    goto END
+    echo Opening file in Notepad for editing...
+    start "" /wait notepad "%RUN_FILE%"
+    echo Edit complete. Continuing to run the code.
 )
 
 :: =====================================================
@@ -1110,11 +1195,13 @@ if not "%*"=="" (
     REM Auto-run mode - exit immediately
     echo [INFO] Auto-run complete. Exiting...
 ) else (
-    REM Automated mode - auto-select default (N) after 2 seconds
-    echo Press Y within 2 seconds to run another code, or N to exit:
-    timeout /t 2 /nobreak >nul 2>&1
-    set "restart=N"
-    if /i "!restart:~0,1!"=="Y" (
+    REM Wait for user input - 10 second timeout for Y/N choice
+    echo Press Y within 10 seconds to run another code, or N to exit:
+    choice /C YN /T 10 /D N /M ""
+    set "restart=%ERRORLEVEL%"
+    
+    REM ERRORLEVEL: 1=Y, 2=N, timeout defaults to N (2)
+    if "%restart%"=="1" (
         del "%RUN_DIR%\clip_input.txt" >nul 2>&1
         goto :BOOT_START
     )
@@ -1127,6 +1214,98 @@ del "%RUN_DIR%\.autorun" >nul 2>&1
 
 echo [EXIT] Done.
 endlocal
+exit /b
+
+:: =====================================================
+:: Utility Subroutines
+:: =====================================================
+
+:CREATE_BACKUP_REPORT
+:: Create a report file next to the backup version
+:: Usage: call :CREATE_BACKUP_REPORT "version" "reason"
+setlocal
+set "VERSION_NUM=%~1"
+set "REASON=%~2"
+set "REPORT_FILE=%DEBUG_BACKUPS%\report-v%VERSION_NUM%.log"
+
+(
+    echo ========================================
+    echo BACKUP REPORT - Version %VERSION_NUM%
+    echo ========================================
+    echo.
+    echo Date: %date% %time%
+    echo Reason: %REASON%
+    echo.
+    echo Settings at backup time:
+    echo   DEBUG=%DEBUG%
+    echo   TIMEOUT=%TIMEOUT%
+    echo   LOGLEVEL=%LOGLEVEL%
+    echo   AUTOCLEAN=%AUTOCLEAN%
+    echo   HALTONERROR=%HALTONERROR%
+    echo   PERFMON=%PERFMON%
+    echo   AUTOINPUT=%AUTOINPUT%
+    echo   WAITTIME=%WAITTIME%
+    echo   ENABLEWIPE=%ENABLEWIPE%
+    echo   ENABLEPREVIOUSCODE=%ENABLEPREVIOUSCODE%
+    echo.
+    echo Backed up files:
+    echo   run.bat ^(main executable^)
+    echo   settings.ini ^(configuration^)
+    echo.
+    echo ========================================
+) > "%REPORT_FILE%"
+
+endlocal
+goto :EOF
+
+:CREATE_TEST_ENVIRONMENT
+:: Create a testing copy of the parent directory in _debug\_testenv
+:: Usage: call :CREATE_TEST_ENVIRONMENT
+echo [INFO] Creating testing environment in _debug\_testenv...
+if exist "%TEST_ENV%" (
+    rmdir /s /q "%TEST_ENV%" >nul 2>&1
+)
+mkdir "%TEST_ENV%" 2>nul
+
+REM Get parent directory (updatingExecutor's parent)
+for %%A in ("%WORKDIR:~0,-1%") do set "PARENT_FOR_TEST=%%~dpA"
+
+REM Copy entire parent directory to test environment
+xcopy "%PARENT_FOR_TEST%*" "%TEST_ENV%\" /E /Y /EXCLUDE:"%WORKDIR%_testenv_exclude.txt" >nul 2>&1
+
+echo [OK] Test environment created at: %TEST_ENV%
+goto :EOF
+
+:GENERATE_MENU_HELPER
+> "%MENU_HELPER%"  echo param([string]$Options, [string]$Title="MENU", [int]$DefaultIndex=0, [int]$TimeoutSeconds=0, [string]$OutputFile, [string]$DebugLogFile)
+>> "%MENU_HELPER%" echo if (-not $Options) { exit 1 }
+>> "%MENU_HELPER%" echo $items = $Options -split ';'
+>> "%MENU_HELPER%" echo if (-not $items -or $items.Length -eq 0) { exit 1 }
+>> "%MENU_HELPER%" echo $idx = [Math]::Min([Math]::Max($DefaultIndex, 0), $items.Length - 1)
+>> "%MENU_HELPER%" echo $deadline = if ($TimeoutSeconds -gt 0) { [DateTime]::UtcNow.AddSeconds($TimeoutSeconds) } else { $null }
+>> "%MENU_HELPER%" echo function Write-Row { param([string]$Text, [bool]$Selected) if ($Selected) { Write-Host "> $Text" -ForegroundColor Cyan } else { Write-Host "  $Text" } }
+>> "%MENU_HELPER%" echo function Log-Debug { param([string]$Message) if (-not $DebugLogFile) { return } $stamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss.fff"; $dir = Split-Path $DebugLogFile -Parent; if ($dir -and -not (Test-Path $dir)) { New-Item -ItemType Directory -Path $dir -Force ^| Out-Null }; "$stamp `t $Message" ^| Out-File -FilePath $DebugLogFile -Append -Encoding ASCII }
+>> "%MENU_HELPER%" echo try { [Console]::CursorVisible = $false } catch {}
+>> "%MENU_HELPER%" echo try {
+>> "%MENU_HELPER%" echo     while ($true) {
+>> "%MENU_HELPER%" echo         Clear-Host
+>> "%MENU_HELPER%" echo         if ($Title) { Write-Host $Title; Write-Host "" }
+>> "%MENU_HELPER%" echo         for ($i = 0; $i -lt $items.Length; $i++) { Write-Row -Text $items[$i] -Selected ($i -eq $idx) }
+>> "%MENU_HELPER%" echo         if ($deadline -and [DateTime]::UtcNow -gt $deadline) { Log-Debug "Timeout -> $idx"; break }
+>> "%MENU_HELPER%" echo         if ([Console]::KeyAvailable) {
+>> "%MENU_HELPER%" echo             $key = [Console]::ReadKey($true)
+>> "%MENU_HELPER%" echo             switch ($key.Key) {
+>> "%MENU_HELPER%" echo                 'UpArrow'   { $idx = if ($idx -gt 0) { $idx - 1 } else { $items.Length - 1 }; Log-Debug "Up -> $idx" }
+>> "%MENU_HELPER%" echo                 'DownArrow' { $idx = if ($idx -lt $items.Length - 1) { $idx + 1 } else { 0 }; Log-Debug "Down -> $idx" }
+>> "%MENU_HELPER%" echo                 'Enter'     { Log-Debug "Enter -> $idx"; break }
+>> "%MENU_HELPER%" echo                 'Escape'    { Log-Debug "Escape -> $idx"; break }
+>> "%MENU_HELPER%" echo             }
+>> "%MENU_HELPER%" echo         } else { Start-Sleep -Milliseconds 100 }
+>> "%MENU_HELPER%" echo     }
+>> "%MENU_HELPER%" echo }
+>> "%MENU_HELPER%" echo finally { try { [Console]::CursorVisible = $true } catch {} }
+>> "%MENU_HELPER%" echo if ($OutputFile) { $idx ^| Out-File -FilePath $OutputFile -Encoding ASCII -Force }
+>> "%MENU_HELPER%" echo exit 0
 exit /b
 
 :: =====================================================
