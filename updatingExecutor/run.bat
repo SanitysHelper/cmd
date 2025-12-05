@@ -9,70 +9,82 @@ set "WORKDIR=%~dp0"
 set "RUN_DIR=%WORKDIR%run_space"
 if not exist "%RUN_DIR%" mkdir "%RUN_DIR%"
 
-:: Clean up any old temp files
-del "%RUN_DIR%\*.tmp" >nul 2>&1
-
-set "TMP_CLIP=%RUN_DIR%\clipread.tmp"
-set "CLIP_TXT=%RUN_DIR%\clip_input.txt"
-set "RUN_FILE=%RUN_DIR%\clip_run.bat"
-set "CLIP_HELPER=%RUN_DIR%\read_clip.ps1"
-
 echo [BOOT] Script starting...
 echo.
 
 :: =====================================================
-:: Build PowerShell helper that writes clipboard to TMP
-::   - Strips BOM (0xFEFF)
-::   - Writes ASCII to avoid adding a BOM
+:: Wipe runspace option
 :: =====================================================
-> "%CLIP_HELPER%"  echo param([string]$TmpPath)
->>"%CLIP_HELPER%" echo try {
->>"%CLIP_HELPER%" echo   $txt = Get-Clipboard -Raw
->>"%CLIP_HELPER%" echo   $txt = $txt.TrimStart([char]0xFEFF)
->>"%CLIP_HELPER%" echo   if ([string]::IsNullOrWhiteSpace($txt)) {
->>"%CLIP_HELPER%" echo     "" ^| Set-Content -Path $TmpPath -Encoding ASCII
->>"%CLIP_HELPER%" echo     exit 1
->>"%CLIP_HELPER%" echo   } else {
->>"%CLIP_HELPER%" echo     $txt ^| Set-Content -Path $TmpPath -Encoding ASCII
->>"%CLIP_HELPER%" echo     exit 0
->>"%CLIP_HELPER%" echo   }
->>"%CLIP_HELPER%" echo } catch {
->>"%CLIP_HELPER%" echo   "" ^| Set-Content -Path $TmpPath -Encoding ASCII
->>"%CLIP_HELPER%" echo   exit 2
->>"%CLIP_HELPER%" echo }
+echo Choose an action:
+echo [C] Continue normally (default)
+echo [W] Wipe entire run_space directory and exit
+echo.
 
-if not exist "%CLIP_HELPER%" (
-    echo [ERROR] Failed to create helper script: "%CLIP_HELPER%"
-    pause
+set "boot_choice="
+set /p "boot_choice=Enter choice (C/W): "
+
+REM Normalize input to uppercase
+if "%boot_choice%"=="" set "boot_choice=C"
+
+if /i "%boot_choice:~0,1%"=="W" (
+    echo.
+    echo [INFO] Wiping run_space directory: %RUN_DIR%
+    rmdir /s /q "%RUN_DIR%" >nul 2>&1
+    mkdir "%RUN_DIR%"
+    echo [OK] run_space wiped clean.
+    echo.
+    echo [INFO] All files deleted. Exiting.
+    timeout /t 2 >nul
     goto :END
 )
 
+echo [INFO] Continuing normal operation...
+echo.
+
+:: Clean up any old temp files
+del "%RUN_DIR%\*.tmp" >nul 2>&1
+
+set "CLIP_TXT=%RUN_DIR%\clip_input.txt"
+set "CLIP_HELPER=%RUN_DIR%\read_clipboard.ps1"
+set "BOM_STRIPPER=%RUN_DIR%\strip_bom.bat"
+
 :: =====================================================
-:: Read clipboard into TMP_CLIP
+:: Ensure helper scripts exist in run_space
 :: =====================================================
-del "%TMP_CLIP%"  >nul 2>&1
+if not exist "%CLIP_HELPER%" (
+    echo [INFO] Restoring clipboard helper...
+    copy /y "%WORKDIR%read_clipboard.ps1" "%CLIP_HELPER%" >nul 2>&1
+)
+
+if not exist "%BOM_STRIPPER%" (
+    echo [INFO] Restoring BOM stripper...
+    copy /y "%WORKDIR%strip_bom.bat" "%BOM_STRIPPER%" >nul 2>&1
+)
+
+:: =====================================================
+:: Read clipboard into CLIP_TXT
+:: =====================================================
 del "%CLIP_TXT%"  >nul 2>&1
 
 echo [INFO] Reading clipboard text...
-powershell -NoProfile -ExecutionPolicy Bypass -File "%CLIP_HELPER%" "%TMP_CLIP%"
+powershell -NoProfile -ExecutionPolicy Bypass -File "%CLIP_HELPER%" "%CLIP_TXT%"
 set "CLIPCODE=%ERRORLEVEL%"
 
 if "%CLIPCODE%"=="0" (
     echo [INFO] Clipboard successfully read.
+) else if "%CLIPCODE%"=="1" (
+    echo [WARN] Clipboard was empty.
 ) else (
-    echo [WARN] Clipboard read failed or was empty. (code %CLIPCODE%)
+    echo [WARN] Clipboard read exception (code %CLIPCODE%)
 )
 
-if exist "%TMP_CLIP%" (
-    copy /y "%TMP_CLIP%" "%CLIP_TXT%" >nul
-) else (
+if not exist "%CLIP_TXT%" (
     >"%CLIP_TXT%" type nul
 )
 
-:: Extra safety: re-write via MORE (drops BOMs if any slipped through)
-if exist "%CLIP_TXT%" (
-    more "%CLIP_TXT%" > "%CLIP_TXT%.tmp"
-    move /y "%CLIP_TXT%.tmp" "%CLIP_TXT%" >nul
+:: Extra safety: strip any BOMs
+if exist "%BOM_STRIPPER%" (
+    call "%BOM_STRIPPER%" "%CLIP_TXT%" "%CLIP_TXT%" >nul 2>&1
 )
 
 :: =====================================================
@@ -87,20 +99,85 @@ echo.
 :: =====================================================
 :: Ask what to do
 :: =====================================================
+:MENU
 echo Choose an action:
-echo [R] Run clipboard as script
+echo [R] Run clipboard as script (auto-detects language)
 echo [V] View only (do not run)
 echo [E] Edit text before running
+echo [D] Detect file type
 echo [Q] Quit
 echo.
 
 set "choice="
-set /p "choice=Enter choice (R/V/E/Q): "
+set /p "choice=Enter choice (R/V/E/D/Q): "
 if /i "%choice%"=="Q" goto END
 
 :: =====================================================
-:: Convert text to .bat script in workspace
+:: Detect file type from clipboard content
 :: =====================================================
+if /i "%choice%"=="D" (
+    echo.
+    echo Analyzing clipboard content...
+    setlocal enabledelayedexpansion
+    set /p "first_line=" < "%CLIP_TXT%"
+    
+    if "!first_line!"=="" (
+        echo [INFO] File appears to be empty
+    ) else (
+        echo First line: !first_line!
+        if "!first_line:~0,1!"=="@" (
+            echo [DETECT] Batch/CMD script detected
+        ) else if "!first_line:~0,1!"==":" (
+            echo [DETECT] Batch/CMD script detected  
+        ) else if "!first_line:~0,1!"=="^#" (
+            if "!first_line:~2,3!"=="python" (
+                echo [DETECT] Python script detected
+            ) else if "!first_line:~2,5!"=="bash" (
+                echo [DETECT] Bash script detected
+            ) else (
+                echo [DETECT] Shell script detected
+            )
+        ) else if "!first_line:~0,2!"=="-*-" (
+            echo [DETECT] Could be various script types
+        ) else (
+            echo [DETECT] Unknown type - will attempt execution
+        )
+    )
+    endlocal
+    echo.
+    goto :MENU
+)
+
+:: =====================================================
+:: Save clipboard content to appropriately named file
+:: =====================================================
+echo.
+
+REM Try to detect extension from first line shebang or content
+setlocal enabledelayedexpansion
+set "detected_ext=.txt"
+
+REM Check for Python shebang
+findstr /r "^#!.*python" "%CLIP_TXT%" >nul
+if !errorlevel! equ 0 (
+    set "detected_ext=.py"
+) else (
+    REM Check for bash/shell shebang
+    findstr /r "^#!.*bash" "%CLIP_TXT%" >nul
+    if !errorlevel! equ 0 (
+        set "detected_ext=.sh"
+    ) else (
+        REM Check for batch/cmd patterns
+        findstr /i "^@echo off" "%CLIP_TXT%" >nul
+        if !errorlevel! equ 0 (
+            set "detected_ext=.bat"
+        )
+    )
+)
+
+set "RUN_FILE=%RUN_DIR%\clipboard_code!detected_ext!"
+endlocal
+
 copy /y "%CLIP_TXT%" "%RUN_FILE%" >nul
 
 if /i "%choice%"=="E" (
@@ -116,12 +193,21 @@ if /i "%choice%"=="V" (
 )
 
 :: =====================================================
-:: Run script in workspace directory
+:: Run script using universal executor
 :: =====================================================
 echo.
-echo [INFO] Running clipboard script inside workspace "%RUN_DIR%"...
+echo [INFO] Running code from clipboard in workspace "%RUN_DIR%"...
+echo [INFO] File: %RUN_FILE%
 pushd "%RUN_DIR%"
-call "%RUN_FILE%"
+
+REM Ensure executor exists
+if not exist "execute_code.bat" (
+    echo [ERROR] Code executor not found
+    popd
+    goto END
+)
+
+call execute_code.bat "%RUN_FILE%"
 set "exitCode=%ERRORLEVEL%"
 popd
 

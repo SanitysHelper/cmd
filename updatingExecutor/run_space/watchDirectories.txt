@@ -1,9 +1,0 @@
-C:\Users\cmand\Music
-C:\Testing
-ECHO is off.
-ECHO is off.
-ECHO is off.
-ECHO is off.
-ECHO is off.
-ECHO is off.
-ECHO is off.
