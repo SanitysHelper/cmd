@@ -5,96 +5,119 @@ path: enteredDirectories.txt
 C:\Users\cmand\Music
 
 ==========================================================
-path: Read-Comments.ps1
+path: flacattac.ps1
 ==========================================================
 
 # ===========================================
-#  Music Tag Tool (Fixed Version)
+#  FLAC Tag Tool (metaflac only)
 #  - Remembers editor & music directories
-#  - Works with FLAC / MP3 / others
-#  - Correctly stores full paths
+#  - Works on .flac files using metaflac.exe
 # ===========================================
 
 # --- Where this script lives ---
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 
 # --- Files to store remembered directories ---
-$MusicDirStorePath = Join-Path $ScriptDir "enteredDirectories.txt"
+$MusicDirStorePath    = Join-Path $ScriptDir "enteredDirectories.txt"
 $TagEditorDirStorePath = Join-Path $ScriptDir "tagEditorDirs.txt"
 
-# --- Load stored directories safely (trim quotes) ---
-function Load-Paths($path) {
-    if (Test-Path $path) {
-        return Get-Content $path | ForEach-Object { $_.Trim().Trim('"') } | Where-Object { $_ -ne "" }
+# --- Load stored directories safely (always as array) ---
+function Load-Paths {
+    param([string]$Path)
+    if (Test-Path $Path) {
+        $lines = @()
+        foreach ($line in Get-Content -Path $Path -ErrorAction SilentlyContinue) {
+            $trimmed = $line.Trim().Trim('"')
+            if ($trimmed -ne "") { $lines += $trimmed }
+        }
+        return ,$lines  # Force array return
     } else {
         return @()
     }
 }
 
 $storedDirs = Load-Paths $MusicDirStorePath
-$tagDirs = Load-Paths $TagEditorDirStorePath
-
+$tagDirs    = Load-Paths $TagEditorDirStorePath
 
 # ==============================
-#  Tag Editor Selection
+#  Tag editor (metaflac) selection
 # ==============================
 
-Write-Host "=== Select tag editor directory (folder with your tag EXE, e.g. exiftool.exe) ==="
+Write-Host "=== Select metaflac directory (folder with metaflac.exe) ==="
 if ($tagDirs.Count -gt 0) {
     for ($i = 0; $i -lt $tagDirs.Count; $i++) {
         Write-Host "[$i] = $($tagDirs[$i])"
     }
 }
 Write-Host "[$($tagDirs.Count)] = Enter new directory"
+$MetaFlacExe = $null
 
-$selectedIndex = Read-Host "Enter index"
-if (-not [int]::TryParse($selectedIndex, [ref]$null)) { $selectedIndex = $tagDirs.Count }
+while (-not $MetaFlacExe) {
+    $selectedIndexRaw = Read-Host "Enter index"
+    [int]$idx = $tagDirs.Count
+    [int]$tmp = 0
+    if ([int]::TryParse($selectedIndexRaw, [ref]$tmp)) {
+        if ($tmp -ge 0 -and $tmp -lt $tagDirs.Count) { $idx = $tmp }
+    }
 
-if ($selectedIndex -eq $tagDirs.Count) {
-    do {
-        $newDir = Read-Host "Enter full path to tag editor directory"
-        if (Test-Path $newDir) {
-            $tagDir = (Resolve-Path $newDir).Path
-        } else {
-            Write-Host "Invalid directory. Try again." -ForegroundColor Red
+    if ($idx -eq $tagDirs.Count) {
+        # New directory
+        $tagDir = $null
+        while (-not $tagDir) {
+            $newDir = Read-Host "Enter full path to metaflac directory"
+            if (Test-Path $newDir) {
+                $tagDir = (Resolve-Path $newDir).Path
+            } else {
+                Write-Host "Invalid directory. Try again." -ForegroundColor Red
+            }
         }
-    } until ($tagDir)
-    if (-not ($tagDirs -contains $tagDir)) {
-        Add-Content -Path $TagEditorDirStorePath -Value "`"$tagDir`""
+        if (-not ($tagDirs -contains $tagDir)) {
+            Add-Content -Path $TagEditorDirStorePath -Value "`"$tagDir`""
+            $tagDirs = Load-Paths $TagEditorDirStorePath
+        }
+    } else {
+        $tagDir = $tagDirs[$idx]
+        if (-not (Test-Path $tagDir)) {
+            Write-Host "Stored directory '$tagDir' no longer exists. Choose another." -ForegroundColor Red
+            continue
+        }
     }
-} else {
-    $tagDir = $tagDirs[$selectedIndex]
+
+    # Look for metaflac.exe in this directory
+    $exeFiles = Get-ChildItem -Path $tagDir -Filter *.exe -File -ErrorAction SilentlyContinue
+    if ($exeFiles.Count -eq 0) {
+        Write-Host "No .exe files found in '$tagDir'." -ForegroundColor Red
+        continue
+    }
+
+    # If multiple EXEs, let user pick which one is metaflac.exe
+    if ($exeFiles.Count -eq 1) {
+        $MetaFlacExe = $exeFiles[0].FullName
+    } else {
+        Write-Host "Multiple .exe files found in '$tagDir':"
+        for ($i = 0; $i -lt $exeFiles.Count; $i++) {
+            Write-Host "[$i] = $($exeFiles[$i].Name)"
+        }
+        $pick = 0
+        while ($true) {
+            $pickRaw = Read-Host "Select EXE index (metaflac.exe)"
+            if ([int]::TryParse($pickRaw, [ref]$pick) -and $pick -ge 0 -and $pick -lt $exeFiles.Count) {
+                $MetaFlacExe = $exeFiles[$pick].FullName
+                break
+            }
+            Write-Host "Invalid selection, try again." -ForegroundColor Yellow
+        }
+    }
 }
 
-# --- Find tag editor EXEs ---
-$exeFiles = Get-ChildItem -Path $tagDir -Filter *.exe -File -ErrorAction SilentlyContinue
-if ($exeFiles.Count -eq 0) {
-    Write-Host "No .exe files found in $tagDir" -ForegroundColor Red
-    Read-Host "Press Enter to exit"
-    exit
-}
-
-if ($exeFiles.Count -eq 1) {
-    $TagEditorExe = $exeFiles[0].FullName
-} else {
-    Write-Host "Multiple .exe files found:"
-    for ($i = 0; $i -lt $exeFiles.Count; $i++) {
-        Write-Host "[$i] = $($exeFiles[$i].Name)"
-    }
-    do {
-        $idx = Read-Host "Select EXE index"
-    } until ([int]::TryParse($idx, [ref]$null) -and $idx -ge 0 -and $idx -lt $exeFiles.Count)
-    $TagEditorExe = $exeFiles[$idx].FullName
-}
-Write-Host "Using tag editor: $TagEditorExe"
+Write-Host "Using tag editor: $MetaFlacExe"
 Write-Host ""
 
-
 # ==============================
-#  Music Directory Selection
+#  Music directory selection
 # ==============================
 
-Write-Host "=== Select music directory ==="
+Write-Host "=== Select FLAC music directory ==="
 if ($storedDirs.Count -gt 0) {
     for ($i = 0; $i -lt $storedDirs.Count; $i++) {
         Write-Host "[$i] = $($storedDirs[$i])"
@@ -102,86 +125,138 @@ if ($storedDirs.Count -gt 0) {
 }
 Write-Host "[$($storedDirs.Count)] = Enter new directory"
 
-$dirIndex = Read-Host "Enter index"
-if (-not [int]::TryParse($dirIndex, [ref]$null)) { $dirIndex = $storedDirs.Count }
+$dirIndexRaw = Read-Host "Enter index"
+[int]$dirIdx = $storedDirs.Count
+[int]$tmp2 = 0
+if ([int]::TryParse($dirIndexRaw, [ref]$tmp2)) {
+    if ($tmp2 -ge 0 -and $tmp2 -lt $storedDirs.Count) {
+        $dirIdx = $tmp2
+    }
+}
 
-if ($dirIndex -eq $storedDirs.Count) {
-    do {
-        $newDir = Read-Host "Enter full path to your music directory"
+if ($dirIdx -eq $storedDirs.Count) {
+    $Root = $null
+    while (-not $Root) {
+        $newDir = Read-Host "Enter full path to your FLAC music directory"
         if (Test-Path $newDir) {
             $Root = (Resolve-Path $newDir).Path
         } else {
             Write-Host "Invalid directory. Try again." -ForegroundColor Red
         }
-    } until ($Root)
+    }
     if (-not ($storedDirs -contains $Root)) {
         Add-Content -Path $MusicDirStorePath -Value "`"$Root`""
+        $storedDirs = Load-Paths $MusicDirStorePath
     }
 } else {
-    $Root = $storedDirs[$dirIndex]
+    $Root = $storedDirs[$dirIdx]
 }
 
 Write-Host "Using directory: $Root"
 Write-Host ""
 
-
 # ==============================
-#  Tag and Action Selection
+#  Tag map + tag selection
 # ==============================
 
-$tags = @('Artist','Title','Album','Comment','Genre','Track','Year')
+$TagMap = [ordered]@{
+    'Artist'  = 'ARTIST'
+    'Title'   = 'TITLE'
+    'Album'   = 'ALBUM'
+    'Comment' = 'COMMENT'
+    'Genre'   = 'GENRE'
+    'Track'   = 'TRACKNUMBER'
+    'Year'    = 'DATE'
+}
 
+$tags = $TagMap.Keys
 Write-Host "=== Select tag to work with ==="
 for ($i = 0; $i -lt $tags.Count; $i++) {
     Write-Host "[$i] = $($tags[$i])"
 }
 
-do {
-    $tagIndex = Read-Host "Enter tag index"
-} until ([int]::TryParse($tagIndex, [ref]$null) -and $tagIndex -ge 0 -and $tagIndex -lt $tags.Count)
+$tagIndex = $null
+while ($true) {
+    $tagIndexRaw = Read-Host "Enter tag index"
+    if ([int]::TryParse($tagIndexRaw, [ref]$tagIndex) -and $tagIndex -ge 0 -and $tagIndex -lt $tags.Count) {
+        break
+    }
+    Write-Host "Invalid selection. Try again." -ForegroundColor Yellow
+}
 
-$tagName = $tags[$tagIndex]
-Write-Host "Selected tag: $tagName"
+$tagName   = $tags[$tagIndex]
+$vorbisTag = $TagMap[$tagName]
+Write-Host "Selected tag: $tagName (Vorbis: $vorbisTag)"
 Write-Host ""
 
 Write-Host "=== Choose action ==="
 Write-Host "[0] = read"
 Write-Host "[1] = write"
 
-do {
-    $action = Read-Host "Enter action index"
-} until ($action -in @("0","1"))
+$action = $null
+while ($true) {
+    $actionRaw = Read-Host "Enter action index"
+    if ($actionRaw -in @("0","1")) {
+        $action = $actionRaw
+        break
+    }
+    Write-Host "Invalid selection. Type 0 or 1." -ForegroundColor Yellow
+}
 Write-Host ""
 
-
 # ==============================
-#  Collect Audio Files
+#  Collect .flac files
 # ==============================
 
-$files = Get-ChildItem -Path $Root -Recurse -File -Include *.mp3,*.flac,*.ogg,*.m4a,*.wav,*.wma,*.aac
+Write-Host "Scanning '$Root' for .flac files..."
+Write-Host ""
+$files = Get-ChildItem -Path $Root -Recurse -File -Include *.flac
 if ($files.Count -eq 0) {
-    Write-Host "No audio files found in $Root" -ForegroundColor Yellow
+    Write-Host "No .flac files found in $Root" -ForegroundColor Yellow
     Read-Host "Press Enter to exit"
     exit
 }
 
-
 # ==============================
-#  Tag Functions
+#  metaflac helpers
 # ==============================
 
-function Get-TagValue {
-    param($FilePath, $TagName, $ExePath)
-    & $ExePath -s3 ("-$TagName") $FilePath 2>$null
+function Get-FlacTagValue {
+    param(
+        [string]$FilePath,
+        [string]$VorbisTag,
+        [string]$ExePath
+    )
+
+    $lines = & $ExePath "--show-tag=$VorbisTag" $FilePath 2>$null
+    if (-not $lines) { return $null }
+
+    $values = @()
+    foreach ($line in $lines) {
+        $idx = $line.IndexOf('=')
+        if ($idx -ge 0 -and $idx -lt ($line.Length - 1)) {
+            $values += $line.Substring($idx + 1)
+        }
+    }
+
+    if ($values.Count -eq 0) { return $null }
+    return ($values -join '; ')
 }
 
-function Set-TagValue {
-    param($FilePath, $TagName, $Value, $ExePath)
-    $normalizedTag = $TagName.ToLower()
+function Set-FlacTagValue {
+    param(
+        [string]$FilePath,
+        [string]$VorbisTag,
+        [string]$Value,
+        [string]$ExePath
+    )
+
     if ([string]::IsNullOrEmpty($Value)) {
-        & $ExePath -overwrite_original ("-$normalizedTag=") $FilePath | Out-Null
+        # Delete the tag (flags before filename)
+        & $ExePath "--remove-tag=$VorbisTag" $FilePath | Out-Null
     } else {
-        & $ExePath -overwrite_original ("-$normalizedTag=$Value") $FilePath | Out-Null
+        # Remove existing then set new tag value (flags before filename)
+        & $ExePath "--remove-tag=$VorbisTag" "--set-tag=$VorbisTag=$Value" $FilePath | Out-Null
     }
 }
 
@@ -193,7 +268,7 @@ function Set-TagValue {
 if ($action -eq "0") {
     Write-Host "=== READ MODE: $tagName ==="
     foreach ($file in $files) {
-        $current = Get-TagValue $file.FullName $tagName $TagEditorExe
+        $current = Get-FlacTagValue -FilePath $file.FullName -VorbisTag $vorbisTag -ExePath $MetaFlacExe
         Write-Host "----------------------------------------"
         Write-Host "File: $($file.Name)"
         if ([string]::IsNullOrWhiteSpace($current)) {
@@ -204,19 +279,24 @@ if ($action -eq "0") {
     }
 }
 
-
 # ==============================
 #  WRITE MODE
 # ==============================
 
 if ($action -eq "1") {
-    $newValue = Read-Host "Value to write (leave blank to delete)"
+    Write-Host "=== WRITE MODE: $tagName ==="
+    Write-Host "This will apply to ALL .flac files under '$Root'."
+    Write-Host "Leave the value blank to DELETE this tag from each file."
     Write-Host ""
+    $newValue = Read-Host "Value to write"
+    Write-Host ""
+    Write-Host "Applying changes..."
+    Write-Host ""
+
     foreach ($file in $files) {
         Write-Host "----------------------------------------"
         Write-Host "File: $($file.Name)"
-
-        $before = Get-TagValue $file.FullName $tagName $TagEditorExe
+        $before = Get-FlacTagValue -FilePath $file.FullName -VorbisTag $vorbisTag -ExePath $MetaFlacExe
         if ([string]::IsNullOrWhiteSpace($before)) {
             Write-Host "  Before: <empty or not set>"
         } else {
@@ -229,9 +309,9 @@ if ($action -eq "1") {
             Write-Host "  Writing: '$newValue'"
         }
 
-        Set-TagValue $file.FullName $tagName $newValue $TagEditorExe
+        Set-FlacTagValue -FilePath $file.FullName -VorbisTag $vorbisTag -Value $newValue -ExePath $MetaFlacExe
 
-        $after = Get-TagValue $file.FullName $tagName $TagEditorExe
+        $after = Get-FlacTagValue -FilePath $file.FullName -VorbisTag $vorbisTag -ExePath $MetaFlacExe
         if ([string]::IsNullOrWhiteSpace($after)) {
             Write-Host "  After: <empty or not set>"
         } else {
@@ -256,6 +336,878 @@ while ($true) {
     $key = [Console]::ReadKey($true)
     if ($key.KeyChar -eq 'c' -or $key.KeyChar -eq 'C') { break }
 }
+
+==========================================================
+path: mp3attac.ps1
+==========================================================
+
+# ===========================================
+#  MP3 Tag Tool (exiftool + TagLib#)
+#  - Remembers editor & music directories
+#  - Works on .mp3 files
+#  - Read / write tags (Artist, Title, Album, Comment, Genre, Track, Year)
+#  - Uses exiftool first, then TagLib# fallback for MP3 writes
+# ===========================================
+
+# --- Where this script lives ---
+$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+
+# --- Files to store remembered directories ---
+$MusicDirStorePath     = Join-Path $ScriptDir "enteredDirectories.txt"
+$TagEditorDirStorePath = Join-Path $ScriptDir "tagEditorDirs.txt"
+
+# --- Load stored directories safely (ALWAYS as array) ---
+function Load-Paths {
+    param([string]$Path)
+    if (Test-Path $Path) {
+        $lines = @()
+        foreach ($line in Get-Content -Path $Path -ErrorAction SilentlyContinue) {
+            $trimmed = $line.Trim().Trim('"')
+            if ($trimmed -ne "") { $lines += $trimmed }
+        }
+        return ,$lines   # force array even for single line
+    } else {
+        return @()
+    }
+}
+
+$storedDirs = Load-Paths $MusicDirStorePath
+$tagDirs    = Load-Paths $TagEditorDirStorePath
+
+# --- Ensure TagLib# is available & loaded ---
+function Ensure-TagLibLoaded {
+    param([string]$BaseDir)
+
+    $dllPath = Join-Path $BaseDir "taglib-sharp.dll"
+    if (-not (Test-Path $dllPath)) {
+        Write-Host "  TagLib# DLL not found." -ForegroundColor Red
+        Write-Host "  Please download 'taglib-sharp.dll' and place it here:" -ForegroundColor Yellow
+        Write-Host "    $dllPath"
+        throw "TagLib# not available"
+    }
+
+    if (-not ("TagLib.File" -as [type])) {
+        Add-Type -Path $dllPath
+    }
+}
+
+# ==============================
+#  Tag editor (exiftool) selection
+# ==============================
+
+Write-Host "=== Select exiftool directory (folder with exiftool.exe) ==="
+if ($tagDirs.Count -gt 0) {
+    for ($i = 0; $i -lt $tagDirs.Count; $i++) {
+        Write-Host "[$i] = $($tagDirs[$i])"
+    }
+}
+Write-Host "[$($tagDirs.Count)] = Enter new directory"
+
+$ExifToolExe = $null
+
+while (-not $ExifToolExe) {
+    $selectedIndexRaw = Read-Host "Enter index"
+    [int]$idx = $tagDirs.Count
+    [int]$tmp = 0
+    if ([int]::TryParse($selectedIndexRaw, [ref]$tmp)) {
+        if ($tmp -ge 0 -and $tmp -lt $tagDirs.Count) { $idx = $tmp }
+    }
+
+    if ($idx -eq $tagDirs.Count) {
+        # New directory
+        $tagDir = $null
+        while (-not $tagDir) {
+            $newDir = Read-Host "Enter full path to exiftool directory"
+            if (Test-Path $newDir) {
+                $tagDir = (Resolve-Path $newDir).Path
+            } else {
+                Write-Host "Invalid directory. Try again." -ForegroundColor Red
+            }
+        }
+        if (-not ($tagDirs -contains $tagDir)) {
+            Add-Content -Path $TagEditorDirStorePath -Value "`"$tagDir`""
+            $tagDirs = Load-Paths $TagEditorDirStorePath
+        }
+    } else {
+        $tagDir = $tagDirs[$idx]
+        if (-not (Test-Path $tagDir)) {
+            Write-Host "Stored directory '$tagDir' no longer exists. Choose another." -ForegroundColor Red
+            continue
+        }
+    }
+
+    # Look for exiftool.exe in this directory
+    $exeFiles = Get-ChildItem -Path $tagDir -Filter *exiftool*.exe -File -ErrorAction SilentlyContinue
+    if ($exeFiles.Count -eq 0) {
+        Write-Host "No exiftool*.exe files found in '$tagDir'." -ForegroundColor Red
+        Write-Host "Make sure exiftool.exe is in this folder." -ForegroundColor Yellow
+        $ExifToolExe = $null
+        continue
+    }
+
+    if ($exeFiles.Count -eq 1) {
+        $ExifToolExe = $exeFiles[0].FullName
+    } else {
+        Write-Host "Multiple exiftool EXEs found in '$tagDir':"
+        for ($i = 0; $i -lt $exeFiles.Count; $i++) {
+            Write-Host "[$i] = $($exeFiles[$i].Name)"
+        }
+        $pick = 0
+        while ($true) {
+            $pickRaw = Read-Host "Select EXE index (exiftool.exe)"
+            if ([int]::TryParse($pickRaw, [ref]$pick) -and $pick -ge 0 -and $pick -lt $exeFiles.Count) {
+                $ExifToolExe = $exeFiles[$pick].FullName
+                break
+            }
+            Write-Host "Invalid selection, try again." -ForegroundColor Yellow
+        }
+    }
+}
+
+Write-Host "Using tag editor: $ExifToolExe"
+Write-Host ""
+
+# ==============================
+#  Music directory selection
+# ==============================
+
+Write-Host "=== Select MP3 music directory ==="
+if ($storedDirs.Count -gt 0) {
+    for ($i = 0; $i -lt $storedDirs.Count; $i++) {
+        Write-Host "[$i] = $($storedDirs[$i])"
+    }
+}
+Write-Host "[$($storedDirs.Count)] = Enter new directory"
+
+$dirIndexRaw = Read-Host "Enter index"
+[int]$dirIdx = $storedDirs.Count
+[int]$tmp2 = 0
+if ([int]::TryParse($dirIndexRaw, [ref]$tmp2)) {
+    if ($tmp2 -ge 0 -and $tmp2 -lt $storedDirs.Count) {
+        $dirIdx = $tmp2
+    }
+}
+
+if ($dirIdx -eq $storedDirs.Count) {
+    $Root = $null
+    while (-not $Root) {
+        $newDir = Read-Host "Enter full path to your MP3 music directory"
+        if (Test-Path $newDir) {
+            $Root = (Resolve-Path $newDir).Path
+        } else {
+            Write-Host "Invalid directory. Try again." -ForegroundColor Red
+        }
+    }
+    if (-not ($storedDirs -contains $Root)) {
+        Add-Content -Path $MusicDirStorePath -Value "`"$Root`""
+        $storedDirs = Load-Paths $MusicDirStorePath
+    }
+} else {
+    $Root = $storedDirs[$dirIdx]
+}
+
+Write-Host "Using directory: $Root"
+Write-Host ""
+
+# ==============================
+#  Tag selection (same style as flacattac)
+# ==============================
+
+$TagMap = [ordered]@{
+    'Artist'  = 'Artist'
+    'Title'   = 'Title'
+    'Album'   = 'Album'
+    'Comment' = 'Comment'
+    'Genre'   = 'Genre'
+    'Track'   = 'Track'
+    'Year'    = 'Year'
+}
+
+$tags = $TagMap.Keys
+Write-Host "=== Select tag to work with ==="
+for ($i = 0; $i -lt $tags.Count; $i++) {
+    Write-Host "[$i] = $($tags[$i])"
+}
+
+$tagIndex = $null
+while ($true) {
+    $tagIndexRaw = Read-Host "Enter tag index"
+    if ([int]::TryParse($tagIndexRaw, [ref]$tagIndex) -and $tagIndex -ge 0 -and $tagIndex -lt $tags.Count) {
+        break
+    }
+    Write-Host "Invalid selection. Try again." -ForegroundColor Yellow
+}
+
+$tagName = $tags[$tagIndex]
+Write-Host "Selected tag: $tagName"
+Write-Host ""
+
+Write-Host "=== Choose action ==="
+Write-Host "[0] = read"
+Write-Host "[1] = write"
+
+$action = $null
+while ($true) {
+    $actionRaw = Read-Host "Enter action index"
+    if ($actionRaw -in @("0","1")) {
+        $action = $actionRaw
+        break
+    }
+    Write-Host "Invalid selection. Type 0 or 1." -ForegroundColor Yellow
+}
+Write-Host ""
+
+# ==============================
+#  Collect .mp3 files
+# ==============================
+
+Write-Host "Scanning '$Root' for .mp3 files..."
+Write-Host ""
+
+$files = Get-ChildItem -Path $Root -Recurse -File -Include *.mp3
+if ($files.Count -eq 0) {
+    Write-Host "No .mp3 files found in $Root" -ForegroundColor Yellow
+    Read-Host "Press Enter to exit"
+    exit
+}
+
+# ==============================
+#  ExifTool helpers
+# ==============================
+
+function Get-Mp3Tag {
+    param([string]$FilePath, [string]$TagName, [string]$ExePath)
+    & $ExePath -s3 ("-$TagName") $FilePath 2>$null
+}
+
+function Set-Mp3Tag {
+    param([string]$FilePath, [string]$TagName, [string]$Value, [string]$ExePath, [string]$BaseDir)
+
+    $needFallback = $false
+
+    if ([string]::IsNullOrEmpty($Value)) {
+        # Delete tag
+        $result = & $ExePath -overwrite_original ("-$TagName=") $FilePath 2>&1
+    } else {
+        $escapedValue = $Value.Replace('"', '\"')
+        $result = & $ExePath -overwrite_original ("-$TagName=$escapedValue") $FilePath 2>&1
+    }
+
+    if ($LASTEXITCODE -ne 0 -or ($result -match "not yet supported")) {
+        $needFallback = $true
+    } else {
+        # Quick verify
+        $verify = & $ExePath -s3 ("-$TagName") $FilePath 2>$null
+        if (-not [string]::IsNullOrEmpty($Value)) {
+            if ([string]::IsNullOrWhiteSpace($verify)) { $needFallback = $true }
+        } else {
+            # If deleting and still not empty, fallback
+            if (-not [string]::IsNullOrWhiteSpace($verify)) { $needFallback = $true }
+        }
+    }
+
+    if (-not $needFallback) { return }
+
+    Write-Host "  ExifTool write failed, retrying with TagLib#..." -ForegroundColor Yellow
+
+    try {
+        Ensure-TagLibLoaded -BaseDir $BaseDir
+
+        $audio = [TagLib.File]::Create($FilePath)
+
+        $val = $Value
+        if ([string]::IsNullOrEmpty($val)) { $val = "" }
+
+        switch ($TagName.ToLower()) {
+            'title'   { $audio.Tag.Title       = $val }
+            'artist'  { $audio.Tag.Performers  = @($val) }
+            'album'   { $audio.Tag.Album       = $val }
+            'genre'   { $audio.Tag.Genres      = @($val) }
+            'comment' { $audio.Tag.Comment     = $val }
+            'year'    {
+                if ($val -match '^\d+$') { $audio.Tag.Year = [uint32]$val }
+                else { $audio.Tag.Year = 0 }
+            }
+            'track'   {
+                if ($val -match '^\d+$') { $audio.Tag.Track = [uint32]$val }
+                else { $audio.Tag.Track = 0 }
+            }
+            default   { Write-Host "  TagLib#: unsupported tag '$TagName'." -ForegroundColor Red }
+        }
+
+        $audio.Save()
+        Write-Host "  TagLib# write complete." -ForegroundColor Green
+    }
+    catch {
+        Write-Host "  TagLib# fallback failed: $($_.Exception.Message)" -ForegroundColor Red
+    }
+}
+
+# ==============================
+#  READ MODE
+# ==============================
+
+if ($action -eq "0") {
+    Write-Host "=== READ MODE: $tagName ==="
+    foreach ($file in $files) {
+        $current = Get-Mp3Tag -FilePath $file.FullName -TagName $tagName -ExePath $ExifToolExe
+        Write-Host "----------------------------------------"
+        Write-Host "File: $($file.Name)"
+        if ([string]::IsNullOrWhiteSpace($current)) {
+            Write-Host "  $($tagName): <empty or not set>"
+        } else {
+            Write-Host "  $($tagName): $current"
+        }
+    }
+}
+
+# ==============================
+#  WRITE MODE
+# ==============================
+
+if ($action -eq "1") {
+    Write-Host "=== WRITE MODE: $tagName ==="
+    Write-Host "This will apply to ALL .mp3 files under '$Root'."
+    Write-Host "Leave blank to delete this tag from each file."
+    Write-Host ""
+    $newValue = Read-Host "Value to write"
+    Write-Host ""
+    Write-Host "Applying changes..."
+    Write-Host ""
+
+    foreach ($file in $files) {
+        Write-Host "----------------------------------------"
+        Write-Host "File: $($file.Name)"
+        $before = Get-Mp3Tag -FilePath $file.FullName -TagName $tagName -ExePath $ExifToolExe
+
+        if ([string]::IsNullOrWhiteSpace($before)) {
+            Write-Host "  Before: <empty or not set>"
+        } else {
+            Write-Host "  Before: $before"
+        }
+
+        if ([string]::IsNullOrEmpty($newValue)) {
+            Write-Host "  Writing: (deleting tag)"
+        } else {
+            Write-Host "  Writing: '$newValue'"
+        }
+
+        Set-Mp3Tag -FilePath $file.FullName -TagName $tagName -Value $newValue -ExePath $ExifToolExe -BaseDir $ScriptDir
+
+        $after = Get-Mp3Tag -FilePath $file.FullName -TagName $tagName -ExePath $ExifToolExe
+        if ([string]::IsNullOrWhiteSpace($after)) {
+            Write-Host "  After: <empty or not set>"
+        } else {
+            Write-Host "  After: $after"
+        }
+
+        if ($before -ne $after) {
+            Write-Host "  Result: success" -ForegroundColor Green
+        } else {
+            Write-Host "  Result: unmodified" -ForegroundColor Yellow
+        }
+    }
+}
+
+Write-Host ""
+Write-Host "=========================================="
+Write-Host "Done."
+Write-Host ""
+
+[Console]::Write("Press C to close this window... ")
+while ($true) {
+    $key = [Console]::ReadKey($true)
+    if ($key.KeyChar -eq 'c' -or $key.KeyChar -eq 'C') { break }
+}
+
+==========================================================
+path: Read-Comments.ps1
+==========================================================
+
+# ===========================================
+#  Unified Tag Tool (FLAC + MP3)
+#  - Remembers music + tool directories
+#  - FLAC: uses metaflac.exe (Vorbis comments)
+#  - MP3 : uses TagLib# (taglib-sharp.dll)
+#  - Single UI: pick tag, read/write, works on both
+# ===========================================
+
+# --- Where this script lives ---
+$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+
+# --- Files to store remembered directories ---
+$MusicDirStorePath     = Join-Path $ScriptDir "enteredDirectories.txt"
+$TagEditorDirStorePath = Join-Path $ScriptDir "tagEditorDirs.txt"
+
+# --- Load stored directories safely (ALWAYS as array) ---
+function Load-Paths {
+    param([string]$Path)
+    if (Test-Path $Path) {
+        $lines = @()
+        foreach ($line in Get-Content -Path $Path -ErrorAction SilentlyContinue) {
+            $trimmed = $line.Trim().Trim('"')
+            if ($trimmed -ne "") { $lines += $trimmed }
+        }
+        return ,$lines   # force array even with one line
+    } else {
+        return @()
+    }
+}
+
+$storedDirs = Load-Paths $MusicDirStorePath
+$tagDirs    = Load-Paths $TagEditorDirStorePath
+
+# =======================================================
+#  TagLib# support (MP3 handling)
+# =======================================================
+
+$script:TagLibLoaded = $false
+
+function Ensure-TagLibLoaded {
+    if ($script:TagLibLoaded) { return }
+
+    $dllPath = Join-Path $ScriptDir "taglib-sharp.dll"
+    if (-not (Test-Path $dllPath)) {
+        Write-Host "TagLib# DLL not found." -ForegroundColor Red
+        Write-Host "Put 'taglib-sharp.dll' in this folder:" -ForegroundColor Yellow
+        Write-Host "  $ScriptDir"
+        throw "TagLibMissing"
+    }
+
+    Add-Type -Path $dllPath
+    $script:TagLibLoaded = $true
+}
+
+function Get-Mp3TagValue {
+    param(
+        [string]$FilePath,
+        [string]$TagName
+    )
+    Ensure-TagLibLoaded
+
+    $audio = [TagLib.File]::Create($FilePath)
+    $result = $null
+
+    switch ($TagName.ToLower()) {
+        'title'   { $result = $audio.Tag.Title }
+        'artist'  { $result = ($audio.Tag.Performers -join '; ') }
+        'album'   { $result = $audio.Tag.Album }
+        'genre'   { $result = ($audio.Tag.Genres -join '; ') }
+        'comment' { $result = $audio.Tag.Comment }
+        'year'    {
+            if ($audio.Tag.Year -gt 0) { $result = $audio.Tag.Year.ToString() }
+        }
+        'track'   {
+            if ($audio.Tag.Track -gt 0) { $result = $audio.Tag.Track.ToString() }
+        }
+        default { }
+    }
+
+    return $result
+}
+
+function Set-Mp3TagValue {
+    param(
+        [string]$FilePath,
+        [string]$TagName,
+        [string]$Value
+    )
+    Ensure-TagLibLoaded
+
+    $audio = [TagLib.File]::Create($FilePath)
+
+    # Empty / delete
+    $val = $Value
+    if ([string]::IsNullOrEmpty($val)) { $val = "" }
+
+    switch ($TagName.ToLower()) {
+        'title'   { $audio.Tag.Title      = $val }
+        'artist'  { $audio.Tag.Performers = @($val) }
+        'album'   { $audio.Tag.Album      = $val }
+        'genre'   { $audio.Tag.Genres     = @($val) }
+        'comment' { $audio.Tag.Comment    = $val }
+        'year'    {
+            if ($val -match '^\d+$') { $audio.Tag.Year  = [uint32]$val }
+            else                     { $audio.Tag.Year  = 0 }
+        }
+        'track'   {
+            if ($val -match '^\d+$') { $audio.Tag.Track = [uint32]$val }
+            else                     { $audio.Tag.Track = 0 }
+        }
+        default { }
+    }
+
+    $audio.Save()
+}
+
+# =======================================================
+#  metaflac support (FLAC handling)
+# =======================================================
+
+# Map friendly names -> Vorbis comment tag names used by FLAC
+$FlacTagMap = [ordered]@{
+    'Artist'  = 'ARTIST'
+    'Title'   = 'TITLE'
+    'Album'   = 'ALBUM'
+    'Comment' = 'COMMENT'
+    'Genre'   = 'GENRE'
+    'Track'   = 'TRACKNUMBER'
+    'Year'    = 'DATE'
+}
+
+function Get-FlacTagValue {
+    param(
+        [string]$FilePath,
+        [string]$VorbisTag,
+        [string]$ExePath
+    )
+
+    $lines = & $ExePath "--show-tag=$VorbisTag" $FilePath 2>$null
+    if (-not $lines) { return $null }
+
+    $values = @()
+    foreach ($line in $lines) {
+        $idx = $line.IndexOf('=')
+        if ($idx -ge 0 -and $idx -lt ($line.Length - 1)) {
+            $values += $line.Substring($idx + 1)
+        }
+    }
+
+    if ($values.Count -eq 0) { return $null }
+    return ($values -join '; ')
+}
+
+function Set-FlacTagValue {
+    param(
+        [string]$FilePath,
+        [string]$VorbisTag,
+        [string]$Value,
+        [string]$ExePath
+    )
+
+    if ([string]::IsNullOrEmpty($Value)) {
+        # Delete the tag (options BEFORE filename)
+        & $ExePath "--remove-tag=$VorbisTag" $FilePath | Out-Null
+    } else {
+        # Remove existing, then set new tag (options BEFORE filename)
+        & $ExePath "--remove-tag=$VorbisTag" "--set-tag=$VorbisTag=$Value" $FilePath | Out-Null
+    }
+}
+
+# =======================================================
+#  Select metaflac directory (using tagEditorDirs.txt)
+# =======================================================
+
+Write-Host "=== Select FLAC tool directory (folder with metaflac.exe) ==="
+if ($tagDirs.Count -gt 0) {
+    for ($i = 0; $i -lt $tagDirs.Count; $i++) {
+        Write-Host "[$i] = $($tagDirs[$i])"
+    }
+}
+Write-Host "[$($tagDirs.Count)] = Enter new directory"
+
+$MetaFlacExe = $null
+
+while (-not $MetaFlacExe) {
+    $selectedIndexRaw = Read-Host "Enter index"
+    [int]$idx = $tagDirs.Count
+    [int]$tmp = 0
+    if ([int]::TryParse($selectedIndexRaw, [ref]$tmp)) {
+        if ($tmp -ge 0 -and $tmp -lt $tagDirs.Count) { $idx = $tmp }
+    }
+
+    if ($idx -eq $tagDirs.Count) {
+        # New directory
+        $tagDir = $null
+        while (-not $tagDir) {
+            $newDir = Read-Host "Enter full path to metaflac directory"
+            if (Test-Path $newDir) {
+                $tagDir = (Resolve-Path $newDir).Path
+            } else {
+                Write-Host "Invalid directory. Try again." -ForegroundColor Red
+            }
+        }
+        if (-not ($tagDirs -contains $tagDir)) {
+            Add-Content -Path $TagEditorDirStorePath -Value "`"$tagDir`""
+            $tagDirs = Load-Paths $TagEditorDirStorePath
+        }
+    } else {
+        $tagDir = $tagDirs[$idx]
+        if (-not (Test-Path $tagDir)) {
+            Write-Host "Stored directory '$tagDir' no longer exists. Choose another." -ForegroundColor Red
+            continue
+        }
+    }
+
+    # Look for metaflac.exe in this directory
+    $exeFiles = Get-ChildItem -Path $tagDir -Filter *metaflac*.exe -File -ErrorAction SilentlyContinue
+    if ($exeFiles.Count -eq 0) {
+        Write-Host "No metaflac*.exe found in '$tagDir'." -ForegroundColor Red
+        $MetaFlacExe = $null
+        continue
+    }
+
+    if ($exeFiles.Count -eq 1) {
+        $MetaFlacExe = $exeFiles[0].FullName
+    } else {
+        Write-Host "Multiple metaflac EXEs found in '$tagDir':"
+        for ($i = 0; $i -lt $exeFiles.Count; $i++) {
+            Write-Host "[$i] = $($exeFiles[$i].Name)"
+        }
+        $pick = 0
+        while ($true) {
+            $pickRaw = Read-Host "Select EXE index (metaflac.exe)"
+            if ([int]::TryParse($pickRaw, [ref]$pick) -and $pick -ge 0 -and $pick -lt $exeFiles.Count) {
+                $MetaFlacExe = $exeFiles[$pick].FullName
+                break
+            }
+            Write-Host "Invalid selection, try again." -ForegroundColor Yellow
+        }
+    }
+}
+
+Write-Host "Using FLAC tool: $MetaFlacExe"
+Write-Host ""
+
+# =======================================================
+#  Music directory selection (enteredDirectories.txt)
+# =======================================================
+
+Write-Host "=== Select music directory (MP3 + FLAC) ==="
+if ($storedDirs.Count -gt 0) {
+    for ($i = 0; $i -lt $storedDirs.Count; $i++) {
+        Write-Host "[$i] = $($storedDirs[$i])"
+    }
+}
+Write-Host "[$($storedDirs.Count)] = Enter new directory"
+
+$dirIndexRaw = Read-Host "Enter index"
+[int]$dirIdx = $storedDirs.Count
+[int]$tmp2 = 0
+if ([int]::TryParse($dirIndexRaw, [ref]$tmp2)) {
+    if ($tmp2 -ge 0 -and $tmp2 -lt $storedDirs.Count) {
+        $dirIdx = $tmp2
+    }
+}
+
+if ($dirIdx -eq $storedDirs.Count) {
+    $Root = $null
+    while (-not $Root) {
+        $newDir = Read-Host "Enter full path to your music directory"
+        if (Test-Path $newDir) {
+            $Root = (Resolve-Path $newDir).Path
+        } else {
+            Write-Host "Invalid directory. Try again." -ForegroundColor Red
+        }
+    }
+    if (-not ($storedDirs -contains $Root)) {
+        Add-Content -Path $MusicDirStorePath -Value "`"$Root`""
+        $storedDirs = Load-Paths $MusicDirStorePath
+    }
+} else {
+    $Root = $storedDirs[$dirIdx]
+}
+
+Write-Host "Using directory: $Root"
+Write-Host ""
+
+# =======================================================
+#  Tag + action selection (shared)
+# =======================================================
+
+$tags = @('Artist','Title','Album','Comment','Genre','Track','Year')
+
+Write-Host "=== Select tag to work with ==="
+for ($i = 0; $i -lt $tags.Count; $i++) {
+    Write-Host "[$i] = $($tags[$i])"
+}
+
+$tagIndex = $null
+while ($true) {
+    $tagIndexRaw = Read-Host "Enter tag index"
+    if ([int]::TryParse($tagIndexRaw, [ref]$tagIndex) -and $tagIndex -ge 0 -and $tagIndex -lt $tags.Count) {
+        break
+    }
+    Write-Host "Invalid selection. Try again." -ForegroundColor Yellow
+}
+
+$tagName = $tags[$tagIndex]
+Write-Host "Selected tag: $tagName"
+Write-Host ""
+
+Write-Host "=== Choose action ==="
+Write-Host "[0] = read"
+Write-Host "[1] = write"
+
+$action = $null
+while ($true) {
+    $actionRaw = Read-Host "Enter action index"
+    if ($actionRaw -in @("0","1")) {
+        $action = $actionRaw
+        break
+    }
+    Write-Host "Invalid selection. Type 0 or 1." -ForegroundColor Yellow
+}
+Write-Host ""
+
+# For FLAC, map to Vorbis tag
+$vorbisTag = $null
+if ($FlacTagMap.ContainsKey($tagName)) {
+    $vorbisTag = $FlacTagMap[$tagName]
+}
+
+# =======================================================
+#  Collect MP3 + FLAC files
+# =======================================================
+
+Write-Host "Scanning '$Root' for .mp3 and .flac files..."
+Write-Host ""
+
+$files = Get-ChildItem -Path $Root -Recurse -File -Include *.mp3,*.flac
+if ($files.Count -eq 0) {
+    Write-Host "No .mp3 or .flac files found in $Root" -ForegroundColor Yellow
+    Read-Host "Press Enter to exit"
+    exit
+}
+
+# If we have any MP3s, ensure TagLib is ready (fail early if missing)
+if ($files | Where-Object { $_.Extension -ieq ".mp3" }) {
+    try {
+        Ensure-TagLibLoaded
+    } catch {
+        Write-Host "TagLib# is required for MP3 handling. Fix the DLL and rerun." -ForegroundColor Red
+        Read-Host "Press Enter to exit"
+        exit
+    }
+}
+
+# =======================================================
+#  READ MODE
+# =======================================================
+
+if ($action -eq "0") {
+    Write-Host "=== READ MODE: $tagName ==="
+
+    foreach ($file in $files) {
+        $ext = $file.Extension.ToLower()
+        $current = $null
+
+        switch ($ext) {
+            '.mp3' {
+                $current = Get-Mp3TagValue -FilePath $file.FullName -TagName $tagName
+            }
+            '.flac' {
+                if ($vorbisTag) {
+                    $current = Get-FlacTagValue -FilePath $file.FullName -VorbisTag $vorbisTag -ExePath $MetaFlacExe
+                }
+            }
+        }
+
+        Write-Host "----------------------------------------"
+        Write-Host "File: $($file.Name)"
+        if ([string]::IsNullOrWhiteSpace($current)) {
+            Write-Host "  $($tagName): <empty or not set>"
+        } else {
+            Write-Host "  $($tagName): $current"
+        }
+    }
+}
+
+# =======================================================
+#  WRITE MODE
+# =======================================================
+
+if ($action -eq "1") {
+    Write-Host "=== WRITE MODE: $tagName ==="
+    Write-Host "This will apply to ALL .mp3 and .flac files under '$Root'."
+    Write-Host "Leave the value blank to DELETE this tag."
+    Write-Host ""
+    $newValue = Read-Host "Value to write"
+    Write-Host ""
+    Write-Host "Applying changes..."
+    Write-Host ""
+
+    foreach ($file in $files) {
+        $ext = $file.Extension.ToLower()
+        $before = $null
+        $after  = $null
+
+        Write-Host "----------------------------------------"
+        Write-Host "File: $($file.Name)"
+
+        # === BEFORE ===
+        switch ($ext) {
+            '.mp3' {
+                $before = Get-Mp3TagValue -FilePath $file.FullName -TagName $tagName
+            }
+            '.flac' {
+                if ($vorbisTag) {
+                    $before = Get-FlacTagValue -FilePath $file.FullName -VorbisTag $vorbisTag -ExePath $MetaFlacExe
+                }
+            }
+        }
+
+        if ([string]::IsNullOrWhiteSpace($before)) {
+            Write-Host "  Before: <empty or not set>"
+        } else {
+            Write-Host "  Before: $before"
+        }
+
+        if ([string]::IsNullOrEmpty($newValue)) {
+            Write-Host "  Writing: (deleting tag)"
+        } else {
+            Write-Host "  Writing: '$newValue'"
+        }
+
+        # === WRITE ===
+        switch ($ext) {
+            '.mp3' {
+                Set-Mp3TagValue -FilePath $file.FullName -TagName $tagName -Value $newValue
+            }
+            '.flac' {
+                if ($vorbisTag) {
+                    Set-FlacTagValue -FilePath $file.FullName -VorbisTag $vorbisTag -Value $newValue -ExePath $MetaFlacExe
+                }
+            }
+        }
+
+        # === AFTER ===
+        switch ($ext) {
+            '.mp3' {
+                $after = Get-Mp3TagValue -FilePath $file.FullName -TagName $tagName
+            }
+            '.flac' {
+                if ($vorbisTag) {
+                    $after = Get-FlacTagValue -FilePath $file.FullName -VorbisTag $vorbisTag -ExePath $MetaFlacExe
+                }
+            }
+        }
+
+        if ([string]::IsNullOrWhiteSpace($after)) {
+            Write-Host "  After: <empty or not set>"
+        } else {
+            Write-Host "  After: $after"
+        }
+
+        if ($before -ne $after) {
+            Write-Host "  Result: success" -ForegroundColor Green
+        } else {
+            Write-Host "  Result: unmodified" -ForegroundColor Yellow
+        }
+    }
+}
+
+Write-Host ""
+Write-Host "=========================================="
+Write-Host "Done."
+Write-Host ""
+
+[Console]::Write("Press C to close this window... ")
+while ($true) {
+    $key = [Console]::ReadKey($true)
+    if ($key.KeyChar -eq 'c' -or $key.KeyChar -eq 'C') { break }
+}
+
 ==========================================================
 path: run.bat
 ==========================================================
@@ -295,4 +1247,5 @@ path: tagEditorDirs.txt
 ==========================================================
 
 C:\CmdLibraries\exif
+"C:\Users\cmand\Downloads\flac-1.5.0-win\flac-1.5.0-win\Win64"
 

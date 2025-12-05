@@ -104,27 +104,38 @@ set "ROOT_NORM=%ROOT%"
 if "%ROOT_NORM:~-1%"=="\" set "ROOT_NORM=%ROOT_NORM:~0,-1%"
 
 REM ==========================================================
-REM  DUMP ALL FILES (SKIP OUTFILE)
+REM  DUMP ALL FILES (SKIP OUTFILE + BINARY TYPES)
 REM ==========================================================
-echo Dumping files...
+echo Dumping files (text-like only)...
 echo.
 
-for /r "%ROOT%" %%F in (*) do (
-    REM Skip our own output file so it doesn't eat itself
-    if /I not "%%~fF"=="%OUTFILE%" (
-        set "FULL=%%~fF"
-        REM compute relative path from root
-        set "REL=!FULL:%ROOT_NORM%\=!"
+REM Define binary extensions to skip (case-insensitive)
+set "SKIPLIST=.exe .dll .bin .jpg .jpeg .png .gif .bmp .ico .zip .rar .7z .mp3 .wav .flac .ogg .m4a .pdf .doc .docx .xls .xlsx .ppt .pptx .ttf .otf .pak .obj .lib .pyc .pyo .iso .img .msi"
 
-        >>"%OUTFILE%" echo ==========================================================
-        >>"%OUTFILE%" echo path: !REL!
-        >>"%OUTFILE%" echo ==========================================================
-        >>"%OUTFILE%" echo(
-        type "%%~fF" >>"%OUTFILE%"
-        >>"%OUTFILE%" echo(
+for /r "%ROOT%" %%F in (*) do (
+    REM Skip our own output file
+    if /I not "%%~fF"=="%OUTFILE%" (
+        set "EXT=%%~xF"
+        set "SKIP=0"
+        for %%S in (%SKIPLIST%) do (
+            if /I "%%S"=="!EXT!" set "SKIP=1"
+        )
+        if !SKIP! EQU 0 (
+            set "FULL=%%~fF"
+            set "REL=!FULL:%ROOT_NORM%\=!"
+            >>"%OUTFILE%" echo ==========================================================
+            >>"%OUTFILE%" echo path: !REL!
+            >>"%OUTFILE%" echo ==========================================================
+            >>"%OUTFILE%" echo(
+            type "%%~fF" >>"%OUTFILE%"
+            >>"%OUTFILE%" echo(
+        ) else (
+            echo Skipping binary file: %%~nxF >nul
+        )
     )
 )
 
+echo.
 echo Done writing "%OUTFILE%".
 echo.
 
