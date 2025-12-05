@@ -190,7 +190,8 @@ echo.
 echo [INFO] Wiping workspace directory: %WORKDIR%
 echo [INFO] Preserving: run.bat, backups/, run_space/, *.ini, *.md
 
-REM NOTE: We don't log during wipe since run_space is being deleted
+REM Log wipe operation
+(echo [WIPE OPERATION] Start - %logdate% %logtime%) >> "%LOG_IMPORTANT%"
 
 REM Initialize counters
 set "DELETED_FILES=0"
@@ -262,8 +263,10 @@ if !DIR_COUNT! gtr 0 (
 echo.
 if !DELETED_FILES! equ 0 if !DELETED_DIRS! equ 1 (
     echo [INFO] Nothing to delete. Workspace is already clean.
+    (echo [WIPE] Clean - no files deleted - %logdate% %logtime%) >> "%LOG_IMPORTANT%"
 ) else (
     echo [INFO] Deleted: !DELETED_FILES! file^(s^), !DELETED_DIRS! director^(ies^)
+    (echo [WIPE] Deleted !DELETED_FILES! files and !DELETED_DIRS! directories - %logdate% %logtime%) >> "%LOG_IMPORTANT%"
 )
 echo [INFO] Workspace cleaned. Preserved: run.bat, backups/, run_space/
 echo [INFO] Exiting.
@@ -536,11 +539,8 @@ echo [D] Detect file type
 echo [Q] Quit
 echo.
 
-REM For automated/non-interactive mode: auto-select default after 3 seconds
-echo Press a key within 3 seconds (defaults to R):
-timeout /t 3 /nobreak >nul 2>&1
-set "choice=R"
-
+set "choice="
+set /p "choice=Enter choice (R/V/E/D/Q): "
 if /i "%choice%"=="Q" goto END
 
 :: =====================================================
@@ -741,10 +741,8 @@ if not "%*"=="" (
     REM Auto-run mode - exit immediately
     echo [INFO] Auto-run complete. Exiting...
 ) else (
-    REM Automated mode - auto-select default (N) after 2 seconds
-    echo Press Y within 2 seconds to run another code, or N to exit:
-    timeout /t 2 /nobreak >nul 2>&1
-    set "restart=N"
+    REM Interactive mode - ask to restart
+    set /p "restart=Run another code? (Y/N): "
     if /i "!restart:~0,1!"=="Y" (
         del "%RUN_DIR%\clip_input.txt" >nul 2>&1
         goto :BOOT_START

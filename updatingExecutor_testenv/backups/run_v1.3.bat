@@ -9,148 +9,68 @@ set "WORKDIR=%~dp0"
 set "RUN_DIR=%WORKDIR%run_space"
 
 :: =====================================================
-:: Interrupt handler setup (batch has limited Ctrl+C support)
-:: We use a cleanup trap that's called before exit
-:: =====================================================
-REM Register cleanup on exit using cmd /c wrapper
-REM This ensures temp files are cleaned regardless of termination
-
-:: =====================================================
 :: Check for wipe flag FIRST before any file operations
 :: =====================================================
 if /i "%1"=="/W" goto :WIPE_NEIGHBORS
 if /i "%1"=="/WIPE" goto :WIPE_NEIGHBORS
 
 :: =====================================================
-:: Settings Management and Initialization
+:: Check for debug mode from settings.ini or environment
 :: =====================================================
 set "SETTINGS_FILE=%~dp0settings.ini"
-set "LOG_DIR=%WORKDIR%run_space\log"
-
-REM Create log directory if it doesn't exist
-if not exist "%LOG_DIR%" mkdir "%LOG_DIR%"
-
-REM Log file paths
-set "LOG_IMPORTANT=%LOG_DIR%\important.log"
-set "LOG_INPUT=%LOG_DIR%\input.log"
-set "LOG_TERMINAL=%LOG_DIR%\terminal.log"
-
-REM Initialize log timestamp
-for /f "tokens=2-4 delims=/ " %%a in ('date /t') do (set "logdate=%%c-%%a-%%b")
-for /f "tokens=1-2 delims=/:" %%a in ('time /t') do (set "logtime=%%a:%%b")
-
-REM Helper macro for logging to important.log
-REM Usage: call :LOGIMPORTANT "message"
-REM (defined later in script)
-
-REM Default values
-set "DEBUG=1"
-set "TIMEOUT=0"
-set "LOGLEVEL=2"
-set "AUTOCLEAN=1"
-set "HALTONERROR=0"
-set "PERFMON=0"
-set "RETRIES=3"
-set "LANGUAGES=python,powershell,batch"
-set "OUTPUT="
-set "BACKUP=1"
 
 REM Ensure settings.ini exists with default values
 if not exist "%SETTINGS_FILE%" (
     echo [INFO] Creating default settings.ini...
     (
         echo # Updating Executor Settings
-        echo # Format: KEY=VALUE ^(no spaces around =^)
-        echo.
-        echo # Enable or disable debug output
-        echo DEBUG=1
-        echo.
-        echo # Timeout in seconds ^(0 = disabled, automatic termination after this duration^)
-        echo TIMEOUT=0
-        echo.
-        echo # Log level ^(1=minimal, 2=normal, 3=verbose^)
-        echo LOGLEVEL=2
-        echo.
-        echo # Auto-cleanup temp files on exit ^(0=disabled, 1=enabled^)
-        echo AUTOCLEAN=1
-        echo.
-        echo # Halt on first error ^(0=continue, 1=stop^)
-        echo HALTONERROR=0
-        echo.
-        echo # Performance monitoring ^(0=disabled, 1=enabled^)
-        echo PERFMON=0
-        echo.
-        echo # Retry count for failed operations
-        echo RETRIES=3
-        echo.
-        echo # Supported languages ^(comma-separated: python,powershell,batch,javascript,ruby,lua,shell^)
-        echo LANGUAGES=python,powershell,batch
-        echo.
-        echo # Output directory for results ^(leave blank for run_space^)
-        echo OUTPUT=
-        echo.
-        echo # Backup backups on wipe ^(0=disabled, 1=enabled^)
-        echo BACKUP=1
-        echo.
-        echo # Version tracking
-        echo VERSION=1.3
+        echo VERSION=1
+        echo DEBUGINFO=1
+        echo DEBUGLOG=1
+        echo debug=1
     ) > "%SETTINGS_FILE%"
 )
 
-REM Parse settings from ini file
-for /f "tokens=1,2 delims==" %%a in ('findstr /i "^DEBUG=" "%SETTINGS_FILE%" 2^>nul') do set "DEBUG=%%b"
-for /f "tokens=1,2 delims==" %%a in ('findstr /i "^TIMEOUT=" "%SETTINGS_FILE%" 2^>nul') do set "TIMEOUT=%%b"
-for /f "tokens=1,2 delims==" %%a in ('findstr /i "^LOGLEVEL=" "%SETTINGS_FILE%" 2^>nul') do set "LOGLEVEL=%%b"
-for /f "tokens=1,2 delims==" %%a in ('findstr /i "^AUTOCLEAN=" "%SETTINGS_FILE%" 2^>nul') do set "AUTOCLEAN=%%b"
-for /f "tokens=1,2 delims==" %%a in ('findstr /i "^HALTONERROR=" "%SETTINGS_FILE%" 2^>nul') do set "HALTONERROR=%%b"
-for /f "tokens=1,2 delims==" %%a in ('findstr /i "^PERFMON=" "%SETTINGS_FILE%" 2^>nul') do set "PERFMON=%%b"
-for /f "tokens=1,2 delims==" %%a in ('findstr /i "^RETRIES=" "%SETTINGS_FILE%" 2^>nul') do set "RETRIES=%%b"
-for /f "tokens=1,2 delims==" %%a in ('findstr /i "^LANGUAGES=" "%SETTINGS_FILE%" 2^>nul') do set "LANGUAGES=%%b"
-for /f "tokens=1,2 delims==" %%a in ('findstr /i "^OUTPUT=" "%SETTINGS_FILE%" 2^>nul') do set "OUTPUT=%%b"
-for /f "tokens=1,2 delims==" %%a in ('findstr /i "^BACKUP=" "%SETTINGS_FILE%" 2^>nul') do set "BACKUP=%%b"
+REM Check if debug setting exists, if not add it
+findstr /i "^debug" "%SETTINGS_FILE%" >nul 2>&1
+if %errorlevel% neq 0 (
+    echo [INFO] Adding debug setting to settings.ini...
+    echo debug=1 >> "%SETTINGS_FILE%"
+)
 
-REM Trim whitespace from settings
-set "DEBUG=%DEBUG: =%"
-set "TIMEOUT=%TIMEOUT: =%"
-set "LOGLEVEL=%LOGLEVEL: =%"
-set "AUTOCLEAN=%AUTOCLEAN: =%"
-set "HALTONERROR=%HALTONERROR: =%"
-set "PERFMON=%PERFMON: =%"
-set "RETRIES=%RETRIES: =%"
-set "LANGUAGES=%LANGUAGES: =%"
-set "OUTPUT=%OUTPUT: =%"
-set "BACKUP=%BACKUP: =%"
+REM Read debug mode value - trim whitespace
+set "DEBUG_MODE=1"
+for /f "tokens=1,2 delims==" %%a in ('findstr /i "^debug" "%SETTINGS_FILE%" 2^>nul') do (
+    set "DEBUG_MODE=%%b"
+)
+REM Trim any trailing/leading spaces
+set "DEBUG_MODE=%DEBUG_MODE: =%"
 
-if "%DEBUG%"=="1" (
+if "%DEBUG_MODE%"=="1" (
     echo ========================================
     echo [DEBUG] Debug mode ENABLED
-    echo [DEBUG] Timeout: %TIMEOUT% seconds
-    echo [DEBUG] Log level: %LOGLEVEL%
-    echo [DEBUG] Auto-clean: %AUTOCLEAN%
-    echo [DEBUG] Halt on error: %HALTONERROR%
-    echo [DEBUG] Performance monitor: %PERFMON%
+    echo [DEBUG] Timeout: DISABLED
+    echo [DEBUG] Verbose: ON
     echo ========================================
     echo.
 ) else (
-    echo [INFO] Normal mode - %TIMEOUT% second timeout active
-    if "%TIMEOUT%"=="0" (
-        start /min cmd /c "timeout /t 10 /nobreak >nul 2>&1 & taskkill /fi "WINDOWTITLE eq Updating Executor" /f >nul 2>&1"
-    )
+    echo [INFO] Normal mode - 10 second timeout active
+    start /min cmd /c "timeout /t 10 /nobreak >nul 2>&1 & taskkill /fi "WINDOWTITLE eq Updating Executor" /f >nul 2>&1"
 )
 
 :BOOT_START
 
-if "%DEBUG%"=="1" echo [DEBUG] Checking command-line arguments: %*
+if "%DEBUG_MODE%"=="1" echo [DEBUG] Checking command-line arguments: %*
 REM If argument is provided AND file doesn't exist, use argument
 REM Otherwise, use existing file (pre-written by PowerShell wrapper)
 if not "%*"=="" (
     if not exist "%RUN_DIR%\clip_input.txt" (
-        if "%DEBUG%"=="1" echo [DEBUG] Writing args to clip_input.txt
+        if "%DEBUG_MODE%"=="1" echo [DEBUG] Writing args to clip_input.txt
         echo %* > "%RUN_DIR%\clip_input.txt"
         goto :SKIP_BOOT
     ) else (
         REM File exists, assume it was pre-written by PS wrapper
-        if "%DEBUG%"=="1" echo [DEBUG] clip_input.txt exists, using pre-written file
+        if "%DEBUG_MODE%"=="1" echo [DEBUG] clip_input.txt exists, using pre-written file
         REM Just proceed with the file
         goto :SKIP_BOOT
     )
@@ -167,16 +87,8 @@ echo [C] Continue normally (default)
 echo [W] Wipe entire run_space directory and exit
 echo.
 
-REM For automated/non-interactive mode: auto-select default after 5 seconds
-echo Press a key within 5 seconds (defaults to C):
-
-REM Try using timeout with /nobreak for auto-continuation
-timeout /t 5 /nobreak >nul 2>&1
-
-set "boot_choice=C"
-REM Optionally allow manual input - comment out timeout above if you want manual input
-REM set "boot_choice="
-REM set /p "boot_choice=Enter choice (C/W): "
+set "boot_choice="
+set /p "boot_choice=Enter choice (C/W): "
 
 REM Normalize input to uppercase
 if "%boot_choice%"=="" set "boot_choice=C"
@@ -188,26 +100,20 @@ goto :SKIP_BOOT
 setlocal EnableDelayedExpansion
 echo.
 echo [INFO] Wiping workspace directory: %WORKDIR%
-echo [INFO] Preserving: run.bat, backups/, run_space/, *.ini, *.md
-
-REM NOTE: We don't log during wipe since run_space is being deleted
+echo [INFO] Preserving: run.bat, backups/, run_space/
 
 REM Initialize counters
 set "DELETED_FILES=0"
 set "DELETED_DIRS=0"
 
 REM DEBUG MODE: List all files and directories before wiping
-if "%DEBUG%"=="1" (
+if "%DEBUG_MODE%"=="1" (
     echo.
     echo [DEBUG] Files to be deleted:
     cd /d "%WORKDIR%"
     for %%F in (*.*) do (
         if not "%%F"=="run.bat" (
-            if not "%%~xF"==".ini" (
-                if not "%%~xF"==".md" (
-                    echo [DEBUG]   %%F
-                )
-            )
+            echo [DEBUG]   %%F
         )
     )
     echo.
@@ -228,18 +134,14 @@ if exist "%RUN_DIR%" (
 )
 mkdir "%RUN_DIR%"
 
-REM Delete all files in WORKDIR except run.bat, *.ini, *.md
+REM Delete all files in WORKDIR except run.bat
 cd /d "%WORKDIR%"
 set "FILE_COUNT=0"
 for %%F in (*.*) do (
     if not "%%F"=="run.bat" (
-        if not "%%~xF"==".ini" (
-            if not "%%~xF"==".md" (
-                del "%%F" >nul 2>&1
-                set /a "FILE_COUNT+=1"
-                if "%DEBUG%"=="1" echo [OK] %%F deleted.
-            )
-        )
+        del "%%F" >nul 2>&1
+        set /a "FILE_COUNT+=1"
+        if "%DEBUG_MODE%"=="1" echo [OK] %%F deleted.
     )
 )
 if !FILE_COUNT! gtr 0 (
@@ -252,7 +154,7 @@ for /d %%D in (*) do (
     if not "%%D"=="backups" if not "%%D"=="run_space" (
         rmdir /s /q "%%D" >nul 2>&1
         set /a "DIR_COUNT+=1"
-        if "%DEBUG%"=="1" echo [OK] %%D deleted.
+        if "%DEBUG_MODE%"=="1" echo [OK] %%D deleted.
     )
 )
 if !DIR_COUNT! gtr 0 (
@@ -272,114 +174,9 @@ timeout /t 2 >nul
 goto :END
 
 :SKIP_BOOT
-if "%DEBUG%"=="1" echo [DEBUG] Entered :SKIP_BOOT label
+if "%DEBUG_MODE%"=="1" echo [DEBUG] Entered :SKIP_BOOT label
 echo [INFO] Continuing normal operation...
 echo.
-
-:: =====================================================
-:: Generate README on first run (instruction #7)
-:: =====================================================
-set "README_FILE=%RUN_DIR%\README.md"
-if not exist "%README_FILE%" (
-    echo [INFO] Generating README.md...
-    (
-        echo # Updating Executor - Code Executor Tool
-        echo.
-        echo ## Overview
-        echo This is a clipboard-based code executor that automatically detects programming language,
-        echo executes the code, and provides clear feedback on success or failure.
-        echo.
-        echo ## Supported Languages
-        echo - Python ^(.py^)
-        echo - PowerShell ^(.ps1^)
-        echo - Batch ^(.bat^)
-        echo - JavaScript ^(.js^)
-        echo - Ruby ^(.rb^)
-        echo - Lua ^(.lua^)
-        echo - Shell ^(.sh^)
-        echo.
-        echo ## Features
-        echo - Automatic language detection based on code patterns
-        echo - Isolated execution environment in run_space/
-        echo - Comprehensive logging in run_space/log/
-        echo - Configurable behavior via settings.ini
-        echo - Debug mode for troubleshooting
-        echo - Automatic file cleanup on exit
-        echo.
-        echo ## Project Structure
-        echo ```
-        echo run.bat                    - Main executor ^(single-file, self-contained^)
-        echo settings.ini               - Configuration file
-        echo backups/                   - Version history
-        echo run_space/                 - Isolated execution directory
-        echo ├── log/                   - Log files
-        echo │   ├── input.log          - User input history
-        echo │   ├── important.log      - Critical events
-        echo │   └── terminal.log       - Program output
-        echo ├── languages/             - Code files organized by language
-        echo ├── clip_input.txt         - Clipboard content
-        echo └── README.md              - This file
-        echo ```
-        echo.
-        echo ## Usage
-        echo.
-        echo ### Interactive Mode
-        echo 1. Copy code to clipboard
-        echo 2. Run: `.\run.bat`
-        echo 3. Press [C] to continue or [W] to wipe workspace
-        echo 4. Select action: [R] Run, [V] View, [E] Edit, or [Q] Quit
-        echo.
-        echo ### Command-Line Mode
-        echo - `.\run.bat /W`       - Clean workspace
-        echo - `.\run.bat /WIPE`    - Same as /W
-        echo - `.\run.bat code`     - Execute code directly
-        echo.
-        echo ### Automated Testing
-        echo When running tests, /W flag is recognized automatically to skip boot menu.
-        echo.
-        echo ## Configuration
-        echo Edit `settings.ini` to customize:
-        echo - DEBUG: Enable debug output ^(0/1^)
-        echo - TIMEOUT: Execution timeout in seconds ^(0=disabled^)
-        echo - LOGLEVEL: Verbosity ^(1=minimal, 2=normal, 3=verbose^)
-        echo - AUTOCLEAN: Auto-cleanup temp files ^(0/1^)
-        echo - HALTONERROR: Stop on first error ^(0/1^)
-        echo - PERFMON: Performance monitoring ^(0/1^)
-        echo - RETRIES: Retry count for failed operations
-        echo - LANGUAGES: Supported language list
-        echo.
-        echo ## Logging
-        echo - **input.log**: All user inputs ^(interactive mode^)
-        echo - **important.log**: Critical events, errors, execution results
-        echo - **terminal.log**: Full program output ^(if enabled^)
-        echo.
-        echo ## Exit Codes
-        echo - 0: Success
-        echo - 1: Failure
-        echo - 2: Missing dependency
-        echo.
-        echo ## Troubleshooting
-        echo.
-        echo ### Code not executing?
-        echo 1. Verify code is in clipboard: Ctrl+C to copy
-        echo 2. Check language detection: Enable DEBUG=1 in settings.ini
-        echo 3. Review logs in run_space/log/
-        echo.
-        echo ### Syntax errors in code?
-        echo 1. Run with [V] View to see exact code being executed
-        echo 2. Fix code and copy again to clipboard
-        echo 3. Re-run executor
-        echo.
-        echo ### Workspace cleanup?
-        echo 1. Press [W] at boot menu to wipe all files except run.bat
-        echo 2. Or run: `.\run.bat /W`
-        echo.
-        echo ## Version
-        echo %VERSION:1.0=1.3%
-        echo.
-        echo Generated automatically on first run.
-    ) > "%README_FILE%"
-)
 
 :: Clean up any old temp files
 del "%RUN_DIR%\*.tmp" >nul 2>&1
@@ -389,7 +186,7 @@ set "CLIP_HELPER=%RUN_DIR%\read_clipboard.ps1"
 set "BOM_STRIPPER=%RUN_DIR%\strip_bom.bat"
 set "CODE_EXECUTOR=%RUN_DIR%\execute_code.bat"
 
-if "%DEBUG%"=="1" (
+if "%DEBUG_MODE%"=="1" (
     echo [DEBUG] Variables set:
     echo [DEBUG]   CLIP_TXT=%CLIP_TXT%
     echo [DEBUG]   CODE_EXECUTOR=%CODE_EXECUTOR%
@@ -399,7 +196,7 @@ if "%DEBUG%"=="1" (
 :: Ensure helper scripts exist in run_space
 :: =====================================================
 if not exist "%CLIP_HELPER%" (
-    if "%DEBUG%"=="1" echo [DEBUG] Generating read_clipboard.ps1...
+    if "%DEBUG_MODE%"=="1" echo [DEBUG] Generating read_clipboard.ps1...
     (
         echo param^([string]$OutputFile^)
         echo try {
@@ -419,7 +216,7 @@ if not exist "%CLIP_HELPER%" (
 )
 
 if not exist "%BOM_STRIPPER%" (
-    if "%DEBUG%"=="1" echo [DEBUG] Generating strip_bom.bat...
+    if "%DEBUG_MODE%"=="1" echo [DEBUG] Generating strip_bom.bat...
     (
         echo @echo off
         echo setlocal
@@ -436,7 +233,7 @@ if not exist "%BOM_STRIPPER%" (
 )
 
 if not exist "%CODE_EXECUTOR%" (
-    if "%DEBUG%"=="1" echo [DEBUG] Generating execute_code.bat...
+    if "%DEBUG_MODE%"=="1" echo [DEBUG] Generating execute_code.bat...
     (
         echo @echo off
         echo setlocal enabledelayedexpansion
@@ -519,7 +316,7 @@ echo.
 :: =====================================================
 if not "%*"=="" (
     echo [INFO] Auto-running from command-line argument...
-    if "%DEBUG%"=="1" echo [DEBUG] Setting choice=R and jumping to :DETECT_AND_RUN
+    if "%DEBUG_MODE%"=="1" echo [DEBUG] Setting choice=R and jumping to :DETECT_AND_RUN
     set "choice=R"
     goto :DETECT_AND_RUN
 )
@@ -536,18 +333,15 @@ echo [D] Detect file type
 echo [Q] Quit
 echo.
 
-REM For automated/non-interactive mode: auto-select default after 3 seconds
-echo Press a key within 3 seconds (defaults to R):
-timeout /t 3 /nobreak >nul 2>&1
-set "choice=R"
-
+set "choice="
+set /p "choice=Enter choice (R/V/E/D/Q): "
 if /i "%choice%"=="Q" goto END
 
 :: =====================================================
 :: Detect file type from clipboard content
 :: =====================================================
 :DETECT_AND_RUN
-if "%DEBUG%"=="1" echo [DEBUG] Entered :DETECT_AND_RUN - choice=%choice%
+if "%DEBUG_MODE%"=="1" echo [DEBUG] Entered :DETECT_AND_RUN - choice=%choice%
 
 if /i "%choice%"=="D" (
     echo.
@@ -585,12 +379,12 @@ if /i "%choice%"=="D" (
 :: =====================================================
 :: Detect and set file extension
 :: =====================================================
-if "%DEBUG%"=="1" echo [DEBUG] Starting language detection...
+if "%DEBUG_MODE%"=="1" echo [DEBUG] Starting language detection...
 setlocal enabledelayedexpansion
 set "detected_ext=.txt"
 set "CLIP_FILE=%CLIP_TXT%"
 
-if "%DEBUG%"=="1" echo [DEBUG] Checking Python patterns...
+if "%DEBUG_MODE%"=="1" echo [DEBUG] Checking Python patterns...
 REM Check for Python - look for print keyword first
 findstr /i "print" "%CLIP_FILE%" >nul 2>&1 && (set "detected_ext=.py" & goto :DETECT_DONE)
 
@@ -604,8 +398,8 @@ findstr /i "class " "%CLIP_FILE%" >nul 2>&1 && (set "detected_ext=.py" & goto :D
 
 findstr /i "if __name__" "%CLIP_FILE%" >nul 2>&1 && (set "detected_ext=.py" & goto :DETECT_DONE)
 
-if "%DEBUG%"=="1" echo [DEBUG] After Python checks, before PowerShell
-if "%DEBUG%"=="1" echo [DEBUG] No Python match, checking PowerShell...
+if "%DEBUG_MODE%"=="1" echo [DEBUG] After Python checks, before PowerShell
+if "%DEBUG_MODE%"=="1" echo [DEBUG] No Python match, checking PowerShell...
 REM Check for PowerShell - multiple patterns
 findstr /i "Write-Host" "%CLIP_FILE%" >nul 2>&1 && (set "detected_ext=.ps1" & goto :DETECT_DONE)
 
@@ -671,7 +465,7 @@ REM Generic echo as last resort - default to batch
 findstr /i "echo" "%CLIP_FILE%" >nul 2>&1 && (set "detected_ext=.bat" & goto :DETECT_DONE)
 
 :DETECT_DONE
-if "%DEBUG%"=="1" echo [DEBUG] Detected extension: !detected_ext!
+if "%DEBUG_MODE%"=="1" echo [DEBUG] Detected extension: !detected_ext!
 
 REM If still .txt, warn user but continue - execute_code.bat will handle error
 if "!detected_ext!"==".txt" (
@@ -681,12 +475,12 @@ if "!detected_ext!"==".txt" (
 )
 
 set "RUN_FILE=%RUN_DIR%\clipboard_code!detected_ext!"
-if "%DEBUG%"=="1" echo [DEBUG] RUN_FILE will be: !RUN_FILE!
+if "%DEBUG_MODE%"=="1" echo [DEBUG] RUN_FILE will be: !RUN_FILE!
 endlocal & set "RUN_FILE=%RUN_FILE%"
 
 copy /y "%CLIP_TXT%" "%RUN_FILE%" >nul
-if "%DEBUG%"=="1" echo [DEBUG] Copied %CLIP_TXT% to %RUN_FILE%
-if "%DEBUG%"=="1" echo [DEBUG] Checking choice handlers - choice=%choice%
+if "%DEBUG_MODE%"=="1" echo [DEBUG] Copied %CLIP_TXT% to %RUN_FILE%
+if "%DEBUG_MODE%"=="1" echo [DEBUG] Checking choice handlers - choice=%choice%
 
 if /i "%choice%"=="E" (
     start "" notepad "%RUN_FILE%"
@@ -703,11 +497,11 @@ if /i "%choice%"=="V" (
 :: =====================================================
 :: Run script using universal executor
 :: =====================================================
-if "%DEBUG%"=="1" echo [DEBUG] About to execute code
+if "%DEBUG_MODE%"=="1" echo [DEBUG] About to execute code
 echo.
 echo [INFO] Running code from clipboard in workspace "%RUN_DIR%"...
 echo [INFO] File: %RUN_FILE%
-if "%DEBUG%"=="1" echo [DEBUG] Pushing to directory: %RUN_DIR%
+if "%DEBUG_MODE%"=="1" echo [DEBUG] Pushing to directory: %RUN_DIR%
 pushd "%RUN_DIR%"
 
 REM Ensure executor exists
@@ -717,17 +511,10 @@ if not exist "%CODE_EXECUTOR%" (
     goto END
 )
 
-if "%DEBUG%"=="1" echo [DEBUG] Calling: %CODE_EXECUTOR% "%RUN_FILE%"
+if "%DEBUG_MODE%"=="1" echo [DEBUG] Calling: %CODE_EXECUTOR% "%RUN_FILE%"
 call "%CODE_EXECUTOR%" "%RUN_FILE%"
 set "exitCode=!ERRORLEVEL!"
-
-REM Log execution result
-if !exitCode! equ 0 (
-    (echo [EXECUTION] Success - File: %RUN_FILE% - %logdate% %logtime%) >> "%LOG_IMPORTANT%"
-) else (
-    (echo [EXECUTION] Failed with code !exitCode! - File: %RUN_FILE% - %logdate% %logtime%) >> "%LOG_IMPORTANT%"
-)
-if "%DEBUG%"=="1" echo [DEBUG] Execution completed with exit code: !exitCode!
+if "%DEBUG_MODE%"=="1" echo [DEBUG] Execution completed with exit code: !exitCode!
 popd
 
 echo.
@@ -741,10 +528,8 @@ if not "%*"=="" (
     REM Auto-run mode - exit immediately
     echo [INFO] Auto-run complete. Exiting...
 ) else (
-    REM Automated mode - auto-select default (N) after 2 seconds
-    echo Press Y within 2 seconds to run another code, or N to exit:
-    timeout /t 2 /nobreak >nul 2>&1
-    set "restart=N"
+    REM Interactive mode - ask to restart
+    set /p "restart=Run another code? (Y/N): "
     if /i "!restart:~0,1!"=="Y" (
         del "%RUN_DIR%\clip_input.txt" >nul 2>&1
         goto :BOOT_START
@@ -759,25 +544,3 @@ del "%RUN_DIR%\.autorun" >nul 2>&1
 echo [EXIT] Done.
 endlocal
 exit /b
-
-:: =====================================================
-:: Logging Subroutines
-:: =====================================================
-
-:LOGIMPORTANT
-:: Log to important.log with timestamp
-:: Usage: (echo %logdate% %logtime% - %1) >> "%LOG_IMPORTANT%"
-if "%LOGLEVEL%"=="1" goto :EOF
-echo [%logdate% %logtime%] %~1 >> "%LOG_IMPORTANT%"
-goto :EOF
-
-:LOGINPUT
-:: Log user input to input.log
-echo [%logdate% %logtime%] User input: %~1 >> "%LOG_INPUT%"
-goto :EOF
-
-:LOGTERMINAL
-:: Log to terminal.log if enabled
-if "%LOGLEVEL%"=="3" echo [%logdate% %logtime%] %~1 >> "%LOG_TERMINAL%"
-goto :EOF
-

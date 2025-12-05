@@ -9,13 +9,6 @@ set "WORKDIR=%~dp0"
 set "RUN_DIR=%WORKDIR%run_space"
 
 :: =====================================================
-:: Interrupt handler setup (batch has limited Ctrl+C support)
-:: We use a cleanup trap that's called before exit
-:: =====================================================
-REM Register cleanup on exit using cmd /c wrapper
-REM This ensures temp files are cleaned regardless of termination
-
-:: =====================================================
 :: Check for wipe flag FIRST before any file operations
 :: =====================================================
 if /i "%1"=="/W" goto :WIPE_NEIGHBORS
@@ -26,22 +19,6 @@ if /i "%1"=="/WIPE" goto :WIPE_NEIGHBORS
 :: =====================================================
 set "SETTINGS_FILE=%~dp0settings.ini"
 set "LOG_DIR=%WORKDIR%run_space\log"
-
-REM Create log directory if it doesn't exist
-if not exist "%LOG_DIR%" mkdir "%LOG_DIR%"
-
-REM Log file paths
-set "LOG_IMPORTANT=%LOG_DIR%\important.log"
-set "LOG_INPUT=%LOG_DIR%\input.log"
-set "LOG_TERMINAL=%LOG_DIR%\terminal.log"
-
-REM Initialize log timestamp
-for /f "tokens=2-4 delims=/ " %%a in ('date /t') do (set "logdate=%%c-%%a-%%b")
-for /f "tokens=1-2 delims=/:" %%a in ('time /t') do (set "logtime=%%a:%%b")
-
-REM Helper macro for logging to important.log
-REM Usage: call :LOGIMPORTANT "message"
-REM (defined later in script)
 
 REM Default values
 set "DEBUG=1"
@@ -167,16 +144,8 @@ echo [C] Continue normally (default)
 echo [W] Wipe entire run_space directory and exit
 echo.
 
-REM For automated/non-interactive mode: auto-select default after 5 seconds
-echo Press a key within 5 seconds (defaults to C):
-
-REM Try using timeout with /nobreak for auto-continuation
-timeout /t 5 /nobreak >nul 2>&1
-
-set "boot_choice=C"
-REM Optionally allow manual input - comment out timeout above if you want manual input
-REM set "boot_choice="
-REM set /p "boot_choice=Enter choice (C/W): "
+set "boot_choice="
+set /p "boot_choice=Enter choice (C/W): "
 
 REM Normalize input to uppercase
 if "%boot_choice%"=="" set "boot_choice=C"
@@ -188,9 +157,7 @@ goto :SKIP_BOOT
 setlocal EnableDelayedExpansion
 echo.
 echo [INFO] Wiping workspace directory: %WORKDIR%
-echo [INFO] Preserving: run.bat, backups/, run_space/, *.ini, *.md
-
-REM NOTE: We don't log during wipe since run_space is being deleted
+echo [INFO] Preserving: run.bat, backups/, run_space/
 
 REM Initialize counters
 set "DELETED_FILES=0"
@@ -203,11 +170,7 @@ if "%DEBUG%"=="1" (
     cd /d "%WORKDIR%"
     for %%F in (*.*) do (
         if not "%%F"=="run.bat" (
-            if not "%%~xF"==".ini" (
-                if not "%%~xF"==".md" (
-                    echo [DEBUG]   %%F
-                )
-            )
+            echo [DEBUG]   %%F
         )
     )
     echo.
@@ -228,18 +191,14 @@ if exist "%RUN_DIR%" (
 )
 mkdir "%RUN_DIR%"
 
-REM Delete all files in WORKDIR except run.bat, *.ini, *.md
+REM Delete all files in WORKDIR except run.bat
 cd /d "%WORKDIR%"
 set "FILE_COUNT=0"
 for %%F in (*.*) do (
     if not "%%F"=="run.bat" (
-        if not "%%~xF"==".ini" (
-            if not "%%~xF"==".md" (
-                del "%%F" >nul 2>&1
-                set /a "FILE_COUNT+=1"
-                if "%DEBUG%"=="1" echo [OK] %%F deleted.
-            )
-        )
+        del "%%F" >nul 2>&1
+        set /a "FILE_COUNT+=1"
+        if "%DEBUG%"=="1" echo [OK] %%F deleted.
     )
 )
 if !FILE_COUNT! gtr 0 (
@@ -536,11 +495,8 @@ echo [D] Detect file type
 echo [Q] Quit
 echo.
 
-REM For automated/non-interactive mode: auto-select default after 3 seconds
-echo Press a key within 3 seconds (defaults to R):
-timeout /t 3 /nobreak >nul 2>&1
-set "choice=R"
-
+set "choice="
+set /p "choice=Enter choice (R/V/E/D/Q): "
 if /i "%choice%"=="Q" goto END
 
 :: =====================================================
@@ -720,13 +676,6 @@ if not exist "%CODE_EXECUTOR%" (
 if "%DEBUG%"=="1" echo [DEBUG] Calling: %CODE_EXECUTOR% "%RUN_FILE%"
 call "%CODE_EXECUTOR%" "%RUN_FILE%"
 set "exitCode=!ERRORLEVEL!"
-
-REM Log execution result
-if !exitCode! equ 0 (
-    (echo [EXECUTION] Success - File: %RUN_FILE% - %logdate% %logtime%) >> "%LOG_IMPORTANT%"
-) else (
-    (echo [EXECUTION] Failed with code !exitCode! - File: %RUN_FILE% - %logdate% %logtime%) >> "%LOG_IMPORTANT%"
-)
 if "%DEBUG%"=="1" echo [DEBUG] Execution completed with exit code: !exitCode!
 popd
 
@@ -741,10 +690,8 @@ if not "%*"=="" (
     REM Auto-run mode - exit immediately
     echo [INFO] Auto-run complete. Exiting...
 ) else (
-    REM Automated mode - auto-select default (N) after 2 seconds
-    echo Press Y within 2 seconds to run another code, or N to exit:
-    timeout /t 2 /nobreak >nul 2>&1
-    set "restart=N"
+    REM Interactive mode - ask to restart
+    set /p "restart=Run another code? (Y/N): "
     if /i "!restart:~0,1!"=="Y" (
         del "%RUN_DIR%\clip_input.txt" >nul 2>&1
         goto :BOOT_START
@@ -759,25 +706,3 @@ del "%RUN_DIR%\.autorun" >nul 2>&1
 echo [EXIT] Done.
 endlocal
 exit /b
-
-:: =====================================================
-:: Logging Subroutines
-:: =====================================================
-
-:LOGIMPORTANT
-:: Log to important.log with timestamp
-:: Usage: (echo %logdate% %logtime% - %1) >> "%LOG_IMPORTANT%"
-if "%LOGLEVEL%"=="1" goto :EOF
-echo [%logdate% %logtime%] %~1 >> "%LOG_IMPORTANT%"
-goto :EOF
-
-:LOGINPUT
-:: Log user input to input.log
-echo [%logdate% %logtime%] User input: %~1 >> "%LOG_INPUT%"
-goto :EOF
-
-:LOGTERMINAL
-:: Log to terminal.log if enabled
-if "%LOGLEVEL%"=="3" echo [%logdate% %logtime%] %~1 >> "%LOG_TERMINAL%"
-goto :EOF
-
