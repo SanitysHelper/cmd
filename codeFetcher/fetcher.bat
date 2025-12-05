@@ -19,32 +19,44 @@ set /A count=0
 if exist "%DIRLIST%" (
     for /f "usebackq delims=" %%D in ("%DIRLIST%") do (
         set "DIR_!count!=%%D"
-        echo [!count!] = %%D
         set /A count+=1
     )
 ) else (
     echo (no directories saved yet)
 )
 
-echo [%count%] = Enter new directory
+REM Menu: [0] = Enter new directory, [1..N] = existing dirs
+echo [0] = Enter new directory
+if %count% GTR 0 (
+    for /L %%I in (0,1,%count%-1) do (
+        set /A idx=%%I+1
+        for /f "delims=" %%P in ("!DIR_%%I!") do (
+            echo [!idx!] = %%P
+        )
+    )
+) else (
+    echo (no saved directories yet beyond [0])
+)
 echo.
 
 :ASK_INDEX
 set "choice="
 set /P "choice=Enter directory index: "
 
+REM default to 0 (new) if blank
 if "%choice%"=="" (
-    set "choice=%count%"
+    set "choice=0"
 )
 
-REM if choice is the "new" option:
-if "%choice%"=="%count%" goto NEW_DIR
+REM 0 => new directory
+if "%choice%"=="0" goto NEW_DIR
 
-REM try to match an existing index
+REM try to match an existing index (1..count)
 set "ROOT="
 if %count% GTR 0 (
     for /L %%I in (0,1,%count%-1) do (
-        if "%choice%"=="%%I" (
+        set /A idx=%%I+1
+        if "%choice%"=="!idx!" (
             set "ROOT=!DIR_%%I!"
         )
     )
@@ -56,7 +68,6 @@ if not defined ROOT (
 )
 
 goto HAVE_ROOT
-
 
 :NEW_DIR
 echo Enter a new directory path (where the files you want to dump live).
@@ -130,7 +141,8 @@ for /r "%ROOT%" %%F in (*) do (
             type "%%~fF" >>"%OUTFILE%"
             >>"%OUTFILE%" echo(
         ) else (
-            echo Skipping binary file: %%~nxF >nul
+            REM Skipping binary-ish file
+            >nul echo Skipping binary file: %%~nxF
         )
     )
 )
@@ -140,17 +152,26 @@ echo Done writing "%OUTFILE%".
 echo.
 
 REM ==========================================================
-REM  COPY TO CLIPBOARD (if possible)
+REM  OPTIONAL COPY TO CLIPBOARD
 REM ==========================================================
-echo Trying to copy contents to clipboard...
-powershell -NoProfile -Command "Get-Content -Raw '%OUTFILE%' | Set-Clipboard" >nul 2>&1
+set "ans="
+set /P "ans=Press ENTER to copy dump to clipboard, or type anything then ENTER to skip: "
 
-if %errorlevel%==0 (
-    echo ✅ Dump copied to clipboard.
-    echo You can paste it directly into ChatGPT.
+if "%ans%"=="" (
+    echo Copying contents to clipboard...
+    powershell -NoProfile -Command "Get-Content -Raw '%OUTFILE%' | Set-Clipboard" >nul 2>&1
+
+    if errorlevel 1 (
+        echo ⚠️ Could not copy automatically.
+        echo You can open "%OUTFILE%" and copy from there.
+    ) else (
+        echo ✅ Dump copied to clipboard.
+        echo You can paste it directly into ChatGPT.
+    )
 ) else (
-    echo ⚠️ Could not copy automatically.
-    echo You can open "%OUTFILE%" and copy from there.
+    echo Clipboard copy skipped.
+    echo Dump is saved at:
+    echo   "%OUTFILE%"
 )
 
 echo.

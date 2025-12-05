@@ -1,0 +1,88 @@
+@echo off
+setlocal enabledelayedexpansion
+
+:: =============================================
+:: CONFIGURATION
+:: =============================================
+set "WATCH_DIR=C:\Path\To\Watch"
+set "TARGET_BAT=C:\Path\To\RunThis.bat"
+set "DELAY=2"  :: seconds between checks (avoid CPU spikes)
+
+:: =============================================
+:: FIRST RUN OPTIONS
+:: =============================================
+echo ===============================================
+echo Directory Watcher
+echo Watching: %WATCH_DIR%
+echo Will run: %TARGET_BAT%
+echo ===============================================
+echo.
+echo Run the batch file silently (no console output)?
+echo [Y] Yes, silent
+echo [N] No, normal output
+set /p "SILENT_MODE=Choice (Y/N): "
+echo.
+
+if /I "%SILENT_MODE%"=="Y" (
+    set "SILENT=1"
+    echo [INFO] Silent mode ENABLED.
+) else (
+    set "SILENT=0"
+    echo [INFO] Silent mode DISABLED.
+)
+echo.
+
+:: =============================================
+:: INITIAL HASH (baseline for detecting changes)
+:: =============================================
+if not exist "%WATCH_DIR%" (
+    echo [ERROR] Directory does not exist: %WATCH_DIR%
+    pause
+    exit /b
+)
+
+echo [BOOT] Starting watcher...
+set "LAST_HASH="
+call :getHash "%WATCH_DIR%" LAST_HASH
+echo [INFO] Initial hash: !LAST_HASH!
+echo [INFO] Watching for changes... Press Ctrl+C to stop.
+echo.
+
+:: =============================================
+:: MAIN WATCH LOOP
+:: =============================================
+:loop
+    call :getHash "%WATCH_DIR%" CURRENT_HASH
+    if not "!CURRENT_HASH!"=="!LAST_HASH!" (
+        echo [EVENT] Directory changed at %time%
+        set "LAST_HASH=!CURRENT_HASH!"
+        call :runTarget
+    )
+    timeout /t %DELAY% >nul
+goto loop
+
+:: =============================================
+:: SUBROUTINE: RUN TARGET BAT
+:: =============================================
+:runTarget
+    echo [ACTION] Running: %TARGET_BAT%
+    if "%SILENT%"=="1" (
+        start "" /b "%TARGET_BAT%" >nul 2>nul
+    ) else (
+        call "%TARGET_BAT%"
+    )
+    exit /b
+
+:: =============================================
+:: SUBROUTINE: GET DIRECTORY HASH
+:: Uses PowerShell to hash all file timestamps/sizes
+:: =============================================
+:getHash
+setlocal
+set "dir=%~1"
+for /f "usebackq delims=" %%H in (`
+    powershell -NoLogo -NoProfile -Command ^
+    "(Get-ChildItem -Recurse -Path '%dir%' -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName + $_.LastWriteTimeUtc.Ticks + $_.Length }) -join '' | Get-FileHash -Algorithm MD5 | Select-Object -ExpandProperty Hash"
+`) do set "HASH=%%H"
+endlocal & set "%~2=%HASH%"
+exit /b

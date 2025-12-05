@@ -1,0 +1,3 @@
+C:\Users\cmand\OneDrive\Desktop\cmd\executeforMusic.bat
+C:\Users\cmand\OneDrive\Desktop\cmd\tagScanner.bat
+C:\Users\cmand\OneDrive\Desktop\cmd\weatherCityFetch\tempcityfetch.bat
