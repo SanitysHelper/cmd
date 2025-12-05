@@ -8,6 +8,20 @@ set "SCRIPT_DIR=%~dp0"
 set "DIRLIST=%SCRIPT_DIR%dumpDirectories.txt"
 set "OUTFILE=%SCRIPT_DIR%dump_output.txt"
 
+rem === Move any backups to _debug directory on first run ===
+set "DEBUG_DIR=%SCRIPT_DIR%_debug"
+set "DEBUG_BACKUPS=%DEBUG_DIR%\backups"
+
+if not exist "%DEBUG_DIR%" mkdir "%DEBUG_DIR%"
+
+if exist "%SCRIPT_DIR%backups" (
+    if not exist "%DEBUG_BACKUPS%" (
+        mkdir "%DEBUG_BACKUPS%" 2>nul
+        xcopy "%SCRIPT_DIR%backups\*" "%DEBUG_BACKUPS%\" /E /Y >nul 2>&1
+        rmdir /s /q "%SCRIPT_DIR%backups" >nul 2>&1
+    )
+)
+
 del "%OUTFILE%" 2>nul
 
 REM ==========================================================

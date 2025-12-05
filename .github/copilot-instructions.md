@@ -109,13 +109,19 @@ executeforMusic.bat  :: Checks status.txt, launches tasks in parallel
 # Instructions for New Program Creation
 
 When creating a new program, please follow these guidelines to ensure consistency, maintainability, and ease of debugging:
-1. **Single Execution**: Design the program to run only once per invocation. Avoid loops that require manual termination unless explicitly needed for the program's purpose.
+1. **Single Execution**: Design the program to run only once per invocation. Avoid loops that require manual termination unless explicitly needed for the program's purpose. If so then automate it in debug mode via terminal or someway else. remember debug is found in settings file in 17. You can generate using other languages, such as python or powershell, or even c++, but the main executable must be a Windows batch file (.bat) that orchestrates the execution flow.
 2. **Terminal and Executable Integration**: Ensure the program can be executed both from the terminal and as a standalone executable file. Provide clear instructions for both methods of execution.
 3. **Workspace Organization**: Create a dedicated workspace directory within your project structure. This directory should house all related files, including source code, configuration files, and documentation.
 4. **Logging Mechanisms**: Implement logging mechanisms to capture critical information such as inputs, outputs, and significant events during program execution. Log files should be organized under a designated 'log' subdirectory within the workspace.
     - **Input Logging**: Record all user inputs in an 'input.log' file located within the log directory.
     - **Important Information Logging**: Document crucial program activities and decisions in an 'important.log' file also placed in the log directory.
     - **Terminal Output Logging**: Capture all terminal outputs in a 'terminal.log' file within the log directory, if feasible.
+    - **Output Logging**: Document all program outputs in an 'output.log' file within the log directory.
+    - **Error Logging**: Document all errors and exceptions in an 'error.log' file within the log directory.
+    - **Debugging Logs**: Document all debugging-related information in a 'debug.log' file within the log directory.
+    - **General Logging**: Document general program activities in a 'general.log' file within the log directory.
+    - **Log Rotation**: Implement log rotation strategies to manage log file sizes and prevent disk space exhaustion. Rotate logs periodically or based on size thresholds.
+    - **Log Parsing**: Develop a simple parser to extract useful information from log files, facilitating analysis and troubleshooting.
 5. **Executable Placement**: Store all executable files in the same directory as the workspace to facilitate easy access and execution.
 6. **Language Management**: Maintain a 'languages' subdirectory within the workspace to organize code files by programming language. Update this directory as new languages are introduced or existing ones are modified.
 7. **Documentation**: Include comprehensive comments within the code and provide README files to explain the program's purpose, functionality, and usage instructions. This will aid other developers and AI models in understanding the codebase. Have the main bat file generate a readme file in the workspace on first run that explains the program and its structure.
@@ -160,3 +166,49 @@ By adhering to these guidelines, you will create robust, maintainable, and user-
 **instructions for editing existing programs**: When modifying existing programs, ensure that you maintain the original structure and conventions outlined above. Document any changes made, including the rationale behind them, to facilitate future maintenance and understanding by other developers or AI models. Test the modified program thoroughly to ensure that new changes do not introduce regressions or unintended side effects. Additionally, consider adding unit tests for critical sections of the code to help catch bugs early during development. **IMPORTANT NOTE:** When editing an existing program that works that we havent worked on yet, make a backup copy of the original program before making any changes. This will allow you to revert to the previous version if the modifications introduce issues or do not function as intended. Name it with a suffix like v.versionnumber (e.g., program_v1.0.bat) and store it in a separate backups folder within the project directory. Ask if I want to make a backup before proceeding with edits. If I say yes, make the backup and proceed with edits. If I say no, just edit the program normally. ask again if I tell you the program works before or you don't know. 
 
 **reporting changes**: After making changes to an existing program, provide a summary of the modifications made, including any new features added, bugs fixed, or performance improvements implemented. This summary should be documented in a changelog file within the project directory to keep track of the program's evolution over time. Do not report outside the parent directory of the program being edited. Only report within the project directory.
+## Error Tracking & Fixes
+
+To maintain clarity on issues encountered and solutions implemented, maintain an ERROR_TRACKING.md file in the _debug/ directory of each major module or in the root _debug/ folder.
+
+### Error Tracking Format
+
+Each error entry should contain:
+
+1. **Error ID**: Sequential identifier (ERR-001, ERR-002, etc.)
+2. **Date Discovered**: When the issue was first identified
+3. **Severity**: High/Medium/Low impact on functionality
+4. **User Impact**: How this affects end users
+5. **Error Description**: Clear explanation of what went wrong
+6. **Root Cause**: Why the error occurred
+7. **Solution(s)**: What was tried and what ultimately fixed it
+8. **Status**: Current state (✅ FIXED, ⚠️ IN PROGRESS, ❌ REGRESSION, etc.)
+9. **Testing Verification**: How the fix was validated
+10. **Files Modified**: Which files were changed
+11. **Implementation Details**: Code snippets or architectural changes
+
+### Error Tracking Location
+
+- **Location**: <module>/_debug/ERROR_TRACKING.md or root _debug/ERROR_TRACKING.md
+- **Naming Convention**: Always use ERROR_TRACKING.md for consistency
+- **Update Frequency**: Add entries immediately after discovering and fixing issues
+- **Archive**: When file gets large (>1000 lines), archive old entries to ERROR_TRACKING_ARCHIVE_YYYY-MM.md
+
+### When to Track Errors
+
+Track errors when:
+- A user reports functionality not working as expected
+- Automated testing discovers unexpected behavior
+- Code review identifies logical flaws
+- Performance issues or bottlenecks discovered
+- Integration problems between modules
+
+### Best Practices for Error Tracking
+
+1. **Be Specific**: Describe exactly what failed, not vague statements
+2. **Include Reproduction Steps**: Make it easy for others to reproduce if needed
+3. **Document Root Cause**: Don't just fix symptoms, understand why it happened
+4. **Show Multiple Solutions**: If you tried multiple approaches, document what worked and what didn't
+5. **Test Thoroughly**: Verify fix with multiple test cases before marking complete
+6. **Keep It Concise**: Use clear structure; readers should understand issue in under 2 minutes
+7. **Reference Code**: Show actual code snippets when relevant
+8. **Link Related Errors**: If this error is related to ERR-002, cross-reference it

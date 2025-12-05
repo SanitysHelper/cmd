@@ -9,6 +9,20 @@ set "WORKDIR=%~dp0"
 set "RUN_DIR=%WORKDIR%run_space"
 if not exist "%RUN_DIR%" mkdir "%RUN_DIR%"
 
+rem === Move any backups to _debug directory on first run ===
+set "DEBUG_DIR=%WORKDIR%_debug"
+set "DEBUG_BACKUPS=%DEBUG_DIR%\backups"
+
+if not exist "%DEBUG_DIR%" mkdir "%DEBUG_DIR%"
+
+if exist "%WORKDIR%backups" (
+    if not exist "%DEBUG_BACKUPS%" (
+        mkdir "%DEBUG_BACKUPS%" 2>nul
+        xcopy "%WORKDIR%backups\*" "%DEBUG_BACKUPS%\" /E /Y >nul 2>&1
+        rmdir /s /q "%WORKDIR%backups" >nul 2>&1
+    )
+)
+
 set "CLIP_TXT=%RUN_DIR%\clip_input.txt"
 set "RUN_FILE=%RUN_DIR%\clip_run.bat"
 set "CLIP_HELPER=%RUN_DIR%\read_clip.ps1"
