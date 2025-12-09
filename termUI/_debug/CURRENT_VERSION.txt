@@ -1,0 +1,8 @@
+termUI Version Check
+====================
+Current Version: 1.0.1
+Last Updated: 12/08/2025 22:24:22
+Installed On: 2025-12-08T22:24:22.5759098-06:00
+
+This file is used by auto-update scripts to detect version changes.
+DO NOT EDIT MANUALLY.
