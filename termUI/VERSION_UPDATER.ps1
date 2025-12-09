@@ -15,35 +15,41 @@ $ErrorActionPreference = "Stop"
     .\VERSION_UPDATER.ps1 -TermUIRoot "C:\cmd\termUI" -NewVersion "1.1.0" -Changes @("Feature 1", "Bug fix")
     
   Or for GitHub compatibility:
-    .\VERSION_UPDATER.ps1 -LocalPath "." -RemoteVersion "1.1.0" -Check
+    .\VERSION_UPDATER.ps1 -RemoteVersion "1.1.0" -Check
 #>
 
-param(
-    # Target termUI directory
-    [Parameter()][string]$TermUIRoot,
-    
-    # New version to update to (semantic version: X.Y.Z)
-    [Parameter()][string]$NewVersion,
-    
-    # Changelog entries (array of change descriptions)
-    [Parameter()][string[]]$Changes,
-    
-    # Check mode: only verify version, don't update
-    [switch]$Check,
-    
-    # Expected current version (for validation before update)
-    [Parameter()][string]$CurrentVersion,
-    
-    # Force update without version match validation
-    [switch]$Force,
-    
-    # Verbose output
-    [switch]$Verbose
-)
+# Parse parameters from command line
+$TermUIRoot = $null
+$NewVersion = $null
+$Changes = @()
+$Check = $false
+$CurrentVersion = $null
+$Force = $false
+
+# Handle both -File execution and direct parameter passing
+$i = 0
+while ($i -lt $args.Count) {
+    switch ($args[$i]) {
+        "-TermUIRoot" { $TermUIRoot = $args[$i + 1]; $i += 2 }
+        "-NewVersion" { $NewVersion = $args[$i + 1]; $i += 2 }
+        "-Changes" { $Changes = @($args[$i + 1] -split ','); $i += 2 }
+        "-Check" { $Check = $true; $i += 1 }
+        "-CurrentVersion" { $CurrentVersion = $args[$i + 1]; $i += 2 }
+        "-Force" { $Force = $true; $i += 1 }
+        "-Verbose" { $VerbosePreference = "Continue"; $i += 1 }
+        default { $i += 1 }
+    }
+}
+
+
 
 # Resolve TermUIRoot if not provided
 if (-not $TermUIRoot) {
-    $TermUIRoot = Split-Path -Parent $PSScriptRoot
+    # Script is at termUI/VERSION_UPDATER.ps1, so parent is termUI directory
+    $TermUIRoot = Split-Path -Parent $PSCommandPath
+    if (-not $TermUIRoot) {
+        $TermUIRoot = Get-Location
+    }
 }
 
 if (-not (Test-Path $TermUIRoot)) {
@@ -52,7 +58,7 @@ if (-not (Test-Path $TermUIRoot)) {
 }
 
 # Load VersionManager
-$versionManagerPath = Join-Path $TermUIRoot "powershell\modules\VersionManager.ps1"
+$versionManagerPath = Join-Path $TermUIRoot "powershell" "modules" "VersionManager.ps1"
 if (-not (Test-Path $versionManagerPath)) {
     Write-Error "VersionManager.ps1 not found at $versionManagerPath"
     exit 1

@@ -244,15 +244,3 @@ function Test-TermUIVersionMatch {
     $currentVersion = (Get-TermUIVersion -TermUIRoot $TermUIRoot).version
     return $currentVersion -eq $ExpectedVersion
 }
-
-# Export functions
-Export-ModuleMember -Function @(
-    'Get-TermUIVersion',
-    'Compare-TermUIVersion',
-    'Test-TermUIUpdateAvailable',
-    'Update-TermUIVersion',
-    'Get-TermUIVersionString',
-    'Get-TermUIChangelog',
-    'New-TermUIVersionCheckFile',
-    'Test-TermUIVersionMatch'
-)
