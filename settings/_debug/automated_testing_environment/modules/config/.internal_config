@@ -1,0 +1,11 @@
+﻿# Settings Manager Internal Configuration
+# This file controls the Settings Manager program itself
+
+auto_generate_readme=true  # Automatically generate README.md on first run
+log_changes=true  # Log all setting modifications to important.log
+backup_on_save=false  # Create backup before saving settings
+validate_sections=true  # Validate section names against allowed list
+allowed_sections=General,Logging,Advanced  # Comma-separated list of allowed sections
+debug_mode=true  # Enable debug features
+timeout_seconds=300  # Execution timeout (0 to disable)
+admin_password=advanced admin  # Password required to enable debug mode

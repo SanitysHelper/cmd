@@ -1,0 +1,10 @@
+{"key":"Down"}
+{"key":"Enter"}
+{"key":"Down"}
+{"key":"Down"}
+{"key":"Enter"}
+{"key":"Enter"}
+{"key":"Escape"}
+{"key":"Escape"}
+{"key":"Escape"}
+{"key":"Q"}

@@ -1,0 +1,362 @@
+﻿[2025-12-06 18:15:44] INFO: Settings loaded from settings.ini
+[2025-12-06 18:15:44] INFO: Loaded 9 buttons from button.list
+[2025-12-06 18:16:06] INFO: Selected option: Edit Settings (path: mainUI.settings.edit)
+[2025-12-06 18:16:13] INFO: Settings loaded from settings.ini
+[2025-12-06 18:16:13] INFO: Loaded 9 buttons from button.list
+[2025-12-06 18:16:20] INFO: Selected option: Run Tests (path: mainUI.tools.tests)
+[2025-12-06 18:16:25] INFO: Settings loaded from settings.ini
+[2025-12-06 18:16:25] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:05:48] INFO: Settings loaded from settings.ini
+[2025-12-06 23:05:48] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:05:59] INFO: Settings loaded from settings.ini
+[2025-12-06 23:05:59] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:05:59] INFO: Selected option: Run Tests (path: mainUI.tools.tests)
+[2025-12-06 23:09:20] INFO: Settings loaded from settings.ini
+[2025-12-06 23:09:20] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:10:08] INFO: Selected option: Edit Settings (path: mainUI.settings.edit)
+[2025-12-06 23:10:23] INFO: Settings loaded from settings.ini
+[2025-12-06 23:10:23] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:10:42] INFO: Selected option: Python Runner (path: mainUI.tools.python)
+[2025-12-06 23:11:40] INFO: Settings loaded from settings.ini
+[2025-12-06 23:11:40] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:11:48] INFO: User quit
+[2025-12-06 23:12:58] INFO: Settings loaded from settings.ini
+[2025-12-06 23:12:58] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:13:12] INFO: Settings loaded from settings.ini
+[2025-12-06 23:13:12] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:13:30] INFO: Selected option: Edit Settings (path: mainUI.settings.edit)
+[2025-12-06 23:13:52] INFO: Settings loaded from settings.ini
+[2025-12-06 23:13:53] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:13:53] INFO: Selected option: Run Tests (path: mainUI.tools.tests)
+[2025-12-06 23:13:56] INFO: Settings loaded from settings.ini
+[2025-12-06 23:13:56] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:14:05] INFO: Settings loaded from settings.ini
+[2025-12-06 23:14:05] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:14:05] INFO: User quit
+[2025-12-06 23:14:06] INFO: Settings loaded from settings.ini
+[2025-12-06 23:14:06] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:14:06] INFO: Selected option: Run Tests (path: mainUI.tools.tests)
+[2025-12-06 23:14:42] INFO: Settings loaded from settings.ini
+[2025-12-06 23:14:42] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:14:42] INFO: User quit
+[2025-12-06 23:14:43] INFO: Settings loaded from settings.ini
+[2025-12-06 23:14:43] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:14:44] INFO: Selected option: Run Tests (path: mainUI.tools.tests)
+[2025-12-06 23:14:44] INFO: Settings loaded from settings.ini
+[2025-12-06 23:14:44] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:14:45] INFO: User quit
+[2025-12-06 23:14:45] INFO: Settings loaded from settings.ini
+[2025-12-06 23:14:45] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:14:46] INFO: User quit
+[2025-12-06 23:14:47] INFO: Settings loaded from settings.ini
+[2025-12-06 23:14:47] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:14:47] INFO: User quit
+[2025-12-06 23:16:26] INFO: Settings loaded from settings.ini
+[2025-12-06 23:16:26] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:16:27] INFO: User quit
+[2025-12-06 23:16:32] INFO: Settings loaded from settings.ini
+[2025-12-06 23:16:32] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:16:33] INFO: User quit
+[2025-12-06 23:16:34] INFO: Settings loaded from settings.ini
+[2025-12-06 23:16:34] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:16:35] INFO: User quit
+[2025-12-06 23:16:35] INFO: Settings loaded from settings.ini
+[2025-12-06 23:16:35] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:16:36] INFO: User quit
+[2025-12-06 23:16:37] INFO: Settings loaded from settings.ini
+[2025-12-06 23:16:37] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:16:38] INFO: User quit
+[2025-12-06 23:16:39] INFO: Settings loaded from settings.ini
+[2025-12-06 23:16:39] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:16:39] INFO: User quit
+[2025-12-06 23:16:40] INFO: Settings loaded from settings.ini
+[2025-12-06 23:16:40] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:16:40] INFO: User quit
+[2025-12-06 23:16:41] INFO: Settings loaded from settings.ini
+[2025-12-06 23:16:41] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:16:41] INFO: User quit
+[2025-12-06 23:16:42] INFO: Settings loaded from settings.ini
+[2025-12-06 23:16:42] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:16:42] INFO: User quit
+[2025-12-06 23:18:53] INFO: Settings loaded from settings.ini
+[2025-12-06 23:18:53] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:18:53] INFO: User quit
+[2025-12-06 23:18:54] INFO: Settings loaded from settings.ini
+[2025-12-06 23:18:54] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:18:55] INFO: User quit
+[2025-12-06 23:18:55] INFO: Settings loaded from settings.ini
+[2025-12-06 23:18:55] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:18:56] INFO: User quit
+[2025-12-06 23:18:56] INFO: Settings loaded from settings.ini
+[2025-12-06 23:18:56] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:18:57] INFO: User quit
+[2025-12-06 23:18:58] INFO: Settings loaded from settings.ini
+[2025-12-06 23:18:58] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:18:58] INFO: Selected option: Run Tests (path: mainUI.tools.tests)
+[2025-12-06 23:18:59] INFO: Settings loaded from settings.ini
+[2025-12-06 23:18:59] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:18:59] INFO: User quit
+[2025-12-06 23:19:00] INFO: Settings loaded from settings.ini
+[2025-12-06 23:19:00] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:19:01] INFO: User quit
+[2025-12-06 23:19:02] INFO: Settings loaded from settings.ini
+[2025-12-06 23:19:02] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:19:03] INFO: User quit
+[2025-12-06 23:19:07] INFO: Settings loaded from settings.ini
+[2025-12-06 23:19:07] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:19:07] INFO: User quit
+[2025-12-06 23:19:13] INFO: Settings loaded from settings.ini
+[2025-12-06 23:19:13] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:19:13] INFO: User quit
+[2025-12-06 23:19:14] INFO: Settings loaded from settings.ini
+[2025-12-06 23:19:14] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:19:14] INFO: User quit
+[2025-12-06 23:19:15] INFO: Settings loaded from settings.ini
+[2025-12-06 23:19:15] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:19:15] INFO: User quit
+[2025-12-06 23:19:16] INFO: Settings loaded from settings.ini
+[2025-12-06 23:19:16] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:19:16] INFO: User quit
+[2025-12-06 23:19:17] INFO: Settings loaded from settings.ini
+[2025-12-06 23:19:17] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:19:18] INFO: Selected option: Run Tests (path: mainUI.tools.tests)
+[2025-12-06 23:19:18] INFO: Settings loaded from settings.ini
+[2025-12-06 23:19:18] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:19:18] INFO: User quit
+[2025-12-06 23:20:14] INFO: Settings loaded from settings.ini
+[2025-12-06 23:20:14] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:20:30] INFO: Selected option: View Logs (path: mainUI.settings.viewlogs)
+[2025-12-06 23:21:57] INFO: Settings loaded from settings.ini
+[2025-12-06 23:21:57] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:21:57] INFO: User quit
+[2025-12-06 23:22:01] INFO: Settings loaded from settings.ini
+[2025-12-06 23:22:01] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:22:01] INFO: User quit
+[2025-12-06 23:22:36] INFO: Settings loaded from settings.ini
+[2025-12-06 23:22:36] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:22:44] INFO: User quit
+[2025-12-06 23:22:50] INFO: Settings loaded from settings.ini
+[2025-12-06 23:22:50] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:23:20] INFO: Settings loaded from settings.ini
+[2025-12-06 23:23:20] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:23:20] INFO: User quit
+[2025-12-06 23:23:48] INFO: Settings loaded from settings.ini
+[2025-12-06 23:23:48] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:23:54] INFO: Selected option: Edit Settings (path: mainUI.settings.edit)
+[2025-12-06 23:24:00] INFO: Settings loaded from settings.ini
+[2025-12-06 23:24:00] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:24:02] INFO: Selected option: Edit Settings (path: mainUI.settings.edit)
+[2025-12-06 23:24:05] INFO: Settings loaded from settings.ini
+[2025-12-06 23:24:05] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:24:25] INFO: Settings loaded from settings.ini
+[2025-12-06 23:24:25] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:24:42] INFO: Settings loaded from settings.ini
+[2025-12-06 23:24:42] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:24:44] INFO: Selected option: Edit Settings (path: mainUI.settings.edit)
+[2025-12-06 23:24:48] INFO: Settings loaded from settings.ini
+[2025-12-06 23:24:48] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:25:23] INFO: Settings loaded from settings.ini
+[2025-12-06 23:25:23] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:26:02] INFO: Settings loaded from settings.ini
+[2025-12-06 23:26:02] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:26:14] INFO: Settings loaded from settings.ini
+[2025-12-06 23:26:14] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:26:31] INFO: Settings loaded from settings.ini
+[2025-12-06 23:26:31] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:26:45] INFO: Settings loaded from settings.ini
+[2025-12-06 23:26:45] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:27:06] INFO: Settings loaded from settings.ini
+[2025-12-06 23:27:06] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:27:11] INFO: Settings loaded from settings.ini
+[2025-12-06 23:27:11] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:27:26] INFO: Settings loaded from settings.ini
+[2025-12-06 23:27:26] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:27:41] INFO: Settings loaded from settings.ini
+[2025-12-06 23:27:41] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:33:36] INFO: Settings loaded from settings.ini
+[2025-12-06 23:33:36] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:33:36] INFO: Selected option: Debug Mode (path: mainUI.tools.advanced.debug)
+[2025-12-06 23:33:57] INFO: Settings loaded from settings.ini
+[2025-12-06 23:33:57] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:34:00] INFO: Selected option: Edit Settings (path: mainUI.settings.edit)
+[2025-12-06 23:34:07] INFO: Settings loaded from settings.ini
+[2025-12-06 23:34:07] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:34:09] INFO: Selected option: Run Tests (path: mainUI.tools.tests)
+[2025-12-06 23:34:12] INFO: Settings loaded from settings.ini
+[2025-12-06 23:34:13] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:34:15] INFO: Selected option: Debug Mode (path: mainUI.tools.advanced.debug)
+[2025-12-06 23:34:20] INFO: Settings loaded from settings.ini
+[2025-12-06 23:34:20] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:34:24] INFO: Selected option: View Logs (path: mainUI.settings.viewlogs)
+[2025-12-06 23:34:38] INFO: Settings loaded from settings.ini
+[2025-12-06 23:34:38] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:34:58] INFO: Selected option: Edit Settings (path: mainUI.settings.edit)
+[2025-12-06 23:38:14] INFO: Settings loaded from settings.ini
+[2025-12-06 23:38:14] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:38:25] INFO: Selected option: Debug Mode (path: mainUI.tools.advanced.debug)
+[2025-12-06 23:39:39] INFO: Settings loaded from settings.ini
+[2025-12-06 23:39:39] INFO: Loaded 9 buttons from button.list
+[2025-12-06 23:39:39] INFO: Selected option: Edit Settings (path: mainUI.settings.edit)
+[2025-12-06 23:43:38] INFO: Settings loaded from settings.ini
+[2025-12-06 23:43:38] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:43:38] INFO: User quit
+[2025-12-06 23:43:42] INFO: Settings loaded from settings.ini
+[2025-12-06 23:43:43] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:43:43] INFO: Selected option: Python Runner (path: mainUI.tools.python)
+[2025-12-06 23:43:58] INFO: Settings loaded from settings.ini
+[2025-12-06 23:43:58] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:43:58] INFO: Selected option: Export Logs (path: mainUI.export.logs)
+[2025-12-06 23:44:02] INFO: Settings loaded from settings.ini
+[2025-12-06 23:44:02] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:44:02] INFO: User quit
+[2025-12-06 23:44:06] INFO: Settings loaded from settings.ini
+[2025-12-06 23:44:07] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:44:07] INFO: User quit
+[2025-12-06 23:44:12] INFO: Settings loaded from settings.ini
+[2025-12-06 23:44:12] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:44:13] INFO: Selected option: Enable Plugins (path: mainUI.tools.plugins.enable)
+[2025-12-06 23:44:17] INFO: Settings loaded from settings.ini
+[2025-12-06 23:44:17] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:44:17] INFO: Selected option: Python Runner (path: mainUI.tools.python)
+[2025-12-06 23:44:22] INFO: Settings loaded from settings.ini
+[2025-12-06 23:44:22] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:44:22] INFO: Selected option: About (path: mainUI.help.about)
+[2025-12-06 23:44:35] INFO: Settings loaded from settings.ini
+[2025-12-06 23:44:35] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:44:36] INFO: User quit
+[2025-12-06 23:44:40] INFO: Settings loaded from settings.ini
+[2025-12-06 23:44:40] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:44:40] INFO: Selected option: About (path: mainUI.help.about)
+[2025-12-06 23:44:44] INFO: Settings loaded from settings.ini
+[2025-12-06 23:44:44] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:44:45] INFO: Selected option: Repair Database (path: mainUI.maintenance.repair)
+[2025-12-06 23:44:49] INFO: Settings loaded from settings.ini
+[2025-12-06 23:44:49] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:44:50] INFO: Selected option: Repair Database (path: mainUI.maintenance.repair)
+[2025-12-06 23:44:54] INFO: Settings loaded from settings.ini
+[2025-12-06 23:44:55] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:44:55] INFO: User quit
+[2025-12-06 23:46:52] INFO: Settings loaded from settings.ini
+[2025-12-06 23:46:52] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:47:00] INFO: Selected option: Run Tests (path: mainUI.tools.tests)
+[2025-12-06 23:47:04] INFO: Settings loaded from settings.ini
+[2025-12-06 23:47:04] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:53:02] INFO: User quit
+[2025-12-06 23:54:47] INFO: Settings loaded from settings.ini
+[2025-12-06 23:54:47] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:54:47] INFO: Selected option: Export Logs (path: mainUI.export.logs)
+[2025-12-06 23:55:06] INFO: Settings loaded from settings.ini
+[2025-12-06 23:55:06] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:55:36] INFO: Settings loaded from settings.ini
+[2025-12-06 23:55:36] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:55:56] INFO: Settings loaded from settings.ini
+[2025-12-06 23:55:56] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:56:19] INFO: Selected option: Clear Cache (path: mainUI.maintenance.clearcache)
+[2025-12-06 23:56:44] INFO: Settings loaded from settings.ini
+[2025-12-06 23:56:44] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:56:44] INFO: Selected option: Text Size (path: mainUI.settings.display.textsize)
+[2025-12-06 23:58:28] INFO: Settings loaded from settings.ini
+[2025-12-06 23:58:28] INFO: Loaded 40 buttons from button.list
+[2025-12-06 23:58:37] INFO: Selected option: Clear Cache (path: mainUI.maintenance.clearcache)
+[2025-12-07 00:01:27] INFO: Settings loaded from settings.ini
+[2025-12-07 00:01:27] INFO: Loaded 40 buttons from button.list
+[2025-12-07 00:01:49] INFO: Selected option: About (path: mainUI.help.about)
+[2025-12-07 00:04:01] INFO: Settings loaded from settings.ini
+[2025-12-07 00:04:01] INFO: Loaded 40 buttons from button.list
+[2025-12-07 00:04:40] INFO: User quit
+[2025-12-07 00:05:07] INFO: Settings loaded from settings.ini
+[2025-12-07 00:05:07] INFO: Loaded 40 buttons from button.list
+[2025-12-07 00:05:17] INFO: Selected option: Support (path: mainUI.help.support)
+[2025-12-07 00:05:36] INFO: Settings loaded from settings.ini
+[2025-12-07 00:05:36] INFO: Loaded 40 buttons from button.list
+[2025-12-07 00:07:26] INFO: Settings loaded from settings.ini
+[2025-12-07 00:07:26] INFO: Loaded 40 buttons from button.list
+[2025-12-07 00:12:32] INFO: User quit
+[2025-12-07 00:17:05] INFO: Settings loaded from settings.ini
+[2025-12-07 00:17:05] INFO: Loaded 40 buttons from button.list
+[2025-12-07 00:17:05] INFO: User quit
+[2025-12-07 00:17:10] INFO: Settings loaded from settings.ini
+[2025-12-07 00:17:10] INFO: Loaded 40 buttons from button.list
+[2025-12-07 00:17:29] INFO: Selected option: Run Tests (path: mainUI.tools.tests)
+[2025-12-07 00:26:24] INFO: Settings loaded from settings.ini
+[2025-12-07 00:26:25] INFO: Loaded 409 buttons from button.list
+[2025-12-07 00:26:36] INFO: User quit
+[2025-12-07 00:28:01] INFO: Settings loaded from settings.ini
+[2025-12-07 00:28:01] INFO: Loaded 409 buttons from button.list
+[2025-12-07 00:42:41] INFO: Settings loaded from settings.ini
+[2025-12-07 00:42:41] INFO: Loaded 409 buttons from button.list
+[2025-12-07 00:43:14] INFO: Settings loaded from settings.ini
+[2025-12-07 00:43:14] INFO: Loaded 409 buttons from button.list
+[2025-12-07 00:43:17] INFO: User quit
+[2025-12-07 00:43:28] INFO: Settings loaded from settings.ini
+[2025-12-07 00:43:28] INFO: Loaded 409 buttons from button.list
+[2025-12-07 00:43:35] INFO: User quit
+[2025-12-07 00:43:44] INFO: Settings loaded from settings.ini
+[2025-12-07 00:43:44] INFO: Loaded 409 buttons from button.list
+[2025-12-07 00:43:54] INFO: User quit
+[2025-12-07 00:44:28] INFO: Settings loaded from settings.ini
+[2025-12-07 00:44:28] INFO: Loaded 409 buttons from button.list
+[2025-12-07 00:44:59] INFO: Selected option: Create Workflow (path: mainUI.automation.workflows.create)
+[2025-12-07 00:45:04] INFO: Settings loaded from settings.ini
+[2025-12-07 00:45:05] INFO: Loaded 409 buttons from button.list
+[2025-12-07 00:45:18] INFO: Selected option: Banner Notifications (path: mainUI.notifications.style.banner)
+[2025-12-07 00:45:21] INFO: Settings loaded from settings.ini
+[2025-12-07 00:45:21] INFO: Loaded 409 buttons from button.list
+[2025-12-07 00:45:40] INFO: Selected option: Network Monitor (path: mainUI.tools.advanced.netmon)
+[2025-12-07 00:59:59] INFO: Settings loaded from settings.ini
+[2025-12-07 00:59:59] INFO: Loaded 409 buttons from button.list
+[2025-12-07 01:00:10] INFO: Selected option: French (path: mainUI.preferences.language.french)
+[2025-12-07 01:00:15] INFO: Settings loaded from settings.ini
+[2025-12-07 01:00:15] INFO: Loaded 409 buttons from button.list
+[2025-12-07 01:03:47] INFO: Settings loaded from settings.ini
+[2025-12-07 01:03:47] INFO: Loaded 409 buttons from button.list
+[2025-12-07 01:03:47] INFO: User quit
+[2025-12-07 01:03:56] INFO: Settings loaded from settings.ini
+[2025-12-07 01:03:56] INFO: Loaded 409 buttons from button.list
+[2025-12-07 01:03:57] INFO: User quit
+[2025-12-07 01:06:32] INFO: Settings loaded from settings.ini
+[2025-12-07 01:06:33] INFO: Loaded 409 buttons from button.list
+[2025-12-07 01:06:33] INFO: User quit
+[2025-12-07 01:06:57] INFO: Settings loaded from settings.ini
+[2025-12-07 01:06:57] INFO: Loaded 409 buttons from button.list
+[2025-12-07 01:06:59] INFO: User quit
+[2025-12-07 01:07:08] INFO: Settings loaded from settings.ini
+[2025-12-07 01:07:08] INFO: Loaded 409 buttons from button.list
+[2025-12-07 01:07:09] INFO: User quit
+[2025-12-07 01:07:14] INFO: Settings loaded from settings.ini
+[2025-12-07 01:07:14] INFO: Loaded 409 buttons from button.list
+[2025-12-07 01:07:15] INFO: User quit
+[2025-12-07 01:08:17] INFO: Settings loaded from settings.ini
+[2025-12-07 01:08:17] INFO: Loaded 409 buttons from button.list
+[2025-12-07 01:08:28] INFO: Selected option: Run Tests (path: mainUI.tools.tests)
+[2025-12-07 01:08:33] INFO: Settings loaded from settings.ini
+[2025-12-07 01:08:33] INFO: Loaded 409 buttons from button.list
+[2025-12-07 01:10:27] INFO: Settings loaded from settings.ini
+[2025-12-07 01:10:27] INFO: Loaded 409 buttons from button.list
+[2025-12-07 01:10:28] INFO: User quit
+[2025-12-07 01:10:50] INFO: Settings loaded from settings.ini
+[2025-12-07 01:10:50] INFO: Loaded 409 buttons from button.list
+[2025-12-07 01:11:13] INFO: Selected option: Run Tests (path: mainUI.tools.tests)
+[2025-12-07 01:14:33] INFO: Settings loaded from settings.ini
+[2025-12-07 01:14:33] INFO: Loaded 409 buttons from button.list
+[2025-12-07 01:14:34] INFO: User quit
+[2025-12-07 01:15:06] INFO: Settings loaded from settings.ini
+[2025-12-07 01:15:07] INFO: Loaded 409 buttons from button.list
+[2025-12-07 01:20:05] INFO: Settings loaded from settings.ini
+[2025-12-07 01:20:05] INFO: Loaded 409 buttons from button.list
+[2025-12-07 01:20:06] INFO: User quit
+[2025-12-07 01:25:13] INFO: Settings loaded from settings.ini
+[2025-12-07 01:25:13] INFO: Loaded 409 buttons from button.list
+[2025-12-07 01:25:24] INFO: User quit
+[2025-12-07 01:25:42] INFO: Settings loaded from settings.ini
+[2025-12-07 01:25:42] INFO: Loaded 409 buttons from button.list
+[2025-12-07 01:27:55] INFO: Settings loaded from settings.ini
+[2025-12-07 01:27:56] INFO: Loaded 409 buttons from button.list
+[2025-12-07 01:33:40] INFO: Settings loaded from settings.ini
+[2025-12-07 01:33:40] INFO: Loaded 409 buttons from button.list
+[2025-12-07 01:35:25] INFO: Settings loaded from settings.ini
+[2025-12-07 01:35:25] INFO: Loaded 409 buttons from button.list
+[2025-12-07 01:49:39] INFO: Settings loaded from settings.ini
+[2025-12-07 01:49:39] INFO: Loaded 29 buttons from button.list
+[2025-12-07 01:49:39] INFO: Env UIB_INJECT_KEY: vk=81;char=113;down=1;state=0
+[2025-12-07 01:49:39] INFO: User quit

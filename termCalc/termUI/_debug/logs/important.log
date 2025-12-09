@@ -1,0 +1,101 @@
+﻿[2025-12-08 20:55:18] INFO: Running in interactive mode (no subprocess)
+[2025-12-08 20:55:23] INFO: Entered submenu: mainUI/Settings
+[2025-12-08 20:55:25] INFO: Entered submenu: mainUI/Settings/Values
+[2025-12-08 20:55:25] INFO: Selected option: mainUI/Settings/Values/a
+[2025-12-08 20:55:27] INFO: Selected option: mainUI/Settings/Values/b
+[2025-12-08 20:55:28] INFO: Navigated back to: mainUI/Settings
+[2025-12-08 20:55:29] INFO: Navigated back to: mainUI
+[2025-12-08 20:55:30] INFO: Entered submenu: mainUI/Settings
+[2025-12-08 20:55:31] INFO: Navigated back to: mainUI
+[2025-12-08 20:55:32] INFO: Entered submenu: mainUI/Calculator
+[2025-12-08 20:55:34] INFO: Entered submenu: mainUI/Calculator/Set-A
+[2025-12-08 20:55:36] INFO: Calculator: set a=10
+[2025-12-08 20:55:37] INFO: Navigated back to: mainUI/Calculator
+[2025-12-08 20:55:38] INFO: Entered submenu: mainUI/Calculator/Set-A
+[2025-12-08 20:55:39] INFO: Navigated back to: mainUI/Calculator
+[2025-12-08 20:55:40] INFO: Entered submenu: mainUI/Calculator/Set-B
+[2025-12-08 20:55:41] INFO: Calculator: set b=5
+[2025-12-08 20:55:43] INFO: Navigated back to: mainUI/Calculator
+[2025-12-08 20:55:45] INFO: Entered submenu: mainUI/Calculator/Operation
+[2025-12-08 20:55:47] INFO: Calculator: op=multiply
+[2025-12-08 20:55:48] INFO: Navigated back to: mainUI/Calculator
+[2025-12-08 20:55:48] INFO: Calculator result: 10 * 5 = 50
+[2025-12-08 20:55:51] INFO: Navigated back to: mainUI
+[2025-12-08 20:55:52] INFO: Entered submenu: mainUI/Settings
+[2025-12-08 20:55:53] INFO: Entered submenu: mainUI/Settings/Values
+[2025-12-08 20:55:54] INFO: Selected option: mainUI/Settings/Values/a
+[2025-12-08 20:55:55] INFO: Selected option: mainUI/Settings/Values/b
+[2025-12-08 20:55:57] INFO: Navigated back to: mainUI/Settings
+[2025-12-08 20:55:57] INFO: Navigated back to: mainUI
+[2025-12-08 20:55:58] INFO: Entered submenu: mainUI/Calculator
+[2025-12-08 20:56:06] INFO: Entered submenu: mainUI/Calculator/Operation
+[2025-12-08 20:56:07] INFO: Calculator: op=subtract
+[2025-12-08 20:56:08] INFO: Navigated back to: mainUI/Calculator
+[2025-12-08 20:56:09] INFO: Calculator result: 10 - 5 = 5
+[2025-12-08 20:56:10] INFO: Calculator result: 10 - 5 = 5
+[2025-12-08 20:56:13] INFO: Entered submenu: mainUI/Calculator/Operation
+[2025-12-08 20:56:14] INFO: Calculator: op=multiply
+[2025-12-08 20:56:16] INFO: Calculator: op=divide
+[2025-12-08 20:56:16] INFO: Navigated back to: mainUI/Calculator
+[2025-12-08 20:56:17] INFO: Calculator result: 10 / 5 = 2
+[2025-12-08 20:56:18] INFO: Entered submenu: mainUI/Calculator/Operation
+[2025-12-08 20:56:19] INFO: Navigated back to: mainUI/Calculator
+[2025-12-08 20:56:20] INFO: Entered submenu: mainUI/Calculator/Set-A
+[2025-12-08 20:56:21] INFO: Calculator: set a=5
+[2025-12-08 20:56:22] INFO: Navigated back to: mainUI/Calculator
+[2025-12-08 20:56:23] INFO: Calculator result: 5 / 5 = 1
+[2025-12-08 20:56:26] INFO: Navigated back to: mainUI
+[2025-12-08 20:56:30] INFO: Entered submenu: mainUI/Calculator
+[2025-12-08 20:56:33] INFO: Entered submenu: mainUI/Calculator/Set-B
+[2025-12-08 20:56:42] INFO: Calculator: set b=4
+[2025-12-08 20:56:48] INFO: Navigated back to: mainUI/Calculator
+[2025-12-08 20:57:02] INFO: Entered submenu: mainUI/Calculator/Set-A
+[2025-12-08 20:57:06] INFO: Calculator: set a=10
+[2025-12-08 20:57:08] INFO: Navigated back to: mainUI/Calculator
+[2025-12-08 20:57:09] INFO: Navigated back to: mainUI
+[2025-12-08 20:57:11] INFO: Entered submenu: mainUI/Calculator
+[2025-12-08 20:57:13] INFO: Calculator result: 10 / 4 = 2.5
+[2025-12-08 20:57:17] INFO: User quit with Q key (handler-mapped)
+[2025-12-08 21:06:13] INFO: Running in interactive mode (no subprocess)
+[2025-12-08 21:06:16] INFO: Entered submenu: mainUI/QuickActions
+[2025-12-08 21:06:17] INFO: Selected option: mainUI/QuickActions/clear_temp
+[2025-12-08 21:06:18] INFO: Navigated back to: mainUI
+[2025-12-08 21:06:20] INFO: Entered submenu: mainUI/Tools
+[2025-12-08 21:06:20] INFO: Entered submenu: mainUI/Tools/FileOps
+[2025-12-08 21:06:21] INFO: Selected option: mainUI/Tools/FileOps/backup
+[2025-12-08 21:06:24] INFO: Navigated back to: mainUI/Tools
+[2025-12-08 21:06:24] INFO: Navigated back to: mainUI
+[2025-12-08 21:06:28] INFO: User quit with Q key (handler-mapped)
+[2025-12-08 21:11:23] INFO: Running in interactive mode (no subprocess)
+[2025-12-08 21:11:24] INFO: Entered submenu: mainUI/SettingsCommand
+[2025-12-08 21:11:30] INFO: Entered submenu: mainUI/SettingsCommand/ValueA
+[2025-12-08 21:11:34] INFO: Selected option: mainUI/SettingsCommand/ValueA/2
+[2025-12-08 21:11:46] INFO: Selected option: mainUI/SettingsCommand/ValueA/7
+[2025-12-08 21:11:51] INFO: Navigated back to: mainUI/SettingsCommand
+[2025-12-08 21:11:53] INFO: Entered submenu: mainUI/SettingsCommand/Operation
+[2025-12-08 21:11:57] INFO: Selected option: mainUI/SettingsCommand/Operation/add
+[2025-12-08 21:11:57] INFO: Navigated back to: mainUI/SettingsCommand
+[2025-12-08 21:11:58] INFO: Entered submenu: mainUI/SettingsCommand/ValueB
+[2025-12-08 21:12:00] INFO: Selected option: mainUI/SettingsCommand/ValueB/9
+[2025-12-08 21:12:01] INFO: Navigated back to: mainUI/SettingsCommand
+[2025-12-08 21:12:03] INFO: Selected option: mainUI/SettingsCommand/calculate
+[2025-12-08 21:12:05] INFO: Navigated back to: mainUI
+[2025-12-08 21:12:12] INFO: User quit with Q key (handler-mapped)
+[2025-12-08 21:17:19] INFO: Running in interactive mode (no subprocess)
+[2025-12-08 21:17:20] INFO: Entered submenu: mainUI/SettingsCommand
+[2025-12-08 21:17:21] INFO: Entered submenu: mainUI/SettingsCommand/Operation
+[2025-12-08 21:17:22] INFO: Selected option: mainUI/SettingsCommand/Operation/add
+[2025-12-08 21:17:23] INFO: Selected option: mainUI/SettingsCommand/Operation/divide
+[2025-12-08 21:17:26] INFO: Navigated back to: mainUI/SettingsCommand
+[2025-12-08 21:17:27] INFO: Entered submenu: mainUI/SettingsCommand/ValueA
+[2025-12-08 21:17:28] INFO: Selected option: mainUI/SettingsCommand/ValueA/9
+[2025-12-08 21:17:29] INFO: Navigated back to: mainUI/SettingsCommand
+[2025-12-08 21:17:30] INFO: Entered submenu: mainUI/SettingsCommand/ValueB
+[2025-12-08 21:17:31] INFO: Selected option: mainUI/SettingsCommand/ValueB/6
+[2025-12-08 21:17:32] INFO: Navigated back to: mainUI/SettingsCommand
+[2025-12-08 21:17:33] INFO: Selected option: mainUI/SettingsCommand/calculate
+[2025-12-08 21:17:35] INFO: Navigated back to: mainUI
+[2025-12-08 21:17:36] INFO: User quit with Q key (handler-mapped)
+[2025-12-08 21:24:06] INFO: Running in interactive mode (no subprocess)
+[2025-12-08 21:27:59] INFO: Running in interactive mode (no subprocess)
+[2025-12-08 21:29:23] INFO: Running in interactive mode (no subprocess)

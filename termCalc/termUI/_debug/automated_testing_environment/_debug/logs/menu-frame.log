@@ -1,0 +1,20 @@
+[2025-12-08 21:09:24] MENU FRAME Selected=0 Count=2
+  >>> [1] (submenu) Calculator
+      [2] (submenu) SettingsCommand
+[2025-12-08 21:09:25] MENU FRAME Selected=1 Count=2
+      [1] (submenu) Calculator
+  >>> [2] (submenu) SettingsCommand
+[2025-12-08 21:09:25] MENU FRAME Selected=0 Count=2
+  >>> [1] (submenu) Calculator
+      [2] (submenu) SettingsCommand
+[2025-12-08 21:09:25] MENU FRAME Selected=1 Count=2
+      [1] (submenu) Calculator
+  >>> [2] (submenu) SettingsCommand
+[2025-12-08 21:09:25] MENU FRAME Selected=0 Count=4
+  >>> [1] (submenu) Operation
+      [2] (submenu) ValueA
+      [3] (submenu) ValueB
+      [4] (option) calculate
+[2025-12-08 21:09:25] MENU FRAME Selected=0 Count=2
+  >>> [1] (submenu) Calculator
+      [2] (submenu) SettingsCommand
