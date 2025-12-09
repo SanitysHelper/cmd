@@ -2,6 +2,24 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
+# Load version manager for version tracking
+$script:moduleDir = Join-Path (Split-Path -Parent $MyInvocation.MyCommand.Path) "modules"
+. (Join-Path $script:moduleDir "VersionManager.ps1")
+
+# Check for version/changelog flags
+$showVersion = $args -contains "--version" -or $args -contains "-v"
+$showChangelog = $args -contains "--changelog" -or $args -contains "-c"
+
+if ($showVersion) {
+    Write-Host (Get-TermUIVersionString -TermUIRoot (Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)))
+    exit 0
+}
+
+if ($showChangelog) {
+    Write-Host (Get-TermUIChangelog -TermUIRoot (Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)))
+    exit 0
+}
+
 # Force-real flag clears any lingering test env vars (prevents accidental replay)
 $forceReal = $args -contains "--real"
 if ($forceReal) {
