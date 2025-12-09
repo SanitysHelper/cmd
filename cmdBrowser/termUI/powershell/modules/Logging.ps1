@@ -62,12 +62,14 @@ function Log-InputTiming {
 function Log-MenuFrame {
     param(
         [array]$Items,
-        [int]$SelectedIndex = 0
+        [int]$SelectedIndex = 0,
+        [string]$CurrentPath = ""
     )
     if (-not $script:settings.Logging.log_menu_frame) { return }
     $path = Join-Path $script:paths.logs "menu-frame.log"
     Rotate-LogIfNeeded -Path $path -LimitBytes $script:paths.logLimitBytes
-    "[$(Get-Timestamp)] MENU FRAME Selected=$SelectedIndex Count=$($Items.Count)" | Add-Content -Path $path -Encoding UTF8
+    $pathStr = if ($CurrentPath) { " Path=$CurrentPath" } else { "" }
+    "[$(Get-Timestamp)] MENU FRAME Selected=$SelectedIndex Count=$($Items.Count)$pathStr" | Add-Content -Path $path -Encoding UTF8
     for ($i = 0; $i -lt $Items.Count; $i++) {
         $indicator = if ($i -eq $SelectedIndex) { ">>>" } else { "   " }
         $name = $Items[$i].Name

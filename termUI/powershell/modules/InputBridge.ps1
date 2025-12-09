@@ -1,42 +1,3 @@
-function Start-InputHandler {
-    param([string]$Executable)
-    if (-not (Test-Path $Executable)) {
-        throw "Input handler not found: $Executable"
-    }
-    $psi = New-Object System.Diagnostics.ProcessStartInfo
-    $psi.FileName = $Executable
-    $psi.RedirectStandardOutput = $true
-    $psi.RedirectStandardError = $true
-    $psi.RedirectStandardInput = $true
-    $psi.UseShellExecute = $false
-    $psi.CreateNoWindow = $true
-    $proc = New-Object System.Diagnostics.Process
-    $proc.StartInfo = $psi
-    $null = $proc.Start()
-    $reader = $proc.StandardOutput
-    $writer = $proc.StandardInput
-    return [pscustomobject]@{ Process = $proc; Reader = $reader; Writer = $writer }
-}
-
-function Get-KeyName {
-    param($KeyInfo)
-    switch ($KeyInfo.Key) {
-        "UpArrow" { return "Up" }
-        "DownArrow" { return "Down" }
-        "LeftArrow" { return "Left" }
-        "RightArrow" { return "Right" }
-        "Enter" { return "Enter" }
-        "Escape" { return "Escape" }
-        "Tab" { return "Tab" }
-        default {
-            $ch = $KeyInfo.KeyChar
-            if ($ch -eq 'q' -or $ch -eq 'Q') { return "Q" }
-            if ([char]::IsLetterOrDigit($ch) -or [char]::IsPunctuation($ch)) { return "CHAR:$ch" }
-            return ""
-        }
-    }
-}
-
 function Stop-InputHandler {
     param($Handler)
     if ($null -eq $Handler) { return }
@@ -69,6 +30,7 @@ function Get-NextInputEvent {
                 "Enter" { "Enter" }
                 "Escape" { "Escape" }
                 "Tab" { "Tab" }
+                "Backspace" { "Backspace" }
                 default {
                     $ch = $key.KeyChar
                     if ($ch -eq 'q' -or $ch -eq 'Q') { "Q" }

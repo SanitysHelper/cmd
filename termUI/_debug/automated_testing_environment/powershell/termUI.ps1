@@ -2,11 +2,60 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
+# Load version manager for version tracking
+$script:moduleDir = Join-Path (Split-Path -Parent $MyInvocation.MyCommand.Path) "modules"
+. (Join-Path $script:moduleDir "VersionManager.ps1")
+
+# Check for version/changelog flags
+$showVersion = $args -contains "--version" -or $args -contains "-v"
+$showChangelog = $args -contains "--changelog" -or $args -contains "-c"
+
+if ($showVersion) {
+    Write-Host (Get-TermUIVersionString -TermUIRoot (Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)))
+    exit 0
+}
+
+if ($showChangelog) {
+    Write-Host (Get-TermUIChangelog -TermUIRoot (Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)))
+    exit 0
+}
+
 # Force-real flag clears any lingering test env vars (prevents accidental replay)
 $forceReal = $args -contains "--real"
 if ($forceReal) {
     $env:TERMUI_TEST_MODE = $null
     $env:TERMUI_TEST_FILE = $null
+}
+
+# Optional capture mode for external callers (e.g., termCalculator)
+$captureFile = $null
+$capturePath = $null
+$captureOnce = $false
+$captureAutoIndex = -1
+$captureAutoName = $null
+$captureTimeoutMs = 0
+
+$argList = @()
+foreach ($a in $args) { $argList += $a }
+for ($i = 0; $i -lt $argList.Count; $i++) {
+    switch ($argList[$i]) {
+        "--capture-file" {
+            if ($i + 1 -lt $argList.Count) { $captureFile = $argList[$i + 1]; $i++ }
+        }
+        "--capture-path" {
+            if ($i + 1 -lt $argList.Count) { $capturePath = $argList[$i + 1]; $i++ }
+        }
+        "--capture-once" { $captureOnce = $true }
+        "--capture-auto-index" {
+            if ($i + 1 -lt $argList.Count) { $captureAutoIndex = [int]$argList[$i + 1]; $i++ }
+        }
+        "--capture-auto-name" {
+            if ($i + 1 -lt $argList.Count) { $captureAutoName = $argList[$i + 1]; $i++ }
+        }
+        "--capture-timeout-ms" {
+            if ($i + 1 -lt $argList.Count) { $captureTimeoutMs = [int]$argList[$i + 1]; $i++ }
+        }
+    }
 }
 
 # Track quit requests and handler reference for cleanup
@@ -17,13 +66,19 @@ $script:isTestEnvironment = $false
 
 $script:paths = @{}
 $script:scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$script:paths.logs = Join-Path $script:scriptDir "..\_debug\logs" | Resolve-Path -ErrorAction SilentlyContinue
-if (-not $script:paths.logs) { $script:paths.logs = Join-Path $script:scriptDir "..\_debug\logs" }
+$script:paths.logs = Join-Path $script:scriptDir "..\_bin\_debug\logs" | Resolve-Path -ErrorAction SilentlyContinue
+if (-not $script:paths.logs) { $script:paths.logs = Join-Path $script:scriptDir "..\_bin\_debug\logs" }
 $script:paths.transcript = Join-Path $script:paths.logs "ui-transcript.log"
 $script:paths.settings = Join-Path $script:scriptDir "..\settings.ini"
 $script:paths.menuRoot = $null
 $script:lastInputTime = Get-Date
 $script:inputCounter = 0
+
+# In capture mode, isolate logs to a temp folder to avoid file locking across processes
+if ($captureFile) {
+    $script:paths.logs = Join-Path ([IO.Path]::GetTempPath()) ("termui_logs_{0}" -f [guid]::NewGuid())
+    $script:paths.transcript = Join-Path $script:paths.logs "ui-transcript.log"
+}
 
 # Ensure directories
 @($script:paths.logs) | ForEach-Object { if (-not (Test-Path $_)) { New-Item -ItemType Directory -Path $_ -Force | Out-Null } }
@@ -41,7 +96,8 @@ try {
     $script:paths.menuRoot = Join-Path (Join-Path $script:scriptDir "..") $script:settings.General.menu_root
     $script:paths.logLimitBytes = 1024 * 1024 * [int]$script:settings.Logging.log_rotation_mb
     $tree = Build-MenuTree -RootPath $script:paths.menuRoot
-    $currentPath = "mainUI"
+    $currentPath = if ($capturePath) { $capturePath } else { "mainUI" }
+    $captureStart = Get-Date
     $selectedIndex = 0
 
     # Check if test environment
@@ -102,7 +158,15 @@ try {
     function Render-Menu {
         param($Items, $Selected, $InputBuffer = "")
         Clear-Host
-        Write-Host "=== $($script:settings.General.ui_title) ===" -ForegroundColor Cyan
+        $versionStr = ""
+        try {
+            $versionFile = Join-Path (Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)) "VERSION.json"
+            if (Test-Path $versionFile) {
+                $verData = Get-Content -Path $versionFile -Raw | ConvertFrom-Json -ErrorAction SilentlyContinue
+                if ($verData.version) { $versionStr = " v$($verData.version)" }
+            }
+        } catch {}
+        Write-Host "=== $($script:settings.General.ui_title)$versionStr ===" -ForegroundColor Cyan
         Write-Host "Path: $currentPath" -ForegroundColor DarkGray
         Write-Host ""
         for ($i = 0; $i -lt $Items.Count; $i++) {
@@ -113,6 +177,17 @@ try {
             Write-Host "$prefix [$($i+1)] ($type) $label" -ForegroundColor $color
         }
         Write-Host ""
+        $desc = $null
+        if ($Items.Count -gt 0 -and $Selected -ge 0 -and $Selected -lt $Items.Count) {
+            $item = $Items[$Selected]
+            if ($null -ne $item -and ($item | Get-Member -Name "Description" -ErrorAction SilentlyContinue)) {
+                $desc = $item.Description
+            }
+        }
+        if ($desc) {
+            Write-Host "Description: $desc" -ForegroundColor Gray
+            Write-Host "" -ForegroundColor Gray
+        }
         if ($InputBuffer) {
             Write-Host "[Up/Down] Navigate  [#] Quick Select  [Backspace] Delete  [Escape] Back  [Q] Quit  |  Input: $InputBuffer" -ForegroundColor Yellow
         } else {
@@ -120,6 +195,9 @@ try {
         }
     }
 
+    # Initialize for smart frame rendering (only render on init and after state changes)
+    $firstIteration = $true
+    
     while ($true) {
         $items = Get-MenuItemsAtPath -Tree $tree -Path $currentPath
         $validItems = @()
@@ -149,23 +227,56 @@ try {
         }
         if ($selectedIndex -ge $items.Count) { $selectedIndex = 0 }
         if ($selectedIndex -lt 0) { $selectedIndex = 0 }
+
+        # Optional timeout for capture mode
+        if ($captureFile -and $captureTimeoutMs -gt 0) {
+            $elapsed = (Get-Date) - $captureStart
+            if ($elapsed.TotalMilliseconds -ge $captureTimeoutMs) {
+                throw "Capture timed out after $([int]$elapsed.TotalMilliseconds) ms"
+            }
+        }
         
-        # Render menu only when needed (first time or after navigation)
-        $needsRender = $true
-        if ($needsRender) {
-            Log-MenuFrame -Items $items -SelectedIndex $selectedIndex
+        # Initialize first iteration flag (only render on init and after state changes)
+        if (-not (Test-Path variable:firstIteration)) {
+            $firstIteration = $true
+            $needsRender = $true
+        } else {
+            $needsRender = $false  # Will be set to $true only if input causes state change
+        }
+        
+        # Render menu on first iteration or after state changes
+        if ($firstIteration -or $needsRender) {
+            Log-MenuFrame -Items $items -SelectedIndex $selectedIndex -CurrentPath $currentPath
             Render-Menu -Items $items -Selected $selectedIndex -InputBuffer $numberBuffer
+            if ($firstIteration) { $firstIteration = $false }
         }
 
-        # Poll for input - wait with timeout to avoid busy spinning
-        $inputReceived = $false
+        # Auto-select support for capture mode
+        $autoSelected = $false
+        if ($captureFile -and ($captureAutoIndex -ge 0 -or $captureAutoName)) {
+            $target = $null
+            if ($captureAutoName) {
+                $target = $items | Where-Object { $_.Name -eq $captureAutoName } | Select-Object -First 1
+            }
+            if (-not $target -and $captureAutoIndex -ge 0 -and $captureAutoIndex -lt $items.Count) {
+                $target = $items[$captureAutoIndex]
+            }
+            if ($target) {
+                $evt = [pscustomobject]@{ key = "Enter"; itemOverride = $target }
+                $autoSelected = $true
+            }
+        }
+
+        # Poll for input - wait with timeout to avoid busy spinning (skipped if auto-selected)
+        $inputReceived = $autoSelected
+        $needsRender = $false
         $timeout = 0
         while (-not $inputReceived -and $timeout -lt 1000) {
             $evt = Get-NextInputEvent -Handler $handler
             if ($evt) {
                 $inputReceived = $true
                 $actionTaken = $false
-                $navBack = $false
+                $needsRender = $false  # Only render if input causes a state change
                 $selectOption = $false
 
                 switch ($evt.key) {
@@ -204,56 +315,68 @@ try {
                         break
                     }
                     "Up" { 
+                        # BUG FIX #4: Always set actionTaken for input timing logging
+                        $actionTaken = $true
                         if ($items.Count -gt 0) {
                             $numberBuffer = ""  # Clear number buffer on navigation
                             if ($selectedIndex -gt 0) { $selectedIndex-- } else { $selectedIndex = $items.Count - 1 }
-                            $actionTaken = $true
+                            $needsRender = $true
                         }
                     }
                     "Down" { 
+                        # BUG FIX #4: Always set actionTaken for input timing logging
+                        $actionTaken = $true
                         if ($items.Count -gt 0) {
                             $numberBuffer = ""  # Clear number buffer on navigation
                             if ($selectedIndex -lt $items.Count - 1) { $selectedIndex++ } else { $selectedIndex = 0 }
-                            $actionTaken = $true
+                            $needsRender = $true
                         }
                     }
                     "Escape" {
+                        # BUG FIX #1 & #3: Always set actionTaken for proper logging and validate path
                         # If there's input buffer, clear it; otherwise navigate back
                         if ($numberBuffer) {
                             $numberBuffer = ""
-                            $navBack = $true
+                            $needsRender = $true
                             $actionTaken = $true
                         } else {
-                            $parts = $currentPath -split "/"
+                            # Validate path construction: remove empty parts
+                            $parts = @($currentPath -split "/" | Where-Object { -not [string]::IsNullOrWhiteSpace($_) })
                             if ($parts.Count -gt 1) {
                                 $currentPath = ($parts[0..($parts.Count-2)] -join "/")
                                 $selectedIndex = 0
                                 Log-Important "Navigated back to: $currentPath"
-                                $navBack = $true
+                                $needsRender = $true
+                                $actionTaken = $true
+                            } else {
+                                # At root - still mark as action taken for proper logging
                                 $actionTaken = $true
                             }
                         }
-                        # If at mainUI root, ignore Escape (don't exit)
                     }
                     "Enter" {
-                        # If there's a number buffer, use it for selection
-                        if ($numberBuffer) {
-                            $targetIndex = [int]$numberBuffer - 1
-                            if ($targetIndex -ge 0 -and $targetIndex -lt $items.Count) {
-                                $selectedIndex = $targetIndex
+                        # If auto-selected, use provided target
+                        if ($evt.PSObject.Properties['itemOverride']) {
+                            $item = $evt.itemOverride
+                            $selectedIndex = 0
+                        } else {
+                            if ($numberBuffer) {
+                                $targetIndex = [int]$numberBuffer - 1
+                                if ($targetIndex -ge 0 -and $targetIndex -lt $items.Count) {
+                                    $selectedIndex = $targetIndex
+                                    $item = $items[$selectedIndex]
+                                } else {
+                                    $numberBuffer = ""
+                                    $needsRender = $true
+                                    $actionTaken = $true
+                                    break
+                                }
+                                $numberBuffer = ""
+                            } elseif ($items.Count -gt 0 -and $selectedIndex -lt $items.Count) {
                                 $item = $items[$selectedIndex]
                             } else {
-                                # Invalid number, clear buffer and re-render
-                                $numberBuffer = ""
-                                $navBack = $true
-                                $actionTaken = $true
                                 break
                             }
-                            $numberBuffer = ""
-                        } elseif ($items.Count -gt 0 -and $selectedIndex -lt $items.Count) {
-                            $item = $items[$selectedIndex]
-                        } else {
-                            break
                         }
                         
                         if ($item) {
@@ -261,23 +384,76 @@ try {
                                 $currentPath = $item.Path
                                 $selectedIndex = 0
                                 Log-Important "Entered submenu: $currentPath"
-                                $navBack = $true
+                                $needsRender = $true
                                 $actionTaken = $true
-                            } else {
-                                Log-Important "Selected option: $($item.Path)"
-                                Write-Transcript "Selected option: $($item.Path)"
+                            } elseif ($item.Type -eq "input") {
+                                # Handle input button - prompt user for value
+                                Write-Host ""
+                                $prompt = if ($item.PSObject.Properties['Prompt']) { $item.Prompt } else { "Enter value" }
+                                $inputValue = Read-Host -Prompt $prompt
+                                
+                                Log-Important "Input button '$($item.Name)' received: $inputValue"
+                                Write-Transcript "Input button: $($item.Path) = $inputValue"
+                                
+                                if ($captureFile) {
+                                    try {
+                                        $parentDir = Split-Path $captureFile -Parent
+                                        if ($parentDir -and -not (Test-Path $parentDir)) { New-Item -ItemType Directory -Path $parentDir -Force | Out-Null }
+                                        @{ name = $item.Name; path = $item.Path; value = $inputValue } | ConvertTo-Json | Set-Content -Path $captureFile -Encoding ASCII
+                                        Log-Important "Capture saved to $captureFile"
+                                    } catch {
+                                        Log-Error "Failed to write capture file: $_"
+                                    }
+                                }
+
                                 Write-Host "`n========================================" -ForegroundColor Cyan
-                                Write-Host " SELECTED: $($item.Name)" -ForegroundColor Green
+                                Write-Host " INPUT: $($item.Name)" -ForegroundColor Green
+                                Write-Host " Value: $inputValue" -ForegroundColor Yellow
                                 Write-Host " Path: $($item.Path)" -ForegroundColor Gray
                                 Write-Host "========================================" -ForegroundColor Cyan
 
-                                if (-not ($handler.PSObject.Properties['IsTestMode'] -and $handler.IsTestMode)) {
+                                $skipPause = ($handler.PSObject.Properties['IsTestMode'] -and $handler.IsTestMode) -or $captureFile
+                                if (-not $skipPause) {
                                     Write-Host "`nPress any key to continue..." -ForegroundColor DarkGray
                                     $null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
                                 }
 
                                 $actionTaken = $true
-                                $navBack = $true
+                                $needsRender = $true
+                                if ($captureOnce) { $script:quitRequested = $true; break }
+                                if (-not $script:settings.General.keep_open_after_selection) { 
+                                    $script:quitRequested = $true
+                                    break 
+                                }
+                            } else {
+                                Log-Important "Selected option: $($item.Path)"
+                                Write-Transcript "Selected option: $($item.Path)"
+
+                                if ($captureFile) {
+                                    try {
+                                        $parentDir = Split-Path $captureFile -Parent
+                                        if ($parentDir -and -not (Test-Path $parentDir)) { New-Item -ItemType Directory -Path $parentDir -Force | Out-Null }
+                                        @{ name = $item.Name; path = $item.Path } | ConvertTo-Json | Set-Content -Path $captureFile -Encoding ASCII
+                                        Log-Important "Capture saved to $captureFile"
+                                    } catch {
+                                        Log-Error "Failed to write capture file: $_"
+                                    }
+                                }
+
+                                Write-Host "`n========================================" -ForegroundColor Cyan
+                                Write-Host " SELECTED: $($item.Name)" -ForegroundColor Green
+                                Write-Host " Path: $($item.Path)" -ForegroundColor Gray
+                                Write-Host "========================================" -ForegroundColor Cyan
+
+                                $skipPause = ($handler.PSObject.Properties['IsTestMode'] -and $handler.IsTestMode) -or $captureFile
+                                if (-not $skipPause) {
+                                    Write-Host "`nPress any key to continue..." -ForegroundColor DarkGray
+                                    $null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+                                }
+
+                                $actionTaken = $true
+                                $needsRender = $true
+                                if ($captureOnce) { $script:quitRequested = $true; break }
                                 if (-not $script:settings.General.keep_open_after_selection) { 
                                     $script:quitRequested = $true
                                     break 
@@ -296,7 +472,7 @@ try {
                         if ($evt.char -match '^[0-9]$') {
                             $numberBuffer += $evt.char
                             $actionTaken = $true
-                            $navBack = $true  # Trigger re-render to show input
+                            $needsRender = $true
                         }
                         # Ignore other characters
                     }
@@ -305,7 +481,7 @@ try {
                         if ($numberBuffer.Length -gt 0) {
                             $numberBuffer = $numberBuffer.Substring(0, $numberBuffer.Length - 1)
                             $actionTaken = $true
-                            $navBack = $true  # Trigger re-render to show updated input
+                            $needsRender = $true
                         }
                     }
                     default {
@@ -319,8 +495,13 @@ try {
                     Log-InputTiming -Action "INPUT_ACTION" -Details "$($evt.key)"
                 }
                 
-                # Break inner loop to redraw menu if navigated
-                if ($navBack -or $script:quitRequested) {
+                # BUG FIX #2 & #5: Log menu frame BEFORE rendering and pass currentPath for better logging
+                if ($needsRender) {
+                    Log-MenuFrame -Items $items -SelectedIndex $selectedIndex -CurrentPath $currentPath
+                    Render-Menu -Items $items -Selected $selectedIndex -InputBuffer $numberBuffer
+                }
+                
+                if ($needsRender -or $script:quitRequested) {
                     break
                 }
             } else {

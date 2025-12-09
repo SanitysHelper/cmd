@@ -1,25 +1,8 @@
 #Requires -Version 5.0
 Set-StrictMode -Version Latest
 
-<#
-  VersionManager.ps1
-  Manages termUI versioning, version comparison, and update detection.
-  Enables automatic update checking against GitHub releases.
-#>
-
 function Get-TermUIVersion {
-    <#
-    .SYNOPSIS
-        Read the current installed version from VERSION.json
-    .PARAMETER TermUIRoot
-        Path to termUI root directory (defaults to script directory)
-    .EXAMPLE
-        $version = Get-TermUIVersion -TermUIRoot "C:\cmd\termUI"
-        Write-Host "Current version: $($version.version)"
-    #>
-    param(
-        [Parameter()][string]$TermUIRoot = (Split-Path -Parent $PSScriptRoot)
-    )
+    param([Parameter()][string]$TermUIRoot = (Split-Path -Parent $PSScriptRoot))
     
     $versionFile = Join-Path $TermUIRoot "VERSION.json"
     if (-not (Test-Path $versionFile)) {
@@ -35,21 +18,6 @@ function Get-TermUIVersion {
 }
 
 function Compare-TermUIVersion {
-    <#
-    .SYNOPSIS
-        Compare two semantic versions (e.g., "1.2.3" vs "1.2.4")
-    .PARAMETER LocalVersion
-        Installed version string (e.g., "1.0.0")
-    .PARAMETER RemoteVersion
-        GitHub/remote version string (e.g., "1.1.0")
-    .RETURNS
-        -1 if LocalVersion < RemoteVersion (update available)
-         0 if versions are equal (up-to-date)
-         1 if LocalVersion > RemoteVersion (ahead of remote)
-    .EXAMPLE
-        $result = Compare-TermUIVersion -LocalVersion "1.0.0" -RemoteVersion "1.1.0"
-        if ($result -eq -1) { Write-Host "Update available!" }
-    #>
     param(
         [Parameter(Mandatory)][string]$LocalVersion,
         [Parameter(Mandatory)][string]$RemoteVersion
@@ -69,18 +37,6 @@ function Compare-TermUIVersion {
 }
 
 function Test-TermUIUpdateAvailable {
-    <#
-    .SYNOPSIS
-        Check if an update is available by comparing local vs remote version
-    .PARAMETER LocalVersion
-        Installed version string
-    .PARAMETER RemoteVersion
-        GitHub/remote version string
-    .RETURNS
-        $true if update is available, $false otherwise
-    .EXAMPLE
-        $isUpdateAvailable = Test-TermUIUpdateAvailable -LocalVersion "1.0.0" -RemoteVersion "1.1.0"
-    #>
     param(
         [Parameter(Mandatory)][string]$LocalVersion,
         [Parameter(Mandatory)][string]$RemoteVersion
@@ -91,19 +47,6 @@ function Test-TermUIUpdateAvailable {
 }
 
 function Update-TermUIVersion {
-    <#
-    .SYNOPSIS
-        Update the local VERSION.json with new version and changelog entry
-    .PARAMETER TermUIRoot
-        Path to termUI root directory
-    .PARAMETER NewVersion
-        New semantic version (e.g., "1.1.0")
-    .PARAMETER Changes
-        Array of change descriptions
-    .EXAMPLE
-        Update-TermUIVersion -TermUIRoot "C:\cmd\termUI" -NewVersion "1.1.0" `
-            -Changes @("Added new feature", "Fixed bug in menu rendering")
-    #>
     param(
         [Parameter(Mandatory)][string]$TermUIRoot,
         [Parameter(Mandatory)][string]$NewVersion,
@@ -131,20 +74,7 @@ function Update-TermUIVersion {
 }
 
 function Get-TermUIVersionString {
-    <#
-    .SYNOPSIS
-        Get a formatted version string for display
-    .PARAMETER TermUIRoot
-        Path to termUI root directory
-    .RETURNS
-        Formatted string like "termUI v1.0.0 (2025-12-08)"
-    .EXAMPLE
-        $versionString = Get-TermUIVersionString
-        Write-Host $versionString
-    #>
-    param(
-        [Parameter()][string]$TermUIRoot = (Split-Path -Parent $PSScriptRoot)
-    )
+    param([Parameter()][string]$TermUIRoot = (Split-Path -Parent $PSScriptRoot))
     
     $versionData = Get-TermUIVersion -TermUIRoot $TermUIRoot
     $date = ([datetime]$versionData.lastUpdated).ToString("yyyy-MM-dd")
@@ -152,16 +82,6 @@ function Get-TermUIVersionString {
 }
 
 function Get-TermUIChangelog {
-    <#
-    .SYNOPSIS
-        Get formatted changelog
-    .PARAMETER TermUIRoot
-        Path to termUI root directory
-    .PARAMETER EntryCount
-        Number of changelog entries to return (default: 5)
-    .EXAMPLE
-        Get-TermUIChangelog -TermUIRoot "C:\cmd\termUI" -EntryCount 3
-    #>
     param(
         [Parameter()][string]$TermUIRoot = (Split-Path -Parent $PSScriptRoot),
         [Parameter()][int]$EntryCount = 5
@@ -183,19 +103,7 @@ function Get-TermUIChangelog {
 }
 
 function New-TermUIVersionCheckFile {
-    <#
-    .SYNOPSIS
-        Create a version check marker file for future GitHub comparison
-    .PARAMETER TermUIRoot
-        Path to termUI root directory
-    .RETURNS
-        Path to created version marker file in _debug/
-    .EXAMPLE
-        $markerPath = New-TermUIVersionCheckFile -TermUIRoot "C:\cmd\termUI"
-    #>
-    param(
-        [Parameter(Mandatory)][string]$TermUIRoot
-    )
+    param([Parameter(Mandatory)][string]$TermUIRoot)
     
     $debugDir = Join-Path $TermUIRoot "_debug"
     if (-not (Test-Path $debugDir)) {
@@ -221,21 +129,6 @@ DO NOT EDIT MANUALLY.
 }
 
 function Test-TermUIVersionMatch {
-    <#
-    .SYNOPSIS
-        Check if installed version matches expected version
-        (Used by auto-update script to ensure correct version before updating)
-    .PARAMETER TermUIRoot
-        Path to termUI root directory
-    .PARAMETER ExpectedVersion
-        Expected version to match
-    .RETURNS
-        $true if versions match, $false otherwise
-    .EXAMPLE
-        if (Test-TermUIVersionMatch -TermUIRoot "C:\cmd\termUI" -ExpectedVersion "1.0.0") {
-            Write-Host "Ready for update to next version"
-        }
-    #>
     param(
         [Parameter(Mandatory)][string]$TermUIRoot,
         [Parameter(Mandatory)][string]$ExpectedVersion

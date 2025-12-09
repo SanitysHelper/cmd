@@ -1,31 +1,7 @@
 #Requires -Version 5.0
 Set-StrictMode -Version Latest
 
-<#
-  TermUIFunctionLibrary.ps1
-  Attach scripts/code to buttons for execution when selected.
-  Supports multiple languages: PowerShell, Batch, Python, JavaScript, etc.
-#>
-
 function Add-TermUIFunctionFromString {
-    <#
-    .SYNOPSIS
-        Attach a script to a button by providing code as a string.
-    .PARAMETER TermUIRoot
-        Path to termUI root directory.
-    .PARAMETER ButtonPath
-        Full path to the button: "Calculator/ValueA/5.opt" or "Tools/Backup/daily.opt"
-    .PARAMETER Code
-        Script code to attach.
-    .PARAMETER Language
-        Script language: "powershell", "batch", "python", "javascript", "bash", etc.
-    .EXAMPLE
-        $code = @'
-        Write-Host "You selected 5"
-        '@
-        Add-TermUIFunctionFromString -TermUIRoot $root -ButtonPath "Calculator/ValueA/5.opt" `
-            -Code $code -Language "powershell"
-    #>
     param(
         [Parameter(Mandatory)][string]$TermUIRoot,
         [Parameter(Mandatory)][string]$ButtonPath,
@@ -50,20 +26,6 @@ function Add-TermUIFunctionFromString {
 }
 
 function Add-TermUIFunctionFromFile {
-    <#
-    .SYNOPSIS
-        Attach a script to a button by reading from a file.
-        Auto-detects language from file extension.
-    .PARAMETER TermUIRoot
-        Path to termUI root directory.
-    .PARAMETER ButtonPath
-        Full path to the button: "Calculator/ValueA/5.opt"
-    .PARAMETER ScriptFile
-        Path to script file. Extension determines language (.ps1, .bat, .py, .js, etc.)
-    .EXAMPLE
-        Add-TermUIFunctionFromFile -TermUIRoot $root -ButtonPath "Tools/Backup/daily.opt" `
-            -ScriptFile "C:\scripts\backup_daily.ps1"
-    #>
     param(
         [Parameter(Mandatory)][string]$TermUIRoot,
         [Parameter(Mandatory)][string]$ButtonPath,
@@ -85,12 +47,6 @@ function Add-TermUIFunctionFromFile {
 }
 
 function Get-ScriptExtension {
-    <#
-    .SYNOPSIS
-        Map language name to script extension.
-    .PARAMETER Language
-        Language name (case-insensitive).
-    #>
     param([string]$Language)
     
     $Language = $Language.ToLower().Trim()
@@ -119,12 +75,6 @@ function Get-ScriptExtension {
 }
 
 function Get-LanguageFromExtension {
-    <#
-    .SYNOPSIS
-        Map script extension to language name.
-    .PARAMETER Extension
-        File extension (without dot).
-    #>
     param([string]$Extension)
     
     $Extension = $Extension.ToLower().Trim('.')
@@ -147,15 +97,6 @@ function Get-LanguageFromExtension {
 }
 
 function Invoke-TermUIFunction {
-    <#
-    .SYNOPSIS
-        Execute a function script attached to a button.
-    .PARAMETER ButtonPath
-        Full path including the button name and script.
-        Example: "C:\termUI\buttons\mainUI\Calculator\ValueA\5.ps1"
-    .PARAMETER Arguments
-        Optional arguments to pass to the script.
-    #>
     param(
         [Parameter(Mandatory)][string]$ButtonPath,
         [string[]]$Arguments = @()
@@ -189,6 +130,3 @@ function Invoke-TermUIFunction {
         }
     }
 }
-
-# Library loaded
-Write-Verbose "[TermUIFunctionLibrary] Loaded: Add-TermUIFunctionFromString, Add-TermUIFunctionFromFile, Invoke-TermUIFunction"

@@ -69,6 +69,7 @@ function Get-NextInputEvent {
                 "Enter" { "Enter" }
                 "Escape" { "Escape" }
                 "Tab" { "Tab" }
+                "Backspace" { "Backspace" }
                 default {
                     $ch = $key.KeyChar
                     if ($ch -eq 'q' -or $ch -eq 'Q') { "Q" }

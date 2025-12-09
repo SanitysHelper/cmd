@@ -1,3 +1,0 @@
-{"key":"Char","char":"2"}
-{"key":"Enter"}
-{"key":"Char","char":"q"}

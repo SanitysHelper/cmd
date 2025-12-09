@@ -33,6 +33,28 @@ function Get-MenuNode {
             Description = $desc
         }
     }
+    # Handle .input files for free-form text input buttons
+    $inputs = Get-ChildItem -Path $Folder -File -Filter "*.input" -ErrorAction SilentlyContinue
+    foreach ($input in $inputs) {
+        $childRel = if ($Relative) { "$Relative/$($input.BaseName)" } else { $input.BaseName }
+        $desc = ""
+        $prompt = "Enter value"
+        try { 
+            $content = (Get-Content -Path $input.FullName -Raw -ErrorAction SilentlyContinue).Trim()
+            # First line is the prompt, rest is description
+            $lines = $content -split "`n"
+            if ($lines.Count -gt 0 -and $lines[0]) { $prompt = $lines[0] }
+            if ($lines.Count -gt 1) { $desc = ($lines[1..($lines.Count-1)] -join "`n").Trim() }
+        } catch {}
+        $children += @{ 
+            Name = $input.BaseName
+            Type = "input"
+            Path = $childRel
+            Children = @()
+            Description = $desc
+            Prompt = $prompt
+        }
+    }
     return @{
         Name = (Split-Path $Folder -Leaf)
         Type = "submenu"

@@ -1,3 +1,1 @@
-﻿[2025-12-08 21:28:08] ERROR: Capture timed out after 8981 ms
-[2025-12-08 21:29:27] ERROR: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUI\_debug\logs\menu-frame.log' because it is being used by another process.
-[2025-12-08 21:57:05] ERROR: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUI\_debug\logs\menu-frame.log' because it is being used by another process.
+﻿[2025-12-08 22:54:29] ERROR: Cannot see if a key has been pressed when either application does not have a console or when console input has been redirected from a file. Try Console.In.Peek.

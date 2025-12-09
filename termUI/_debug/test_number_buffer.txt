@@ -1,0 +1,8 @@
+{"key":"Char","char":"3"}
+{"key":"Enter","char":""}
+{"key":"Escape","char":""}
+{"key":"Char","char":"1"}
+{"key":"Char","char":"2"}
+{"key":"Backspace","char":""}
+{"key":"Escape","char":""}
+{"key":"Q","char":""}
