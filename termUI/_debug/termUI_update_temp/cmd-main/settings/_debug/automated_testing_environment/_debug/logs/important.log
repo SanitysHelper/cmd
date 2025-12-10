@@ -1,0 +1,31 @@
+[2025-12-05 23:01:07.592] [INFO] Settings Manager started
+[2025-12-05 23:01:07.614] [INFO] Created empty settings.ini
+[2025-12-05 23:01:07.645] [INFO] Loaded settings from C:\Users\cmand\OneDrive\Desktop\cmd\settings\_debug\automated_testing_environment\settings.ini
+[2025-12-05 23:01:07.720] [INFO] File watcher initialized for settings.ini
+[2025-12-05 23:01:07.797] [OPERATION] OPERATION=USER_INPUT | INPUT=3 | OUTPUT= | CONTEXT=
+Enter choice | STATUS=RECEIVED | DETAILS=
+[2025-12-05 23:01:07.801] [INFO] User input: 3
+[2025-12-05 23:01:07.811] [OPERATION] OPERATION=USER_INPUT | INPUT=General | OUTPUT= | CONTEXT=Enter section name (General/Logging/Advanced or custom) | STATUS=RECEIVED | DETAILS=
+[2025-12-05 23:01:07.826] [OPERATION] OPERATION=USER_INPUT | INPUT=testKey | OUTPUT= | CONTEXT=Enter setting key | STATUS=RECEIVED | DETAILS=
+[2025-12-05 23:01:07.830] [OPERATION] OPERATION=USER_INPUT | INPUT=initialValue | OUTPUT= | CONTEXT=Enter value | STATUS=RECEIVED | DETAILS=
+[2025-12-05 23:01:07.834] [OPERATION] OPERATION=USER_INPUT | INPUT=Test value | OUTPUT= | CONTEXT=Enter description | STATUS=RECEIVED | DETAILS=
+[2025-12-05 23:01:07.857] [OPERATION] OPERATION=ADD_SETTING | INPUT= | OUTPUT= | CONTEXT=General | STATUS=SECTION_CREATED | DETAILS=
+[2025-12-05 23:01:07.870] [OPERATION] OPERATION=ADD_SETTING | INPUT=initialValue | OUTPUT= | CONTEXT=General.testKey | STATUS=SUCCESS | DETAILS=Description: Test value
+[2025-12-05 23:01:07.872] [INFO] Added new setting: General.testKey = initialValue
+[2025-12-05 23:01:07.951] [OPERATION] OPERATION=SAVE_SETTINGS | INPUT= | OUTPUT=C:\Users\cmand\OneDrive\Desktop\cmd\settings\_debug\automated_testing_environment\settings.ini | CONTEXT=1 settings | STATUS=SUCCESS | DETAILS=File size: 175 bytes, Lines: 7
+[2025-12-05 23:01:07.953] [INFO] Saved settings to C:\Users\cmand\OneDrive\Desktop\cmd\settings\_debug\automated_testing_environment\settings.ini (1 settings, 7 lines, 175 bytes)
+[2025-12-05 23:01:07.982] [OPERATION] OPERATION=USER_INPUT | INPUT=1 | OUTPUT= | CONTEXT=
+Enter choice | STATUS=RECEIVED | DETAILS=
+[2025-12-05 23:01:07.984] [INFO] User input: 1
+[2025-12-05 23:01:08.039] [OPERATION] OPERATION=USER_INPUT | INPUT=7 | OUTPUT= | CONTEXT=
+Enter choice | STATUS=RECEIVED | DETAILS=
+[2025-12-05 23:01:08.041] [INFO] User input: 7
+[2025-12-05 23:01:08.045] [INFO] Settings Manager exited normally
+[2025-12-05 23:01:08.053] [INFO] Cleanup: Starting cleanup procedure
+[2025-12-05 23:01:08.059] [INFO] Cleanup: Created run_space directory
+[2025-12-05 23:01:08.098] [INFO] Cleanup: Disposed file watcher
+[2025-12-05 23:01:08.102] [INFO] Cleanup: Cleanup procedure completed
+[2025-12-05 23:44:24.025] [INFO] Settings Manager started
+[2025-12-05 23:44:24.051] [INFO] Created empty settings.ini
+[2025-12-05 23:44:24.083] [INFO] Loaded settings from C:\Users\cmand\OneDrive\Desktop\cmd\settings\_debug\automated_testing_environment\settings.ini
+[2025-12-05 23:44:24.127] [INFO] File watcher initialized for settings.ini

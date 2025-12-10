@@ -1,0 +1,39 @@
+﻿[2025-12-09 00:04:25] [INFO] === termUI Update Check Started ===
+[2025-12-09 00:04:25] [INFO] Local version: 1.1.0
+[2025-12-09 00:04:25] [INFO] Checking GitHub for latest version...
+[2025-12-09 00:04:26] [INFO] Remote version: 1.1.0
+[2025-12-09 00:04:26] [INFO] Versions are identical: 1.1.0
+[2025-12-09 00:04:26] [SUCCESS] No update needed
+[2025-12-09 00:04:32] [INFO] === termUI Update Check Started ===
+[2025-12-09 00:04:32] [INFO] Local version: 1.1.0
+[2025-12-09 00:04:32] [INFO] Checking GitHub for latest version...
+[2025-12-09 00:04:32] [INFO] Remote version: 1.1.0
+[2025-12-09 00:04:33] [INFO] Versions are identical: 1.1.0
+[2025-12-09 00:04:33] [SUCCESS] No update needed
+[2025-12-09 00:05:04] [INFO] === termUI Update Check Started ===
+[2025-12-09 00:05:04] [INFO] Local version: 1.0.0
+[2025-12-09 00:05:04] [INFO] Checking GitHub for latest version...
+[2025-12-09 00:05:05] [INFO] Remote version: 1.1.0
+[2025-12-09 00:05:05] [SUCCESS] Update available: 1.0.0 -> 1.1.0
+[2025-12-09 00:05:10] [INFO] Starting update from 1.0.0 to 1.1.0
+[2025-12-09 00:05:10] [INFO] Creating backup: C:\Users\cmand\OneDrive\Desktop\cmd\termUI\_debug\backups\termUI_v1.0.0_2025-12-09_000510
+[2025-12-09 00:05:10] [SUCCESS] Backup created successfully
+[2025-12-09 00:05:10] [INFO] Downloading update from GitHub...
+[2025-12-09 00:05:18] [INFO] Download complete
+[2025-12-09 00:05:18] [INFO] Extracting update...
+[2025-12-09 00:05:41] [INFO] Extraction complete
+[2025-12-09 00:05:41] [INFO] Installing updated files...
+[2025-12-09 00:05:41] [ERROR] Update installation failed: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUI\_bin\csharp\bin\InputHandler.exe' because it is being used by another process.
+[2025-12-09 00:05:41] [INFO] === Update Check Completed ===
+[2025-12-09 00:06:39] [INFO] === termUI Update Check Started ===
+[2025-12-09 00:06:39] [INFO] Local version: 1.1.0
+[2025-12-09 00:06:39] [INFO] Checking GitHub for latest version...
+[2025-12-09 00:06:39] [INFO] Remote version: 1.1.0
+[2025-12-09 00:06:39] [INFO] Versions are identical: 1.1.0
+[2025-12-09 00:06:39] [SUCCESS] No update needed
+[2025-12-09 21:36:31] [INFO] === termUI Update Check Started ===
+[2025-12-09 21:36:31] [INFO] Local version: 1.1.0
+[2025-12-09 21:36:31] [INFO] Checking GitHub for latest version...
+[2025-12-09 21:36:32] [INFO] Remote version: 1.1.0
+[2025-12-09 21:36:32] [INFO] Versions are identical: 1.1.0
+[2025-12-09 21:36:32] [SUCCESS] No update needed

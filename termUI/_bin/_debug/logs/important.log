@@ -101,3 +101,53 @@
 [2025-12-08 23:48:54] INFO: Navigated back to: mainUI
 [2025-12-08 23:48:57] INFO: Entered submenu: mainUI/TextInput
 [2025-12-08 23:49:01] INFO: Input button 'NumberA' received: 45435
+[2025-12-08 23:50:13] INFO: User quit with Q key (handler-mapped)
+[2025-12-09 00:06:16] INFO: Running in interactive mode (no subprocess)
+[2025-12-09 00:06:25] INFO: User quit with Q key (handler-mapped)
+[2025-12-09 00:06:53] INFO: Running in interactive mode (no subprocess)
+[2025-12-09 00:06:58] INFO: User quit with Q key (handler-mapped)
+[2025-12-09 00:07:46] INFO: Running in interactive mode (no subprocess)
+[2025-12-09 00:08:00] INFO: User quit with Q key (handler-mapped)
+[2025-12-09 21:23:53] INFO: Running in interactive mode (no subprocess)
+[2025-12-09 21:24:35] INFO: Running in interactive mode (no subprocess)
+[2025-12-09 21:24:41] INFO: Entered submenu: mainUI/SettingsCommand
+[2025-12-09 21:24:42] INFO: Entered submenu: mainUI/SettingsCommand/Operation
+[2025-12-09 21:24:44] INFO: User quit with Q key (handler-mapped)
+[2025-12-09 21:24:48] INFO: Running in interactive mode (no subprocess)
+[2025-12-09 21:24:51] INFO: Entered submenu: mainUI/Settings
+[2025-12-09 21:24:52] INFO: Navigated back to: mainUI
+[2025-12-09 21:24:56] INFO: Entered submenu: mainUI/SettingsCommand
+[2025-12-09 21:24:59] INFO: Entered submenu: mainUI/SettingsCommand/ValueB
+[2025-12-09 21:25:05] INFO: Selected option: mainUI/SettingsCommand/ValueB/8
+[2025-12-09 21:25:09] INFO: Navigated back to: mainUI/SettingsCommand
+[2025-12-09 21:25:12] INFO: Navigated back to: mainUI
+[2025-12-09 21:25:15] INFO: Entered submenu: mainUI/TextInput
+[2025-12-09 21:25:19] INFO: Input button 'CustomValue' received: 20
+[2025-12-09 21:25:30] INFO: Input button 'NumberA' received: 
+[2025-12-09 21:25:33] INFO: Input button 'NumberA' received: 40
+[2025-12-09 21:25:36] INFO: Input button 'NumberB' received: 20
+[2025-12-09 21:25:39] INFO: Input button 'CustomValue' received: 50
+[2025-12-09 21:25:45] INFO: Input button 'CustomValue' received: 3
+[2025-12-09 21:25:50] INFO: Input button 'UserName' received: john
+[2025-12-09 21:25:51] INFO: Navigated back to: mainUI
+[2025-12-09 21:25:53] INFO: Entered submenu: mainUI/Tools
+[2025-12-09 21:25:54] INFO: Entered submenu: mainUI/Tools/Backup
+[2025-12-09 21:25:55] INFO: Selected option: mainUI/Tools/Backup/one
+[2025-12-09 21:25:55] INFO: Navigated back to: mainUI/Tools
+[2025-12-09 21:25:56] INFO: Navigated back to: mainUI
+[2025-12-09 21:28:03] INFO: Entered submenu: mainUI/Settings
+[2025-12-09 21:28:04] INFO: Entered submenu: mainUI/Settings/Logging
+[2025-12-09 21:28:06] INFO: Entered submenu: mainUI/Settings/Logging/Debugging
+[2025-12-09 21:30:14] INFO: User quit with Q key (handler-mapped)
+[2025-12-09 21:31:03] INFO: Running in interactive mode (no subprocess)
+[2025-12-09 21:31:11] INFO: Running in interactive mode (no subprocess)
+[2025-12-09 21:32:16] INFO: User quit with Q key (handler-mapped)
+[2025-12-09 21:32:36] INFO: Running in interactive mode (no subprocess)
+[2025-12-09 21:32:44] INFO: Entered submenu: mainUI/TextInput
+[2025-12-09 21:32:53] INFO: Input button 'IPAddress' received: 30.3.2.34
+[2025-12-09 21:32:59] INFO: Input button 'SearchQuery' received: helo
+[2025-12-09 21:33:22] INFO: User quit with Q key (handler-mapped)
+[2025-12-09 21:33:44] INFO: Running in interactive mode (no subprocess)
+[2025-12-09 21:33:50] INFO: User quit with Q key (handler-mapped)
+[2025-12-09 21:35:51] INFO: Running in interactive mode (no subprocess)
+[2025-12-09 21:36:02] INFO: User quit with Q key (handler-mapped)

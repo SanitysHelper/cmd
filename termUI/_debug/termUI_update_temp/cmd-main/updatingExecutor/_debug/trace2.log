@@ -1,0 +1,45 @@
+[INFO] Normal mode - 0 second timeout active
+[BOOT] Script starting...
+
+========================================
+         UPDATING EXECUTOR - BOOT MENU
+========================================
+
+[C] Continue normally (default)
+[S] Settings
+[W] Wipe entire run_space directory and exit
+[Q] Quit without running
+
+Press a key within 5 seconds (defaults to C):
+[INFO] Continuing normal operation...
+
+[INFO] Generating README.md...
+The system cannot find the path specified.
+The system cannot find the path specified.
+The system cannot find the path specified.
+The system cannot find the path specified.
+[INFO] Reading clipboard text...
+The argument 'C:\Users\cmand\OneDrive\Desktop\cmd\updatingExecutor\run_space\read_clipboard.ps1' to the -File parameter does not exist. Provide the path to an existing '.ps1' file as an argument to the -File parameter.
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+[WARN] Clipboard read exception (code -196608
+The system cannot find the path specified.
+
+================== CLIPBOARD CONTENT ====================
+The system cannot find the path specified.
+======================== END ============================
+
+========================================
+         MAIN MENU
+========================================
+[R] Run clipboard as script (auto-detects language)
+[V] View only (do not run)
+[E] Edit text before running
+[D] Detect file type
+[S] Settings
+[Q] Quit
+
+: was unexpected at this time.

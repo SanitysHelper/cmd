@@ -25780,3 +25780,935 @@
   >>> [2] (input) NumberA
       [3] (input) NumberB
       [4] (input) UserName
+[2025-12-09 00:06:16] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 00:06:53] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 00:07:46] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:23:53] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:24:36] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:24:38] MENU FRAME Selected=3 Count=4 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+  >>> [4] (submenu) Tools
+[2025-12-09 21:24:38] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+  >>> [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:24:38] MENU FRAME Selected=3 Count=4 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+  >>> [4] (submenu) Tools
+[2025-12-09 21:24:38] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:24:39] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Settings
+  >>> [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:24:41] MENU FRAME Selected=0 Count=4 Path=mainUI/SettingsCommand
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:24:41] MENU FRAME Selected=0 Count=4 Path=mainUI/SettingsCommand
+  >>> [1] (submenu) Operation
+      [2] (submenu) ValueA
+      [3] (submenu) ValueB
+      [4] (option) calculate
+[2025-12-09 21:24:42] MENU FRAME Selected=0 Count=4 Path=mainUI/SettingsCommand/Operation
+  >>> [1] (submenu) Operation
+      [2] (submenu) ValueA
+      [3] (submenu) ValueB
+      [4] (option) calculate
+[2025-12-09 21:24:42] MENU FRAME Selected=0 Count=4 Path=mainUI/SettingsCommand/Operation
+  >>> [1] (option) add
+      [2] (option) divide
+      [3] (option) multiply
+      [4] (option) subtract
+[2025-12-09 21:24:42] MENU FRAME Selected=1 Count=4 Path=mainUI/SettingsCommand/Operation
+      [1] (option) add
+  >>> [2] (option) divide
+      [3] (option) multiply
+      [4] (option) subtract
+[2025-12-09 21:24:42] MENU FRAME Selected=0 Count=4 Path=mainUI/SettingsCommand/Operation
+  >>> [1] (option) add
+      [2] (option) divide
+      [3] (option) multiply
+      [4] (option) subtract
+[2025-12-09 21:24:48] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:24:49] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Settings
+  >>> [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:24:50] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+  >>> [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:24:50] MENU FRAME Selected=3 Count=4 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+  >>> [4] (submenu) Tools
+[2025-12-09 21:24:50] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:24:51] MENU FRAME Selected=0 Count=4 Path=mainUI/Settings
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:24:51] MENU FRAME Selected=0 Count=1 Path=mainUI/Settings
+  >>> [1] (submenu) Logging
+[2025-12-09 21:24:52] MENU FRAME Selected=0 Count=1 Path=mainUI
+  >>> [1] (submenu) Logging
+[2025-12-09 21:24:52] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:24:53] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Settings
+  >>> [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:24:54] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Settings
+  >>> [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:24:56] MENU FRAME Selected=0 Count=4 Path=mainUI/SettingsCommand
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:24:56] MENU FRAME Selected=0 Count=4 Path=mainUI/SettingsCommand
+  >>> [1] (submenu) Operation
+      [2] (submenu) ValueA
+      [3] (submenu) ValueB
+      [4] (option) calculate
+[2025-12-09 21:24:58] MENU FRAME Selected=0 Count=4 Path=mainUI/SettingsCommand
+  >>> [1] (submenu) Operation
+      [2] (submenu) ValueA
+      [3] (submenu) ValueB
+      [4] (option) calculate
+[2025-12-09 21:24:59] MENU FRAME Selected=0 Count=4 Path=mainUI/SettingsCommand/ValueB
+  >>> [1] (submenu) Operation
+      [2] (submenu) ValueA
+      [3] (submenu) ValueB
+      [4] (option) calculate
+[2025-12-09 21:24:59] MENU FRAME Selected=0 Count=13 Path=mainUI/SettingsCommand/ValueB
+  >>> [1] (option) 0
+      [2] (option) 1
+      [3] (option) 10
+      [4] (option) 15
+      [5] (option) 2
+      [6] (option) 20
+      [7] (option) 3
+      [8] (option) 4
+      [9] (option) 5
+      [10] (option) 6
+      [11] (option) 7
+      [12] (option) 8
+      [13] (option) 9
+[2025-12-09 21:25:03] MENU FRAME Selected=0 Count=13 Path=mainUI/SettingsCommand/ValueB
+  >>> [1] (option) 0
+      [2] (option) 1
+      [3] (option) 10
+      [4] (option) 15
+      [5] (option) 2
+      [6] (option) 20
+      [7] (option) 3
+      [8] (option) 4
+      [9] (option) 5
+      [10] (option) 6
+      [11] (option) 7
+      [12] (option) 8
+      [13] (option) 9
+[2025-12-09 21:25:03] MENU FRAME Selected=0 Count=13 Path=mainUI/SettingsCommand/ValueB
+  >>> [1] (option) 0
+      [2] (option) 1
+      [3] (option) 10
+      [4] (option) 15
+      [5] (option) 2
+      [6] (option) 20
+      [7] (option) 3
+      [8] (option) 4
+      [9] (option) 5
+      [10] (option) 6
+      [11] (option) 7
+      [12] (option) 8
+      [13] (option) 9
+[2025-12-09 21:25:07] MENU FRAME Selected=11 Count=13 Path=mainUI/SettingsCommand/ValueB
+      [1] (option) 0
+      [2] (option) 1
+      [3] (option) 10
+      [4] (option) 15
+      [5] (option) 2
+      [6] (option) 20
+      [7] (option) 3
+      [8] (option) 4
+      [9] (option) 5
+      [10] (option) 6
+      [11] (option) 7
+  >>> [12] (option) 8
+      [13] (option) 9
+[2025-12-09 21:25:09] MENU FRAME Selected=0 Count=13 Path=mainUI/SettingsCommand
+  >>> [1] (option) 0
+      [2] (option) 1
+      [3] (option) 10
+      [4] (option) 15
+      [5] (option) 2
+      [6] (option) 20
+      [7] (option) 3
+      [8] (option) 4
+      [9] (option) 5
+      [10] (option) 6
+      [11] (option) 7
+      [12] (option) 8
+      [13] (option) 9
+[2025-12-09 21:25:10] MENU FRAME Selected=0 Count=4 Path=mainUI/SettingsCommand
+  >>> [1] (submenu) Operation
+      [2] (submenu) ValueA
+      [3] (submenu) ValueB
+      [4] (option) calculate
+[2025-12-09 21:25:12] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Operation
+      [2] (submenu) ValueA
+      [3] (submenu) ValueB
+      [4] (option) calculate
+[2025-12-09 21:25:12] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:25:15] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Settings
+  >>> [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:25:15] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+  >>> [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:25:15] MENU FRAME Selected=0 Count=4 Path=mainUI/TextInput
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:25:15] MENU FRAME Selected=0 Count=4 Path=mainUI/TextInput
+  >>> [1] (input) CustomValue
+      [2] (input) NumberA
+      [3] (input) NumberB
+      [4] (input) UserName
+[2025-12-09 21:25:21] MENU FRAME Selected=0 Count=4 Path=mainUI/TextInput
+  >>> [1] (input) CustomValue
+      [2] (input) NumberA
+      [3] (input) NumberB
+      [4] (input) UserName
+[2025-12-09 21:25:22] MENU FRAME Selected=1 Count=4 Path=mainUI/TextInput
+      [1] (input) CustomValue
+  >>> [2] (input) NumberA
+      [3] (input) NumberB
+      [4] (input) UserName
+[2025-12-09 21:25:22] MENU FRAME Selected=2 Count=4 Path=mainUI/TextInput
+      [1] (input) CustomValue
+      [2] (input) NumberA
+  >>> [3] (input) NumberB
+      [4] (input) UserName
+[2025-12-09 21:25:23] MENU FRAME Selected=1 Count=4 Path=mainUI/TextInput
+      [1] (input) CustomValue
+  >>> [2] (input) NumberA
+      [3] (input) NumberB
+      [4] (input) UserName
+[2025-12-09 21:25:24] MENU FRAME Selected=2 Count=4 Path=mainUI/TextInput
+      [1] (input) CustomValue
+      [2] (input) NumberA
+  >>> [3] (input) NumberB
+      [4] (input) UserName
+[2025-12-09 21:25:24] MENU FRAME Selected=1 Count=4 Path=mainUI/TextInput
+      [1] (input) CustomValue
+  >>> [2] (input) NumberA
+      [3] (input) NumberB
+      [4] (input) UserName
+[2025-12-09 21:25:29] MENU FRAME Selected=1 Count=4 Path=mainUI/TextInput
+      [1] (input) CustomValue
+  >>> [2] (input) NumberA
+      [3] (input) NumberB
+      [4] (input) UserName
+[2025-12-09 21:25:31] MENU FRAME Selected=1 Count=4 Path=mainUI/TextInput
+      [1] (input) CustomValue
+  >>> [2] (input) NumberA
+      [3] (input) NumberB
+      [4] (input) UserName
+[2025-12-09 21:25:32] MENU FRAME Selected=1 Count=4 Path=mainUI/TextInput
+      [1] (input) CustomValue
+  >>> [2] (input) NumberA
+      [3] (input) NumberB
+      [4] (input) UserName
+[2025-12-09 21:25:34] MENU FRAME Selected=1 Count=4 Path=mainUI/TextInput
+      [1] (input) CustomValue
+  >>> [2] (input) NumberA
+      [3] (input) NumberB
+      [4] (input) UserName
+[2025-12-09 21:25:35] MENU FRAME Selected=1 Count=4 Path=mainUI/TextInput
+      [1] (input) CustomValue
+  >>> [2] (input) NumberA
+      [3] (input) NumberB
+      [4] (input) UserName
+[2025-12-09 21:25:37] MENU FRAME Selected=2 Count=4 Path=mainUI/TextInput
+      [1] (input) CustomValue
+      [2] (input) NumberA
+  >>> [3] (input) NumberB
+      [4] (input) UserName
+[2025-12-09 21:25:37] MENU FRAME Selected=2 Count=4 Path=mainUI/TextInput
+      [1] (input) CustomValue
+      [2] (input) NumberA
+  >>> [3] (input) NumberB
+      [4] (input) UserName
+[2025-12-09 21:25:41] MENU FRAME Selected=0 Count=4 Path=mainUI/TextInput
+  >>> [1] (input) CustomValue
+      [2] (input) NumberA
+      [3] (input) NumberB
+      [4] (input) UserName
+[2025-12-09 21:25:46] MENU FRAME Selected=0 Count=4 Path=mainUI/TextInput
+  >>> [1] (input) CustomValue
+      [2] (input) NumberA
+      [3] (input) NumberB
+      [4] (input) UserName
+[2025-12-09 21:25:46] MENU FRAME Selected=3 Count=4 Path=mainUI/TextInput
+      [1] (input) CustomValue
+      [2] (input) NumberA
+      [3] (input) NumberB
+  >>> [4] (input) UserName
+[2025-12-09 21:25:50] MENU FRAME Selected=3 Count=4 Path=mainUI/TextInput
+      [1] (input) CustomValue
+      [2] (input) NumberA
+      [3] (input) NumberB
+  >>> [4] (input) UserName
+[2025-12-09 21:25:51] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (input) CustomValue
+      [2] (input) NumberA
+      [3] (input) NumberB
+      [4] (input) UserName
+[2025-12-09 21:25:51] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:25:52] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Settings
+  >>> [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:25:52] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+  >>> [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:25:53] MENU FRAME Selected=3 Count=4 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+  >>> [4] (submenu) Tools
+[2025-12-09 21:25:53] MENU FRAME Selected=0 Count=4 Path=mainUI/Tools
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:25:53] MENU FRAME Selected=0 Count=1 Path=mainUI/Tools
+  >>> [1] (submenu) Backup
+[2025-12-09 21:25:54] MENU FRAME Selected=0 Count=1 Path=mainUI/Tools/Backup
+  >>> [1] (submenu) Backup
+[2025-12-09 21:25:54] MENU FRAME Selected=0 Count=2 Path=mainUI/Tools/Backup
+  >>> [1] (option) one
+      [2] (option) two
+[2025-12-09 21:25:55] MENU FRAME Selected=0 Count=2 Path=mainUI/Tools/Backup
+  >>> [1] (option) one
+      [2] (option) two
+[2025-12-09 21:25:55] MENU FRAME Selected=0 Count=2 Path=mainUI/Tools
+  >>> [1] (option) one
+      [2] (option) two
+[2025-12-09 21:25:55] MENU FRAME Selected=0 Count=1 Path=mainUI/Tools
+  >>> [1] (submenu) Backup
+[2025-12-09 21:25:56] MENU FRAME Selected=0 Count=1 Path=mainUI
+  >>> [1] (submenu) Backup
+[2025-12-09 21:25:56] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:25:57] MENU FRAME Selected=3 Count=4 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+  >>> [4] (submenu) Tools
+[2025-12-09 21:25:57] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+  >>> [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:28:00] MENU FRAME Selected=3 Count=4 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+  >>> [4] (submenu) Tools
+[2025-12-09 21:28:02] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:28:02] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Settings
+  >>> [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:28:03] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:28:03] MENU FRAME Selected=0 Count=4 Path=mainUI/Settings
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:28:03] MENU FRAME Selected=0 Count=1 Path=mainUI/Settings
+  >>> [1] (submenu) Logging
+[2025-12-09 21:28:04] MENU FRAME Selected=0 Count=1 Path=mainUI/Settings/Logging
+  >>> [1] (submenu) Logging
+[2025-12-09 21:28:04] MENU FRAME Selected=0 Count=1 Path=mainUI/Settings/Logging
+  >>> [1] (submenu) Debugging
+[2025-12-09 21:28:06] MENU FRAME Selected=0 Count=1 Path=mainUI/Settings/Logging/Debugging
+  >>> [1] (submenu) Debugging
+[2025-12-09 21:28:06] MENU FRAME Selected=0 Count=2 Path=mainUI/Settings/Logging/Debugging
+  >>> [1] (option) error
+      [2] (option) warn
+[2025-12-09 21:31:03] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:31:11] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:32:36] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:32:42] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Settings
+  >>> [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:32:42] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+  >>> [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:32:43] MENU FRAME Selected=3 Count=4 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+  >>> [4] (submenu) Tools
+[2025-12-09 21:32:43] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+  >>> [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:32:44] MENU FRAME Selected=0 Count=4 Path=mainUI/TextInput
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:32:44] MENU FRAME Selected=0 Count=19 Path=mainUI/TextInput
+  >>> [1] (input) APIKey
+      [2] (input) Command
+      [3] (input) CustomValue
+      [4] (input) DatabaseName
+      [5] (input) Date
+      [6] (input) DirectoryPath
+      [7] (input) Email
+      [8] (input) FilePath
+      [9] (input) HostName
+      [10] (input) IPAddress
+      [11] (input) NumberA
+      [12] (input) NumberB
+      [13] (input) Password
+      [14] (input) Port
+      [15] (input) SearchQuery
+      [16] (input) TableName
+      [17] (input) Time
+      [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:32:45] MENU FRAME Selected=1 Count=19 Path=mainUI/TextInput
+      [1] (input) APIKey
+  >>> [2] (input) Command
+      [3] (input) CustomValue
+      [4] (input) DatabaseName
+      [5] (input) Date
+      [6] (input) DirectoryPath
+      [7] (input) Email
+      [8] (input) FilePath
+      [9] (input) HostName
+      [10] (input) IPAddress
+      [11] (input) NumberA
+      [12] (input) NumberB
+      [13] (input) Password
+      [14] (input) Port
+      [15] (input) SearchQuery
+      [16] (input) TableName
+      [17] (input) Time
+      [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:32:45] MENU FRAME Selected=2 Count=19 Path=mainUI/TextInput
+      [1] (input) APIKey
+      [2] (input) Command
+  >>> [3] (input) CustomValue
+      [4] (input) DatabaseName
+      [5] (input) Date
+      [6] (input) DirectoryPath
+      [7] (input) Email
+      [8] (input) FilePath
+      [9] (input) HostName
+      [10] (input) IPAddress
+      [11] (input) NumberA
+      [12] (input) NumberB
+      [13] (input) Password
+      [14] (input) Port
+      [15] (input) SearchQuery
+      [16] (input) TableName
+      [17] (input) Time
+      [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:32:45] MENU FRAME Selected=3 Count=19 Path=mainUI/TextInput
+      [1] (input) APIKey
+      [2] (input) Command
+      [3] (input) CustomValue
+  >>> [4] (input) DatabaseName
+      [5] (input) Date
+      [6] (input) DirectoryPath
+      [7] (input) Email
+      [8] (input) FilePath
+      [9] (input) HostName
+      [10] (input) IPAddress
+      [11] (input) NumberA
+      [12] (input) NumberB
+      [13] (input) Password
+      [14] (input) Port
+      [15] (input) SearchQuery
+      [16] (input) TableName
+      [17] (input) Time
+      [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:32:46] MENU FRAME Selected=4 Count=19 Path=mainUI/TextInput
+      [1] (input) APIKey
+      [2] (input) Command
+      [3] (input) CustomValue
+      [4] (input) DatabaseName
+  >>> [5] (input) Date
+      [6] (input) DirectoryPath
+      [7] (input) Email
+      [8] (input) FilePath
+      [9] (input) HostName
+      [10] (input) IPAddress
+      [11] (input) NumberA
+      [12] (input) NumberB
+      [13] (input) Password
+      [14] (input) Port
+      [15] (input) SearchQuery
+      [16] (input) TableName
+      [17] (input) Time
+      [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:32:46] MENU FRAME Selected=5 Count=19 Path=mainUI/TextInput
+      [1] (input) APIKey
+      [2] (input) Command
+      [3] (input) CustomValue
+      [4] (input) DatabaseName
+      [5] (input) Date
+  >>> [6] (input) DirectoryPath
+      [7] (input) Email
+      [8] (input) FilePath
+      [9] (input) HostName
+      [10] (input) IPAddress
+      [11] (input) NumberA
+      [12] (input) NumberB
+      [13] (input) Password
+      [14] (input) Port
+      [15] (input) SearchQuery
+      [16] (input) TableName
+      [17] (input) Time
+      [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:32:46] MENU FRAME Selected=6 Count=19 Path=mainUI/TextInput
+      [1] (input) APIKey
+      [2] (input) Command
+      [3] (input) CustomValue
+      [4] (input) DatabaseName
+      [5] (input) Date
+      [6] (input) DirectoryPath
+  >>> [7] (input) Email
+      [8] (input) FilePath
+      [9] (input) HostName
+      [10] (input) IPAddress
+      [11] (input) NumberA
+      [12] (input) NumberB
+      [13] (input) Password
+      [14] (input) Port
+      [15] (input) SearchQuery
+      [16] (input) TableName
+      [17] (input) Time
+      [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:32:46] MENU FRAME Selected=7 Count=19 Path=mainUI/TextInput
+      [1] (input) APIKey
+      [2] (input) Command
+      [3] (input) CustomValue
+      [4] (input) DatabaseName
+      [5] (input) Date
+      [6] (input) DirectoryPath
+      [7] (input) Email
+  >>> [8] (input) FilePath
+      [9] (input) HostName
+      [10] (input) IPAddress
+      [11] (input) NumberA
+      [12] (input) NumberB
+      [13] (input) Password
+      [14] (input) Port
+      [15] (input) SearchQuery
+      [16] (input) TableName
+      [17] (input) Time
+      [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:32:46] MENU FRAME Selected=8 Count=19 Path=mainUI/TextInput
+      [1] (input) APIKey
+      [2] (input) Command
+      [3] (input) CustomValue
+      [4] (input) DatabaseName
+      [5] (input) Date
+      [6] (input) DirectoryPath
+      [7] (input) Email
+      [8] (input) FilePath
+  >>> [9] (input) HostName
+      [10] (input) IPAddress
+      [11] (input) NumberA
+      [12] (input) NumberB
+      [13] (input) Password
+      [14] (input) Port
+      [15] (input) SearchQuery
+      [16] (input) TableName
+      [17] (input) Time
+      [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:32:47] MENU FRAME Selected=9 Count=19 Path=mainUI/TextInput
+      [1] (input) APIKey
+      [2] (input) Command
+      [3] (input) CustomValue
+      [4] (input) DatabaseName
+      [5] (input) Date
+      [6] (input) DirectoryPath
+      [7] (input) Email
+      [8] (input) FilePath
+      [9] (input) HostName
+  >>> [10] (input) IPAddress
+      [11] (input) NumberA
+      [12] (input) NumberB
+      [13] (input) Password
+      [14] (input) Port
+      [15] (input) SearchQuery
+      [16] (input) TableName
+      [17] (input) Time
+      [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:32:55] MENU FRAME Selected=9 Count=19 Path=mainUI/TextInput
+      [1] (input) APIKey
+      [2] (input) Command
+      [3] (input) CustomValue
+      [4] (input) DatabaseName
+      [5] (input) Date
+      [6] (input) DirectoryPath
+      [7] (input) Email
+      [8] (input) FilePath
+      [9] (input) HostName
+  >>> [10] (input) IPAddress
+      [11] (input) NumberA
+      [12] (input) NumberB
+      [13] (input) Password
+      [14] (input) Port
+      [15] (input) SearchQuery
+      [16] (input) TableName
+      [17] (input) Time
+      [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:32:56] MENU FRAME Selected=10 Count=19 Path=mainUI/TextInput
+      [1] (input) APIKey
+      [2] (input) Command
+      [3] (input) CustomValue
+      [4] (input) DatabaseName
+      [5] (input) Date
+      [6] (input) DirectoryPath
+      [7] (input) Email
+      [8] (input) FilePath
+      [9] (input) HostName
+      [10] (input) IPAddress
+  >>> [11] (input) NumberA
+      [12] (input) NumberB
+      [13] (input) Password
+      [14] (input) Port
+      [15] (input) SearchQuery
+      [16] (input) TableName
+      [17] (input) Time
+      [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:32:56] MENU FRAME Selected=11 Count=19 Path=mainUI/TextInput
+      [1] (input) APIKey
+      [2] (input) Command
+      [3] (input) CustomValue
+      [4] (input) DatabaseName
+      [5] (input) Date
+      [6] (input) DirectoryPath
+      [7] (input) Email
+      [8] (input) FilePath
+      [9] (input) HostName
+      [10] (input) IPAddress
+      [11] (input) NumberA
+  >>> [12] (input) NumberB
+      [13] (input) Password
+      [14] (input) Port
+      [15] (input) SearchQuery
+      [16] (input) TableName
+      [17] (input) Time
+      [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:32:56] MENU FRAME Selected=12 Count=19 Path=mainUI/TextInput
+      [1] (input) APIKey
+      [2] (input) Command
+      [3] (input) CustomValue
+      [4] (input) DatabaseName
+      [5] (input) Date
+      [6] (input) DirectoryPath
+      [7] (input) Email
+      [8] (input) FilePath
+      [9] (input) HostName
+      [10] (input) IPAddress
+      [11] (input) NumberA
+      [12] (input) NumberB
+  >>> [13] (input) Password
+      [14] (input) Port
+      [15] (input) SearchQuery
+      [16] (input) TableName
+      [17] (input) Time
+      [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:32:57] MENU FRAME Selected=13 Count=19 Path=mainUI/TextInput
+      [1] (input) APIKey
+      [2] (input) Command
+      [3] (input) CustomValue
+      [4] (input) DatabaseName
+      [5] (input) Date
+      [6] (input) DirectoryPath
+      [7] (input) Email
+      [8] (input) FilePath
+      [9] (input) HostName
+      [10] (input) IPAddress
+      [11] (input) NumberA
+      [12] (input) NumberB
+      [13] (input) Password
+  >>> [14] (input) Port
+      [15] (input) SearchQuery
+      [16] (input) TableName
+      [17] (input) Time
+      [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:32:57] MENU FRAME Selected=14 Count=19 Path=mainUI/TextInput
+      [1] (input) APIKey
+      [2] (input) Command
+      [3] (input) CustomValue
+      [4] (input) DatabaseName
+      [5] (input) Date
+      [6] (input) DirectoryPath
+      [7] (input) Email
+      [8] (input) FilePath
+      [9] (input) HostName
+      [10] (input) IPAddress
+      [11] (input) NumberA
+      [12] (input) NumberB
+      [13] (input) Password
+      [14] (input) Port
+  >>> [15] (input) SearchQuery
+      [16] (input) TableName
+      [17] (input) Time
+      [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:33:00] MENU FRAME Selected=14 Count=19 Path=mainUI/TextInput
+      [1] (input) APIKey
+      [2] (input) Command
+      [3] (input) CustomValue
+      [4] (input) DatabaseName
+      [5] (input) Date
+      [6] (input) DirectoryPath
+      [7] (input) Email
+      [8] (input) FilePath
+      [9] (input) HostName
+      [10] (input) IPAddress
+      [11] (input) NumberA
+      [12] (input) NumberB
+      [13] (input) Password
+      [14] (input) Port
+  >>> [15] (input) SearchQuery
+      [16] (input) TableName
+      [17] (input) Time
+      [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:33:00] MENU FRAME Selected=15 Count=19 Path=mainUI/TextInput
+      [1] (input) APIKey
+      [2] (input) Command
+      [3] (input) CustomValue
+      [4] (input) DatabaseName
+      [5] (input) Date
+      [6] (input) DirectoryPath
+      [7] (input) Email
+      [8] (input) FilePath
+      [9] (input) HostName
+      [10] (input) IPAddress
+      [11] (input) NumberA
+      [12] (input) NumberB
+      [13] (input) Password
+      [14] (input) Port
+      [15] (input) SearchQuery
+  >>> [16] (input) TableName
+      [17] (input) Time
+      [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:33:01] MENU FRAME Selected=16 Count=19 Path=mainUI/TextInput
+      [1] (input) APIKey
+      [2] (input) Command
+      [3] (input) CustomValue
+      [4] (input) DatabaseName
+      [5] (input) Date
+      [6] (input) DirectoryPath
+      [7] (input) Email
+      [8] (input) FilePath
+      [9] (input) HostName
+      [10] (input) IPAddress
+      [11] (input) NumberA
+      [12] (input) NumberB
+      [13] (input) Password
+      [14] (input) Port
+      [15] (input) SearchQuery
+      [16] (input) TableName
+  >>> [17] (input) Time
+      [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:33:01] MENU FRAME Selected=17 Count=19 Path=mainUI/TextInput
+      [1] (input) APIKey
+      [2] (input) Command
+      [3] (input) CustomValue
+      [4] (input) DatabaseName
+      [5] (input) Date
+      [6] (input) DirectoryPath
+      [7] (input) Email
+      [8] (input) FilePath
+      [9] (input) HostName
+      [10] (input) IPAddress
+      [11] (input) NumberA
+      [12] (input) NumberB
+      [13] (input) Password
+      [14] (input) Port
+      [15] (input) SearchQuery
+      [16] (input) TableName
+      [17] (input) Time
+  >>> [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:33:01] MENU FRAME Selected=18 Count=19 Path=mainUI/TextInput
+      [1] (input) APIKey
+      [2] (input) Command
+      [3] (input) CustomValue
+      [4] (input) DatabaseName
+      [5] (input) Date
+      [6] (input) DirectoryPath
+      [7] (input) Email
+      [8] (input) FilePath
+      [9] (input) HostName
+      [10] (input) IPAddress
+      [11] (input) NumberA
+      [12] (input) NumberB
+      [13] (input) Password
+      [14] (input) Port
+      [15] (input) SearchQuery
+      [16] (input) TableName
+      [17] (input) Time
+      [18] (input) URL
+  >>> [19] (input) UserName
+[2025-12-09 21:33:01] MENU FRAME Selected=0 Count=19 Path=mainUI/TextInput
+  >>> [1] (input) APIKey
+      [2] (input) Command
+      [3] (input) CustomValue
+      [4] (input) DatabaseName
+      [5] (input) Date
+      [6] (input) DirectoryPath
+      [7] (input) Email
+      [8] (input) FilePath
+      [9] (input) HostName
+      [10] (input) IPAddress
+      [11] (input) NumberA
+      [12] (input) NumberB
+      [13] (input) Password
+      [14] (input) Port
+      [15] (input) SearchQuery
+      [16] (input) TableName
+      [17] (input) Time
+      [18] (input) URL
+      [19] (input) UserName
+[2025-12-09 21:33:44] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 21:33:49] MENU FRAME Selected=3 Count=4 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+  >>> [4] (submenu) Tools
+[2025-12-09 21:35:52] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools

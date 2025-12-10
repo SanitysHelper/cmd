@@ -1,0 +1,85 @@
+function Build-MenuTree {
+    param([string]$RootPath)
+    if (-not (Test-Path $RootPath)) {
+        throw "Menu root not found: $RootPath"
+    }
+    $rootName = Split-Path $RootPath -Leaf
+    return (Get-MenuNode -Folder $RootPath -Relative $rootName)
+}
+
+function Get-MenuNode {
+    param(
+        [string]$Folder,
+        [string]$Relative
+    )
+    $children = @()
+    $dirs = Get-ChildItem -Path $Folder -Directory -ErrorAction SilentlyContinue
+    foreach ($dir in $dirs) {
+        $childRel = if ($Relative) { "$Relative/$($dir.Name)" } else { $dir.Name }
+        $node = Get-MenuNode -Folder $dir.FullName -Relative $childRel
+        $node.Type = "submenu"
+        $children += $node
+    }
+    $opts = Get-ChildItem -Path $Folder -File -Filter "*.opt" -ErrorAction SilentlyContinue
+    foreach ($opt in $opts) {
+        $childRel = if ($Relative) { "$Relative/$($opt.BaseName)" } else { $opt.BaseName }
+        $desc = ""
+        try { $desc = (Get-Content -Path $opt.FullName -Raw -ErrorAction SilentlyContinue).Trim() } catch {}
+        $children += @{ 
+            Name = $opt.BaseName
+            Type = "option"
+            Path = $childRel
+            Children = @()
+            Description = $desc
+        }
+    }
+    # Handle .input files for free-form text input buttons
+    $inputs = Get-ChildItem -Path $Folder -File -Filter "*.input" -ErrorAction SilentlyContinue
+    foreach ($input in $inputs) {
+        $childRel = if ($Relative) { "$Relative/$($input.BaseName)" } else { $input.BaseName }
+        $desc = ""
+        $prompt = "Enter value"
+        try { 
+            $content = (Get-Content -Path $input.FullName -Raw -ErrorAction SilentlyContinue).Trim()
+            # First line is the prompt, rest is description
+            $lines = $content -split "`n"
+            if ($lines.Count -gt 0 -and $lines[0]) { $prompt = $lines[0] }
+            if ($lines.Count -gt 1) { $desc = ($lines[1..($lines.Count-1)] -join "`n").Trim() }
+        } catch {}
+        $children += @{ 
+            Name = $input.BaseName
+            Type = "input"
+            Path = $childRel
+            Children = @()
+            Description = $desc
+            Prompt = $prompt
+        }
+    }
+    return @{
+        Name = (Split-Path $Folder -Leaf)
+        Type = "submenu"
+        Path = if ($Relative) { $Relative } else { (Split-Path $Folder -Leaf) }
+        Children = $children
+    }
+}
+
+function Get-MenuItemsAtPath {
+    param(
+        [hashtable]$Tree,
+        [string]$Path
+    )
+    # If path matches tree root name, return root's children
+    if ($Path -eq $Tree.Name) {
+        return $Tree.Children
+    }
+    
+    $parts = $Path -split "/"
+    $node = $Tree
+    foreach ($p in $parts) {
+        if ($p -eq $Tree.Name) { continue }  # Skip root name
+        $next = $node.Children | Where-Object { $_.Name -eq $p }
+        if (-not $next) { return @() }
+        $node = $next
+    }
+    return $node.Children
+}

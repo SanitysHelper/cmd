@@ -37,3 +37,14 @@ Input button: mainUI/TextInput/NumberA =
 Input button: mainUI/TextInput/NumberA = 
 Selected option: mainUI/Tools/Backup/one
 Input button: mainUI/TextInput/NumberA = 45435
+Selected option: mainUI/SettingsCommand/ValueB/8
+Input button: mainUI/TextInput/CustomValue = 20
+Input button: mainUI/TextInput/NumberA = 
+Input button: mainUI/TextInput/NumberA = 40
+Input button: mainUI/TextInput/NumberB = 20
+Input button: mainUI/TextInput/CustomValue = 50
+Input button: mainUI/TextInput/CustomValue = 3
+Input button: mainUI/TextInput/UserName = john
+Selected option: mainUI/Tools/Backup/one
+Input button: mainUI/TextInput/IPAddress = 30.3.2.34
+Input button: mainUI/TextInput/SearchQuery = helo

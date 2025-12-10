@@ -1,0 +1,13 @@
+{"key":"Char","char":"1"}
+{"key":"Enter","char":""}
+{"key":"Char","char":"1"}
+{"key":"Enter","char":""}
+{"key":"Down","char":""}
+{"key":"Enter","char":""}
+{"key":"Char","char":"H"}
+{"key":"Char","char":"i"}
+{"key":"Enter","char":""}
+{"key":"Escape","char":""}
+{"key":"Escape","char":""}
+{"key":"Escape","char":""}
+{"key":"Q","char":""}

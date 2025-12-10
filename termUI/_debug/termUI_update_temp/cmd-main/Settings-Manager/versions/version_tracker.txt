@@ -1,0 +1,8 @@
+Version,File,Timestamp,Notes
+0,Settings-Manager.exe,2025-12-05 23:37:55,Baseline after modular refactor
+1,Settings-Manager.exe,2025-12-05 23:43:18,Commit grid edits before save
+2,Settings-Manager.exe,2025-12-05 23:55:52,Enter commit fix + keystroke logging
+3,Settings-Manager.exe,2025-12-05 23:59:10,Enter commit on save+cell end edit logging
+4,Settings-Manager.exe,2025-12-06 00:02:11,Auto-run sanity check added
+5,Settings-Manager.exe,2025-12-06 00:05:01,Sanity run branches fixed + KEEP_GUI_OPEN option
+6,Settings-Manager.exe,2025-12-06 00:10:47,Sanity run leaves GUI open; debug auto-close on 10s idle

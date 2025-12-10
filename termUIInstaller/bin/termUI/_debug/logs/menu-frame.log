@@ -1,0 +1,5 @@
+﻿[2025-12-08 22:54:29] MENU FRAME Selected=0 Count=4
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools

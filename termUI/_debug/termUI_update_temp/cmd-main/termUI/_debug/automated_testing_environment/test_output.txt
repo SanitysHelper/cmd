@@ -1,0 +1,12 @@
+[DEBUG] Initializing settings...
+[DEBUG] Loading menu tree...
+=== termUI ===
+Path: mainUI
+
+> [1] (submenu) Settings
+  [2] (submenu) SettingsCommand
+  [3] (submenu) TextInput
+  [4] (submenu) Tools
+
+[Up/Down] Navigate  [#] Quick Select  [Escape] Back  [Q] Quit
+Error: Cannot see if a key has been pressed when either application does not have a console or when console input has been redirected from a file. Try Console.In.Peek.

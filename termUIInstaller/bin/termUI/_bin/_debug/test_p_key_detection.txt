@@ -1,0 +1,4 @@
+# Test the P key manual input detection feature
+# This would trigger: Press P during the test
+# The P key will detect that the program is in automated test environment
+# and immediately display critical error + exit with code 1

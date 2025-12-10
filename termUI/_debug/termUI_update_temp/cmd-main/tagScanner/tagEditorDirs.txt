@@ -1,0 +1,2 @@
+C:\CmdLibraries\exif
+"C:\Users\cmand\Downloads\flac-1.5.0-win\flac-1.5.0-win\Win64"
