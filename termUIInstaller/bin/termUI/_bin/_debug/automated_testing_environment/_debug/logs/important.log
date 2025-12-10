@@ -1,4 +1,0 @@
-[2025-12-08 21:09:24] INFO: Started input handler in TEST mode: C:\Users\cmand\OneDrive\Desktop\cmd\termUI\_debug\automated_testing_environment\test1_basic.txt (buffered 6 events)
-[2025-12-08 21:09:25] INFO: Entered submenu: mainUI/SettingsCommand
-[2025-12-08 21:09:25] INFO: Navigated back to: mainUI
-[2025-12-08 21:09:25] INFO: User quit with Q key (handler-mapped)

@@ -730,3 +730,7 @@
 [2025-12-09 21:33:49] INPUT #1 [handler] (+5.643s): {"key":"Up","char":null}
 [2025-12-09 21:33:50] INPUT #2 [handler] (+0.700s): {"key":"Q","char":"q"}
 [2025-12-09 21:36:02] INPUT #1 [handler] (+10.841s): {"key":"Q","char":"q"}
+[2025-12-09 22:04:39] INPUT #1 [handler] (+38.336s): {"key":"Down","char":null}
+[2025-12-09 22:04:39] INPUT #2 [handler] (+0.255s): {"key":"Down","char":null}
+[2025-12-09 22:04:39] INPUT #3 [handler] (+0.238s): {"key":"Down","char":null}
+[2025-12-09 22:04:39] INPUT #4 [handler] (+0.207s): {"key":"Down","char":null}

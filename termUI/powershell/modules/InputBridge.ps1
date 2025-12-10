@@ -3,7 +3,7 @@ function Stop-InputHandler {
     if ($null -eq $Handler) { return }
     try { 
         if ($Handler.Writer) { $Handler.Writer.Close() }
-        if (-not $Handler.Process.HasExited) { $Handler.Process.Kill() } 
+        if ($Handler.Process -and -not $Handler.Process.HasExited) { $Handler.Process.Kill() } 
     } catch {}
 }
 
@@ -18,28 +18,94 @@ function Get-NextInputEvent {
         return $null
     }
     
-    # Interactive mode: read directly from console
-    if ($Handler.PSObject.Properties['IsInteractive'] -and $Handler.IsInteractive) {
-        if ([Console]::KeyAvailable) {
-            $key = [Console]::ReadKey($true)
-            $keyName = switch ($key.Key) {
-                "UpArrow" { "Up" }
-                "DownArrow" { "Down" }
-                "LeftArrow" { "Left" }
-                "RightArrow" { "Right" }
-                "Enter" { "Enter" }
-                "Escape" { "Escape" }
-                "Tab" { "Tab" }
-                "Backspace" { "Backspace" }
-                default {
-                    $ch = $key.KeyChar
-                    if ($ch -eq 'q' -or $ch -eq 'Q') { "Q" }
-                    elseif ([char]::IsLetterOrDigit($ch) -or [char]::IsPunctuation($ch)) { "Char" }
-                    else { "" }
+    # Piped input mode (stdin is redirected)
+    if ($Handler.PSObject.Properties['IsPipedInput'] -and $Handler.IsPipedInput) {
+        try {
+            if ($Host.UI.RawUI.KeyAvailable) {
+                $key = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+                $keyName = switch ($key.VirtualKeyCode) {
+                    38 { "Up" }      # Up arrow
+                    40 { "Down" }    # Down arrow
+                    37 { "Left" }    # Left arrow
+                    39 { "Right" }   # Right arrow
+                    13 { "Enter" }   # Enter
+                    27 { "Escape" }  # Escape
+                    9  { "Tab" }     # Tab
+                    8  { "Backspace" } # Backspace
+                    81 { "Q" }       # Q key
+                    default {
+                        $ch = $key.Character
+                        if ([string]::IsNullOrEmpty($ch)) { "" }
+                        elseif ($ch -eq 'q' -or $ch -eq 'Q') { "Q" }
+                        elseif ([char]::IsDigit($ch)) { $ch }
+                        else { "" }
+                    }
+                }
+                if ($keyName) {
+                    return [pscustomobject]@{ key = $keyName; char = $key.Character }
                 }
             }
-            if ($keyName) {
-                return [pscustomobject]@{ key = $keyName; char = $key.KeyChar }
+        } catch {
+            # Silently continue if no input available
+        }
+        return $null
+    }
+    
+    # Interactive mode: read directly from console
+    if ($Handler.PSObject.Properties['IsInteractive'] -and $Handler.IsInteractive) {
+        # Check if console input is available (try-catch for error conditions)
+        try {
+            if ([Console]::KeyAvailable) {
+                $key = [Console]::ReadKey($true)
+                $keyName = switch ($key.Key) {
+                    "UpArrow" { "Up" }
+                    "DownArrow" { "Down" }
+                    "LeftArrow" { "Left" }
+                    "RightArrow" { "Right" }
+                    "Enter" { "Enter" }
+                    "Escape" { "Escape" }
+                    "Tab" { "Tab" }
+                    "Backspace" { "Backspace" }
+                    default {
+                        $ch = $key.KeyChar
+                        if ($ch -eq 'q' -or $ch -eq 'Q') { "Q" }
+                        elseif ([char]::IsLetterOrDigit($ch) -or [char]::IsPunctuation($ch)) { "Char" }
+                        else { "" }
+                    }
+                }
+                if ($keyName) {
+                    return [pscustomobject]@{ key = $keyName; char = $key.KeyChar }
+                }
+            }
+        } catch {
+            # Console.KeyAvailable threw an error (likely input is redirected)
+            # Fall back to Host.UI.RawUI for piped input
+            try {
+                if ($Host.UI.RawUI.KeyAvailable) {
+                    $key = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+                    $keyName = switch ($key.VirtualKeyCode) {
+                        38 { "Up" }
+                        40 { "Down" }
+                        37 { "Left" }
+                        39 { "Right" }
+                        13 { "Enter" }
+                        27 { "Escape" }
+                        9  { "Tab" }
+                        8  { "Backspace" }
+                        81 { "Q" }
+                        default {
+                            $ch = $key.Character
+                            if ([char]::IsDigit($ch)) { $ch }
+                            elseif ($ch -eq 'q' -or $ch -eq 'Q') { "Q" }
+                            else { "" }
+                        }
+                    }
+                    if ($keyName) {
+                        return [pscustomobject]@{ key = $keyName; char = $key.Character }
+                    }
+                }
+            } catch {
+                # Still failed, no more input available
             }
         }
         return $null

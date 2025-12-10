@@ -1,4 +1,0 @@
-﻿[2025-12-08 23:19:28] ERROR: Menu root not found: C:\Users\cmand\OneDrive\Desktop\cmd\termUI\_debug\automated_testing_environment\powershell\..\buttons\mainUI
-[2025-12-08 23:19:31] ERROR: Menu root not found: C:\Users\cmand\OneDrive\Desktop\cmd\termUI\_debug\automated_testing_environment\powershell\..\buttons\mainUI
-[2025-12-08 23:19:48] ERROR: Cannot see if a key has been pressed when either application does not have a console or when console input has been redirected from a file. Try Console.In.Peek.
-[2025-12-08 23:32:01] ERROR: Cannot see if a key has been pressed when either application does not have a console or when console input has been redirected from a file. Try Console.In.Peek.

@@ -1,6 +1,0 @@
-[2025-12-08 21:09:25] INPUT #1 [handler] (+0.383s): {"id":"80719745e7de41ab9b239d79404419c1","key":"Down","char":"","timestamp":"2025-12-09T03:09:24.9057133Z","source":"handler"}
-[2025-12-08 21:09:25] INPUT #2 [handler] (+0.047s): {"id":"f577670e716b4a61a667455f38a3b72e","key":"Down","char":"","timestamp":"2025-12-09T03:09:24.9057133Z","source":"handler"}
-[2025-12-08 21:09:25] INPUT #3 [handler] (+0.057s): {"id":"0b50be2fd6444363a127fa151131c8af","key":"Up","char":"","timestamp":"2025-12-09T03:09:24.9057133Z","source":"handler"}
-[2025-12-08 21:09:25] INPUT #4 [handler] (+0.081s): {"id":"2b63454826f54d658f218d0e95e74e42","key":"Enter","char":"","timestamp":"2025-12-09T03:09:24.9057133Z","source":"handler"}
-[2025-12-08 21:09:25] INPUT #5 [handler] (+0.124s): {"id":"777d302adcc148e297592a883af289fe","key":"Escape","char":"","timestamp":"2025-12-09T03:09:24.9057133Z","source":"handler"}
-[2025-12-08 21:09:25] INPUT #6 [handler] (+0.071s): {"id":"c0f0cfc838f749239508e56763d06e95","key":"Q","char":"","timestamp":"2025-12-09T03:09:24.9057133Z","source":"handler"}

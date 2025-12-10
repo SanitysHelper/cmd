@@ -122,9 +122,18 @@ try {
         $handler = [pscustomobject]@{ Process = $proc; Reader = $null; EventBuffer = $eventBuffer; IsTestMode = $true }
         Log-Important "Started input handler in TEST mode: $env:TERMUI_TEST_FILE (buffered $($eventBuffer.Count) events)"
     } else {
-        # Interactive mode
-        $handler = [pscustomobject]@{ Process = $null; Reader = $null; IsInteractive = $true }
-        Log-Important "Running in interactive mode (no subprocess)"
+        # Check if input is piped (stdin redirected)
+        $isPipedInput = [Console]::IsInputRedirected
+        
+        if ($isPipedInput) {
+            # Piped input mode
+            $handler = [pscustomobject]@{ Process = $null; Reader = $null; IsPipedInput = $true }
+            Log-Important "Running in piped input mode (stdin redirected)"
+        } else {
+            # Interactive mode
+            $handler = [pscustomobject]@{ Process = $null; Reader = $null; IsInteractive = $true }
+            Log-Important "Running in interactive mode (console available)"
+        }
     }
 
     $script:handler = $handler
