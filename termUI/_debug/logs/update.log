@@ -68,3 +68,15 @@
 [2025-12-10 00:01:32] [ERROR] Retry failed for: termUI.exe. Please close any running termUI instances and re-run update.
 [2025-12-10 00:01:32] [ERROR] Update installation failed: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUI\termUI.exe' because it is being used by another process.
 [2025-12-10 00:01:32] [INFO] === Update Check Completed ===
+[2025-12-10 12:15:56] [INFO] === termUI Update Check Started ===
+[2025-12-10 12:15:56] [INFO] Local version: 1.3.9
+[2025-12-10 12:15:56] [INFO] Checking GitHub for latest version...
+[2025-12-10 12:15:57] [INFO] Remote version: 1.3.9
+[2025-12-10 12:15:57] [INFO] Versions are identical: 1.3.9
+[2025-12-10 12:15:57] [SUCCESS] No update needed
+[2025-12-10 12:16:56] [INFO] === termUI Update Check Started ===
+[2025-12-10 12:16:56] [INFO] Local version: 1.4.0
+[2025-12-10 12:16:56] [INFO] Checking GitHub for latest version...
+[2025-12-10 12:16:57] [INFO] Remote version: 1.3.9
+[2025-12-10 12:16:57] [WARN] Local version is newer than remote
+[2025-12-10 12:16:57] [SUCCESS] No update needed

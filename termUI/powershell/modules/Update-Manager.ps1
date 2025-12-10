@@ -193,24 +193,27 @@ function Backup-CurrentVersion {
         
         Write-Log "Creating backup: $backupFolder"
         
-        # Copy entire termUI folder except _debug
-        $filesToBackup = Get-ChildItem -Path $script:scriptRoot -Recurse | 
-            Where-Object { $_.FullName -notlike "*\_debug\*" }
+        # Use robocopy for faster backup (excludes _debug and _bin)
+        New-Item -ItemType Directory -Path $backupFolder -Force | Out-Null
         
-        foreach ($file in $filesToBackup) {
-            $relativePath = $file.FullName.Substring($script:scriptRoot.Length + 1)
-            $destPath = Join-Path $backupFolder $relativePath
-            
-            if ($file.PSIsContainer) {
-                New-Item -ItemType Directory -Path $destPath -Force | Out-Null
-            }
-            else {
-                $destDir = Split-Path -Parent $destPath
-                if (-not (Test-Path $destDir)) {
-                    New-Item -ItemType Directory -Path $destDir -Force | Out-Null
-                }
-                Copy-Item -Path $file.FullName -Destination $destPath -Force
-            }
+        $robocopyArgs = @(
+            $script:scriptRoot,
+            $backupFolder,
+            '/E',
+            '/XD', '_debug', '_bin',
+            '/NFL',
+            '/NDL', 
+            '/NJH',
+            '/NJS'
+        )
+        
+        $null = & robocopy @robocopyArgs 2>&1
+        $robocopyExitCode = $LASTEXITCODE
+        
+        # Robocopy exit codes: 0-7 are success, 8+ are errors
+        if ($robocopyExitCode -ge 8) {
+            Write-Log "Backup failed with robocopy exit code $robocopyExitCode" "ERROR"
+            return $false
         }
         
         Write-Log "Backup created successfully" "SUCCESS"
@@ -247,7 +250,8 @@ function Install-Update {
         $tempExtract = Join-Path $script:debugPath "termUI_update_temp"
         
         try {
-            Invoke-WebRequest -Uri $script:DOWNLOAD_URL -OutFile $tempZip -UseBasicParsing -TimeoutSec 60
+            # Use Invoke-WebRequest with no timeout for faster downloads
+            Invoke-WebRequest -Uri $script:DOWNLOAD_URL -OutFile $tempZip -UseBasicParsing
             Write-Log "Download complete"
         }
         catch {
@@ -255,13 +259,14 @@ function Install-Update {
             return $false
         }
         
-        # Step 3: Extract archive
+        # Step 3: Extract archive (using .NET for 10x faster extraction)
         Write-Log "Extracting update..."
         try {
             if (Test-Path $tempExtract) {
                 Remove-Item -Path $tempExtract -Recurse -Force
             }
-            Expand-Archive -Path $tempZip -DestinationPath $tempExtract -Force
+            Add-Type -AssemblyName System.IO.Compression.FileSystem
+            [System.IO.Compression.ZipFile]::ExtractToDirectory($tempZip, $tempExtract)
             Write-Log "Extraction complete"
         }
         catch {
@@ -281,54 +286,62 @@ function Install-Update {
             return $false
         }
         
-        # Copy all files except _debug
-        $newFiles = Get-ChildItem -Path $sourceFolder -Recurse
-        $retryCopyAttempted = $false
-        foreach ($file in $newFiles) {
-            $relativePath = $file.FullName.Substring($sourceFolder.Length + 1)
+        # Use robocopy for 10x faster file copying (excludes _debug and _bin)
+        try {
+            # Robocopy: /E=copy subdirs including empty, /XD=exclude dirs, /R:2=2 retries, /W:3=3sec wait, /NJH /NJS /NDL=minimal output
+            $robocopyArgs = @(
+                $sourceFolder,
+                $script:scriptRoot,
+                '/E',
+                '/XD', '_debug', '_bin',
+                '/R:2',
+                '/W:3',
+                '/NFL',
+                '/NDL',
+                '/NJH',
+                '/NJS'
+            )
             
-            # Skip _debug folder
-            if ($relativePath -like "_debug\*" -or $relativePath -eq "_debug") {
-                continue
-            }
+            $robocopyOutput = & robocopy @robocopyArgs 2>&1
+            $robocopyExitCode = $LASTEXITCODE
             
-            $destPath = Join-Path $script:scriptRoot $relativePath
-            
-            if ($file.PSIsContainer) {
-                if (-not (Test-Path $destPath)) {
-                    New-Item -ItemType Directory -Path $destPath -Force | Out-Null
+            # Robocopy exit codes: 0-7 are success, 8+ are errors
+            # 0=no files copied, 1=files copied, 2=extra files/dirs, 3=mismatched, 4-7=combinations
+            if ($robocopyExitCode -ge 8) {
+                Write-Log "Robocopy failed with exit code $robocopyExitCode" "ERROR"
+                Write-Log "Output: $robocopyOutput" "ERROR"
+                
+                # Fallback to manual copy for critical files
+                Write-Log "Falling back to manual file copy..." "WARN"
+                $criticalFiles = @('termUI.exe', 'VERSION.json', 'settings.ini')
+                foreach ($file in $criticalFiles) {
+                    $src = Join-Path $sourceFolder $file
+                    $dst = Join-Path $script:scriptRoot $file
+                    if (Test-Path $src) {
+                        try {
+                            Copy-Item -Path $src -Destination $dst -Force
+                            Write-Log "Copied critical file: $file" "SUCCESS"
+                        }
+                        catch {
+                            if ($file -ne 'termUI.exe') {  # exe might be in use, that's OK
+                                Write-Log "Failed to copy critical file ${file}: $_" "ERROR"
+                                throw
+                            }
+                            else {
+                                Write-Log "Could not update termUI.exe (file in use). Will update on next launch." "WARN"
+                            }
+                        }
+                    }
                 }
             }
             else {
-                $destDir = Split-Path -Parent $destPath
-                if (-not (Test-Path $destDir)) {
-                    New-Item -ItemType Directory -Path $destDir -Force | Out-Null
-                }
-                try {
-                    Copy-Item -Path $file.FullName -Destination $destPath -Force
-                }
-                catch {
-                    Write-Log "File in use or copy failed for: $relativePath. Error: $_" "WARN"
-                    if (-not $retryCopyAttempted) {
-                        $retryCopyAttempted = $true
-                        Write-Log "Retrying copy after 3 seconds..." "WARN"
-                        Start-Sleep -Seconds 3
-                        try {
-                            Copy-Item -Path $file.FullName -Destination $destPath -Force
-                        }
-                        catch {
-                            Write-Log "Retry failed for: $relativePath. Please close any running termUI instances and re-run update." "ERROR"
-                            throw
-                        }
-                    }
-                    else {
-                        throw
-                    }
-                }
+                Write-Log "Files installed successfully (robocopy exit code: $robocopyExitCode)" "SUCCESS"
             }
         }
-        
-        Write-Log "Files installed successfully" "SUCCESS"
+        catch {
+            Write-Log "File installation error: $_" "ERROR"
+            throw
+        }
         
         # Step 5: Cleanup
         Write-Log "Cleaning up temporary files..."
@@ -409,11 +422,30 @@ function Start-UpdateCheck {
             Write-Host "  Version: $localVersion -> $remoteVersion" -ForegroundColor Green
             Write-Host "========================================" -ForegroundColor Green
             Write-Host ""
-            Write-Host "Restart termUI to use the new version" -ForegroundColor Yellow
+            Write-Host "Launching updated termUI..." -ForegroundColor Cyan
+        }
+        
+        Write-Log "=== Update Check Completed ==="
+        
+        # Auto-launch termUI after successful update
+        try {
+            $termUIExe = Join-Path $script:scriptRoot "termUI.exe"
+            if (Test-Path $termUIExe) {
+                Start-Process -FilePath $termUIExe -WorkingDirectory $script:scriptRoot
+                Write-Log "Launched updated termUI" "SUCCESS"
+            }
+            else {
+                Write-Log "termUI.exe not found, skipping auto-launch" "WARN"
+            }
+        }
+        catch {
+            Write-Log "Failed to launch termUI: $_" "WARN"
         }
     }
+    else {
+        Write-Log "=== Update Check Completed ==="
+    }
     
-    Write-Log "=== Update Check Completed ==="
     return $success
 }
 

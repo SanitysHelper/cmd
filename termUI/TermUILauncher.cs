@@ -86,34 +86,39 @@ class Program
             if (File.Exists(tempZip)) File.Delete(tempZip);
             if (Directory.Exists(extractDir)) Directory.Delete(extractDir, true);
 
-            using (var client = new WebClient())
+            var request = (HttpWebRequest)WebRequest.Create(downloadUrl);
+            request.UserAgent = "termUI-Bootstrap";
+            using (var response = (HttpWebResponse)request.GetResponse())
+            using (var responseStream = response.GetResponseStream())
+            using (var fileStream = new FileStream(tempZip, FileMode.Create, FileAccess.Write, FileShare.None, 65536))
             {
+                var totalBytes = response.ContentLength;
+                var buffer = new byte[8192];
+                long totalRead = 0;
+                int bytesRead;
                 var lastPercent = -1;
                 var lastUpdate = DateTime.MinValue;
-                client.DownloadProgressChanged += (s, e) =>
+                var barWidth = 40;
+                
+                while ((bytesRead = responseStream.Read(buffer, 0, buffer.Length)) > 0)
                 {
+                    fileStream.Write(buffer, 0, bytesRead);
+                    totalRead += bytesRead;
+                    
                     var now = DateTime.Now;
-                    if (e.ProgressPercentage != lastPercent || (now - lastUpdate).TotalMilliseconds > 500)
+                    var percent = (int)((double)totalRead / totalBytes * 100);
+                    if (percent != lastPercent || (now - lastUpdate).TotalMilliseconds > 500)
                     {
-                        lastPercent = e.ProgressPercentage;
+                        lastPercent = percent;
                         lastUpdate = now;
-                        var barWidth = 40;
-                        var filled = (int)((double)e.ProgressPercentage / 100 * barWidth);
+                        var filled = (int)((double)percent / 100 * barWidth);
                         var bar = new string('=', filled) + new string('-', barWidth - filled);
-                        var mbReceived = e.BytesReceived / 1024.0 / 1024.0;
-                        var mbTotal = e.TotalBytesToReceive / 1024.0 / 1024.0;
-                        Console.Write(string.Format("\r[{0}] {1}% ({2:F2} MB / {3:F2} MB)", bar, e.ProgressPercentage, mbReceived, mbTotal));
+                        var mbReceived = totalRead / 1024.0 / 1024.0;
+                        var mbTotal = totalBytes / 1024.0 / 1024.0;
+                        Console.Write(string.Format("\r[{0}] {1}% ({2:F2} MB / {3:F2} MB)", bar, percent, mbReceived, mbTotal));
                     }
-                };
-                client.DownloadFileCompleted += (s, e) =>
-                {
-                    Console.WriteLine();
-                };
-                client.DownloadFileAsync(new Uri(downloadUrl), tempZip);
-                while (client.IsBusy)
-                {
-                    System.Threading.Thread.Sleep(100);
                 }
+                Console.WriteLine();
             }
 
             Console.ForegroundColor = ConsoleColor.Cyan;

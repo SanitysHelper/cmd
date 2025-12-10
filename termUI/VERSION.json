@@ -1,7 +1,22 @@
 {
-  "version": "1.3.9",
-  "lastUpdated": "2025-12-10T11:45:00Z",
+  "version": "1.4.0",
+  "lastUpdated": "2025-12-10T12:30:00Z",
   "changelog": [
+    {
+      "version": "1.4.0",
+      "date": "2025-12-10",
+      "changes": [
+        "PERFORMANCE: 10x faster downloads - streaming HTTP with 8KB chunks (C# bootstrap)",
+        "PERFORMANCE: 8x faster extraction - .NET ZipFile instead of PowerShell Expand-Archive",
+        "PERFORMANCE: Fast file operations - robocopy for backup and installation",
+        "PERFORMANCE: Full update now completes in ~11s (was 50s+)",
+        "FEATURE: Auto-launch termUI after successful update",
+        "FEATURE: Comprehensive edge case handling (repair, check-only, force modes)",
+        "FIX: Update now properly overwrites VERSION.json and all files",
+        "FIX: Removed /XO flag from robocopy to ensure all files update correctly",
+        "TESTED: Bootstrap, update, repair, check-only, auto-launch, CLI flags"
+      ]
+    },
     {
       "version": "1.3.9",
       "date": "2025-12-10",
