@@ -48,3 +48,4 @@ Input button: mainUI/TextInput/UserName = john
 Selected option: mainUI/Tools/Backup/one
 Input button: mainUI/TextInput/IPAddress = 30.3.2.34
 Input button: mainUI/TextInput/SearchQuery = helo
+Input button: mainUI/TextInput/DirectoryPath = 45

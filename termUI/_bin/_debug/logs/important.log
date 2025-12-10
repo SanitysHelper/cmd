@@ -153,3 +153,29 @@
 [2025-12-09 21:36:02] INFO: User quit with Q key (handler-mapped)
 [2025-12-09 22:02:20] INFO: Running in interactive mode (no subprocess)
 [2025-12-09 22:04:01] INFO: Running in piped input mode (stdin redirected)
+[2025-12-09 22:07:22] INFO: Running in interactive mode (console available)
+[2025-12-09 22:07:25] INFO: Entered submenu: mainUI/TextInput
+[2025-12-09 22:07:28] INFO: Input button 'DirectoryPath' received: 45
+[2025-12-09 22:07:30] INFO: User quit with Q key (handler-mapped)
+[2025-12-09 22:12:18] INFO: Running in piped input mode (stdin redirected)
+[2025-12-09 22:12:28] INFO: User quit with Q key (handler-mapped)
+[2025-12-09 22:12:29] INFO: User quit with Q key (handler-mapped)
+[2025-12-09 22:12:33] INFO: Running in piped input mode (stdin redirected)
+[2025-12-09 22:12:51] INFO: Running in interactive mode (console available)
+[2025-12-09 22:12:52] INFO: Entered submenu: mainUI/Settings
+[2025-12-09 22:12:57] INFO: User quit with Q key (handler-mapped)
+[2025-12-09 22:13:00] INFO: Navigated back to: mainUI
+[2025-12-09 22:13:01] INFO: Entered submenu: mainUI/TextInput
+[2025-12-09 22:13:01] INFO: Navigated back to: mainUI
+[2025-12-09 22:13:02] INFO: User quit with Q key (handler-mapped)
+[2025-12-09 22:13:06] INFO: Running in interactive mode (console available)
+[2025-12-09 22:14:11] INFO: Running in interactive mode (console available)
+[2025-12-09 22:16:03] INFO: Running in interactive mode (console available)
+[2025-12-09 22:16:17] INFO: User quit with Q key (handler-mapped)
+[2025-12-09 22:16:27] INFO: Running in piped input mode (stdin redirected)
+[2025-12-09 22:16:32] INFO: Entered submenu: mainUI/SettingsCommand
+[2025-12-09 22:16:33] INFO: Entered submenu: mainUI/SettingsCommand/Operation
+[2025-12-09 22:16:33] INFO: User quit with Q key (handler-mapped)
+[2025-12-09 22:16:38] INFO: Running in interactive mode (console available)
+[2025-12-09 22:17:28] INFO: Entered submenu: mainUI/Settings
+[2025-12-09 22:17:44] INFO: Running in piped input mode (stdin redirected)
