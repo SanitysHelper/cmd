@@ -93,7 +93,8 @@ class Program
                 return false;
             }
 
-            CopyDirectory(sourceRoot, targetDir);
+            var currentExe = GetCurrentExePath();
+            CopyDirectory(sourceRoot, targetDir, currentExe);
             return true;
         }
         catch (Exception ex)
@@ -108,8 +109,9 @@ class Program
         }
     }
 
-    static void CopyDirectory(string sourceDir, string targetDir)
+    static void CopyDirectory(string sourceDir, string targetDir, string skipPath)
     {
+        var normalizedSkip = NormalizePath(skipPath);
         foreach (var dir in Directory.GetDirectories(sourceDir, "*", SearchOption.AllDirectories))
         {
             var rel = dir.Substring(sourceDir.Length).TrimStart(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
@@ -120,6 +122,11 @@ class Program
         {
             var rel = file.Substring(sourceDir.Length).TrimStart(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
             var dest = Path.Combine(targetDir, rel);
+            var normalizedDest = NormalizePath(dest);
+            if (!string.IsNullOrEmpty(normalizedSkip) && string.Equals(normalizedDest, normalizedSkip, StringComparison.OrdinalIgnoreCase))
+            {
+                continue;
+            }
             var destDir = Path.GetDirectoryName(dest);
             if (!string.IsNullOrEmpty(destDir)) { Directory.CreateDirectory(destDir); }
             File.Copy(file, dest, true);
@@ -129,6 +136,19 @@ class Program
     static bool PathExists(string path)
     {
         return File.Exists(path) || Directory.Exists(path);
+    }
+
+    static string NormalizePath(string path)
+    {
+        if (string.IsNullOrEmpty(path)) return string.Empty;
+        try { return Path.GetFullPath(path).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar); }
+        catch { return path; }
+    }
+
+    static string GetCurrentExePath()
+    {
+        try { return Process.GetCurrentProcess().MainModule.FileName; }
+        catch { return string.Empty; }
     }
 
     static string QuoteArg(string arg)
