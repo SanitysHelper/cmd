@@ -2,11 +2,67 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
-# Load version manager for version tracking
-$script:moduleDir = Join-Path (Split-Path -Parent $MyInvocation.MyCommand.Path) "modules"
-. (Join-Path $script:moduleDir "VersionManager.ps1")
+# Bootstrap metadata
+$script:scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$script:termUIRoot = Split-Path -Parent $script:scriptDir
+$script:moduleDir = Join-Path $script:scriptDir "modules"
 
-# Check for version/changelog flags
+# Core paths required for a healthy install (used for bootstrap/repair)
+$script:requiredPaths = @(
+    (Join-Path $script:moduleDir "Logging.ps1"),
+    (Join-Path $script:moduleDir "Settings.ps1"),
+    (Join-Path $script:moduleDir "MenuBuilder.ps1"),
+    (Join-Path $script:moduleDir "InputBridge.ps1"),
+    (Join-Path $script:moduleDir "VersionManager.ps1"),
+    (Join-Path $script:moduleDir "Update-Manager.ps1"),
+    (Join-Path $script:termUIRoot "settings.ini"),
+    (Join-Path $script:termUIRoot "buttons")
+)
+
+# Self-bootstrap: if modules or core files are missing (e.g., only the EXE was copied),
+# download the termUI archive from GitHub and restore the folder structure.
+function Restore-TermUIFromGitHub {
+    param([string[]]$Missing)
+    $esc = [char]27
+    Write-Host ("{0}[2J{0}[H" -f $esc) -NoNewline
+    Write-Host "Detected missing core files: $($Missing -join ', ')" -ForegroundColor Yellow
+    Write-Host "Attempting online repair from GitHub (branch: main)..." -ForegroundColor Yellow
+    $repo = "SanitysHelper/cmd"
+    $branch = "main"
+    $downloadUrl = "https://github.com/$repo/archive/refs/heads/$branch.zip"
+    $tmpZip = Join-Path $env:TEMP "termui_bootstrap.zip"
+    $tmpExtract = Join-Path $env:TEMP "termui_bootstrap_extract"
+    $progressPrev = $global:ProgressPreference
+    $global:ProgressPreference = 'SilentlyContinue'
+    try {
+        Invoke-WebRequest -Uri $downloadUrl -OutFile $tmpZip -UseBasicParsing -TimeoutSec 60 -ErrorAction Stop
+        if (Test-Path $tmpExtract) { Remove-Item -Path $tmpExtract -Recurse -Force -ErrorAction SilentlyContinue }
+        Expand-Archive -Path $tmpZip -DestinationPath $tmpExtract -Force
+        $source = Join-Path $tmpExtract "cmd-$branch\termUI"
+        if (-not (Test-Path $source)) { throw "Bootstrap source not found in archive: $source" }
+        Copy-Item -Path (Join-Path $source '*') -Destination $script:termUIRoot -Recurse -Force
+        Write-Host "Repair/download complete. Relaunching..." -ForegroundColor Green
+    } catch {
+        Write-Host "Bootstrap repair failed: $_" -ForegroundColor Red
+        exit 1
+    } finally {
+        $global:ProgressPreference = $progressPrev
+        Remove-Item -Path $tmpZip -Force -ErrorAction SilentlyContinue
+        Remove-Item -Path $tmpExtract -Recurse -Force -ErrorAction SilentlyContinue
+    }
+}
+
+# Check and bootstrap before loading modules
+$missingCore = @($script:requiredPaths | Where-Object { -not (Test-Path $_) })
+if ($missingCore.Count -gt 0) {
+    Restore-TermUIFromGitHub -Missing $missingCore
+}
+
+# Load version and update managers
+. (Join-Path $script:moduleDir "VersionManager.ps1")
+. (Join-Path $script:moduleDir "Update-Manager.ps1")
+
+# Check for version/update flags
 if ($args -contains "--version" -or $args -contains "-v") {
     Write-Host (Get-TermUIVersionString -TermUIRoot (Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)))
     exit 0
@@ -15,6 +71,23 @@ if ($args -contains "--version" -or $args -contains "-v") {
 if ($args -contains "--changelog" -or $args -contains "-c") {
     Write-Host (Get-TermUIChangelog -TermUIRoot (Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)))
     exit 0
+}
+
+if ($args -contains "--check-update") {
+    try {
+        $null = Start-UpdateCheck -CheckOnly
+        exit 0
+    } catch { exit 1 }
+}
+
+if ($args -contains "--update") {
+    $res = Start-UpdateCheck
+    if ($res) { exit 0 } else { exit 1 }
+}
+
+if ($args -contains "--repair") {
+    $res = Start-UpdateCheck -Force
+    if ($res) { exit 0 } else { exit 1 }
 }
 
 # Optional capture mode for external callers
@@ -53,6 +126,18 @@ $script:paths.menuRoot = $null
 $script:lastInputTime = Get-Date
 $script:inputCounter = 0
 
+# Core files required for a healthy install
+$script:requiredPaths = @(
+    (Join-Path $script:scriptDir "modules\Logging.ps1"),
+    (Join-Path $script:scriptDir "modules\Settings.ps1"),
+    (Join-Path $script:scriptDir "modules\MenuBuilder.ps1"),
+    (Join-Path $script:scriptDir "modules\InputBridge.ps1"),
+    (Join-Path $script:scriptDir "modules\VersionManager.ps1"),
+    (Join-Path $script:scriptDir "termUI.ps1"),
+    (Join-Path (Split-Path -Parent $script:scriptDir) "settings.ini"),
+    (Join-Path (Split-Path -Parent $script:scriptDir) "buttons")
+)
+
 # In capture mode, isolate logs to a temp folder to avoid file locking across processes
 if ($captureFile) {
     $script:paths.logs = Join-Path ([IO.Path]::GetTempPath()) ("termui_logs_{0}" -f [guid]::NewGuid())
@@ -70,7 +155,43 @@ if ($captureFile) {
 
 try {
     Write-Host "[DEBUG] Initializing settings..." -ForegroundColor DarkGray
-    Initialize-Settings -SettingsPath $script:paths.settings
+
+    # Ensure settings.ini exists or repair first
+    if (-not (Test-Path $script:paths.settings)) {
+        Write-Host "settings.ini missing; attempting repair from GitHub..." -ForegroundColor Yellow
+        $repairResult = Start-UpdateCheck -Force -Silent:$false
+        if (-not $repairResult) { Write-Host "Repair failed." -ForegroundColor Red; exit 1 }
+    }
+
+    try {
+        Initialize-Settings -SettingsPath $script:paths.settings
+    } catch {
+        Write-Host "Settings load failed; attempting repair from GitHub..." -ForegroundColor Yellow
+        $repairResult = Start-UpdateCheck -Force -Silent:$false
+        if (-not $repairResult) { Write-Host "Repair failed." -ForegroundColor Red; exit 1 }
+        Initialize-Settings -SettingsPath $script:paths.settings
+    }
+
+    # Repair if core files are missing
+    $missing = @($script:requiredPaths | Where-Object { -not (Test-Path $_) })
+    if ($missing.Count -gt 0) {
+        Write-Host "Missing required files; attempting repair from GitHub..." -ForegroundColor Yellow
+        $repairResult = Start-UpdateCheck -Force -Silent:$false
+        if (-not $repairResult) {
+            Write-Host "Repair failed. Missing: $($missing -join ', ')" -ForegroundColor Red
+            exit 1
+        }
+    }
+
+    # Optional update check on startup
+    if ($script:settings.Updates.check_on_startup) {
+        $updateApplied = Start-UpdateCheck
+        if ($updateApplied) {
+            Write-Host "Update installed. Please relaunch termUI." -ForegroundColor Yellow
+            exit 0
+        }
+    }
+
     Write-Host "[DEBUG] Loading menu tree..." -ForegroundColor DarkGray
     $script:paths.menuRoot = Join-Path (Join-Path $script:scriptDir "..") $script:settings.General.menu_root
     $script:paths.logLimitBytes = 1024 * 1024 * [int]$script:settings.Logging.log_rotation_mb

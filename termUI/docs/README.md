@@ -1,11 +1,14 @@
-# termUI v1.3.6 (consolidated guide)
+# termUI v1.3.7 (consolidated guide)
 
 PowerShell-driven terminal UI with a C# input handler (no stdin to PowerShell; all key events flow through the handler). Buttons are folder-discovered from `buttons/` (`.opt` files = options, folders = submenus, `.input` files = free-form input prompts). The smart `termUI.exe` launcher handles version display, update checks, and repair prompts.
 
 ## Status
 - Production-ready; zero-crash test suite (10/10 scenarios, 467+ keypresses) and stress-tested navigation/input
 - Auto-update/repair prompts built into `termUI.exe`; version source of truth is `VERSION.json`
-- Current version: **1.3.6** (lastUpdated 2025-12-09)
+- Current version: **1.3.7** (lastUpdated 2025-12-09)
+- Self-bootstrap: exe-only copies can download and restore the full folder from GitHub before launch
+- Identical behavior to `run.bat` with faster startup and built-in version/update/repair prompts.
+- Self-repair/bootstrap triggers if core files are missing (modules/settings/buttons)
 
 ## Quick Start
 - Launch: double-click `termUI.exe` (preferred) or `pwsh -ExecutionPolicy Bypass -File .\run.bat`
@@ -90,7 +93,7 @@ buttons/mainUI/
 - Identical behavior to `run.bat` with faster startup and built-in version/update/repair prompts.
 
 ## Versioning and Auto-Update
-- Semantic versioning (MAJOR.MINOR.PATCH); current `1.3.6`.
+- Semantic versioning (MAJOR.MINOR.PATCH); current `1.3.7`.
 - Key files: `VERSION.json` (source of truth), `_debug/CURRENT_VERSION.txt` (auto marker, do not edit), `powershell/modules/VersionManager.ps1`, `VERSION_UPDATER.ps1`, `GitHub-VersionCheck.ps1`.
 - Display info:
 ```powershell

@@ -35,7 +35,7 @@ if exist termUI.exe (
 )
 
 rem Compile with System.Net reference for WebClient
-"%CSC_PATH%" /out:termUI.exe /reference:System.Net.dll TermUILauncher.cs
+"%CSC_PATH%" /out:termUI.exe /reference:System.Net.dll /reference:System.IO.Compression.FileSystem.dll TermUILauncher.cs
 
 if %ERRORLEVEL% EQU 0 (
     echo.
@@ -43,9 +43,7 @@ if %ERRORLEVEL% EQU 0 (
     if exist termUI.exe.backup (
         del termUI.exe.backup >nul 2>&1
     )
-    if exist TermUILauncher.cs (
-        del TermUILauncher.cs >nul 2>&1
-    )
+    rem Keep TermUILauncher.cs for future edits (no cleanup)
     dir termUI.exe
     exit /b 0
 ) else (
