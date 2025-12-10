@@ -83,3 +83,15 @@
       [2] (submenu) SettingsCommand
       [3] (submenu) TextInput
       [4] (submenu) Tools
+[2025-12-09 22:44:59] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 22:45:26] MENU FRAME Selected=0 Count=4 Path=mainUI/Settings
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 22:45:26] MENU FRAME Selected=0 Count=1 Path=mainUI/Settings
+  >>> [1] (submenu) Logging

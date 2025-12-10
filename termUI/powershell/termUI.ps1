@@ -175,12 +175,28 @@ try {
         Clear-Host
         $versionStr = ""
         try {
-            # VERSION.json is in the parent of powershell folder (termUI root)
-            $vf = Join-Path (Split-Path -Parent $script:scriptDir) "VERSION.json"
-            if (Test-Path $vf) {
-                $jsonData = Get-Content $vf -Raw -ErrorAction SilentlyContinue | ConvertFrom-Json -ErrorAction SilentlyContinue
-                if ($jsonData -and $jsonData.version) { 
-                    $versionStr = $jsonData.version 
+            # Try to get version from GitHub first
+            $githubVersionUrl = "https://raw.githubusercontent.com/SanitysHelper/cmd/main/termUI/VERSION.json"
+            try {
+                $response = Invoke-WebRequest -Uri $githubVersionUrl -UseBasicParsing -TimeoutSec 5 -ErrorAction SilentlyContinue
+                if ($response.StatusCode -eq 200) {
+                    $githubData = $response.Content | ConvertFrom-Json -ErrorAction SilentlyContinue
+                    if ($githubData -and $githubData.version) {
+                        $versionStr = $githubData.version
+                    }
+                }
+            } catch {
+                # GitHub fetch failed, fall back to local version
+            }
+            
+            # If GitHub fetch failed, use local VERSION.json
+            if (-not $versionStr) {
+                $vf = Join-Path (Split-Path -Parent $script:scriptDir) "VERSION.json"
+                if (Test-Path $vf) {
+                    $jsonData = Get-Content $vf -Raw -ErrorAction SilentlyContinue | ConvertFrom-Json -ErrorAction SilentlyContinue
+                    if ($jsonData -and $jsonData.version) { 
+                        $versionStr = $jsonData.version 
+                    }
                 }
             }
         } catch {}
