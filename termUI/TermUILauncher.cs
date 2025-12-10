@@ -89,11 +89,14 @@ class Program
             using (var client = new WebClient())
             {
                 var lastPercent = -1;
+                var lastUpdate = DateTime.MinValue;
                 client.DownloadProgressChanged += (s, e) =>
                 {
-                    if (e.ProgressPercentage != lastPercent)
+                    var now = DateTime.Now;
+                    if (e.ProgressPercentage != lastPercent || (now - lastUpdate).TotalMilliseconds > 500)
                     {
                         lastPercent = e.ProgressPercentage;
+                        lastUpdate = now;
                         var barWidth = 40;
                         var filled = (int)((double)e.ProgressPercentage / 100 * barWidth);
                         var bar = new string('=', filled) + new string('-', barWidth - filled);

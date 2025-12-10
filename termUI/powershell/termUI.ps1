@@ -61,6 +61,7 @@ function Restore-TermUIFromGitHub {
 $missingCore = @($script:requiredPaths | Where-Object { -not (Test-Path $_) })
 if ($missingCore.Count -gt 0) {
     Restore-TermUIFromGitHub -Missing $missingCore
+    $script:justBootstrapped = $true
 }
 
 # Load version and update managers
@@ -120,6 +121,7 @@ $script:quitRequested = $false
 $script:handler = $null
 $script:manualInputDetected = $false
 $script:isTestEnvironment = $false
+$script:justBootstrapped = $false  # Track if we just downloaded from GitHub
 
 $script:paths = @{}
 $script:scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -175,6 +177,7 @@ try {
         $repairResult = Start-UpdateCheck -Force -Silent:$false
         if (-not $repairResult) { Write-Host "Repair failed." -ForegroundColor Red; exit 1 }
         Initialize-Settings -SettingsPath $script:paths.settings
+        $script:justBootstrapped = $true
     }
 
     # Repair if core files are missing
@@ -186,10 +189,11 @@ try {
             Write-Host "Repair failed. Missing: $($missing -join ', ')" -ForegroundColor Red
             exit 1
         }
+        $script:justBootstrapped = $true
     }
 
-    # Optional update check on startup
-    if ($script:settings.Updates.check_on_startup) {
+    # Optional update check on startup (skip if we just bootstrapped/repaired)
+    if ($script:settings.Updates.check_on_startup -and -not $script:justBootstrapped) {
         $updateApplied = Start-UpdateCheck
         if ($updateApplied) {
             Write-Host "Update installed. Please relaunch termUI." -ForegroundColor Yellow
