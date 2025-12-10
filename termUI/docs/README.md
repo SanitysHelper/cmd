@@ -1,130 +1,57 @@
-# termUI (interactive terminal UI)
+# termUI v1.3.6 (consolidated guide)
 
-Minimal interactive menu shell with a C# input handler. UI rendering and menu logic live in PowerShell; key events flow from the C# handler only (no direct stdin to PowerShell). Buttons are discovered from the `buttons/` folder (folders = submenus, `.opt` files = options) rooted at `mainUI`.
+PowerShell-driven terminal UI with a C# input handler (no stdin to PowerShell; all key events flow through the handler). Buttons are folder-discovered from `buttons/` (`.opt` files = options, folders = submenus, `.input` files = free-form input prompts). The smart `termUI.exe` launcher handles version display, update checks, and repair prompts.
 
-## ✅ Current Status
+## Status
+- Production-ready; zero-crash test suite (10/10 scenarios, 467+ keypresses) and stress-tested navigation/input
+- Auto-update/repair prompts built into `termUI.exe`; version source of truth is `VERSION.json`
+- Current version: **1.3.6** (lastUpdated 2025-12-09)
 
-**All Systems Operational - Fully Tested & Stable**
+## Quick Start
+- Launch: double-click `termUI.exe` (preferred) or `pwsh -ExecutionPolicy Bypass -File .\run.bat`
+- Switches: `--version`, `--changelog`, `--check-update`, `--update`
+- Navigation: Up/Down (wrap), Enter (select), Esc (back), Q (quit)
 
-**Working:**
-- ✅ Folder structure organized by language (powershell/, csharp/, python/)
-- ✅ C# InputHandler compiles successfully (C# 2.0 compatible with .NET Framework 2.0)
-- ✅ PowerShell UI loads and displays menu correctly
-- ✅ Menu tree built from buttons/ folder structure (dynamic discovery)
-- ✅ Settings system with additive/tolerant INI loading (new keys won't break code)
-- ✅ Logging system (important, error, input, input-timing, menu-frame, transcript) with 5MB rotation
-- ✅ Interactive menu rendering with numbered options and color highlighting
-- ✅ Navigation: Up/Down with wrap-around, Enter to select, Escape to back, Q to quit
-- ✅ Deep submenu navigation (tested 3+ levels)
-- ✅ Bounds checking and array safety
-- ✅ Unique key event IDs with timestamps for debugging
-- ✅ Test mode for automated testing (10 test scenarios)
-- ✅ Stress tested: 200+ rapid keypresses, spam keys, edge cases
-- ✅ Sample menu structure: 8 options across 4 submenus
+## Requirements
+- Windows 10/11, PowerShell 5.0+
+- .NET Framework present if you rebuild the input handler
 
-**Test Results:**
-- Basic Navigation: ✅ PASS
-- Spam Down (50x): ✅ PASS
-- Spam Up (50x): ✅ PASS
-- Deep Navigation: ✅ PASS
-- Rapid Alternating (60x): ✅ PASS
-- Spam Enter (20x): ✅ PASS
-- Spam Escape (20x): ✅ PASS
-- Navigate All Options: ✅ PASS
-- Extreme Edge Cases: ✅ PASS
-- Insane Stress (200x): ✅ PASS
-
-**10/10 Tests Passed - Zero Crashes**
-
-## Structure
+## File Layout (clean structure)
 ```
 termUI/
-├── run.bat                          # Entry point (launches PowerShell UI)
-├── settings.ini                     # Additive settings (debug, logging, paths)
-├── README.md                        # This file
+├── termUI.exe           # Smart launcher (update/repair/version)
+├── run.bat              # Batch launcher
+├── settings.ini         # Additive config (debug/logging/paths)
+├── VERSION.json         # Canonical version + changelog
+├── buttons/             # Menu tree (folders=submenus, .opt=options, .input=input prompts)
 ├── powershell/
-│   ├── termUI.ps1                  # Main orchestrator & UI loop
-│   └── modules/
-│       ├── Logging.ps1             # Centralized logging with rotation
-│       ├── Settings.ps1            # Tolerant INI loader & defaults
-│       ├── MenuBuilder.ps1         # Build tree from buttons/ folder
-│       └── InputBridge.ps1         # Launch & communicate with InputHandler
+│   ├── termUI.ps1       # UI loop + menu rendering
+│   └── modules/         # Logging, settings, menu builder, input bridge, version manager
 ├── csharp/
-│   ├── InputHandler.cs             # Console input handler (C# 2.0 compatible)
-│   ├── compile_inputhandler.bat    # Auto-find csc.exe and compile
-│   └── bin/
-│       └── InputHandler.exe        # Compiled handler
-├── buttons/
-│   └── mainUI/                     # Root menu path
-│       ├── dashboard.opt           # Leaf option (empty file)
-│       └── settings/               # Submenu folder
-│           └── edit-settings.opt   # Nested option
-├── python/                          # Reserved for future use
-└── _debug/
-    ├── logs/                       # All log files (auto-created)
-    ├── automated_testing_environment/
-    └── test_ui.ps1                 # Test harness (WIP)
+│   ├── InputHandler.cs  # Key reader (C# 2.0)
+│   └── compile_inputhandler.bat
+├── _bin/_debug/         # Logs (rotated 5MB) + automated testing harness
+└── _bin/ (optional)     # Archived utilities (version scripts, csharp, python) if present
 ```
 
-## Build the input handler
-Run from `termUI/csharp`:
+## Build the input handler (optional)
 ```powershell
-.\compile_inputhandler.bat
+cd termUI/csharp
+./compile_inputhandler.bat
 ```
-This emits `bin/InputHandler.exe`. The script auto-detects csc.exe from .NET Framework directories.
+Emits `bin/InputHandler.exe`; auto-locates `csc.exe` from installed .NET Frameworks.
 
-## Running the UI
-
-**Interactive mode** (for manual testing):
-```powershell
-cd termUI
-.\run.bat
-```
-Use arrow keys to navigate, Enter to select, Escape to go back, Q to quit.
-
-**Test mode** (automated testing):
-```powershell
-cd _debug
-.\run_all_tests.ps1  # Run complete test suite
-.\run_test.ps1 test1_basic.txt  # Run specific test
-```
-
-**Test Suite:**
-- `test1_basic.txt` - Basic navigation (Down, Up, Enter, Escape, Quit)
-- `test2_spam_down.txt` - Spam Down key 50x (wrap-around test)
-- `test3_spam_up.txt` - Spam Up key 50x (wrap-around test)
-- `test4_deep_nav.txt` - Deep submenu navigation
-- `test5_alternating.txt` - Rapid Up/Down alternating 60x
-- `test6_spam_enter.txt` - Spam Enter 20x (selection stress)
-- `test7_spam_escape.txt` - Spam Escape 20x (back navigation)
-- `test8_all_options.txt` - Visit every menu option
-- `test9_extreme.txt` - Edge cases and invalid keys
-- `test_insane.txt` - 200 rapid keypresses (stress test)
-
-## Testing (automated environment)
-Use `_debug/automated_testing_environment/` to run tests. Drive the UI by feeding events into `InputHandler.exe`; do not pipe input to PowerShell.
-
-## Buttons
-Place submenus as folders under `buttons/mainUI/`. Each selectable option is a `.opt` file; filename becomes the option label (minus extension). Empty files are OK; the UI only reads structure for building menus.
-
-Example:
-```
-buttons/mainUI/
-├── dashboard.opt        # Root-level option
-└── settings/            # Submenu
-    └── edit.opt         # Nested option (path: mainUI/settings/edit)
-```
-
-## Settings (settings.ini)
-
-All settings are additive; new keys won't break existing code. Defaults are defined in `powershell/modules/Settings.ps1`.
-
+## Configuration (`settings.ini` excerpt)
 ```ini
 [General]
 debug_mode=false
 ui_title=termUI
 menu_root=buttons\mainUI
 keep_open_after_selection=true
+
+[Updates]
+check_on_startup=true
+auto_install=false
 
 [Logging]
 log_input=true
@@ -139,15 +66,72 @@ log_rotation_mb=5
 handler_path=csharp\bin\InputHandler.exe
 ```
 
-## Next Steps
+## Navigation, Input, and Safety
+- **Standard controls**: Up/Down wrap, Enter selects, Esc backs, Q quits.
+- **Numbered selection + backspace**: Type digits (multi-digit allowed), see yellow buffer, Enter jumps; Backspace edits; Esc or arrows clear buffer; invalid indices clear safely.
+- **Manual input detection (P key)**: In automated/test runs, pressing `P` logs a critical error, prints an unmissable red block explaining the blocked input, and exits with code 1. Use to flag any code path that waits for manual input (ReadKey/Read-Host without guards).
+- **P key rules**: P = PROBLEM; only press when hung. Exit codes: 0 = normal, 1 = manual-input detected.
 
-**Phase 1 Complete ✅** - Core UI and navigation fully functional
+## Buttons and Input Buttons
+- `.opt` name (minus extension) becomes the option label; empty files are fine. Folders become submenus.
+- `.input` adds free-form input prompts. First line = prompt; remaining lines = description. Returns `{ name, path, value }` and works with capture mode.
+- Example layout:
+```
+buttons/mainUI/
+├── dashboard.opt
+├── settings/
+│   └── edit-settings.opt
+└── TextInput/
+  └── UserName.input   # prompt on line 1; optional description after
+```
 
-**Future Enhancements:**
-1. Add action handlers for .opt file execution (launch programs/scripts)
-2. Implement description boxes (Shift+Enter pattern)
-3. Add configuration editor within UI
-4. Support for colored themes
-5. History tracking (last selected option)
-6. Search/filter functionality for large menus
+## Launcher: termUI.exe (native)
+- C# launcher replaces legacy batch; passes args through to `powershell/termUI.ps1`, propagates exit codes, supports stdin redirection.
+- Identical behavior to `run.bat` with faster startup and built-in version/update/repair prompts.
+
+## Versioning and Auto-Update
+- Semantic versioning (MAJOR.MINOR.PATCH); current `1.3.6`.
+- Key files: `VERSION.json` (source of truth), `_debug/CURRENT_VERSION.txt` (auto marker, do not edit), `powershell/modules/VersionManager.ps1`, `VERSION_UPDATER.ps1`, `GitHub-VersionCheck.ps1`.
+- Display info:
+```powershell
+cd termUI/powershell
+. ./modules/VersionManager.ps1
+Get-TermUIVersionString        # termUI v1.3.6 (2025-12-09)
+Get-TermUIChangelog -EntryCount 5
+```
+- Update flow:
+```powershell
+cd termUI
+./VERSION_UPDATER.ps1 -NewVersion "X.Y.Z" -Check
+./VERSION_UPDATER.ps1 -NewVersion "X.Y.Z" -CurrentVersion "A.B.C" -Changes @("Change 1", "Change 2")
+```
+- GitHub workflow (summary): bump via updater → commit `VERSION.json` (and marker if tracking) → push → create GitHub release tag `vX.Y.Z`. Users run `./GitHub-VersionCheck.ps1` or `termUI.exe --check-update` / `--update` to compare/apply.
+
+## GitHub Integration Quick Steps
+1) Create release on https://github.com/SanitysHelper/cmd/releases/new (tag `vX.Y.Z`, title `termUI vX.Y.Z`).
+2) Verify locally: `./GitHub-VersionCheck.ps1` (shows Local vs GitHub).
+3) Routine before push: run `VERSION_UPDATER.ps1`, then `--version` and `--changelog` to confirm.
+
+## Testing
+- Interactive: `./run.bat` (or `termUI.exe`).
+- Automated: `_debug/automated_testing_environment/` harness feeds events into `InputHandler.exe`; do not pipe directly into PowerShell.
+- Covered scenarios: navigation wrap, deep menus, rapid spam, backspace buffer, input buttons, P-key failure path.
+
+## Logging and Troubleshooting
+- Logs in `_bin/_debug/logs/` with rotation at 5MB (important/error/input/input-timing/menu-frame/transcript).
+- Launcher repair: if assets missing, it prompts to repair.
+- Update failures: check internet/firewall; rerun `--check-update`.
+- Blocked EXE: Properties → Unblock.
+
+## Maintenance and Cleanup
+- Clean structure keeps core in root; utilities may sit in `_bin/` (version scripts, csharp, python, debug tools). Use or copy from `_bin/` only as needed to keep root tidy.
+
+## Development Snapshot
+- Architecture: PowerShell UI + C# handler; menu discovery from folders; additive INI settings; six log types with rotation.
+- Verified stability: 10/10 automated tests, rapid input stress, deep navigation.
+- Known future ideas: description boxes, action handlers for `.opt`, search/filter, themes, capture-submenu shortcuts, metadata `.opt.meta`, validation for inputs.
+
+## Support
+- Repo: https://github.com/SanitysHelper/cmd
+- This README supersedes other docs in `docs/`.
 
