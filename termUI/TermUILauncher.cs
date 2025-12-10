@@ -16,7 +16,7 @@ class Program
         var modulesDir = Path.Combine(exeDir, "powershell", "modules");
         var required = new[] { psScript, settings, versionJson, modulesDir };
 
-        bool needsRestore = required.Any(p => !PathExists(p));
+        bool needsRestore = required.Any(p => !File.Exists(p) && !Directory.Exists(p));
 
         if (needsRestore)
         {
@@ -71,71 +71,148 @@ class Program
         var repo = "SanitysHelper/cmd";
         var branch = "main";
         var downloadUrl = string.Format("https://github.com/{0}/archive/refs/heads/{1}.zip", repo, branch);
-        var tempZip = Path.Combine(Path.GetTempPath(), "termui_launcher_bootstrap.zip");
-        var extractDir = Path.Combine(Path.GetTempPath(), "termui_launcher_extract");
+        var tempZip = Path.Combine(Path.GetTempPath(), "termui_bootstrap.zip");
+        var extractDir = Path.Combine(Path.GetTempPath(), "termui_bootstrap_extract");
 
         try
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+            
+            var version = GetRemoteVersion(repo, branch);
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(string.Format("[termUI] Downloading termUI {0} from GitHub...", version));
+            Console.ResetColor();
+
             if (File.Exists(tempZip)) File.Delete(tempZip);
             if (Directory.Exists(extractDir)) Directory.Delete(extractDir, true);
 
             using (var client = new WebClient())
             {
-                client.DownloadFile(downloadUrl, tempZip);
+                var lastPercent = -1;
+                client.DownloadProgressChanged += (s, e) =>
+                {
+                    if (e.ProgressPercentage != lastPercent)
+                    {
+                        lastPercent = e.ProgressPercentage;
+                        var barWidth = 40;
+                        var filled = (int)((double)e.ProgressPercentage / 100 * barWidth);
+                        var bar = new string('=', filled) + new string('-', barWidth - filled);
+                        var mbReceived = e.BytesReceived / 1024.0 / 1024.0;
+                        var mbTotal = e.TotalBytesToReceive / 1024.0 / 1024.0;
+                        Console.Write(string.Format("\r[{0}] {1}% ({2:F2} MB / {3:F2} MB)", bar, e.ProgressPercentage, mbReceived, mbTotal));
+                    }
+                };
+                client.DownloadFileCompleted += (s, e) =>
+                {
+                    Console.WriteLine();
+                };
+                client.DownloadFileAsync(new Uri(downloadUrl), tempZip);
+                while (client.IsBusy)
+                {
+                    System.Threading.Thread.Sleep(100);
+                }
             }
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("[termUI] Extracting termUI folder only...");
+            Console.ResetColor();
 
             ZipFile.ExtractToDirectory(tempZip, extractDir);
             var sourceRoot = Path.Combine(extractDir, string.Format("cmd-{0}", branch), "termUI");
+            
             if (!Directory.Exists(sourceRoot))
             {
-                Console.WriteLine(string.Format("[termUI] Bootstrap source not found in archive: {0}", sourceRoot));
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("[termUI] termUI folder not found in archive");
+                Console.ResetColor();
                 return false;
             }
 
             var currentExe = GetCurrentExePath();
-            CopyDirectory(sourceRoot, targetDir, currentExe);
+            CopyDirectoryContents(sourceRoot, targetDir, currentExe);
+            
+            File.Delete(tempZip);
+            Directory.Delete(extractDir, true);
+            
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("[termUI] Bootstrap completed successfully");
+            Console.ResetColor();
             return true;
         }
         catch (Exception ex)
         {
-            Console.WriteLine(string.Format("[termUI] Bootstrap error: {0}", ex.Message));
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(string.Format("\n[termUI] Bootstrap error: {0}", ex.Message));
+            Console.ResetColor();
             return false;
-        }
-        finally
-        {
-            try { if (File.Exists(tempZip)) File.Delete(tempZip); } catch { }
-            try { if (Directory.Exists(extractDir)) Directory.Delete(extractDir, true); } catch { }
         }
     }
 
-    static void CopyDirectory(string sourceDir, string targetDir, string skipPath)
+    static string GetRemoteVersion(string repo, string branch)
+    {
+        try
+        {
+            var versionUrl = string.Format("https://raw.githubusercontent.com/{0}/{1}/termUI/VERSION.json", repo, branch);
+            using (var client = new WebClient())
+            {
+                client.Headers.Add("Cache-Control", "no-cache");
+                var json = client.DownloadString(versionUrl);
+                
+                var versionPattern = "\"version\"";
+                var versionStart = json.IndexOf(versionPattern);
+                if (versionStart >= 0)
+                {
+                    var colonPos = json.IndexOf(":", versionStart);
+                    if (colonPos >= 0)
+                    {
+                        var valueStart = colonPos + 1;
+                        while (valueStart < json.Length && (json[valueStart] == ' ' || json[valueStart] == '\t' || json[valueStart] == '\r' || json[valueStart] == '\n'))
+                            valueStart++;
+                        
+                        if (valueStart < json.Length && json[valueStart] == '"')
+                        {
+                            var quoteStart = valueStart + 1;
+                            var quoteEnd = json.IndexOf('"', quoteStart);
+                            if (quoteEnd > quoteStart)
+                            {
+                                return "v" + json.Substring(quoteStart, quoteEnd - quoteStart);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        catch { }
+        return "latest";
+    }
+
+    static void CopyDirectoryContents(string sourceDir, string targetDir, string skipPath)
     {
         var normalizedSkip = NormalizePath(skipPath);
+        
         foreach (var dir in Directory.GetDirectories(sourceDir, "*", SearchOption.AllDirectories))
         {
             var rel = dir.Substring(sourceDir.Length).TrimStart(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
             var dest = Path.Combine(targetDir, rel);
             Directory.CreateDirectory(dest);
         }
+        
         foreach (var file in Directory.GetFiles(sourceDir, "*", SearchOption.AllDirectories))
         {
             var rel = file.Substring(sourceDir.Length).TrimStart(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
             var dest = Path.Combine(targetDir, rel);
             var normalizedDest = NormalizePath(dest);
+            
             if (!string.IsNullOrEmpty(normalizedSkip) && string.Equals(normalizedDest, normalizedSkip, StringComparison.OrdinalIgnoreCase))
             {
                 continue;
             }
+            
             var destDir = Path.GetDirectoryName(dest);
-            if (!string.IsNullOrEmpty(destDir)) { Directory.CreateDirectory(destDir); }
+            if (!string.IsNullOrEmpty(destDir))
+                Directory.CreateDirectory(destDir);
             File.Copy(file, dest, true);
         }
-    }
-
-    static bool PathExists(string path)
-    {
-        return File.Exists(path) || Directory.Exists(path);
     }
 
     static string NormalizePath(string path)

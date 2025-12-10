@@ -1168,3 +1168,48 @@
   >>> [2] (submenu) SettingsCommand
       [3] (submenu) TextInput
       [4] (submenu) Tools
+[2025-12-09 23:58:25] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 23:58:36] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Settings
+  >>> [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 23:58:37] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+  >>> [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 23:58:37] MENU FRAME Selected=3 Count=4 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+  >>> [4] (submenu) Tools
+[2025-12-09 23:58:46] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 23:58:46] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Settings
+  >>> [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 23:58:46] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+  >>> [3] (submenu) TextInput
+      [4] (submenu) Tools
+[2025-12-09 23:58:46] MENU FRAME Selected=3 Count=4 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+  >>> [4] (submenu) Tools
+[2025-12-10 00:01:32] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools

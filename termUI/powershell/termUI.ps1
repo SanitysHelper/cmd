@@ -26,29 +26,34 @@ function Restore-TermUIFromGitHub {
     $esc = [char]27
     Write-Host ("{0}[2J{0}[H" -f $esc) -NoNewline
     Write-Host "Detected missing core files: $($Missing -join ', ')" -ForegroundColor Yellow
-    Write-Host "Attempting online repair from GitHub (branch: main)..." -ForegroundColor Yellow
+    Write-Host "Attempting online repair from GitHub API (termUI folder only)..." -ForegroundColor Yellow
     $repo = "SanitysHelper/cmd"
     $branch = "main"
-    $downloadUrl = "https://github.com/$repo/archive/refs/heads/$branch.zip"
-    $tmpZip = Join-Path $env:TEMP "termui_bootstrap.zip"
-    $tmpExtract = Join-Path $env:TEMP "termui_bootstrap_extract"
+    $apiUrl = "https://api.github.com/repos/$repo/contents/termUI?ref=$branch"
     $progressPrev = $global:ProgressPreference
     $global:ProgressPreference = 'SilentlyContinue'
     try {
-        Invoke-WebRequest -Uri $downloadUrl -OutFile $tmpZip -UseBasicParsing -TimeoutSec 60 -ErrorAction Stop
-        if (Test-Path $tmpExtract) { Remove-Item -Path $tmpExtract -Recurse -Force -ErrorAction SilentlyContinue }
-        Expand-Archive -Path $tmpZip -DestinationPath $tmpExtract -Force
-        $source = Join-Path $tmpExtract "cmd-$branch\termUI"
-        if (-not (Test-Path $source)) { throw "Bootstrap source not found in archive: $source" }
-        Copy-Item -Path (Join-Path $source '*') -Destination $script:termUIRoot -Recurse -Force
+        function Download-GitHubDirectory {
+            param($Url, $DestPath)
+            $headers = @{ 'User-Agent' = 'termUI-Bootstrap' }
+            $items = Invoke-RestMethod -Uri $Url -Headers $headers -UseBasicParsing
+            foreach ($item in $items) {
+                $itemPath = Join-Path $DestPath $item.name
+                if ($item.type -eq 'dir') {
+                    New-Item -ItemType Directory -Path $itemPath -Force | Out-Null
+                    Download-GitHubDirectory -Url $item.url -DestPath $itemPath
+                } elseif ($item.type -eq 'file') {
+                    Invoke-WebRequest -Uri $item.download_url -OutFile $itemPath -UseBasicParsing
+                }
+            }
+        }
+        Download-GitHubDirectory -Url $apiUrl -DestPath $script:termUIRoot
         Write-Host "Repair/download complete. Relaunching..." -ForegroundColor Green
     } catch {
         Write-Host "Bootstrap repair failed: $_" -ForegroundColor Red
         exit 1
     } finally {
         $global:ProgressPreference = $progressPrev
-        Remove-Item -Path $tmpZip -Force -ErrorAction SilentlyContinue
-        Remove-Item -Path $tmpExtract -Recurse -Force -ErrorAction SilentlyContinue
     }
 }
 
