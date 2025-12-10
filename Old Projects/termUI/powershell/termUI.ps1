@@ -170,23 +170,18 @@ try {
     }
 
 
-    function Render-Menu { 
+    function Render-Menu {
         param($Items, $Selected, $InputBuffer = "")
         Clear-Host
         $versionStr = ""
         try {
-            # VERSION.json is in the parent of powershell folder (termUI root)
-            $vf = Join-Path (Split-Path -Parent $script:scriptDir) "VERSION.json"
+            $vf = Join-Path (Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)) "VERSION.json"
             if (Test-Path $vf) {
-                $jsonData = Get-Content $vf -Raw -ErrorAction SilentlyContinue | ConvertFrom-Json -ErrorAction SilentlyContinue
-                if ($jsonData -and $jsonData.version) { 
-                    $versionStr = $jsonData.version 
-                }
+                $v = (Get-Content $vf -Raw | ConvertFrom-Json -EA SilentlyContinue).version
+                if ($v) { $versionStr = " v$v" }
             }
         } catch {}
-        Write-Host "=== $($script:settings.General.ui_title) " -ForegroundColor Cyan -NoNewline
-        if ($versionStr) { Write-Host $versionStr -ForegroundColor Blue -NoNewline }
-        Write-Host " ===" -ForegroundColor Cyan
+        Write-Host "=== $($script:settings.General.ui_title)$versionStr ===" -ForegroundColor Cyan
         Write-Host "Path: $currentPath" -ForegroundColor DarkGray
         Write-Host ""
         for ($i = 0; $i -lt $Items.Count; $i++) {
