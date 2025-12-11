@@ -146,3 +146,22 @@
 [2025-12-11 10:44:13] [INFO] Remote version: 1.4.3
 [2025-12-11 10:44:13] [INFO] Versions are identical: 1.4.3
 [2025-12-11 10:44:13] [SUCCESS] No update needed
+[2025-12-11 10:45:38] [INFO] === termUI Update Check Started ===
+[2025-12-11 10:45:38] [ERROR] Failed to read local VERSION.json: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\logs\update.log' because it is being used by another process.
+[2025-12-11 10:45:38] [INFO] Checking GitHub for latest version...
+[2025-12-11 10:45:38] [INFO] Remote version: 1.4.3
+[2025-12-11 10:45:38] [ERROR] Cannot proceed without local version
+[2025-12-11 10:45:45] [INFO] === termUI Update Check Started ===
+[2025-12-11 10:45:45] [INFO] Local version: 1.4.3
+[2025-12-11 10:45:45] [INFO] Checking GitHub for latest version...
+[2025-12-11 10:45:45] [INFO] Remote version: 1.4.3
+[2025-12-11 10:45:45] [INFO] Versions are identical: 1.4.3
+[2025-12-11 10:45:46] [SUCCESS] No update needed
+[2025-12-11 10:46:06] [INFO] === termUI Update Check Started ===
+[2025-12-11 10:46:06] [INFO] Local version: 1.4.3
+[2025-12-11 10:46:06] [INFO] Checking GitHub for latest version...
+[2025-12-11 10:46:06] [INFO] Remote version: 1.4.3
+[2025-12-11 10:46:07] [INFO] Versions are identical: 1.4.3
+[2025-12-11 10:46:07] [SUCCESS] No update needed
+[2025-12-11 10:47:49] [INFO] === termUI Update Check Started ===
+[2025-12-11 10:47:49] [INFO] Local version: 1.4.3

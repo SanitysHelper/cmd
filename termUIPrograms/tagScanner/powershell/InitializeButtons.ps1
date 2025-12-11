@@ -2,19 +2,20 @@
 # TagScanner Button Initializer - Creates dynamic buttons on startup
 Set-StrictMode -Version Latest
 
-$script:termUIRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
-$script:buttonsRoot = Join-Path $script:termUIRoot "buttons\mainUI"
+$script:tagScannerRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+$script:cmdRoot = Split-Path -Parent $script:tagScannerRoot
+$script:termUIRoot = Join-Path $script:cmdRoot "termUI"
+$script:buttonsRoot = Join-Path $script:tagScannerRoot "buttons\mainUI"
 
-# Import termUI button library
-. (Join-Path $script:termUIRoot "powershell\modules\TermUIButtonLibrary.ps1")
+# Ensure buttons directory exists
+if (-not (Test-Path $script:buttonsRoot)) {
+    New-Item -ItemType Directory -Path $script:buttonsRoot -Force | Out-Null
+}
 
-# Clear existing buttons and create menu structure
-Clear-TermUIButtons -TermUIRoot $script:termUIRoot
-
-# Create main menu buttons
-Add-TermUIButton -TermUIRoot $script:termUIRoot -Path "Read Mode.opt" -Description "Scan directory and display all audio file tags (FLAC and MP3)"
-Add-TermUIButton -TermUIRoot $script:termUIRoot -Path "Write Mode.opt" -Description "Select directory and batch edit audio file tags (FLAC and MP3)"
-Add-TermUIButton -TermUIRoot $script:termUIRoot -Path "Dependencies.opt" -Description "Open _bin folder and show required files checklist"
+# Create main menu button files (.opt files contain descriptions)
+"Scan directory and display all audio file tags (FLAC and MP3)" | Set-Content -Path (Join-Path $script:buttonsRoot "Read Mode.opt") -Encoding UTF8
+"Select directory and batch edit audio file tags (FLAC and MP3)" | Set-Content -Path (Join-Path $script:buttonsRoot "Write Mode.opt") -Encoding UTF8
+"Open _bin folder and show required files checklist" | Set-Content -Path (Join-Path $script:buttonsRoot "Dependencies.opt") -Encoding UTF8
 
 # Create PowerShell scripts for each button
 $readModeScript = Join-Path $script:buttonsRoot "Read Mode.ps1"
@@ -24,18 +25,24 @@ $depsScript = Join-Path $script:buttonsRoot "Dependencies.ps1"
 # Read Mode script
 @'
 $modulePath = Join-Path (Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))) "powershell\modules\TagScanner.ps1"
-. $modulePath
-Start-ReadMode
+if (Test-Path $modulePath) {
+    . $modulePath
+    Start-ReadMode
+} else {
+    Write-Host "ERROR: TagScanner.ps1 module not found at: $modulePath" -ForegroundColor Red
+}
 '@ | Set-Content -Path $readModeScript -Encoding UTF8
 
 # Write Mode script
 @'
 $modulePath = Join-Path (Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))) "powershell\modules\TagScanner.ps1"
-. $modulePath
-Start-WriteMode
+if (Test-Path $modulePath) {
+    . $modulePath
+    Start-WriteMode
+} else {
+    Write-Host "ERROR: TagScanner.ps1 module not found at: $modulePath" -ForegroundColor Red
+}
 '@ | Set-Content -Path $writeModeScript -Encoding UTF8
-
-Write-Host "[tagScanner] Menu buttons and scripts initialized" -ForegroundColor Green
 
 # Dependencies script
 @'
@@ -54,3 +61,9 @@ Write-Host "After placing files, run Read Mode or Write Mode." -ForegroundColor 
 Write-Host "Press any key to continue..." -ForegroundColor DarkGray
 $null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 '@ | Set-Content -Path $depsScript -Encoding UTF8
+
+Write-Host "[tagScanner] Buttons initialized successfully:" -ForegroundColor Green
+Write-Host "  - Read Mode" -ForegroundColor Cyan
+Write-Host "  - Write Mode" -ForegroundColor Cyan
+Write-Host "  - Dependencies" -ForegroundColor Cyan
+
