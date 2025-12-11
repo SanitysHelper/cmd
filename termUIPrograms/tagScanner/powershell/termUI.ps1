@@ -438,12 +438,6 @@ try {
         
         # Render menu on first iteration or after state changes
         if ($firstIteration -or $needsRender) {
-            # Rebuild menu tree to reflect any filesystem changes (e.g., new buttons)
-            try {
-                $tree = Build-MenuTree -RootPath $script:paths.menuRoot
-            } catch {
-                Log-Error "Failed to rebuild menu tree: $_"
-            }
             Log-MenuFrame -Items $items -SelectedIndex $selectedIndex -CurrentPath $currentPath
             Render-Menu -Items $items -Selected $selectedIndex -InputBuffer $numberBuffer
             if ($firstIteration) { $firstIteration = $false }
@@ -646,10 +640,13 @@ try {
                                     }
                                 }
 
-                                Write-Host "`n========================================" -ForegroundColor Cyan
-                                Write-Host " SELECTED: $($item.Name)" -ForegroundColor Green
-                                Write-Host " Path: $($item.Path)" -ForegroundColor Gray
-                                Write-Host "========================================" -ForegroundColor Cyan
+                                # Show selected prompt only if enabled in settings
+                                if ($script:settings.General.show_selected_prompt) {
+                                    Write-Host "`n========================================" -ForegroundColor Cyan
+                                    Write-Host " SELECTED: $($item.Name)" -ForegroundColor Green
+                                    Write-Host " Path: $($item.Path)" -ForegroundColor Gray
+                                    Write-Host "========================================" -ForegroundColor Cyan
+                                }
 
                                 # Execute the corresponding .ps1 script
                                 # Path format is "mainUI/ButtonName", need to get just the relative part after root

@@ -489,3 +489,24 @@
 [2025-12-11 13:55:22] INFO: Selected option: mainUI/Dependencies/Check Dependencies
 [2025-12-11 13:55:22] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Check Dependencies.ps1
 [2025-12-11 13:55:27] INFO: User quit with Q key (handler-mapped)
+[2025-12-11 14:02:22] INFO: Running in interactive mode (console available)
+[2025-12-11 14:02:26] INFO: Entered submenu: mainUI/Directories
+[2025-12-11 14:02:31] INFO: Selected option: mainUI/Directories/Add Directory
+[2025-12-11 14:02:31] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\Add Directory.ps1
+[2025-12-11 14:02:44] INFO: Navigated back to: mainUI
+[2025-12-11 14:02:44] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-11 14:02:45] INFO: Navigated back to: mainUI
+[2025-12-11 14:02:46] INFO: Entered submenu: mainUI/Directories
+[2025-12-11 14:02:47] INFO: Navigated back to: mainUI
+[2025-12-11 14:02:49] INFO: Entered submenu: mainUI/Directories
+[2025-12-11 14:02:50] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-11 14:02:50] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-11 14:02:52] INFO: Navigated back to: mainUI
+[2025-12-11 14:02:53] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-11 14:02:56] INFO: Selected option: mainUI/Read Mode/Both (Description+Comment)
+[2025-12-11 14:02:56] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Both (Description+Comment).ps1
+[2025-12-11 14:03:32] INFO: Selected option: mainUI/Read Mode/Description
+[2025-12-11 14:03:32] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Description.ps1
+[2025-12-11 14:03:58] INFO: Running in interactive mode (console available)
+[2025-12-11 14:04:01] INFO: Entered submenu: mainUI/Directories
+[2025-12-11 14:04:03] INFO: User quit with Q key (handler-mapped)

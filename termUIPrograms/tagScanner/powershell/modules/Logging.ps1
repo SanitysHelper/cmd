@@ -19,8 +19,7 @@ function Log-Error {
     param([string]$Message)
     if (-not $script:settings.Logging.log_error) { return }
     $path = Join-Path $script:paths.logs "error.log"
-    $limit = if ($script:paths -and ($script:paths.PSObject.Properties.Name -contains 'logLimitBytes')) { $script:paths.logLimitBytes } else { 1048576 }
-    Rotate-LogIfNeeded -Path $path -LimitBytes $limit
+    Rotate-LogIfNeeded -Path $path -LimitBytes $script:paths.logLimitBytes
     "[$(Get-Timestamp)] ERROR: $Message" | Add-Content -Path $path -Encoding UTF8
 }
 
@@ -28,8 +27,7 @@ function Log-Important {
     param([string]$Message)
     if (-not $script:settings.Logging.log_important) { return }
     $path = Join-Path $script:paths.logs "important.log"
-    $limit = if ($script:paths -and ($script:paths.PSObject.Properties.Name -contains 'logLimitBytes')) { $script:paths.logLimitBytes } else { 1048576 }
-    Rotate-LogIfNeeded -Path $path -LimitBytes $limit
+    Rotate-LogIfNeeded -Path $path -LimitBytes $script:paths.logLimitBytes
     "[$(Get-Timestamp)] INFO: $Message" | Add-Content -Path $path -Encoding UTF8
 }
 
@@ -45,8 +43,7 @@ function Log-Input {
     $script:inputCounter++
     $delayTag = if ($delta -gt 2 -and $script:inputCounter -gt 1) { " [DELAY: {0:F2}s - MANUAL INPUT SUSPECTED]" -f $delta } else { "" }
     $path = Join-Path $script:paths.logs "input.log"
-    $limit = if ($script:paths -and ($script:paths.PSObject.Properties.Name -contains 'logLimitBytes')) { $script:paths.logLimitBytes } else { 1048576 }
-    Rotate-LogIfNeeded -Path $path -LimitBytes $limit
+    Rotate-LogIfNeeded -Path $path -LimitBytes $script:paths.logLimitBytes
     $logLine = "[{0}] INPUT #{1} [{2}] (+{3:F3}s){4}: {5}" -f (Get-Timestamp), $script:inputCounter, $Source, $delta, $delayTag, $Message
     $logLine | Add-Content -Path $path -Encoding UTF8
 }
@@ -58,8 +55,7 @@ function Log-InputTiming {
     )
     if (-not $script:settings.Logging.log_input_timing) { return }
     $path = Join-Path $script:paths.logs "input-timing.log"
-    $limit = if ($script:paths -and ($script:paths.PSObject.Properties.Name -contains 'logLimitBytes')) { $script:paths.logLimitBytes } else { 1048576 }
-    Rotate-LogIfNeeded -Path $path -LimitBytes $limit
+    Rotate-LogIfNeeded -Path $path -LimitBytes $script:paths.logLimitBytes
     "[$(Get-Timestamp)] $Action | $Details" | Add-Content -Path $path -Encoding UTF8
 }
 
@@ -72,8 +68,7 @@ function Log-MenuFrame {
     if (-not $script:settings.Logging.log_menu_frame) { return }
     if ($env:TERMUI_DISABLE_LOG_MENU_FRAME -eq '1') { return }
     $path = Join-Path $script:paths.logs "menu-frame.log"
-    $limit = if ($script:paths -and ($script:paths.PSObject.Properties.Name -contains 'logLimitBytes')) { $script:paths.logLimitBytes } else { 1048576 }
-    Rotate-LogIfNeeded -Path $path -LimitBytes $limit
+    Rotate-LogIfNeeded -Path $path -LimitBytes $script:paths.logLimitBytes
     $pathStr = if ($CurrentPath) { " Path=$CurrentPath" } else { "" }
     $lines = @()
     $lines += "[$(Get-Timestamp)] MENU FRAME Selected=$SelectedIndex Count=$($Items.Count)$pathStr"

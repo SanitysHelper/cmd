@@ -544,3 +544,33 @@
 [2025-12-11 13:55:16] [INFO] Remote version: 1.5.1
 [2025-12-11 13:55:16] [INFO] Versions are identical: 1.5.1
 [2025-12-11 13:55:16] [SUCCESS] No update needed
+[2025-12-11 14:01:59] [INFO] === termUI Update Check Started ===
+[2025-12-11 14:01:59] [INFO] Local version: 1.5.1
+[2025-12-11 14:01:59] [INFO] Checking GitHub for latest version...
+[2025-12-11 14:02:00] [INFO] Remote version: 1.5.2
+[2025-12-11 14:02:00] [SUCCESS] Update available: 1.5.1 -> 1.5.2
+[2025-12-11 14:02:03] [INFO] Starting update from 1.5.1 to 1.5.2
+[2025-12-11 14:02:03] [INFO] Creating backup: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\backups\termUI_v1.5.1_2025-12-11_140203
+[2025-12-11 14:02:03] [SUCCESS] Backup created successfully
+[2025-12-11 14:02:03] [INFO] Downloading update from GitHub...
+[2025-12-11 14:02:08] [INFO] Download complete
+[2025-12-11 14:02:08] [INFO] Extracting update...
+[2025-12-11 14:02:14] [INFO] Extraction complete
+[2025-12-11 14:02:14] [INFO] Installing updated files...
+[2025-12-11 14:02:14] [SUCCESS] Files installed successfully (robocopy exit code: 3)
+[2025-12-11 14:02:14] [INFO] Cleaning up temporary files...
+[2025-12-11 14:02:17] [SUCCESS] Update completed successfully: 1.5.1 -> 1.5.2
+[2025-12-11 14:02:17] [INFO] === Update Check Completed ===
+[2025-12-11 14:02:17] [SUCCESS] Launched updated termUI
+[2025-12-11 14:02:20] [INFO] === termUI Update Check Started ===
+[2025-12-11 14:02:21] [INFO] Local version: 1.5.2
+[2025-12-11 14:02:21] [INFO] Checking GitHub for latest version...
+[2025-12-11 14:02:21] [INFO] Remote version: 1.5.2
+[2025-12-11 14:02:21] [INFO] Versions are identical: 1.5.2
+[2025-12-11 14:02:21] [SUCCESS] No update needed
+[2025-12-11 14:03:57] [INFO] === termUI Update Check Started ===
+[2025-12-11 14:03:57] [INFO] Local version: 1.5.2
+[2025-12-11 14:03:57] [INFO] Checking GitHub for latest version...
+[2025-12-11 14:03:57] [INFO] Remote version: 1.5.2
+[2025-12-11 14:03:57] [INFO] Versions are identical: 1.5.2
+[2025-12-11 14:03:57] [SUCCESS] No update needed

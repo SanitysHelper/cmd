@@ -1,7 +1,15 @@
 {
-  "version": "1.5.2",
+  "version": "1.5.3",
   "lastUpdated": "2025-12-11T00:00:00Z",
   "changelog": [
+        {
+          "version": "1.5.3",
+          "date": "2025-12-11",
+          "changes": [
+            "IMPROVEMENT: Menu automatically rebuilds after button execution to reflect dynamic changes",
+            "FIX: Programs can now add buttons dynamically and have them appear immediately (no restart needed)"
+          ]
+        },
         {
           "version": "1.5.2",
           "date": "2025-12-11",
@@ -10,14 +18,6 @@
             "IMPROVEMENT: Selected button prompt can now be disabled via settings.ini (show_selected_prompt = false)"
           ]
         },
-        {
-          "version": "1.5.1",
-          "date": "2025-12-11",
-          "changes": [
-            "CRITICAL FIX: Buttons now actually execute their .ps1 scripts when selected",
-            "CRITICAL FIX: Fixed duplicate buttons folder creation (was creating termUIPrograms/buttons)",
-            "FIX: MenuBuilder strips numeric sorting prefixes from display names (0 - Set Directory shows as Set Directory)",
-            "FIX: Corrected path calculation in InitializeButtons - buttons created in correct location",
             "FIX: Normalized menu root path to prevent weird folder structures",
             "IMPROVEMENT: Proper error handling when scripts are missing or fail to execute"
           ]

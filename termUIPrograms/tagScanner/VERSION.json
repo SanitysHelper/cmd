@@ -1,7 +1,15 @@
 {
-  "version": "1.5.1",
+  "version": "1.5.2",
   "lastUpdated": "2025-12-11T00:00:00Z",
   "changelog": [
+        {
+          "version": "1.5.2",
+          "date": "2025-12-11",
+          "changes": [
+            "FEATURE: Added configurable show_selected_prompt setting to disable selected button display",
+            "IMPROVEMENT: Selected button prompt can now be disabled via settings.ini (show_selected_prompt = false)"
+          ]
+        },
         {
           "version": "1.5.1",
           "date": "2025-12-11",

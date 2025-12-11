@@ -130,3 +130,71 @@ function Invoke-TermUIFunction {
         }
     }
 }
+function Refresh-TermUIMenu {
+    <#
+    .SYNOPSIS
+    Refreshes the termUI menu structure to reflect filesystem changes made after startup.
+    Allows programs to dynamically update their menu buttons without restarting termUI.
+    
+    .PARAMETER TermUIRoot
+    The root directory of the termUI installation (defaults to detecting from environment)
+    
+    .EXAMPLE
+    Refresh-TermUIMenu
+    # Refreshes menu from default termUI location
+    
+    Refresh-TermUIMenu -TermUIRoot "c:/path/to/termUI"
+    # Refreshes menu from custom location
+    
+    .NOTES
+    This function internally calls Force-MenuRefresh from MenuBuilder.ps1
+    It should be called after adding new button files to trigger immediate menu updates.
+    
+    Used by programs like tagScanner to dynamically show new directories without restart.
+    #>
+    param(
+        [string]$TermUIRoot
+    )
+    
+    try {
+        # If TermUIRoot not specified, try to detect it
+        if (-not $TermUIRoot) {
+            $TermUIRoot = $env:TERMUI_ROOT
+            if (-not $TermUIRoot) {
+                # Try to find it by looking up from this module's location
+                $TermUIRoot = Split-Path (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent) -Parent
+            }
+        }
+        
+        # Verify it's a valid termUI installation
+        if (-not (Test-Path (Join-Path $TermUIRoot "powershell/modules/MenuBuilder.ps1"))) {
+            Write-Error "Invalid termUI root: $TermUIRoot (MenuBuilder.ps1 not found)"
+            return $false
+        }
+        
+        # Get the buttons directory
+        $buttonsPath = Join-Path $TermUIRoot "buttons"
+        
+        # Force the menu builder to rebuild from filesystem
+        # This imports MenuBuilder if not already imported
+        if (-not (Get-Command Force-MenuRefresh -ErrorAction SilentlyContinue)) {
+            . (Join-Path $TermUIRoot "powershell/modules/MenuBuilder.ps1")
+        }
+        
+        # Call Force-MenuRefresh to rebuild menu tree
+        $newTree = Force-MenuRefresh -RootPath $buttonsPath -ClearCache $true
+        
+        if ($newTree) {
+            Write-Verbose "Menu refresh completed successfully"
+            return $true
+        }
+        else {
+            Write-Error "Menu refresh returned null"
+            return $false
+        }
+    }
+    catch {
+        Write-Error "Failed to refresh termUI menu: $_"
+        return $false
+    }
+}
