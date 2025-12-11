@@ -1,29 +1,7 @@
 {
-  "version": "1.4.2",
-  "lastUpdated": "2025-12-10T13:00:00Z",
+  "version": "1.4.1",
+  "lastUpdated": "2025-12-10T12:30:00Z",
   "changelog": [
-    {
-      "version": "1.4.2",
-      "date": "2025-12-10",
-      "changes": [
-        "BUGFIX: Menu rendering now redraws only on navigation/selection (reduced flicker)",
-        "BUGFIX: Removed broken InputHandler handler_path defaults; interactive mode is default",
-        "BUGFIX: Fallback copy preserves subdirectories when robocopy fails",
-        "DOC: Added explicit v1.4.1 changelog entry",
-        "MAINTENANCE: Documentation consolidated into docs/ALL.md"
-      ]
-    },
-    {
-      "version": "1.4.1",
-      "date": "2025-12-10",
-      "changes": [
-        "BUGFIX: Added missing changelog entry for v1.4.1",
-        "BUGFIX: Improved Update-Manager subdirectory handling in fallback copy",
-        "BUGFIX: Reconciled InputHandler settings path inconsistencies",
-        "BUGFIX: Optimized menu rendering to reduce unnecessary redraws",
-        "MAINTENANCE: Documentation consolidated into docs/ALL.md"
-      ]
-    },
     {
       "version": "1.4.0",
       "date": "2025-12-10",

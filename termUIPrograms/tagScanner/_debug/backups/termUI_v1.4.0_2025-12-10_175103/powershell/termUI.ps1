@@ -648,6 +648,7 @@ try {
                         if ($evt.char -match '^[0-9]$') {
                             $numberBuffer += $evt.char
                             $actionTaken = $true
+                            $needsRender = $true
                         }
                         # Ignore other characters
                     }
@@ -656,6 +657,7 @@ try {
                         if ($numberBuffer.Length -gt 0) {
                             $numberBuffer = $numberBuffer.Substring(0, $numberBuffer.Length - 1)
                             $actionTaken = $true
+                            $needsRender = $true
                         }
                     }
                     default {
