@@ -1,7 +1,16 @@
 {
-  "version": "1.4.6",
+  "version": "1.4.7",
   "lastUpdated": "2025-12-11T00:00:00Z",
   "changelog": [
+        {
+          "version": "1.4.7",
+          "date": "2025-12-11",
+          "changes": [
+            "CRITICAL: termUI now auto-runs InitializeButtons.ps1 before loading menu tree",
+            "FIX: Programs can now dynamically create buttons on startup",
+            "IMPROVEMENT: Button initialization cleaned to prevent leftover folders"
+          ]
+        },
         {
           "version": "1.4.6",
           "date": "2025-12-11",

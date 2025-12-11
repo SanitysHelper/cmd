@@ -7,21 +7,6 @@ $script:scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $script:termUIRoot = Split-Path -Parent $script:scriptDir
 $script:moduleDir = Join-Path $script:scriptDir "modules"
 
-# Remove any leftover update temp artifacts from previous runs
-function Cleanup-UpdateTemp {
-    try {
-        $debugDir = Join-Path $script:termUIRoot "_debug"
-        $tempZip = Join-Path $debugDir "termUI_update.zip"
-        $tempExtract = Join-Path $debugDir "termUI_update_temp"
-        if (Test-Path $tempZip) { Remove-Item -Path $tempZip -Force -ErrorAction SilentlyContinue }
-        if (Test-Path $tempExtract) { Remove-Item -Path $tempExtract -Recurse -Force -ErrorAction SilentlyContinue }
-    } catch {
-        # Non-blocking cleanup
-    }
-}
-
-Cleanup-UpdateTemp
-
 # Core paths required for a healthy install (used for bootstrap/repair)
 $script:requiredPaths = @(
     (Join-Path $script:moduleDir "Logging.ps1"),
@@ -214,12 +199,6 @@ try {
             Write-Host "Update installed. Please relaunch termUI." -ForegroundColor Yellow
             exit 0
         }
-    }
-
-    # Initialize program-specific buttons before loading menu
-    $initButtonsScript = Join-Path $script:scriptDir "InitializeButtons.ps1"
-    if (Test-Path $initButtonsScript) {
-        . $initButtonsScript
     }
 
     Write-Host "[DEBUG] Loading menu tree..." -ForegroundColor DarkGray

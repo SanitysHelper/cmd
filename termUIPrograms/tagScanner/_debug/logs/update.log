@@ -165,3 +165,47 @@
 [2025-12-11 10:46:07] [SUCCESS] No update needed
 [2025-12-11 10:47:49] [INFO] === termUI Update Check Started ===
 [2025-12-11 10:47:49] [INFO] Local version: 1.4.3
+[2025-12-11 10:58:59] [INFO] === termUI Update Check Started ===
+[2025-12-11 10:58:59] [INFO] Local version: 1.4.3
+[2025-12-11 10:58:59] [INFO] Checking GitHub for latest version...
+[2025-12-11 10:58:59] [INFO] Remote version: 1.4.5
+[2025-12-11 10:58:59] [SUCCESS] Update available: 1.4.3 -> 1.4.5
+[2025-12-11 10:59:01] [INFO] Starting update from 1.4.3 to 1.4.5
+[2025-12-11 10:59:01] [INFO] Creating backup: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\backups\termUI_v1.4.3_2025-12-11_105901
+[2025-12-11 10:59:02] [SUCCESS] Backup created successfully
+[2025-12-11 10:59:02] [INFO] Downloading update from GitHub...
+[2025-12-11 10:59:09] [INFO] Download complete
+[2025-12-11 10:59:09] [INFO] Extracting update...
+[2025-12-11 10:59:14] [INFO] Extraction complete
+[2025-12-11 10:59:14] [INFO] Installing updated files...
+[2025-12-11 10:59:20] [ERROR] Robocopy failed with exit code 11
+[2025-12-11 10:59:20] [ERROR] Output:  2025/12/11 10:59:14 ERROR 32 (0x00000020) Copying File C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\termUI_update_temp\cmd-main\termUI\termUI.exe The process cannot access the file because it is being used by another process.  Waiting 3 seconds... Retrying... 2025/12/11 10:59:17 ERROR 32 (0x00000020) Copying File C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\termUI_update_temp\cmd-main\termUI\termUI.exe The process cannot access the file because it is being used by another process.  Waiting 3 seconds... Retrying... 2025/12/11 10:59:20 ERROR 32 (0x00000020) Copying File C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\termUI_update_temp\cmd-main\termUI\termUI.exe The process cannot access the file because it is being used by another process.   ERROR: RETRY LIMIT EXCEEDED. 
+[2025-12-11 10:59:20] [WARN] Falling back to recursive directory copy...
+[2025-12-11 10:59:20] [ERROR] Fallback copy failed: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\termUI.exe' because it is being used by another process.
+[2025-12-11 10:59:20] [ERROR] File installation error: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\termUI.exe' because it is being used by another process.
+[2025-12-11 10:59:20] [ERROR] Update installation failed: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\termUI.exe' because it is being used by another process.
+[2025-12-11 10:59:20] [INFO] === Update Check Completed ===
+[2025-12-11 11:00:13] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:00:13] [INFO] Local version: 1.4.6
+[2025-12-11 11:00:13] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:00:14] [INFO] Remote version: 1.4.5
+[2025-12-11 11:00:14] [WARN] Local version is newer than remote
+[2025-12-11 11:00:14] [SUCCESS] No update needed
+[2025-12-11 11:02:12] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:02:12] [INFO] Local version: 1.4.6
+[2025-12-11 11:02:12] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:02:13] [INFO] Remote version: 1.4.6
+[2025-12-11 11:02:13] [INFO] Versions are identical: 1.4.6
+[2025-12-11 11:02:13] [SUCCESS] No update needed
+[2025-12-11 11:02:23] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:02:24] [INFO] Local version: 1.4.6
+[2025-12-11 11:02:24] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:02:24] [INFO] Remote version: 1.4.6
+[2025-12-11 11:02:24] [INFO] Versions are identical: 1.4.6
+[2025-12-11 11:02:24] [SUCCESS] No update needed
+[2025-12-11 11:04:40] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:04:40] [INFO] Local version: 1.4.6
+[2025-12-11 11:04:40] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:04:40] [INFO] Remote version: 1.4.6
+[2025-12-11 11:04:40] [INFO] Versions are identical: 1.4.6
+[2025-12-11 11:04:40] [SUCCESS] No update needed

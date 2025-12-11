@@ -1,22 +1,11 @@
 {
-  "version": "1.4.6",
+  "version": "1.4.3",
   "lastUpdated": "2025-12-11T00:00:00Z",
   "changelog": [
         {
-          "version": "1.4.6",
+          "version": "1.4.3",
           "date": "2025-12-11",
           "changes": [
-            "FIX: Resolved button loading and menu rendering issues",
-            "FIX: Fixed external program button initialization paths",
-            "IMPROVEMENT: Verified update system, button creation, and menu smoothness",
-            "TESTING: Full end-to-end validation of core features completed"
-          ]
-        },
-        {
-          "version": "1.4.5",
-          "date": "2025-12-11",
-          "changes": [
-            "MAINTENANCE: termUI startup now clears leftover update temp files before any work begins",
             "FEATURE: Update system now excludes buttons folder to preserve user-created menus",
             "FEATURE: Added script execution support for .opt buttons with matching .ps1 files",
             "FIX: Robocopy and fallback copy now properly exclude buttons directory",

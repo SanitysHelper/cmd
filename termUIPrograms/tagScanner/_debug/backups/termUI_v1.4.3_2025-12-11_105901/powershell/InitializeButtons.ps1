@@ -7,11 +7,10 @@ $script:cmdRoot = Split-Path -Parent $script:tagScannerRoot
 $script:termUIRoot = Join-Path $script:cmdRoot "termUI"
 $script:buttonsRoot = Join-Path $script:tagScannerRoot "buttons\mainUI"
 
-# Clear existing buttons and ensure directory exists
-if (Test-Path $script:buttonsRoot) {
-    Remove-Item -Path $script:buttonsRoot -Recurse -Force -ErrorAction SilentlyContinue
+# Ensure buttons directory exists
+if (-not (Test-Path $script:buttonsRoot)) {
+    New-Item -ItemType Directory -Path $script:buttonsRoot -Force | Out-Null
 }
-New-Item -ItemType Directory -Path $script:buttonsRoot -Force | Out-Null
 
 # Create main menu button files (.opt files contain descriptions)
 "Scan directory and display all audio file tags (FLAC and MP3)" | Set-Content -Path (Join-Path $script:buttonsRoot "Read Mode.opt") -Encoding UTF8
