@@ -332,3 +332,71 @@
 [2025-12-11 12:20:44] MENU FRAME Selected=0 Count=2 Path=mainUI/Directories
   >>> [1] (option) Add Directory
       [2] (option) C__Users_cmand_OneDrive_Desktop_Junk_Music
+[2025-12-11 13:51:30] MENU FRAME Selected=0 Count=6 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+      [5] (option) About
+      [6] (option) Quick Reference
+[2025-12-11 13:51:33] MENU FRAME Selected=5 Count=6 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+      [5] (option) About
+  >>> [6] (option) Quick Reference
+[2025-12-11 13:51:33] MENU FRAME Selected=4 Count=6 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+  >>> [5] (option) About
+      [6] (option) Quick Reference
+[2025-12-11 13:51:35] MENU FRAME Selected=4 Count=6 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+  >>> [5] (option) About
+      [6] (option) Quick Reference
+[2025-12-11 13:55:17] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 13:55:19] MENU FRAME Selected=3 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+  >>> [4] (submenu) Write Mode
+[2025-12-11 13:55:20] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 13:55:21] MENU FRAME Selected=0 Count=4 Path=mainUI/Dependencies
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 13:55:21] MENU FRAME Selected=0 Count=3 Path=mainUI/Dependencies
+  >>> [1] (option) Auto Download
+      [2] (option) Check Dependencies
+      [3] (option) How to manually install
+[2025-12-11 13:55:22] MENU FRAME Selected=1 Count=3 Path=mainUI/Dependencies
+      [1] (option) Auto Download
+  >>> [2] (option) Check Dependencies
+      [3] (option) How to manually install
+[2025-12-11 13:55:26] MENU FRAME Selected=1 Count=3 Path=mainUI/Dependencies
+      [1] (option) Auto Download
+  >>> [2] (option) Check Dependencies
+      [3] (option) How to manually install
+[2025-12-11 13:55:26] MENU FRAME Selected=2 Count=3 Path=mainUI/Dependencies
+      [1] (option) Auto Download
+      [2] (option) Check Dependencies
+  >>> [3] (option) How to manually install
+[2025-12-11 13:55:26] MENU FRAME Selected=0 Count=3 Path=mainUI/Dependencies
+  >>> [1] (option) Auto Download
+      [2] (option) Check Dependencies
+      [3] (option) How to manually install

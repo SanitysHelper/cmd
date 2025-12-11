@@ -640,10 +640,13 @@ try {
                                     }
                                 }
 
-                                Write-Host "`n========================================" -ForegroundColor Cyan
-                                Write-Host " SELECTED: $($item.Name)" -ForegroundColor Green
-                                Write-Host " Path: $($item.Path)" -ForegroundColor Gray
-                                Write-Host "========================================" -ForegroundColor Cyan
+                                # Show selected prompt only if enabled in settings
+                                if ($script:settings.General.show_selected_prompt) {
+                                    Write-Host "`n========================================" -ForegroundColor Cyan
+                                    Write-Host " SELECTED: $($item.Name)" -ForegroundColor Green
+                                    Write-Host " Path: $($item.Path)" -ForegroundColor Gray
+                                    Write-Host "========================================" -ForegroundColor Cyan
+                                }
 
                                 # Execute the corresponding .ps1 script
                                 # Path format is "mainUI/ButtonName", need to get just the relative part after root

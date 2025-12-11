@@ -587,3 +587,7 @@ At C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\buttons\mainUI\
 Missing closing '}' in statement block or type definition.
 [2025-12-11 13:37:06] ERROR: Script execution failed: Illegal characters in path.
 [2025-12-11 13:37:18] ERROR: Script execution failed: Illegal characters in path.
+[2025-12-11 13:51:34] ERROR: Script execution failed: At C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\buttons\mainUI\About.ps1:35 char:54
++ $null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
++                                                      ~~
+The string is missing the terminator: ".

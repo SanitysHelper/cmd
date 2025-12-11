@@ -68,3 +68,6 @@ try {
 } catch {
     Write-Host "Note: Manual menu refresh may be needed." -ForegroundColor Gray
 }
+
+Write-Host "Press any key to continue..." -ForegroundColor DarkGray
+$null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")

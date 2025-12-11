@@ -5,6 +5,7 @@ function Get-DefaultSettings {
             ui_title = "termUI"
             menu_root = "buttons\mainUI"
             keep_open_after_selection = $true
+            show_selected_prompt = $false
         }
         Logging = @{ 
             log_input = $true
@@ -71,7 +72,7 @@ function Normalize-Settings {
     param([hashtable]$Settings)
     # coerce booleans/ints where expected
     $boolKeys = @{
-        General = @("debug_mode","keep_open_after_selection")
+        General = @("debug_mode","keep_open_after_selection","show_selected_prompt")
         Logging = @("log_input","log_input_timing","log_error","log_important","log_menu_frame","log_transcript")
     }
     $intKeys = @{

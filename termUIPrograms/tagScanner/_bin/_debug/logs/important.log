@@ -480,3 +480,12 @@
 [2025-12-11 13:38:59] INFO: Entered submenu: mainUI/Directories
 [2025-12-11 13:39:00] INFO: User quit with Q key (handler-mapped)
 [2025-12-11 13:39:06] INFO: Running in interactive mode (console available)
+[2025-12-11 13:51:30] INFO: Running in interactive mode (console available)
+[2025-12-11 13:51:34] INFO: Selected option: mainUI/About
+[2025-12-11 13:51:34] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\About.ps1
+[2025-12-11 13:51:37] INFO: User quit with Q key (handler-mapped)
+[2025-12-11 13:55:17] INFO: Running in interactive mode (console available)
+[2025-12-11 13:55:21] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-11 13:55:22] INFO: Selected option: mainUI/Dependencies/Check Dependencies
+[2025-12-11 13:55:22] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Check Dependencies.ps1
+[2025-12-11 13:55:27] INFO: User quit with Q key (handler-mapped)

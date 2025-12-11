@@ -28,6 +28,8 @@ Remove-Item -Path (Join-Path $script:writeSubmenu "README.ps1") -Force -ErrorAct
 # Do not create README files in submenus
 # (Removed) No standalone Dependencies option; using submenu only.
 
+# Create main UI level buttons
+# (No default main UI buttons - kept clean)
 # Create PowerShell scripts for each button
 $addDirScript = Join-Path $script:dirsSubmenu "Add Directory.ps1"
 # Add Directory option description (.opt)
@@ -102,7 +104,19 @@ $content | Set-Content -Path $ps1Path -Encoding UTF8
 "$newDir" | Set-Content -Path $scanPath -Encoding UTF8 -Force
 Write-Host "Working directory set: $newDir" -ForegroundColor Green
 Write-Host "The new directory has been added." -ForegroundColor Cyan
-Write-Host "Navigate back to the Directories menu to see and use it." -ForegroundColor Gray
+
+# Refresh termUI menu to show new directory button
+try {
+    $termUIRoot = "c:/Users/cmand/OneDrive/Desktop/cmd/termUI"
+    $refreshHelper = Join-Path $termUIRoot "powershell/modules/RefreshHelper.ps1"
+    if (Test-Path $refreshHelper) {
+        . $refreshHelper
+        Invoke-TermUIMenuRefresh
+        Write-Host "Menu updated with new directory." -ForegroundColor Green
+    }
+} catch {
+    Write-Host "Note: Manual menu refresh may be needed." -ForegroundColor Gray
+}
 
 Write-Host "Press any key to continue..." -ForegroundColor DarkGray
 $null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
@@ -341,4 +355,5 @@ try {
         }
     }
 } catch {}
+
 

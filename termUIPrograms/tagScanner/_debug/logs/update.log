@@ -532,3 +532,15 @@
 [2025-12-11 13:39:06] [INFO] Remote version: 1.5.1
 [2025-12-11 13:39:06] [INFO] Versions are identical: 1.5.1
 [2025-12-11 13:39:06] [SUCCESS] No update needed
+[2025-12-11 13:51:29] [INFO] === termUI Update Check Started ===
+[2025-12-11 13:51:29] [INFO] Local version: 1.5.1
+[2025-12-11 13:51:29] [INFO] Checking GitHub for latest version...
+[2025-12-11 13:51:29] [INFO] Remote version: 1.5.1
+[2025-12-11 13:51:29] [INFO] Versions are identical: 1.5.1
+[2025-12-11 13:51:29] [SUCCESS] No update needed
+[2025-12-11 13:55:15] [INFO] === termUI Update Check Started ===
+[2025-12-11 13:55:15] [INFO] Local version: 1.5.1
+[2025-12-11 13:55:15] [INFO] Checking GitHub for latest version...
+[2025-12-11 13:55:16] [INFO] Remote version: 1.5.1
+[2025-12-11 13:55:16] [INFO] Versions are identical: 1.5.1
+[2025-12-11 13:55:16] [SUCCESS] No update needed
