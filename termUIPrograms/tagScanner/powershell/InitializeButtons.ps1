@@ -86,7 +86,7 @@ Write-Host "Press any key to continue..." -ForegroundColor DarkGray
 $null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 '@ | Set-Content -Path $addDirScript -Encoding UTF8
 @'
-$modulePath = Join-Path (Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))) "powershell\modules\TagScanner.ps1"
+$modulePath = Join-Path (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)) "powershell\modules\TagScanner.ps1"
 if (Test-Path $modulePath) {
     . $modulePath
     Start-ReadMode
@@ -97,7 +97,7 @@ if (Test-Path $modulePath) {
 
 # Write Mode script
 @'
-$modulePath = Join-Path (Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))) "powershell\modules\TagScanner.ps1"
+$modulePath = Join-Path (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)) "powershell\modules\TagScanner.ps1"
 if (Test-Path $modulePath) {
     . $modulePath
     Start-WriteMode
