@@ -1,7 +1,17 @@
 {
-  "version": "1.4.2",
-  "lastUpdated": "2025-12-10T13:00:00Z",
+  "version": "1.4.3",
+  "lastUpdated": "2025-12-11T00:00:00Z",
   "changelog": [
+        {
+          "version": "1.4.3",
+          "date": "2025-12-11",
+          "changes": [
+            "FEATURE: Update system now excludes buttons folder to preserve user-created menus",
+            "FEATURE: Added script execution support for .opt buttons with matching .ps1 files",
+            "FIX: Robocopy and fallback copy now properly exclude buttons directory",
+            "IMPROVEMENT: Programs can now use dynamic button creation via TermUIButtonLibrary"
+          ]
+        },
     {
       "version": "1.4.2",
       "date": "2025-12-10",

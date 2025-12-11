@@ -197,17 +197,6 @@ try {
         $updateApplied = Start-UpdateCheck
         if ($updateApplied) {
             Write-Host "Update installed. Please relaunch termUI." -ForegroundColor Yellow
-
-                # Initialize dynamic buttons (tagScanner-specific)
-                Write-Host "[DEBUG] Initializing tagScanner buttons..." -ForegroundColor DarkGray
-                $initButtonScript = Join-Path $script:scriptDir "InitializeButtons.ps1"
-                if (Test-Path $initButtonScript) {
-                    try {
-                        & $initButtonScript
-                    } catch {
-                        Write-Host "[WARNING] Button initialization failed: $_" -ForegroundColor Yellow
-                    }
-                }
             exit 0
         }
     }
@@ -615,22 +604,6 @@ try {
                             } else {
                                 Log-Important "Selected option: $($item.Path)"
                                 Write-Transcript "Selected option: $($item.Path)"
-
-                                # Check if there's a PowerShell script with the same name as the button
-                                $buttonDir = Join-Path $script:paths.menuRoot ($item.Path -replace '/','\\')
-                                $buttonDir = Split-Path $buttonDir -Parent
-                                $scriptFile = Join-Path $buttonDir "$($item.Name).ps1"
-                                
-                                if (Test-Path $scriptFile) {
-                                    # Execute the PowerShell script
-                                    try {
-                                        Log-Important "Executing script: $scriptFile"
-                                        & $scriptFile
-                                    } catch {
-                                        Write-Host "`n[ERROR] Script execution failed: $_" -ForegroundColor Red
-                                        Log-Error "Script execution failed for $scriptFile : $_"
-                                    }
-                                }
 
                                 if ($captureFile) {
                                     try {
