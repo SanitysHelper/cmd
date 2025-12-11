@@ -216,7 +216,10 @@ try {
         }
     }
 
-    # Initialize program-specific buttons before loading menu
+    # CRITICAL: Initialize program-specific buttons before loading menu
+    # Each program (tagScanner, etc.) has its own InitializeButtons.ps1 to create dynamic buttons
+    # The standalone termUI framework should NEVER have program-specific buttons hardcoded
+    # Update-Manager excludes 'buttons' directory to preserve program-specific menus
     $initButtonsScript = Join-Path $script:scriptDir "InitializeButtons.ps1"
     if (Test-Path $initButtonsScript) {
         . $initButtonsScript
