@@ -685,3 +685,6 @@
 [2025-12-11 14:04:00] INPUT #3 [handler] (+0.643s): {"key":"Down","char":null}
 [2025-12-11 14:04:01] INPUT #4 [handler] (+0.283s): {"key":"Enter","char":"\r"}
 [2025-12-11 14:04:03] INPUT #5 [handler] (+2.630s) [DELAY: 2.63s - MANUAL INPUT SUSPECTED]: {"key":"Q","char":"q"}
+[2025-12-11 14:11:05] INPUT #1 [handler] (+3.612s): {"key":"Q","char":"q"}
+[2025-12-11 14:11:54] INPUT #1 [handler] (+46.804s): {"key":"Q","char":"q"}
+[2025-12-11 14:12:01] INPUT #1 [handler] (+5.027s): {"key":"Q","char":"q"}
