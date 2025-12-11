@@ -16,7 +16,6 @@ function Get-DefaultSettings {
             log_rotation_mb = 5
         }
         Input = @{ 
-            handler_path = "csharp\bin\InputHandler.exe"
         }
     }
 }

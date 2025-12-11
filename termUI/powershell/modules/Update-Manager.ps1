@@ -301,14 +301,14 @@ function Install-Update {
             return $false
         }
         
-        # Use robocopy for 10x faster file copying (excludes _debug and _bin)
+        # Use robocopy for 10x faster file copying (excludes _debug, _bin, and buttons)
         try {
             # Robocopy: /E=copy subdirs including empty, /XD=exclude dirs, /R:2=2 retries, /W:3=3sec wait, /NJH /NJS /NDL=minimal output
             $robocopyArgs = @(
                 $sourceFolder,
                 $script:scriptRoot,
                 '/E',
-                '/XD', '_debug', '_bin',
+                '/XD', '_debug', '_bin', 'buttons',
                 '/R:2',
                 '/W:3',
                 '/NFL',
@@ -329,7 +329,19 @@ function Install-Update {
                 # Fallback to recursive copy using PowerShell (preserves directory structure)
                 Write-Log "Falling back to recursive directory copy..." "WARN"
                 try {
-                    $items = Get-ChildItem -Path $sourceFolder -Recurse -Exclude '_debug', '_bin'
+                    $excludedDirs = @('_debug', '_bin', 'buttons')
+                    $items = Get-ChildItem -Path $sourceFolder -Recurse | Where-Object {
+                        $relativePath = $_.FullName.Substring($sourceFolder.Length).TrimStart('\')
+                        $pathParts = $relativePath -split '\\'
+                        $isExcluded = $false
+                        foreach ($part in $pathParts) {
+                            if ($excludedDirs -contains $part) {
+                                $isExcluded = $true
+                                break
+                            }
+                        }
+                        -not $isExcluded
+                    }
                     foreach ($item in $items) {
                         $relativePath = $item.FullName.Substring($sourceFolder.Length).TrimStart('\')
                         $destination = Join-Path $script:scriptRoot $relativePath
