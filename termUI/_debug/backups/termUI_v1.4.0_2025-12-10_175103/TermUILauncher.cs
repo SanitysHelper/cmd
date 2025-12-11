@@ -92,7 +92,7 @@ class Program
             using (var responseStream = response.GetResponseStream())
             using (var fileStream = new FileStream(tempZip, FileMode.Create, FileAccess.Write, FileShare.None, 65536))
             {
-                var totalBytes = response.ContentLength > 0 ? response.ContentLength : 23000000;  // Default ~23MB if unknown
+                var totalBytes = response.ContentLength;
                 var buffer = new byte[8192];
                 long totalRead = 0;
                 int bytesRead;
@@ -106,16 +106,13 @@ class Program
                     totalRead += bytesRead;
                     
                     var now = DateTime.Now;
-                    var percent = totalBytes > 0 ? (int)((double)totalRead / totalBytes * 100) : 0;
-                    percent = Math.Min(percent, 100);  // Cap at 100%
-                    
+                    var percent = (int)((double)totalRead / totalBytes * 100);
                     if (percent != lastPercent || (now - lastUpdate).TotalMilliseconds > 500)
                     {
                         lastPercent = percent;
                         lastUpdate = now;
-                        var filled = Math.Max(0, Math.Min((int)((double)percent / 100 * barWidth), barWidth));
-                        var empty = Math.Max(0, barWidth - filled);
-                        var bar = new string('=', filled) + new string('-', empty);
+                        var filled = (int)((double)percent / 100 * barWidth);
+                        var bar = new string('=', filled) + new string('-', barWidth - filled);
                         var mbReceived = totalRead / 1024.0 / 1024.0;
                         var mbTotal = totalBytes / 1024.0 / 1024.0;
                         Console.Write(string.Format("\r[{0}] {1}% ({2:F2} MB / {3:F2} MB)", bar, percent, mbReceived, mbTotal));

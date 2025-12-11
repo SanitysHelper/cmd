@@ -244,29 +244,14 @@ function Install-Update {
             return $false
         }
         
-        # Step 2: Download ZIP from GitHub (streaming for maximum speed)
+        # Step 2: Download ZIP from GitHub
         Write-Log "Downloading update from GitHub..."
         $tempZip = Join-Path $script:debugPath "termUI_update.zip"
         $tempExtract = Join-Path $script:debugPath "termUI_update_temp"
         
         try {
-            Add-Type -AssemblyName System.Net.Http
-            [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12 -bor [System.Net.SecurityProtocolType]::Tls11 -bor [System.Net.SecurityProtocolType]::Tls
-            $handler = New-Object System.Net.Http.HttpClientHandler
-            $handler.AutomaticDecompression = [System.Net.DecompressionMethods]::GZip -bor [System.Net.DecompressionMethods]::Deflate
-            $client = [System.Net.Http.HttpClient]::new($handler)
-            $client.Timeout = [TimeSpan]::FromMinutes(5)
-            $request = New-Object System.Net.Http.HttpRequestMessage ([System.Net.Http.HttpMethod]::Get, $script:DOWNLOAD_URL)
-            $request.Headers.UserAgent.ParseAdd("termUI-Updater")
-            $response = $client.SendAsync($request, [System.Net.Http.HttpCompletionOption]::ResponseHeadersRead).Result
-            $response.EnsureSuccessStatusCode() | Out-Null
-            $stream = $response.Content.ReadAsStreamAsync().Result
-            $fileStream = [System.IO.File]::Open($tempZip, [System.IO.FileMode]::Create, [System.IO.FileAccess]::Write, [System.IO.FileShare]::None)
-            $buffer = New-Object byte[] 81920
-            while (($read = $stream.Read($buffer, 0, $buffer.Length)) -gt 0) {
-                $fileStream.Write($buffer, 0, $read)
-            }
-            $fileStream.Dispose(); $stream.Dispose(); $response.Dispose(); $client.Dispose(); $handler.Dispose()
+            # Use Invoke-WebRequest with no timeout for faster downloads
+            Invoke-WebRequest -Uri $script:DOWNLOAD_URL -OutFile $tempZip -UseBasicParsing
             Write-Log "Download complete"
         }
         catch {

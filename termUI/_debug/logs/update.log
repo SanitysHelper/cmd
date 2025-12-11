@@ -80,3 +80,17 @@
 [2025-12-10 12:16:57] [INFO] Remote version: 1.3.9
 [2025-12-10 12:16:57] [WARN] Local version is newer than remote
 [2025-12-10 12:16:57] [SUCCESS] No update needed
+[2025-12-10 12:21:30] [INFO] === termUI Update Check Started ===
+[2025-12-10 12:21:30] [INFO] Local version: 1.4.0
+[2025-12-10 12:21:30] [INFO] Checking GitHub for latest version...
+[2025-12-10 12:21:31] [INFO] Remote version: 1.4.1
+[2025-12-10 12:21:31] [SUCCESS] Update available: 1.4.0 -> 1.4.1
+[2025-12-10 17:51:03] [INFO] Starting update from 1.4.0 to 1.4.1
+[2025-12-10 17:51:03] [INFO] Creating backup: C:\Users\cmand\OneDrive\Desktop\cmd\termUI\_debug\backups\termUI_v1.4.0_2025-12-10_175103
+[2025-12-10 17:51:04] [SUCCESS] Backup created successfully
+[2025-12-10 17:51:04] [INFO] Downloading update from GitHub...
+[2025-12-10 17:59:55] [INFO] === termUI Update Check Started ===
+[2025-12-10 17:59:55] [INFO] Local version: 1.4.0
+[2025-12-10 17:59:55] [INFO] Checking GitHub for latest version...
+[2025-12-10 17:59:55] [INFO] Remote version: 1.4.1
+[2025-12-10 17:59:55] [SUCCESS] Update available: 1.4.0 -> 1.4.1
