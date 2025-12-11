@@ -169,6 +169,11 @@ if ($captureFile) {
 # Ensure directories
 @($script:paths.logs) | ForEach-Object { if (-not (Test-Path $_)) { New-Item -ItemType Directory -Path $_ -Force | Out-Null } }
 
+# Start output transcript logging (clears on each run)
+$script:outputLog = Join-Path $script:paths.logs "output.log"
+if (Test-Path $script:outputLog) { Remove-Item $script:outputLog -Force -ErrorAction SilentlyContinue }
+Start-Transcript -Path $script:outputLog -Force | Out-Null
+
 # Load modules
 . (Join-Path $script:scriptDir "modules\Logging.ps1")
 . (Join-Path $script:scriptDir "modules\Settings.ps1")
@@ -744,6 +749,9 @@ catch {
 }
 finally {
     Stop-InputHandler -Handler $script:handler
+    
+    # Stop transcript logging
+    try { Stop-Transcript | Out-Null } catch { }
     
     # Report if manual input was detected
     if ($script:manualInputDetected) {

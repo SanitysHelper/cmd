@@ -666,6 +666,11 @@ try {
                                     Log-Error "Script not found: $scriptPath"
                                 }
 
+                                # Rebuild menu tree to reflect any new/changed buttons added by the script
+                                $tree = Build-MenuTree -RootPath $script:paths.menuRoot
+                                $currentPath = "mainUI"  # Reset to root after executing button
+                                $selectedIndex = 0
+
                                 $skipPause = ($handler.PSObject.Properties['IsTestMode'] -and $handler.IsTestMode) -or $captureFile
                                 if (-not $skipPause) {
                                     Write-Host "`nPress any key to continue..." -ForegroundColor DarkGray

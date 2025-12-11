@@ -1,0 +1,4 @@
+# Directory History for tagScanner
+# One directory path per line
+C:\Users\cmand\OneDrive\Desktop\Junk\Music
+C:\Users\cmand\Music

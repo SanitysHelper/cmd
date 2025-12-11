@@ -128,7 +128,6 @@ $tags = @(
     @{ name = "Title"; id = "Title" },
     @{ name = "Description"; id = "Description" },
     @{ name = "Comment"; id = "Comment" },
-    @{ name = "Both (Description+Comment)"; id = "Both" },
     @{ name = "Year"; id = "Year" }
 )
 

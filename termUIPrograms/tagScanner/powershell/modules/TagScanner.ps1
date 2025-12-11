@@ -573,17 +573,43 @@ function Start-ReadModeTag {
     Write-Host (" READ MODE - " + $Tag) -ForegroundColor Green
     Write-Host "========================================" -ForegroundColor Cyan
     Write-Host ("Using configured directory: " + $dir) -ForegroundColor Gray
+    
+    # Map tag names to FLAC Vorbis comment field names
+    $flacTagMap = @{
+        'Artist' = 'ARTIST'
+        'Album' = 'ALBUM'
+        'Title' = 'TITLE'
+        'Comment' = 'COMMENT'
+        'Description' = 'DESCRIPTION'
+        'Year' = 'DATE'
+        'Genre' = 'GENRE'
+        'Track' = 'TRACKNUMBER'
+        'Disc' = 'DISCNUMBER'
+        'Composer' = 'COMPOSER'
+        'AlbumArtist' = 'ALBUMARTIST'
+        'ISRC' = 'ISRC'
+        'Publisher' = 'ORGANIZATION'
+        'Conductor' = 'CONDUCTOR'
+        'EncodedBy' = 'ENCODEDBY'
+        'Copyright' = 'COPYRIGHT'
+    }
+    
     $files = Get-ChildItem -Path $dir -Recurse -File -ErrorAction SilentlyContinue | Where-Object { $_.Extension -match '\.(mp3|flac)$' }
     foreach ($file in $files) {
         Write-Host "`nFile: $($file.FullName)" -ForegroundColor Yellow
         if ($file.Extension -eq '.flac') {
             if ($script:metaflacCmd) {
                 try {
-                    $out = & $script:metaflacCmd --show-tag=$Tag $file.FullName 2>$null
-                    $val = ($out -split '=')[1]
-                    if ($null -eq $val) { $val = '' }
-                    Write-Host ("  " + $Tag + ": " + $val) -ForegroundColor White
-                } catch { Write-Host "  (no value)" -ForegroundColor DarkGray }
+                    $flacTag = if ($flacTagMap.ContainsKey($Tag)) { $flacTagMap[$Tag] } else { $Tag.ToUpper() }
+                    $out = & $script:metaflacCmd --show-tag=$flacTag $file.FullName 2>$null
+                    if ($out) {
+                        $val = ($out -split '=', 2)[1]
+                        if ($null -eq $val) { $val = '' }
+                        Write-Host ("  " + $Tag + ": " + $val) -ForegroundColor White
+                    } else {
+                        Write-Host ("  " + $Tag + ": (no value)") -ForegroundColor DarkGray
+                    }
+                } catch { Write-Host ("  " + $Tag + ": (error reading)") -ForegroundColor Red }
             }
         } elseif ($file.Extension -eq '.mp3' -and $script:taglibLoaded) {
             try {
@@ -594,7 +620,6 @@ function Start-ReadModeTag {
                     'Title' { Write-Host ("  Title: " + ($t.Tag.Title)) }
                     'Comment' { Write-Host ("  Comment: " + ($t.Tag.Comment)) }
                     'Description' { Write-Host ("  Description: " + ($t.Tag.Description)) }
-                    'Both' { Write-Host ("  Description: " + ($t.Tag.Description)); Write-Host ("  Comment: " + ($t.Tag.Comment)) }
                     'Year' { Write-Host ("  Year: " + ($t.Tag.Year)) }
                     'Genre' { Write-Host ("  Genre: " + ($t.Tag.FirstGenre)) }
                     'Track' { Write-Host ("  Track: " + ($t.Tag.Track)) }
@@ -608,6 +633,7 @@ function Start-ReadModeTag {
                     'Copyright' { Write-Host ("  Copyright: " + ($t.Tag.Copyright)) }
                     default { Write-Host "  (unsupported tag for MP3)" -ForegroundColor DarkGray }
                 }
+                $t.Dispose()
             } catch { Write-Host "  (failed to read MP3 tags)" -ForegroundColor Red }
         }
     }
@@ -621,10 +647,38 @@ function Start-WriteModeTag {
     $dir = Select-Directory
     if (-not $dir) { return }
     $value = Read-Host ("Enter value for " + $Tag)
+    
+    # Map tag names to FLAC Vorbis comment field names
+    $flacTagMap = @{
+        'Artist' = 'ARTIST'
+        'Album' = 'ALBUM'
+        'Title' = 'TITLE'
+        'Comment' = 'COMMENT'
+        'Description' = 'DESCRIPTION'
+        'Year' = 'DATE'
+        'Genre' = 'GENRE'
+        'Track' = 'TRACKNUMBER'
+        'Disc' = 'DISCNUMBER'
+        'Composer' = 'COMPOSER'
+        'AlbumArtist' = 'ALBUMARTIST'
+        'ISRC' = 'ISRC'
+        'Publisher' = 'ORGANIZATION'
+        'Conductor' = 'CONDUCTOR'
+        'EncodedBy' = 'ENCODEDBY'
+        'Copyright' = 'COPYRIGHT'
+    }
+    
     $files = Get-ChildItem -Path $dir -Recurse -File -ErrorAction SilentlyContinue | Where-Object { $_.Extension -match '\.(mp3|flac)$' }
+    $successCount = 0
+    $failCount = 0
+    
     foreach ($file in $files) {
         if ($file.Extension -eq '.flac' -and $script:metaflacCmd) {
-            try { & $script:metaflacCmd --remove-tag=$Tag --set-tag="$Tag=$value" $file.FullName | Out-Null } catch {}
+            try { 
+                $flacTag = if ($flacTagMap.ContainsKey($Tag)) { $flacTagMap[$Tag] } else { $Tag.ToUpper() }
+                & $script:metaflacCmd --remove-tag=$flacTag --set-tag="$flacTag=$value" $file.FullName 2>$null | Out-Null
+                $successCount++
+            } catch { $failCount++ }
         } elseif ($file.Extension -eq '.mp3' -and $script:taglibLoaded) {
             try {
                 $t = [TagLib.File]::Create($file.FullName)
@@ -634,7 +688,6 @@ function Start-WriteModeTag {
                     'Title' { $t.Tag.Title = $value }
                     'Comment' { $t.Tag.Comment = $value }
                     'Description' { $t.Tag.Description = $value }
-                    'Both' { $t.Tag.Description = $value; $t.Tag.Comment = $value }
                     'Year' { [int]$yr = 0; [void][int]::TryParse($value, [ref]$yr); $t.Tag.Year = $yr }
                     'Genre' { $t.Tag.Genres = @($value) }
                     'Track' { [uint]$n=0; [void][uint]::TryParse($value, [ref]$n); $t.Tag.Track = $n }
@@ -649,10 +702,19 @@ function Start-WriteModeTag {
                     default {}
                 }
                 $t.Save()
-            } catch {}
+                $t.Dispose()
+                $successCount++
+            } catch { $failCount++ }
         }
     }
-    Write-Host "`nDone. Press any key to continue..." -ForegroundColor Gray
+    
+    Write-Host "`n========================================" -ForegroundColor Cyan
+    Write-Host " OPERATION COMPLETE" -ForegroundColor Green
+    Write-Host "========================================" -ForegroundColor Cyan
+    Write-Host "Successful: $successCount" -ForegroundColor Green
+    Write-Host "Failed: $failCount" -ForegroundColor $(if ($failCount -gt 0) { "Red" } else { "Gray" })
+    Write-Host ""
+    Write-Host "`nPress any key to continue..." -ForegroundColor Gray
     $null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 }
 

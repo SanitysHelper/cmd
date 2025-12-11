@@ -1,7 +1,18 @@
 {
-  "version": "1.5.3",
+  "version": "1.5.4",
   "lastUpdated": "2025-12-11T00:00:00Z",
   "changelog": [
+        {
+          "version": "1.5.4",
+          "date": "2025-12-11",
+          "changes": [
+            "FEATURE: Added output.log transcript logging that captures all terminal output",
+            "FEATURE: Created InputHandler-Replay.ps1 for automated UI testing support",
+            "IMPROVEMENT: Backups now only created when debug_mode=true in settings.ini",
+            "IMPROVEMENT: Output log clears on each program start for clean test runs",
+            "TESTING: Complete automated testing infrastructure for termUI programs"
+          ]
+        },
         {
           "version": "1.5.3",
           "date": "2025-12-11",

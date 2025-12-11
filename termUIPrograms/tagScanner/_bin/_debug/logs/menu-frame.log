@@ -653,3 +653,844 @@
       [2] (submenu) Directories
       [3] (submenu) Read Mode
       [4] (submenu) Write Mode
+[2025-12-11 14:14:52] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:14:57] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:15:03] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:15:25] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:16:33] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:36:19] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:37:42] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:37:45] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+  >>> [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:37:45] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+  >>> [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:37:45] MENU FRAME Selected=3 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+  >>> [4] (submenu) Write Mode
+[2025-12-11 14:37:46] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:37:47] MENU FRAME Selected=3 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+  >>> [4] (submenu) Write Mode
+[2025-12-11 14:37:47] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:37:51] MENU FRAME Selected=0 Count=4 Path=mainUI/Dependencies
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:37:51] MENU FRAME Selected=0 Count=3 Path=mainUI/Dependencies
+  >>> [1] (option) Auto Download
+      [2] (option) Check Dependencies
+      [3] (option) How to manually install
+[2025-12-11 14:37:55] MENU FRAME Selected=0 Count=3 Path=mainUI
+  >>> [1] (option) Auto Download
+      [2] (option) Check Dependencies
+      [3] (option) How to manually install
+[2025-12-11 14:37:55] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:37:56] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+  >>> [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:37:56] MENU FRAME Selected=0 Count=4 Path=mainUI/Directories
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:37:56] MENU FRAME Selected=0 Count=3 Path=mainUI/Directories
+  >>> [1] (option) Add Directory
+      [2] (option) C_Users_cmand_Music
+      [3] (option) C_Users_cmand_OneDrive_Desktop_Junk_Music
+[2025-12-11 14:37:57] MENU FRAME Selected=1 Count=3 Path=mainUI/Directories
+      [1] (option) Add Directory
+  >>> [2] (option) C_Users_cmand_Music
+      [3] (option) C_Users_cmand_OneDrive_Desktop_Junk_Music
+[2025-12-11 14:37:59] MENU FRAME Selected=2 Count=3 Path=mainUI/Directories
+      [1] (option) Add Directory
+      [2] (option) C_Users_cmand_Music
+  >>> [3] (option) C_Users_cmand_OneDrive_Desktop_Junk_Music
+[2025-12-11 14:38:01] MENU FRAME Selected=0 Count=3 Path=mainUI
+  >>> [1] (option) Add Directory
+      [2] (option) C_Users_cmand_Music
+      [3] (option) C_Users_cmand_OneDrive_Desktop_Junk_Music
+[2025-12-11 14:38:01] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:38:01] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+  >>> [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:38:02] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+  >>> [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:38:02] MENU FRAME Selected=0 Count=4 Path=mainUI/Read Mode
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:38:02] MENU FRAME Selected=0 Count=8 Path=mainUI/Read Mode
+  >>> [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:38:03] MENU FRAME Selected=1 Count=8 Path=mainUI/Read Mode
+      [1] (submenu) Extras
+  >>> [2] (option) Album
+      [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:38:03] MENU FRAME Selected=2 Count=8 Path=mainUI/Read Mode
+      [1] (submenu) Extras
+      [2] (option) Album
+  >>> [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:38:03] MENU FRAME Selected=3 Count=8 Path=mainUI/Read Mode
+      [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+  >>> [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:38:04] MENU FRAME Selected=4 Count=8 Path=mainUI/Read Mode
+      [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+  >>> [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:38:05] MENU FRAME Selected=3 Count=8 Path=mainUI/Read Mode
+      [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+  >>> [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:38:05] MENU FRAME Selected=4 Count=8 Path=mainUI/Read Mode
+      [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+  >>> [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:38:07] MENU FRAME Selected=3 Count=8 Path=mainUI/Read Mode
+      [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+  >>> [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:38:10] MENU FRAME Selected=0 Count=8 Path=mainUI
+  >>> [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:38:10] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:38:11] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+  >>> [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:38:11] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+  >>> [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:38:11] MENU FRAME Selected=3 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+  >>> [4] (submenu) Write Mode
+[2025-12-11 14:38:12] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+  >>> [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:38:12] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+  >>> [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:38:13] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:38:14] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+  >>> [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:38:14] MENU FRAME Selected=0 Count=4 Path=mainUI/Directories
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:38:14] MENU FRAME Selected=0 Count=3 Path=mainUI/Directories
+  >>> [1] (option) Add Directory
+      [2] (option) C_Users_cmand_Music
+      [3] (option) C_Users_cmand_OneDrive_Desktop_Junk_Music
+[2025-12-11 14:38:14] MENU FRAME Selected=1 Count=3 Path=mainUI/Directories
+      [1] (option) Add Directory
+  >>> [2] (option) C_Users_cmand_Music
+      [3] (option) C_Users_cmand_OneDrive_Desktop_Junk_Music
+[2025-12-11 14:38:15] MENU FRAME Selected=2 Count=3 Path=mainUI/Directories
+      [1] (option) Add Directory
+      [2] (option) C_Users_cmand_Music
+  >>> [3] (option) C_Users_cmand_OneDrive_Desktop_Junk_Music
+[2025-12-11 14:38:18] MENU FRAME Selected=0 Count=3 Path=mainUI
+  >>> [1] (option) Add Directory
+      [2] (option) C_Users_cmand_Music
+      [3] (option) C_Users_cmand_OneDrive_Desktop_Junk_Music
+[2025-12-11 14:38:18] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:38:18] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+  >>> [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:38:19] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:38:19] MENU FRAME Selected=0 Count=4 Path=mainUI/Dependencies
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:38:19] MENU FRAME Selected=0 Count=3 Path=mainUI/Dependencies
+  >>> [1] (option) Auto Download
+      [2] (option) Check Dependencies
+      [3] (option) How to manually install
+[2025-12-11 14:38:19] MENU FRAME Selected=1 Count=3 Path=mainUI/Dependencies
+      [1] (option) Auto Download
+  >>> [2] (option) Check Dependencies
+      [3] (option) How to manually install
+[2025-12-11 14:39:01] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:39:03] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+  >>> [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:39:03] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+  >>> [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:39:03] MENU FRAME Selected=3 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+  >>> [4] (submenu) Write Mode
+[2025-12-11 14:39:04] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+  >>> [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:39:05] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+  >>> [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:39:05] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:39:05] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+  >>> [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:39:06] MENU FRAME Selected=0 Count=4 Path=mainUI/Directories
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:39:06] MENU FRAME Selected=0 Count=3 Path=mainUI/Directories
+  >>> [1] (option) Add Directory
+      [2] (option) C_Users_cmand_Music
+      [3] (option) C_Users_cmand_OneDrive_Desktop_Junk_Music
+[2025-12-11 14:39:14] MENU FRAME Selected=1 Count=3 Path=mainUI/Directories
+      [1] (option) Add Directory
+  >>> [2] (option) C_Users_cmand_Music
+      [3] (option) C_Users_cmand_OneDrive_Desktop_Junk_Music
+[2025-12-11 14:39:17] MENU FRAME Selected=0 Count=3 Path=mainUI
+  >>> [1] (option) Add Directory
+      [2] (option) C_Users_cmand_Music
+      [3] (option) C_Users_cmand_OneDrive_Desktop_Junk_Music
+[2025-12-11 14:39:17] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:42:59] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:43:00] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+  >>> [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:43:01] MENU FRAME Selected=0 Count=4 Path=mainUI/Directories
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:43:01] MENU FRAME Selected=0 Count=3 Path=mainUI/Directories
+  >>> [1] (option) Add Directory
+      [2] (option) C_Users_cmand_Music
+      [3] (option) C_Users_cmand_OneDrive_Desktop_Junk_Music
+[2025-12-11 14:46:18] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:47:38] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:47:40] MENU FRAME Selected=0 Count=4 Path=mainUI/Dependencies
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:47:40] MENU FRAME Selected=0 Count=3 Path=mainUI/Dependencies
+  >>> [1] (option) Auto Download
+      [2] (option) Check Dependencies
+      [3] (option) How to manually install
+[2025-12-11 14:47:41] MENU FRAME Selected=0 Count=3 Path=mainUI
+  >>> [1] (option) Auto Download
+      [2] (option) Check Dependencies
+      [3] (option) How to manually install
+[2025-12-11 14:47:41] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:47:42] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+  >>> [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:47:42] MENU FRAME Selected=0 Count=4 Path=mainUI/Directories
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:47:42] MENU FRAME Selected=0 Count=1 Path=mainUI/Directories
+  >>> [1] (option) Add Directory
+[2025-12-11 14:47:56] MENU FRAME Selected=0 Count=1 Path=mainUI
+  >>> [1] (option) Add Directory
+[2025-12-11 14:47:56] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:47:59] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+  >>> [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:48:00] MENU FRAME Selected=0 Count=4 Path=mainUI/Directories
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:48:00] MENU FRAME Selected=0 Count=2 Path=mainUI/Directories
+  >>> [1] (option) Add Directory
+      [2] (option) C_Users_cmand_Music
+[2025-12-11 14:48:02] MENU FRAME Selected=1 Count=2 Path=mainUI/Directories
+      [1] (option) Add Directory
+  >>> [2] (option) C_Users_cmand_Music
+[2025-12-11 14:48:02] MENU FRAME Selected=0 Count=2 Path=mainUI/Directories
+  >>> [1] (option) Add Directory
+      [2] (option) C_Users_cmand_Music
+[2025-12-11 14:48:13] MENU FRAME Selected=0 Count=2 Path=mainUI
+  >>> [1] (option) Add Directory
+      [2] (option) C_Users_cmand_Music
+[2025-12-11 14:48:13] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:48:14] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+  >>> [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:48:14] MENU FRAME Selected=0 Count=4 Path=mainUI/Directories
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:48:15] MENU FRAME Selected=0 Count=3 Path=mainUI/Directories
+  >>> [1] (option) Add Directory
+      [2] (option) C_Users_cmand_Music
+      [3] (option) C_Users_cmand_OneDrive_Desktop_Junk_Music
+[2025-12-11 14:48:15] MENU FRAME Selected=2 Count=3 Path=mainUI/Directories
+      [1] (option) Add Directory
+      [2] (option) C_Users_cmand_Music
+  >>> [3] (option) C_Users_cmand_OneDrive_Desktop_Junk_Music
+[2025-12-11 14:48:19] MENU FRAME Selected=0 Count=3 Path=mainUI
+  >>> [1] (option) Add Directory
+      [2] (option) C_Users_cmand_Music
+      [3] (option) C_Users_cmand_OneDrive_Desktop_Junk_Music
+[2025-12-11 14:48:19] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:48:37] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+  >>> [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:48:37] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+  >>> [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:48:38] MENU FRAME Selected=0 Count=4 Path=mainUI/Read Mode
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:48:38] MENU FRAME Selected=0 Count=8 Path=mainUI/Read Mode
+  >>> [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:48:39] MENU FRAME Selected=0 Count=8 Path=mainUI
+  >>> [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:48:39] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:48:40] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+  >>> [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:48:40] MENU FRAME Selected=0 Count=4 Path=mainUI/Directories
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:48:40] MENU FRAME Selected=0 Count=3 Path=mainUI/Directories
+  >>> [1] (option) Add Directory
+      [2] (option) C_Users_cmand_Music
+      [3] (option) C_Users_cmand_OneDrive_Desktop_Junk_Music
+[2025-12-11 14:48:41] MENU FRAME Selected=1 Count=3 Path=mainUI/Directories
+      [1] (option) Add Directory
+  >>> [2] (option) C_Users_cmand_Music
+      [3] (option) C_Users_cmand_OneDrive_Desktop_Junk_Music
+[2025-12-11 14:48:43] MENU FRAME Selected=0 Count=3 Path=mainUI
+  >>> [1] (option) Add Directory
+      [2] (option) C_Users_cmand_Music
+      [3] (option) C_Users_cmand_OneDrive_Desktop_Junk_Music
+[2025-12-11 14:48:43] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:48:43] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+  >>> [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:48:43] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+  >>> [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:48:44] MENU FRAME Selected=3 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+  >>> [4] (submenu) Write Mode
+[2025-12-11 14:48:44] MENU FRAME Selected=0 Count=4 Path=mainUI/Write Mode
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:48:44] MENU FRAME Selected=0 Count=8 Path=mainUI/Write Mode
+  >>> [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:48:45] MENU FRAME Selected=1 Count=8 Path=mainUI/Write Mode
+      [1] (submenu) Extras
+  >>> [2] (option) Album
+      [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:48:45] MENU FRAME Selected=2 Count=8 Path=mainUI/Write Mode
+      [1] (submenu) Extras
+      [2] (option) Album
+  >>> [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:48:45] MENU FRAME Selected=3 Count=8 Path=mainUI/Write Mode
+      [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+  >>> [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:49:01] MENU FRAME Selected=0 Count=8 Path=mainUI
+  >>> [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:49:01] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:49:02] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+  >>> [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:49:03] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+  >>> [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:49:03] MENU FRAME Selected=0 Count=4 Path=mainUI/Read Mode
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:49:03] MENU FRAME Selected=0 Count=8 Path=mainUI/Read Mode
+  >>> [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:49:04] MENU FRAME Selected=1 Count=8 Path=mainUI/Read Mode
+      [1] (submenu) Extras
+  >>> [2] (option) Album
+      [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:49:04] MENU FRAME Selected=2 Count=8 Path=mainUI/Read Mode
+      [1] (submenu) Extras
+      [2] (option) Album
+  >>> [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:49:04] MENU FRAME Selected=3 Count=8 Path=mainUI/Read Mode
+      [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+  >>> [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:49:36] MENU FRAME Selected=0 Count=8 Path=mainUI
+  >>> [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:49:37] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:51:31] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:51:32] MENU FRAME Selected=3 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+  >>> [4] (submenu) Write Mode
+[2025-12-11 14:51:32] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+  >>> [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:51:34] MENU FRAME Selected=3 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+  >>> [4] (submenu) Write Mode
+[2025-12-11 14:51:34] MENU FRAME Selected=0 Count=4 Path=mainUI/Write Mode
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:51:34] MENU FRAME Selected=0 Count=8 Path=mainUI/Write Mode
+  >>> [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:51:35] MENU FRAME Selected=1 Count=8 Path=mainUI/Write Mode
+      [1] (submenu) Extras
+  >>> [2] (option) Album
+      [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:51:35] MENU FRAME Selected=2 Count=8 Path=mainUI/Write Mode
+      [1] (submenu) Extras
+      [2] (option) Album
+  >>> [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:51:35] MENU FRAME Selected=3 Count=8 Path=mainUI/Write Mode
+      [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+  >>> [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:51:52] MENU FRAME Selected=0 Count=8 Path=mainUI
+  >>> [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:51:52] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:51:53] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+  >>> [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:51:56] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+  >>> [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:51:56] MENU FRAME Selected=3 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+  >>> [4] (submenu) Write Mode
+[2025-12-11 14:51:58] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+  >>> [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:51:59] MENU FRAME Selected=1 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+  >>> [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:51:59] MENU FRAME Selected=2 Count=4 Path=mainUI
+      [1] (submenu) Dependencies
+      [2] (submenu) Directories
+  >>> [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:52:00] MENU FRAME Selected=0 Count=4 Path=mainUI/Read Mode
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+[2025-12-11 14:52:00] MENU FRAME Selected=0 Count=8 Path=mainUI/Read Mode
+  >>> [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:52:01] MENU FRAME Selected=1 Count=8 Path=mainUI/Read Mode
+      [1] (submenu) Extras
+  >>> [2] (option) Album
+      [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:52:01] MENU FRAME Selected=2 Count=8 Path=mainUI/Read Mode
+      [1] (submenu) Extras
+      [2] (option) Album
+  >>> [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:52:01] MENU FRAME Selected=3 Count=8 Path=mainUI/Read Mode
+      [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+  >>> [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:57:51] MENU FRAME Selected=0 Count=8 Path=mainUI
+  >>> [1] (submenu) Extras
+      [2] (option) Album
+      [3] (option) Artist
+      [4] (option) Both (Description+Comment)
+      [5] (option) Comment
+      [6] (option) Description
+      [7] (option) Title
+      [8] (option) Year
+[2025-12-11 14:57:51] MENU FRAME Selected=0 Count=4 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode

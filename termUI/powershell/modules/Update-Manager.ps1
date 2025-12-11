@@ -46,6 +46,19 @@ $script:backupPath = Join-Path $script:debugPath "backups"
 $script:logsPath = Join-Path $script:debugPath "logs"
 $script:updateLog = Join-Path $script:logsPath "update.log"
 
+# Load settings to control backup behavior
+try {
+    $settingsModule = Join-Path $script:scriptRoot "powershell/modules/Settings.ps1"
+    if (Test-Path $settingsModule) {
+        . $settingsModule
+        $settingsIni = Join-Path $script:scriptRoot "settings.ini"
+        Initialize-Settings -SettingsPath $settingsIni
+    }
+}
+catch {
+    # If settings fail to load, continue with defaults (debug_mode=false)
+}
+
 # Ensure directories exist
 if (-not (Test-Path $script:logsPath)) {
     New-Item -ItemType Directory -Path $script:logsPath -Force | Out-Null
@@ -253,10 +266,21 @@ function Install-Update {
         # Step 0: Stop conflicting processes
         Stop-ConflictingProcesses
         
-        # Step 1: Create backup
-        if (-not (Backup-CurrentVersion -Version $LocalVersion)) {
-            Write-Log "Cannot proceed without backup" "ERROR"
-            return $false
+        # Step 1: Create backup (only when debug_mode is enabled)
+        $shouldBackup = $false
+        try {
+            if ($script:settings -and $script:settings.General -and $script:settings.General.debug_mode) {
+                $shouldBackup = $true
+            }
+        } catch { }
+
+        if ($shouldBackup) {
+            if (-not (Backup-CurrentVersion -Version $LocalVersion)) {
+                Write-Log "Cannot proceed without backup" "ERROR"
+                return $false
+            }
+        } else {
+            Write-Log "Skipping backup (debug_mode=false)" "INFO"
         }
         
         # Step 2: Download ZIP from GitHub (streaming for maximum speed)
