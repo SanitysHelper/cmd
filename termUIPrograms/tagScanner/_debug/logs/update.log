@@ -100,3 +100,9 @@
 [2025-12-10 19:45:20] [INFO] Remote version: 1.4.1
 [2025-12-10 19:45:20] [INFO] Versions are identical: 1.4.1
 [2025-12-10 19:45:20] [SUCCESS] No update needed
+[2025-12-10 19:59:59] [INFO] === termUI Update Check Started ===
+[2025-12-10 19:59:59] [INFO] Local version: 1.4.1
+[2025-12-10 19:59:59] [INFO] Checking GitHub for latest version...
+[2025-12-10 20:00:00] [INFO] Remote version: 1.4.1
+[2025-12-10 20:00:00] [INFO] Versions are identical: 1.4.1
+[2025-12-10 20:00:00] [SUCCESS] No update needed
