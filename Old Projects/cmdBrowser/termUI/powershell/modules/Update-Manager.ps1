@@ -301,16 +301,17 @@ function Install-Update {
             return $false
         }
         
-        # Use robocopy for 10x faster file copying (excludes _debug, _bin, and buttons)
+        # Use robocopy for 10x faster file copying (excludes _debug, _bin, buttons, and .exe files)
         try {
-            # Robocopy: /E=copy subdirs including empty, /XD=exclude dirs, /R:2=2 retries, /W:3=3sec wait, /NJH /NJS /NDL=minimal output
+            # Robocopy: /E=copy subdirs including empty, /XD=exclude dirs, /XF=exclude files, /R:2=2 retries, /W:3=3sec wait, /NJH /NJS /NDL=minimal output
             $robocopyArgs = @(
                 $sourceFolder,
                 $script:scriptRoot,
                 '/E',
                 '/XD', '_debug', '_bin', 'buttons',
-                '/R:2',
-                '/W:3',
+                '/XF', '*.exe',
+                '/R:0',
+                '/W:0',
                 '/NFL',
                 '/NDL',
                 '/NJH',
@@ -323,9 +324,6 @@ function Install-Update {
             # Robocopy exit codes: 0-7 are success, 8+ are errors
             # 0=no files copied, 1=files copied, 2=extra files/dirs, 3=mismatched, 4-7=combinations
             if ($robocopyExitCode -ge 8) {
-                Write-Log "Robocopy failed with exit code $robocopyExitCode" "ERROR"
-                Write-Log "Output: $robocopyOutput" "ERROR"
-                
                 # Fallback to recursive copy using PowerShell (preserves directory structure)
                 Write-Log "Falling back to recursive directory copy..." "WARN"
                 try {
@@ -339,6 +337,10 @@ function Install-Update {
                                 $isExcluded = $true
                                 break
                             }
+                        }
+                        # Also exclude .exe files (running executable cannot be replaced)
+                        if ($_.Extension -eq '.exe') {
+                            $isExcluded = $true
                         }
                         -not $isExcluded
                     }
@@ -358,7 +360,16 @@ function Install-Update {
                             if (-not (Test-Path $parentDir)) {
                                 $null = New-Item -ItemType Directory -Path $parentDir -Force
                             }
-                            Copy-Item -Path $item.FullName -Destination $destination -Force
+                            try {
+                                Copy-Item -Path $item.FullName -Destination $destination -Force -ErrorAction Stop
+                            }
+                            catch {
+                                # Silently skip files that can't be copied (like running executables)
+                                if ($_.Exception.Message -notlike "*being used by another process*") {
+                                    $errMsg = $_.Exception.Message
+                                    Write-Log "Failed to copy $relativePath`: $errMsg" "WARN"
+                                }
+                            }
                         }
                     }
                     Write-Log "Fallback copy completed with directory structure preserved" "SUCCESS"

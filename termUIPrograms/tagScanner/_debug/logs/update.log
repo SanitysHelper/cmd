@@ -221,3 +221,44 @@
 [2025-12-11 11:06:07] [INFO] Remote version: 1.4.6
 [2025-12-11 11:06:07] [INFO] Versions are identical: 1.4.6
 [2025-12-11 11:06:07] [SUCCESS] No update needed
+[2025-12-11 11:14:06] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:14:06] [ERROR] Failed to read local VERSION.json: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\logs\update.log' because it is being used by another process.
+[2025-12-11 11:14:06] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:14:06] [INFO] Remote version: 1.4.8
+[2025-12-11 11:14:06] [ERROR] Cannot proceed without local version
+[2025-12-11 11:14:12] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:14:12] [ERROR] Failed to read local VERSION.json: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\logs\update.log' because it is being used by another process.
+[2025-12-11 11:14:12] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:14:13] [INFO] Remote version: 1.4.8
+[2025-12-11 11:14:13] [ERROR] Cannot proceed without local version
+[2025-12-11 11:14:48] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:14:48] [INFO] Local version: 1.4.6
+[2025-12-11 11:14:48] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:14:48] [INFO] Remote version: 1.4.8
+[2025-12-11 11:14:48] [SUCCESS] Update available: 1.4.6 -> 1.4.8
+[2025-12-11 11:15:04] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:15:04] [INFO] Local version: 1.4.6
+[2025-12-11 11:15:04] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:15:04] [INFO] Remote version: 1.4.8
+[2025-12-11 11:15:04] [SUCCESS] Update available: 1.4.6 -> 1.4.8
+[2025-12-11 11:15:07] [INFO] Starting update from 1.4.6 to 1.4.8
+[2025-12-11 11:15:07] [INFO] Creating backup: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\backups\termUI_v1.4.6_2025-12-11_111507
+[2025-12-11 11:15:07] [SUCCESS] Backup created successfully
+[2025-12-11 11:15:07] [INFO] Downloading update from GitHub...
+[2025-12-11 11:15:10] [INFO] Download complete
+[2025-12-11 11:15:10] [INFO] Extracting update...
+[2025-12-11 11:15:15] [INFO] Extraction complete
+[2025-12-11 11:15:15] [INFO] Installing updated files...
+[2025-12-11 11:15:21] [ERROR] Robocopy failed with exit code 11
+[2025-12-11 11:15:21] [ERROR] Output:  2025/12/11 11:15:15 ERROR 32 (0x00000020) Copying File C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\termUI_update_temp\cmd-main\termUI\termUI.exe The process cannot access the file because it is being used by another process.  Waiting 3 seconds... Retrying... 2025/12/11 11:15:18 ERROR 32 (0x00000020) Copying File C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\termUI_update_temp\cmd-main\termUI\termUI.exe The process cannot access the file because it is being used by another process.  Waiting 3 seconds... Retrying... 2025/12/11 11:15:21 ERROR 32 (0x00000020) Copying File C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\termUI_update_temp\cmd-main\termUI\termUI.exe The process cannot access the file because it is being used by another process.   ERROR: RETRY LIMIT EXCEEDED. 
+[2025-12-11 11:15:21] [WARN] Falling back to recursive directory copy...
+[2025-12-11 11:15:21] [ERROR] Fallback copy failed: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\termUI.exe' because it is being used by another process.
+[2025-12-11 11:15:21] [ERROR] File installation error: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\termUI.exe' because it is being used by another process.
+[2025-12-11 11:15:21] [ERROR] Update installation failed: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\termUI.exe' because it is being used by another process.
+[2025-12-11 11:15:21] [INFO] === Update Check Completed ===
+[2025-12-11 11:17:13] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:17:13] [INFO] Local version: 1.4.8
+[2025-12-11 11:17:13] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:17:13] [INFO] Remote version: 1.4.8
+[2025-12-11 11:17:13] [INFO] Versions are identical: 1.4.8
+[2025-12-11 11:17:13] [SUCCESS] No update needed

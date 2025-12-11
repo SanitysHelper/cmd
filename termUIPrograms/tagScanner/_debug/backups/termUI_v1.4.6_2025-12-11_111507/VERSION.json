@@ -1,27 +1,7 @@
 {
-  "version": "1.4.8",
+  "version": "1.4.6",
   "lastUpdated": "2025-12-11T00:00:00Z",
   "changelog": [
-        {
-          "version": "1.4.8",
-          "date": "2025-12-11",
-          "changes": [
-            "CRITICAL FIX: Removed program-specific buttons from standalone termUI",
-            "CRITICAL: termUI buttons directory now contains ONLY generic test buttons",
-            "CRITICAL: Program-specific buttons (tagScanner, etc.) stay in their own directories",
-            "SAFEGUARD: Added comments to prevent future button contamination",
-            "VERIFIED: Update-Manager excludes buttons, _bin, _debug directories"
-          ]
-        },
-        {
-          "version": "1.4.7",
-          "date": "2025-12-11",
-          "changes": [
-            "CRITICAL: termUI now auto-runs InitializeButtons.ps1 before loading menu tree",
-            "FIX: Programs can now dynamically create buttons on startup",
-            "IMPROVEMENT: Button initialization cleaned to prevent leftover folders"
-          ]
-        },
         {
           "version": "1.4.6",
           "date": "2025-12-11",
