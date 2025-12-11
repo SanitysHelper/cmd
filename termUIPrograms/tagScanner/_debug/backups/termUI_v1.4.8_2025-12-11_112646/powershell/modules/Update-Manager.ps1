@@ -64,22 +64,7 @@ function Write-Log {
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     $logMessage = "[$timestamp] [$Level] $Message"
     
-    # Write to log with retry logic for file locks
-    $retries = 3
-    while ($retries -gt 0) {
-        try {
-            Add-Content -Path $script:updateLog -Value $logMessage -Encoding UTF8 -ErrorAction Stop
-            break
-        }
-        catch {
-            $retries--
-            if ($retries -eq 0) {
-                # Silently fail - don't break update process for logging issues
-                break
-            }
-            Start-Sleep -Milliseconds 100
-        }
-    }
+    Add-Content -Path $script:updateLog -Value $logMessage -Encoding UTF8
     
     if (-not $Silent) {
         switch ($Level) {
@@ -316,17 +301,16 @@ function Install-Update {
             return $false
         }
         
-        # Use robocopy for 10x faster file copying (excludes _debug, _bin, buttons, and .exe files)
+        # Use robocopy for 10x faster file copying (excludes _debug, _bin, and buttons)
         try {
-            # Robocopy: /E=copy subdirs including empty, /XD=exclude dirs, /XF=exclude files, /R:2=2 retries, /W:3=3sec wait, /NJH /NJS /NDL=minimal output
+            # Robocopy: /E=copy subdirs including empty, /XD=exclude dirs, /R:2=2 retries, /W:3=3sec wait, /NJH /NJS /NDL=minimal output
             $robocopyArgs = @(
                 $sourceFolder,
                 $script:scriptRoot,
                 '/E',
                 '/XD', '_debug', '_bin', 'buttons',
-                '/XF', '*.exe',
-                '/R:0',
-                '/W:0',
+                '/R:2',
+                '/W:3',
                 '/NFL',
                 '/NDL',
                 '/NJH',
@@ -339,6 +323,9 @@ function Install-Update {
             # Robocopy exit codes: 0-7 are success, 8+ are errors
             # 0=no files copied, 1=files copied, 2=extra files/dirs, 3=mismatched, 4-7=combinations
             if ($robocopyExitCode -ge 8) {
+                Write-Log "Robocopy failed with exit code $robocopyExitCode" "ERROR"
+                Write-Log "Output: $robocopyOutput" "ERROR"
+                
                 # Fallback to recursive copy using PowerShell (preserves directory structure)
                 Write-Log "Falling back to recursive directory copy..." "WARN"
                 try {
@@ -352,10 +339,6 @@ function Install-Update {
                                 $isExcluded = $true
                                 break
                             }
-                        }
-                        # Also exclude .exe files (running executable cannot be replaced)
-                        if ($_.Extension -eq '.exe') {
-                            $isExcluded = $true
                         }
                         -not $isExcluded
                     }
@@ -375,16 +358,7 @@ function Install-Update {
                             if (-not (Test-Path $parentDir)) {
                                 $null = New-Item -ItemType Directory -Path $parentDir -Force
                             }
-                            try {
-                                Copy-Item -Path $item.FullName -Destination $destination -Force -ErrorAction Stop
-                            }
-                            catch {
-                                # Silently skip files that can't be copied (like running executables)
-                                if ($_.Exception.Message -notlike "*being used by another process*") {
-                                    $errMsg = $_.Exception.Message
-                                    Write-Log "Failed to copy $relativePath`: $errMsg" "WARN"
-                                }
-                            }
+                            Copy-Item -Path $item.FullName -Destination $destination -Force
                         }
                     }
                     Write-Log "Fallback copy completed with directory structure preserved" "SUCCESS"

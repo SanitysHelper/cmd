@@ -262,3 +262,26 @@
 [2025-12-11 11:17:13] [INFO] Remote version: 1.4.8
 [2025-12-11 11:17:13] [INFO] Versions are identical: 1.4.8
 [2025-12-11 11:17:13] [SUCCESS] No update needed
+[2025-12-11 11:25:34] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:25:34] [ERROR] Failed to read local VERSION.json: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\logs\update.log' because it is being used by another process.
+[2025-12-11 11:25:34] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:25:35] [INFO] Remote version: 1.4.9
+[2025-12-11 11:25:35] [ERROR] Cannot proceed without local version
+[2025-12-11 11:25:52] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:25:52] [ERROR] Failed to read local VERSION.json: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\logs\update.log' because it is being used by another process.
+[2025-12-11 11:25:52] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:25:52] [INFO] Remote version: 1.4.9
+[2025-12-11 11:25:52] [ERROR] Cannot proceed without local version
+[2025-12-11 11:26:34] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:26:34] [INFO] Local version: 1.4.8
+[2025-12-11 11:26:34] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:26:34] [INFO] Remote version: 1.4.9
+[2025-12-11 11:26:34] [SUCCESS] Update available: 1.4.8 -> 1.4.9
+[2025-12-11 11:26:46] [INFO] Starting update from 1.4.8 to 1.4.9
+[2025-12-11 11:26:46] [INFO] Creating backup: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\backups\termUI_v1.4.8_2025-12-11_112646
+[2025-12-11 11:26:46] [SUCCESS] Backup created successfully
+[2025-12-11 11:26:46] [INFO] Downloading update from GitHub...
+[2025-12-11 11:26:53] [INFO] Download complete
+[2025-12-11 11:26:53] [INFO] Extracting update...
+[2025-12-11 11:26:58] [ERROR] Extraction failed: Exception calling "ExtractToDirectory" with "2" argument(s): "The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\termUI_update_temp\cmd-main\Old Projects\termUI\_debug\termUI_update_temp\cmd-main\uiBuilder\app\processor.exe' because it is being used by another process."
+[2025-12-11 11:26:58] [INFO] === Update Check Completed ===

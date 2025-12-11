@@ -1,27 +1,7 @@
 {
-  "version": "1.5.0",
+  "version": "1.4.8",
   "lastUpdated": "2025-12-11T00:00:00Z",
   "changelog": [
-        {
-          "version": "1.5.0",
-          "date": "2025-12-11",
-          "changes": [
-            "CRITICAL FIX: Write-Log now handles file locks gracefully with retry logic",
-            "FIX: Multiple termUI instances can run simultaneously without logging errors",
-            "FIX: Update log file no longer blocks VERSION.json reads",
-            "IMPROVEMENT: Silent fallback for logging failures - updates continue even if logging fails"
-          ]
-        },
-        {
-          "version": "1.4.9",
-          "date": "2025-12-11",
-          "changes": [
-            "CRITICAL FIX: Update-Manager now excludes .exe files from robocopy and fallback copy",
-            "FIX: Silently skips running executable during updates (no more scary error messages)",
-            "IMPROVEMENT: Reduced retry attempts to 0 for faster update completion",
-            "UX: Users no longer see file-locking errors during successful updates"
-          ]
-        },
         {
           "version": "1.4.8",
           "date": "2025-12-11",

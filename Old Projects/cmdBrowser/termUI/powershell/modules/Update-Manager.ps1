@@ -64,7 +64,22 @@ function Write-Log {
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     $logMessage = "[$timestamp] [$Level] $Message"
     
-    Add-Content -Path $script:updateLog -Value $logMessage -Encoding UTF8
+    # Write to log with retry logic for file locks
+    $retries = 3
+    while ($retries -gt 0) {
+        try {
+            Add-Content -Path $script:updateLog -Value $logMessage -Encoding UTF8 -ErrorAction Stop
+            break
+        }
+        catch {
+            $retries--
+            if ($retries -eq 0) {
+                # Silently fail - don't break update process for logging issues
+                break
+            }
+            Start-Sleep -Milliseconds 100
+        }
+    }
     
     if (-not $Silent) {
         switch ($Level) {
