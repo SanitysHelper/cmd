@@ -116,23 +116,37 @@ function Add-DirectoryToHistory {
 }
 
 function Select-Directory {
-    $history = Get-DirectoryHistory
+    # Check if there's a saved directory in config first
+    $configDir = Join-Path (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)) "config"
+    $configPath = Join-Path $configDir "scan_directory.txt"
     
-    Write-Host "`n========================================" -ForegroundColor Cyan
-    Write-Host " SELECT DIRECTORY" -ForegroundColor Green
-    Write-Host "========================================" -ForegroundColor Cyan
-    
-    if ($history.Count -gt 0) {
-        Write-Host "`nPrevious directories:" -ForegroundColor Yellow
-        for ($i = 0; $i -lt $history.Count; $i++) {
-            Write-Host "  [$($i + 1)] $($history[$i])" -ForegroundColor White
+    if (Test-Path $configPath) {
+        $savedDir = Get-Content -Path $configPath -Raw -ErrorAction SilentlyContinue | ForEach-Object { $_.Trim() }
+        if ($savedDir -and (Test-Path $savedDir -PathType Container)) {
+            Write-Host "`nUsing configured directory: $savedDir" -ForegroundColor Green
+            Add-DirectoryToHistory -Path $savedDir
+            return $savedDir
         }
     }
     
-    Write-Host "`n  [0] Enter new directory path" -ForegroundColor Green
-    Write-Host ""
+    $history = Get-DirectoryHistory
     
-    $choice = Read-Host "Select option"
+        # Prefer configured working directory set by Directories submenu
+        $configDir = Join-Path (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)) "config"
+        $configPath = Join-Path $configDir "scan_directory.txt"
+        if (Test-Path $configPath) {
+            $savedDir = Get-Content -Path $configPath -Raw -ErrorAction SilentlyContinue | ForEach-Object { $_.Trim() }
+            if ($savedDir -and (Test-Path $savedDir -PathType Container)) {
+                Write-Host "`nUsing configured directory: $savedDir" -ForegroundColor Green
+                return $savedDir
+            }
+        }
+
+        Write-Host "`n[INFO] No working directory configured." -ForegroundColor Yellow
+        Write-Host "Use the 'Directories' submenu to add/select a directory." -ForegroundColor Gray
+        Write-Host "Press any key to continue..." -ForegroundColor DarkGray
+        $null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+        return $null
     
     if ($choice -eq "0") {
         $newPath = Read-Host "Enter directory path"
@@ -168,6 +182,7 @@ function Select-Directory {
     Write-Host "Press any key to continue..." -ForegroundColor Gray
     $null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
     return $null
+        # Old selection flow removed; directory must be chosen via submenu buttons
 }
 
 function Get-AudioFiles {

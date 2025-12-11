@@ -1,3 +1,6 @@
 ﻿[2025-12-11 11:25:44] ERROR: Exception calling "ReadKey" with "1" argument(s): "The Win32 internal error "The parameter is incorrect" 0x57 occurred while setting the console mode. Contact Microsoft Customer Support Services."
 [2025-12-11 11:25:57] ERROR: Exception calling "ReadKey" with "1" argument(s): "The Win32 internal error "The parameter is incorrect" 0x57 occurred while setting the console mode. Contact Microsoft Customer Support Services."
 [2025-12-11 11:45:07] ERROR: Exception calling "ReadKey" with "1" argument(s): "The Win32 internal error "The parameter is incorrect" 0x57 occurred while setting the console mode. Contact Microsoft Customer Support Services."
+[2025-12-11 12:12:30] ERROR: The property 'Children' cannot be found on this object. Verify that the property exists.
+[2025-12-11 12:15:34] ERROR: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_bin\_debug\logs\menu-frame.log' because it is being used by another process.
+[2025-12-11 12:24:25] ERROR: Script execution failed: The term 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\config' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.

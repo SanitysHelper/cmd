@@ -1,2 +1,0 @@
-# Directory History for tagScanner
-# One directory path per line

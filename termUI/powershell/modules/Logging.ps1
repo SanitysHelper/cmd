@@ -66,15 +66,30 @@ function Log-MenuFrame {
         [string]$CurrentPath = ""
     )
     if (-not $script:settings.Logging.log_menu_frame) { return }
+    if ($env:TERMUI_DISABLE_LOG_MENU_FRAME -eq '1') { return }
     $path = Join-Path $script:paths.logs "menu-frame.log"
     Rotate-LogIfNeeded -Path $path -LimitBytes $script:paths.logLimitBytes
     $pathStr = if ($CurrentPath) { " Path=$CurrentPath" } else { "" }
-    "[$(Get-Timestamp)] MENU FRAME Selected=$SelectedIndex Count=$($Items.Count)$pathStr" | Add-Content -Path $path -Encoding UTF8
+    $lines = @()
+    $lines += "[$(Get-Timestamp)] MENU FRAME Selected=$SelectedIndex Count=$($Items.Count)$pathStr"
     for ($i = 0; $i -lt $Items.Count; $i++) {
         $indicator = if ($i -eq $SelectedIndex) { ">>>" } else { "   " }
         $name = $Items[$i].Name
         $type = $Items[$i].Type
-        "  $indicator [$($i+1)] ($type) $name" | Add-Content -Path $path -Encoding UTF8
+        $lines += "  $indicator [$($i+1)] ($type) $name"
+    }
+    # Write atomically with retry to avoid lock contention
+    $maxAttempts = 3
+    for ($attempt = 1; $attempt -le $maxAttempts; $attempt++) {
+        try {
+            $writer = [System.IO.StreamWriter]::new($path, $true, [System.Text.Encoding]::UTF8)
+            foreach ($line in $lines) { $writer.WriteLine($line) }
+            $writer.Dispose()
+            break
+        } catch {
+            if ($attempt -eq $maxAttempts) { throw }
+            Start-Sleep -Milliseconds (100 * $attempt)
+        }
     }
 }
 

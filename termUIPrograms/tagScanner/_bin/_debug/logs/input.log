@@ -48,3 +48,46 @@
 [2025-12-11 11:48:53] INPUT #16 [handler] (+8.796s) [DELAY: 8.80s - MANUAL INPUT SUSPECTED]: {"key":"Enter","char":"\r"}
 [2025-12-11 11:48:54] INPUT #17 [handler] (+0.668s): {"key":"Q","char":"q"}
 [2025-12-11 11:53:13] INPUT #1 [handler] (+8.141s): {"key":"Enter","char":"\r"}
+[2025-12-11 12:00:42] INPUT #1 [handler] (+1.852s): {"key":"Up","char":null}
+[2025-12-11 12:00:43] INPUT #2 [handler] (+0.501s): {"key":"Down","char":null}
+[2025-12-11 12:00:47] INPUT #3 [handler] (+4.444s) [DELAY: 4.44s - MANUAL INPUT SUSPECTED]: {"key":"Enter","char":"\r"}
+[2025-12-11 12:12:30] INPUT #1 [handler] (+4.489s): {"key":"Char","char":"1"}
+[2025-12-11 12:12:30] INPUT #2 [handler] (+0.019s): {"key":"Enter","char":"\r"}
+[2025-12-11 12:13:05] INPUT #1 [handler] (+5.872s): {"key":"Enter","char":"\r"}
+[2025-12-11 12:13:14] INPUT #2 [handler] (+9.519s) [DELAY: 9.52s - MANUAL INPUT SUSPECTED]: {"key":"Enter","char":"\r"}
+[2025-12-11 12:13:16] INPUT #3 [handler] (+2.109s) [DELAY: 2.11s - MANUAL INPUT SUSPECTED]: {"key":"Q","char":"q"}
+[2025-12-11 12:15:34] INPUT #1 [handler] (+56.001s): {"key":"Enter","char":"\r"}
+[2025-12-11 12:20:32] INPUT #1 [handler] (+288.642s): {"key":"Enter","char":"\r"}
+[2025-12-11 12:20:33] INPUT #2 [handler] (+1.078s): {"key":"Down","char":null}
+[2025-12-11 12:20:34] INPUT #3 [handler] (+1.300s): {"key":"Down","char":null}
+[2025-12-11 12:20:35] INPUT #4 [handler] (+0.665s): {"key":"Down","char":null}
+[2025-12-11 12:20:36] INPUT #5 [handler] (+1.362s): {"key":"Down","char":null}
+[2025-12-11 12:20:38] INPUT #6 [handler] (+1.122s): {"key":"Up","char":null}
+[2025-12-11 12:20:38] INPUT #7 [handler] (+0.609s): {"key":"Up","char":null}
+[2025-12-11 12:20:44] INPUT #8 [handler] (+6.082s) [DELAY: 6.08s - MANUAL INPUT SUSPECTED]: {"key":"Enter","char":"\r"}
+[2025-12-11 12:20:46] INPUT #9 [handler] (+1.366s): {"key":"Q","char":"q"}
+[2025-12-11 12:24:12] INPUT #1 [handler] (+75.074s): {"key":"Enter","char":"\r"}
+[2025-12-11 12:24:13] INPUT #2 [handler] (+0.870s): {"key":"Down","char":null}
+[2025-12-11 12:24:13] INPUT #3 [handler] (+0.546s): {"key":"Down","char":null}
+[2025-12-11 12:24:20] INPUT #4 [handler] (+6.084s) [DELAY: 6.08s - MANUAL INPUT SUSPECTED]: {"key":"Enter","char":"\r"}
+[2025-12-11 12:24:23] INPUT #5 [handler] (+3.128s) [DELAY: 3.13s - MANUAL INPUT SUSPECTED]: {"key":"Escape","char":"\u001b"}
+[2025-12-11 12:24:23] INPUT #6 [handler] (+0.783s): {"key":"Down","char":null}
+[2025-12-11 12:24:24] INPUT #7 [handler] (+0.338s): {"key":"Up","char":null}
+[2025-12-11 12:24:24] INPUT #8 [handler] (+0.236s): {"key":"Enter","char":"\r"}
+[2025-12-11 12:24:25] INPUT #9 [handler] (+0.616s): {"key":"Down","char":null}
+[2025-12-11 12:24:28] INPUT #10 [handler] (+3.250s) [DELAY: 3.25s - MANUAL INPUT SUSPECTED]: {"key":"Enter","char":"\r"}
+[2025-12-11 12:24:29] INPUT #11 [handler] (+1.051s): {"key":"Q","char":"q"}
+[2025-12-11 12:25:57] INPUT #1 [handler] (+32.898s): {"key":"Enter","char":"\r"}
+[2025-12-11 12:25:58] INPUT #2 [handler] (+0.725s): {"key":"Down","char":null}
+[2025-12-11 12:25:58] INPUT #3 [handler] (+0.354s): {"key":"Down","char":null}
+[2025-12-11 12:25:59] INPUT #4 [handler] (+0.476s): {"key":"Down","char":null}
+[2025-12-11 12:26:05] INPUT #5 [handler] (+6.262s) [DELAY: 6.26s - MANUAL INPUT SUSPECTED]: {"key":"Enter","char":"\r"}
+[2025-12-11 12:26:06] INPUT #6 [handler] (+0.930s): {"key":"Down","char":null}
+[2025-12-11 12:26:07] INPUT #7 [handler] (+1.236s): {"key":"Escape","char":"\u001b"}
+[2025-12-11 12:26:08] INPUT #8 [handler] (+0.686s): {"key":"Down","char":null}
+[2025-12-11 12:26:21] INPUT #9 [handler] (+12.921s) [DELAY: 12.92s - MANUAL INPUT SUSPECTED]: {"key":"Enter","char":"\r"}
+[2025-12-11 12:26:22] INPUT #10 [handler] (+0.657s): {"key":"Down","char":null}
+[2025-12-11 12:26:24] INPUT #11 [handler] (+2.057s) [DELAY: 2.06s - MANUAL INPUT SUSPECTED]: {"key":"Enter","char":"\r"}
+[2025-12-11 12:26:24] INPUT #12 [handler] (+0.581s): {"key":"Down","char":null}
+[2025-12-11 12:26:25] INPUT #13 [handler] (+0.846s): {"key":"Enter","char":"\r"}
+[2025-12-11 12:26:26] INPUT #14 [handler] (+1.109s): {"key":"Q","char":"q"}

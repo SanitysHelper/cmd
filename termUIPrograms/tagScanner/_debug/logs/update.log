@@ -178,3 +178,75 @@
 [2025-12-11 11:53:05] [INFO] Remote version: 1.5.0
 [2025-12-11 11:53:05] [INFO] Versions are identical: 1.5.0
 [2025-12-11 11:53:05] [SUCCESS] No update needed
+[2025-12-11 11:56:10] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:56:10] [INFO] Local version: 1.5.0
+[2025-12-11 11:56:10] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:56:10] [INFO] Remote version: 1.5.1
+[2025-12-11 11:56:10] [SUCCESS] Update available: 1.5.0 -> 1.5.1
+[2025-12-11 11:56:12] [INFO] Starting update from 1.5.0 to 1.5.1
+[2025-12-11 11:56:12] [INFO] Creating backup: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\backups\termUI_v1.5.0_2025-12-11_115612
+[2025-12-11 11:56:12] [SUCCESS] Backup created successfully
+[2025-12-11 11:56:12] [INFO] Downloading update from GitHub...
+[2025-12-11 11:56:16] [INFO] Download complete
+[2025-12-11 11:56:16] [INFO] Extracting update...
+[2025-12-11 11:56:20] [INFO] Extraction complete
+[2025-12-11 11:56:20] [INFO] Installing updated files...
+[2025-12-11 11:56:20] [SUCCESS] Files installed successfully (robocopy exit code: 3)
+[2025-12-11 11:56:20] [INFO] Cleaning up temporary files...
+[2025-12-11 11:56:21] [SUCCESS] Update completed successfully: 1.5.0 -> 1.5.1
+[2025-12-11 11:56:21] [INFO] === Update Check Completed ===
+[2025-12-11 11:56:21] [SUCCESS] Launched updated termUI
+[2025-12-11 11:56:23] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:56:23] [INFO] Local version: 1.5.1
+[2025-12-11 11:56:23] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:56:23] [INFO] Remote version: 1.5.1
+[2025-12-11 11:56:23] [INFO] Versions are identical: 1.5.1
+[2025-12-11 11:56:23] [SUCCESS] No update needed
+[2025-12-11 11:56:31] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:56:31] [INFO] Local version: 1.5.1
+[2025-12-11 11:56:31] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:56:31] [INFO] Remote version: 1.5.1
+[2025-12-11 11:56:31] [INFO] Versions are identical: 1.5.1
+[2025-12-11 11:56:31] [SUCCESS] No update needed
+[2025-12-11 12:00:40] [INFO] === termUI Update Check Started ===
+[2025-12-11 12:00:41] [INFO] Local version: 1.5.1
+[2025-12-11 12:00:41] [INFO] Checking GitHub for latest version...
+[2025-12-11 12:00:41] [INFO] Remote version: 1.5.1
+[2025-12-11 12:00:41] [INFO] Versions are identical: 1.5.1
+[2025-12-11 12:00:41] [SUCCESS] No update needed
+[2025-12-11 12:12:26] [INFO] === termUI Update Check Started ===
+[2025-12-11 12:12:26] [INFO] Local version: 1.5.1
+[2025-12-11 12:12:26] [INFO] Checking GitHub for latest version...
+[2025-12-11 12:12:26] [INFO] Remote version: 1.5.1
+[2025-12-11 12:12:26] [INFO] Versions are identical: 1.5.1
+[2025-12-11 12:12:26] [SUCCESS] No update needed
+[2025-12-11 12:12:59] [INFO] === termUI Update Check Started ===
+[2025-12-11 12:12:59] [INFO] Local version: 1.5.1
+[2025-12-11 12:12:59] [INFO] Checking GitHub for latest version...
+[2025-12-11 12:12:59] [INFO] Remote version: 1.5.1
+[2025-12-11 12:12:59] [INFO] Versions are identical: 1.5.1
+[2025-12-11 12:12:59] [SUCCESS] No update needed
+[2025-12-11 12:14:38] [INFO] === termUI Update Check Started ===
+[2025-12-11 12:14:38] [INFO] Local version: 1.5.1
+[2025-12-11 12:14:38] [INFO] Checking GitHub for latest version...
+[2025-12-11 12:14:39] [INFO] Remote version: 1.5.1
+[2025-12-11 12:14:39] [INFO] Versions are identical: 1.5.1
+[2025-12-11 12:14:39] [SUCCESS] No update needed
+[2025-12-11 12:15:44] [INFO] === termUI Update Check Started ===
+[2025-12-11 12:15:44] [INFO] Local version: 1.5.1
+[2025-12-11 12:15:44] [INFO] Checking GitHub for latest version...
+[2025-12-11 12:15:44] [INFO] Remote version: 1.5.1
+[2025-12-11 12:15:44] [INFO] Versions are identical: 1.5.1
+[2025-12-11 12:15:44] [SUCCESS] No update needed
+[2025-12-11 12:22:57] [INFO] === termUI Update Check Started ===
+[2025-12-11 12:22:57] [INFO] Local version: 1.5.1
+[2025-12-11 12:22:57] [INFO] Checking GitHub for latest version...
+[2025-12-11 12:22:57] [INFO] Remote version: 1.5.1
+[2025-12-11 12:22:57] [INFO] Versions are identical: 1.5.1
+[2025-12-11 12:22:57] [SUCCESS] No update needed
+[2025-12-11 12:25:24] [INFO] === termUI Update Check Started ===
+[2025-12-11 12:25:25] [INFO] Local version: 1.5.1
+[2025-12-11 12:25:25] [INFO] Checking GitHub for latest version...
+[2025-12-11 12:25:25] [INFO] Remote version: 1.5.1
+[2025-12-11 12:25:25] [INFO] Versions are identical: 1.5.1
+[2025-12-11 12:25:25] [SUCCESS] No update needed
