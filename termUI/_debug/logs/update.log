@@ -142,3 +142,27 @@
 [2025-12-11 11:21:41] [INFO] Remote version: 1.4.8
 [2025-12-11 11:21:41] [WARN] Local version is newer than remote
 [2025-12-11 11:21:41] [SUCCESS] No update needed
+[2025-12-11 11:44:30] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:44:30] [INFO] Local version: 1.5.0
+[2025-12-11 11:44:30] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:44:30] [INFO] Remote version: 1.5.0
+[2025-12-11 11:44:30] [INFO] Versions are identical: 1.5.0
+[2025-12-11 11:44:30] [SUCCESS] No update needed
+[2025-12-11 11:48:56] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:48:56] [INFO] Local version: 1.5.0
+[2025-12-11 11:48:56] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:48:57] [INFO] Remote version: 1.5.0
+[2025-12-11 11:48:57] [INFO] Versions are identical: 1.5.0
+[2025-12-11 11:48:57] [SUCCESS] No update needed
+[2025-12-11 11:49:42] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:49:42] [INFO] Local version: 1.5.0
+[2025-12-11 11:49:42] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:49:42] [INFO] Remote version: 1.5.0
+[2025-12-11 11:49:42] [INFO] Versions are identical: 1.5.0
+[2025-12-11 11:49:42] [SUCCESS] No update needed
+[2025-12-11 11:49:55] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:49:55] [INFO] Local version: 1.5.0
+[2025-12-11 11:49:55] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:49:55] [INFO] Remote version: 1.5.0
+[2025-12-11 11:49:55] [INFO] Versions are identical: 1.5.0
+[2025-12-11 11:49:55] [SUCCESS] No update needed

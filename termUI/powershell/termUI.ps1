@@ -645,6 +645,24 @@ try {
                                 Write-Host " Path: $($item.Path)" -ForegroundColor Gray
                                 Write-Host "========================================" -ForegroundColor Cyan
 
+                                # Execute the corresponding .ps1 script
+                                # Path format is "mainUI/ButtonName", need to get just the relative part after root
+                                $pathParts = $item.Path -split '/', 2
+                                $relativePath = if ($pathParts.Count -gt 1) { $pathParts[1] } else { $item.Path }
+                                $scriptPath = Join-Path $script:paths.menuRoot "$relativePath.ps1"
+                                if (Test-Path $scriptPath) {
+                                    Log-Important "Executing script: $scriptPath"
+                                    try {
+                                        & $scriptPath
+                                    } catch {
+                                        Write-Host "`nERROR executing script: $_" -ForegroundColor Red
+                                        Log-Error "Script execution failed: $_"
+                                    }
+                                } else {
+                                    Write-Host "`nScript not found: $scriptPath" -ForegroundColor Yellow
+                                    Log-Error "Script not found: $scriptPath"
+                                }
+
                                 $skipPause = ($handler.PSObject.Properties['IsTestMode'] -and $handler.IsTestMode) -or $captureFile
                                 if (-not $skipPause) {
                                     Write-Host "`nPress any key to continue..." -ForegroundColor DarkGray

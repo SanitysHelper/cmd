@@ -106,182 +106,75 @@
 [2025-12-10 19:56:16] [INFO] Remote version: 1.4.1
 [2025-12-10 19:56:16] [WARN] Local version is newer than remote
 [2025-12-10 19:56:16] [SUCCESS] No update needed
-[2025-12-11 10:32:26] [ERROR] Fallback copy failed: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\termUI.exe' because it is being used by another process.
-[2025-12-11 10:32:26] [ERROR] File installation error: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\termUI.exe' because it is being used by another process.
-[2025-12-11 10:32:26] [ERROR] Update installation failed: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\termUI.exe' because it is being used by another process.
-[2025-12-11 10:32:26] [INFO] === Update Check Completed ===
-[2025-12-11 10:42:32] [INFO] === termUI Update Check Started ===
-[2025-12-11 10:42:32] [INFO] Local version: 1.4.3
-[2025-12-11 10:42:32] [INFO] Checking GitHub for latest version...
-[2025-12-11 10:42:33] [INFO] Remote version: 1.4.3
-[2025-12-11 10:42:33] [INFO] Versions are identical: 1.4.3
-[2025-12-11 10:42:33] [SUCCESS] No update needed
-[2025-12-11 10:43:05] [INFO] === termUI Update Check Started ===
-[2025-12-11 10:43:05] [INFO] Local version: 1.4.3
-[2025-12-11 10:43:05] [INFO] Checking GitHub for latest version...
-[2025-12-11 10:43:06] [INFO] Remote version: 1.4.3
-[2025-12-11 10:43:06] [INFO] Versions are identical: 1.4.3
-[2025-12-11 10:43:06] [SUCCESS] No update needed
-[2025-12-11 10:43:17] [INFO] === termUI Update Check Started ===
-[2025-12-11 10:43:17] [INFO] Local version: 1.4.3
-[2025-12-11 10:43:17] [INFO] Checking GitHub for latest version...
-[2025-12-11 10:43:18] [INFO] Remote version: 1.4.3
-[2025-12-11 10:43:18] [INFO] Versions are identical: 1.4.3
-[2025-12-11 10:43:18] [SUCCESS] No update needed
-[2025-12-11 10:43:32] [INFO] === termUI Update Check Started ===
-[2025-12-11 10:43:32] [INFO] Local version: 1.4.3
-[2025-12-11 10:43:32] [INFO] Checking GitHub for latest version...
-[2025-12-11 10:43:32] [INFO] Remote version: 1.4.3
-[2025-12-11 10:43:32] [INFO] Versions are identical: 1.4.3
-[2025-12-11 10:43:32] [SUCCESS] No update needed
-[2025-12-11 10:43:57] [INFO] === termUI Update Check Started ===
-[2025-12-11 10:43:57] [INFO] Local version: 1.4.3
-[2025-12-11 10:43:57] [INFO] Checking GitHub for latest version...
-[2025-12-11 10:43:57] [INFO] Remote version: 1.4.3
-[2025-12-11 10:43:57] [INFO] Versions are identical: 1.4.3
-[2025-12-11 10:43:57] [SUCCESS] No update needed
-[2025-12-11 10:44:13] [INFO] === termUI Update Check Started ===
-[2025-12-11 10:44:13] [INFO] Local version: 1.4.3
-[2025-12-11 10:44:13] [INFO] Checking GitHub for latest version...
-[2025-12-11 10:44:13] [INFO] Remote version: 1.4.3
-[2025-12-11 10:44:13] [INFO] Versions are identical: 1.4.3
-[2025-12-11 10:44:13] [SUCCESS] No update needed
-[2025-12-11 10:45:38] [INFO] === termUI Update Check Started ===
-[2025-12-11 10:45:38] [ERROR] Failed to read local VERSION.json: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\logs\update.log' because it is being used by another process.
-[2025-12-11 10:45:38] [INFO] Checking GitHub for latest version...
-[2025-12-11 10:45:38] [INFO] Remote version: 1.4.3
-[2025-12-11 10:45:38] [ERROR] Cannot proceed without local version
-[2025-12-11 10:45:45] [INFO] === termUI Update Check Started ===
-[2025-12-11 10:45:45] [INFO] Local version: 1.4.3
-[2025-12-11 10:45:45] [INFO] Checking GitHub for latest version...
-[2025-12-11 10:45:45] [INFO] Remote version: 1.4.3
-[2025-12-11 10:45:45] [INFO] Versions are identical: 1.4.3
-[2025-12-11 10:45:46] [SUCCESS] No update needed
-[2025-12-11 10:46:06] [INFO] === termUI Update Check Started ===
-[2025-12-11 10:46:06] [INFO] Local version: 1.4.3
-[2025-12-11 10:46:06] [INFO] Checking GitHub for latest version...
-[2025-12-11 10:46:06] [INFO] Remote version: 1.4.3
-[2025-12-11 10:46:07] [INFO] Versions are identical: 1.4.3
-[2025-12-11 10:46:07] [SUCCESS] No update needed
-[2025-12-11 10:47:49] [INFO] === termUI Update Check Started ===
-[2025-12-11 10:47:49] [INFO] Local version: 1.4.3
-[2025-12-11 10:58:59] [INFO] === termUI Update Check Started ===
-[2025-12-11 10:58:59] [INFO] Local version: 1.4.3
-[2025-12-11 10:58:59] [INFO] Checking GitHub for latest version...
-[2025-12-11 10:58:59] [INFO] Remote version: 1.4.5
-[2025-12-11 10:58:59] [SUCCESS] Update available: 1.4.3 -> 1.4.5
-[2025-12-11 10:59:01] [INFO] Starting update from 1.4.3 to 1.4.5
-[2025-12-11 10:59:01] [INFO] Creating backup: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\backups\termUI_v1.4.3_2025-12-11_105901
-[2025-12-11 10:59:02] [SUCCESS] Backup created successfully
-[2025-12-11 10:59:02] [INFO] Downloading update from GitHub...
-[2025-12-11 10:59:09] [INFO] Download complete
-[2025-12-11 10:59:09] [INFO] Extracting update...
-[2025-12-11 10:59:14] [INFO] Extraction complete
-[2025-12-11 10:59:14] [INFO] Installing updated files...
-[2025-12-11 10:59:20] [ERROR] Robocopy failed with exit code 11
-[2025-12-11 10:59:20] [ERROR] Output:  2025/12/11 10:59:14 ERROR 32 (0x00000020) Copying File C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\termUI_update_temp\cmd-main\termUI\termUI.exe The process cannot access the file because it is being used by another process.  Waiting 3 seconds... Retrying... 2025/12/11 10:59:17 ERROR 32 (0x00000020) Copying File C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\termUI_update_temp\cmd-main\termUI\termUI.exe The process cannot access the file because it is being used by another process.  Waiting 3 seconds... Retrying... 2025/12/11 10:59:20 ERROR 32 (0x00000020) Copying File C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\termUI_update_temp\cmd-main\termUI\termUI.exe The process cannot access the file because it is being used by another process.   ERROR: RETRY LIMIT EXCEEDED. 
-[2025-12-11 10:59:20] [WARN] Falling back to recursive directory copy...
-[2025-12-11 10:59:20] [ERROR] Fallback copy failed: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\termUI.exe' because it is being used by another process.
-[2025-12-11 10:59:20] [ERROR] File installation error: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\termUI.exe' because it is being used by another process.
-[2025-12-11 10:59:20] [ERROR] Update installation failed: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\termUI.exe' because it is being used by another process.
-[2025-12-11 10:59:20] [INFO] === Update Check Completed ===
-[2025-12-11 11:00:13] [INFO] === termUI Update Check Started ===
-[2025-12-11 11:00:13] [INFO] Local version: 1.4.6
-[2025-12-11 11:00:13] [INFO] Checking GitHub for latest version...
-[2025-12-11 11:00:14] [INFO] Remote version: 1.4.5
-[2025-12-11 11:00:14] [WARN] Local version is newer than remote
-[2025-12-11 11:00:14] [SUCCESS] No update needed
-[2025-12-11 11:02:12] [INFO] === termUI Update Check Started ===
-[2025-12-11 11:02:12] [INFO] Local version: 1.4.6
-[2025-12-11 11:02:12] [INFO] Checking GitHub for latest version...
-[2025-12-11 11:02:13] [INFO] Remote version: 1.4.6
-[2025-12-11 11:02:13] [INFO] Versions are identical: 1.4.6
-[2025-12-11 11:02:13] [SUCCESS] No update needed
-[2025-12-11 11:02:23] [INFO] === termUI Update Check Started ===
-[2025-12-11 11:02:24] [INFO] Local version: 1.4.6
-[2025-12-11 11:02:24] [INFO] Checking GitHub for latest version...
-[2025-12-11 11:02:24] [INFO] Remote version: 1.4.6
-[2025-12-11 11:02:24] [INFO] Versions are identical: 1.4.6
-[2025-12-11 11:02:24] [SUCCESS] No update needed
-[2025-12-11 11:04:40] [INFO] === termUI Update Check Started ===
-[2025-12-11 11:04:40] [INFO] Local version: 1.4.6
-[2025-12-11 11:04:40] [INFO] Checking GitHub for latest version...
-[2025-12-11 11:04:40] [INFO] Remote version: 1.4.6
-[2025-12-11 11:04:40] [INFO] Versions are identical: 1.4.6
-[2025-12-11 11:04:40] [SUCCESS] No update needed
-[2025-12-11 11:05:51] [INFO] === termUI Update Check Started ===
-[2025-12-11 11:05:51] [INFO] Local version: 1.4.6
-[2025-12-11 11:05:51] [INFO] Checking GitHub for latest version...
-[2025-12-11 11:05:52] [INFO] Remote version: 1.4.6
-[2025-12-11 11:05:52] [INFO] Versions are identical: 1.4.6
-[2025-12-11 11:05:52] [SUCCESS] No update needed
-[2025-12-11 11:06:06] [INFO] === termUI Update Check Started ===
-[2025-12-11 11:06:07] [INFO] Local version: 1.4.6
-[2025-12-11 11:06:07] [INFO] Checking GitHub for latest version...
-[2025-12-11 11:06:07] [INFO] Remote version: 1.4.6
-[2025-12-11 11:06:07] [INFO] Versions are identical: 1.4.6
-[2025-12-11 11:06:07] [SUCCESS] No update needed
-[2025-12-11 11:14:06] [INFO] === termUI Update Check Started ===
-[2025-12-11 11:14:06] [ERROR] Failed to read local VERSION.json: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\logs\update.log' because it is being used by another process.
-[2025-12-11 11:14:06] [INFO] Checking GitHub for latest version...
-[2025-12-11 11:14:06] [INFO] Remote version: 1.4.8
-[2025-12-11 11:14:06] [ERROR] Cannot proceed without local version
-[2025-12-11 11:14:12] [INFO] === termUI Update Check Started ===
-[2025-12-11 11:14:12] [ERROR] Failed to read local VERSION.json: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\logs\update.log' because it is being used by another process.
-[2025-12-11 11:14:12] [INFO] Checking GitHub for latest version...
-[2025-12-11 11:14:13] [INFO] Remote version: 1.4.8
-[2025-12-11 11:14:13] [ERROR] Cannot proceed without local version
-[2025-12-11 11:14:48] [INFO] === termUI Update Check Started ===
-[2025-12-11 11:14:48] [INFO] Local version: 1.4.6
-[2025-12-11 11:14:48] [INFO] Checking GitHub for latest version...
-[2025-12-11 11:14:48] [INFO] Remote version: 1.4.8
-[2025-12-11 11:14:48] [SUCCESS] Update available: 1.4.6 -> 1.4.8
-[2025-12-11 11:15:04] [INFO] === termUI Update Check Started ===
-[2025-12-11 11:15:04] [INFO] Local version: 1.4.6
-[2025-12-11 11:15:04] [INFO] Checking GitHub for latest version...
-[2025-12-11 11:15:04] [INFO] Remote version: 1.4.8
-[2025-12-11 11:15:04] [SUCCESS] Update available: 1.4.6 -> 1.4.8
-[2025-12-11 11:15:07] [INFO] Starting update from 1.4.6 to 1.4.8
-[2025-12-11 11:15:07] [INFO] Creating backup: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\backups\termUI_v1.4.6_2025-12-11_111507
-[2025-12-11 11:15:07] [SUCCESS] Backup created successfully
-[2025-12-11 11:15:07] [INFO] Downloading update from GitHub...
-[2025-12-11 11:15:10] [INFO] Download complete
-[2025-12-11 11:15:10] [INFO] Extracting update...
-[2025-12-11 11:15:15] [INFO] Extraction complete
-[2025-12-11 11:15:15] [INFO] Installing updated files...
-[2025-12-11 11:15:21] [ERROR] Robocopy failed with exit code 11
-[2025-12-11 11:15:21] [ERROR] Output:  2025/12/11 11:15:15 ERROR 32 (0x00000020) Copying File C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\termUI_update_temp\cmd-main\termUI\termUI.exe The process cannot access the file because it is being used by another process.  Waiting 3 seconds... Retrying... 2025/12/11 11:15:18 ERROR 32 (0x00000020) Copying File C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\termUI_update_temp\cmd-main\termUI\termUI.exe The process cannot access the file because it is being used by another process.  Waiting 3 seconds... Retrying... 2025/12/11 11:15:21 ERROR 32 (0x00000020) Copying File C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\termUI_update_temp\cmd-main\termUI\termUI.exe The process cannot access the file because it is being used by another process.   ERROR: RETRY LIMIT EXCEEDED. 
-[2025-12-11 11:15:21] [WARN] Falling back to recursive directory copy...
-[2025-12-11 11:15:21] [ERROR] Fallback copy failed: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\termUI.exe' because it is being used by another process.
-[2025-12-11 11:15:21] [ERROR] File installation error: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\termUI.exe' because it is being used by another process.
-[2025-12-11 11:15:21] [ERROR] Update installation failed: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\termUI.exe' because it is being used by another process.
-[2025-12-11 11:15:21] [INFO] === Update Check Completed ===
-[2025-12-11 11:17:13] [INFO] === termUI Update Check Started ===
-[2025-12-11 11:17:13] [INFO] Local version: 1.4.8
-[2025-12-11 11:17:13] [INFO] Checking GitHub for latest version...
-[2025-12-11 11:17:13] [INFO] Remote version: 1.4.8
-[2025-12-11 11:17:13] [INFO] Versions are identical: 1.4.8
-[2025-12-11 11:17:13] [SUCCESS] No update needed
-[2025-12-11 11:25:34] [INFO] === termUI Update Check Started ===
-[2025-12-11 11:25:34] [ERROR] Failed to read local VERSION.json: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\logs\update.log' because it is being used by another process.
-[2025-12-11 11:25:34] [INFO] Checking GitHub for latest version...
-[2025-12-11 11:25:35] [INFO] Remote version: 1.4.9
-[2025-12-11 11:25:35] [ERROR] Cannot proceed without local version
-[2025-12-11 11:25:52] [INFO] === termUI Update Check Started ===
-[2025-12-11 11:25:52] [ERROR] Failed to read local VERSION.json: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\logs\update.log' because it is being used by another process.
-[2025-12-11 11:25:52] [INFO] Checking GitHub for latest version...
-[2025-12-11 11:25:52] [INFO] Remote version: 1.4.9
-[2025-12-11 11:25:52] [ERROR] Cannot proceed without local version
-[2025-12-11 11:26:34] [INFO] === termUI Update Check Started ===
-[2025-12-11 11:26:34] [INFO] Local version: 1.4.8
-[2025-12-11 11:26:34] [INFO] Checking GitHub for latest version...
-[2025-12-11 11:26:34] [INFO] Remote version: 1.4.9
-[2025-12-11 11:26:34] [SUCCESS] Update available: 1.4.8 -> 1.4.9
-[2025-12-11 11:26:46] [INFO] Starting update from 1.4.8 to 1.4.9
-[2025-12-11 11:26:46] [INFO] Creating backup: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\backups\termUI_v1.4.8_2025-12-11_112646
-[2025-12-11 11:26:46] [SUCCESS] Backup created successfully
-[2025-12-11 11:26:46] [INFO] Downloading update from GitHub...
-[2025-12-11 11:26:53] [INFO] Download complete
-[2025-12-11 11:26:53] [INFO] Extracting update...
-[2025-12-11 11:26:58] [ERROR] Extraction failed: Exception calling "ExtractToDirectory" with "2" argument(s): "The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\termUI_update_temp\cmd-main\Old Projects\termUI\_debug\termUI_update_temp\cmd-main\uiBuilder\app\processor.exe' because it is being used by another process."
-[2025-12-11 11:26:58] [INFO] === Update Check Completed ===
+[2025-12-11 10:48:57] [INFO] === termUI Update Check Started ===
+[2025-12-11 10:48:58] [INFO] Local version: 1.4.5
+[2025-12-11 10:48:58] [INFO] Checking GitHub for latest version...
+[2025-12-11 10:48:58] [INFO] Remote version: 1.4.5
+[2025-12-11 10:48:58] [INFO] Versions are identical: 1.4.5
+[2025-12-11 10:48:58] [SUCCESS] No update needed
+[2025-12-11 10:51:50] [INFO] === termUI Update Check Started ===
+[2025-12-11 10:51:50] [INFO] Local version: 1.4.5
+[2025-12-11 10:51:50] [INFO] Checking GitHub for latest version...
+[2025-12-11 10:51:50] [INFO] Remote version: 1.4.5
+[2025-12-11 10:51:50] [INFO] Versions are identical: 1.4.5
+[2025-12-11 10:51:50] [SUCCESS] No update needed
+[2025-12-11 10:53:53] [INFO] === termUI Update Check Started ===
+[2025-12-11 10:53:53] [INFO] Local version: 1.4.5
+[2025-12-11 10:53:53] [INFO] Checking GitHub for latest version...
+[2025-12-11 10:53:54] [INFO] Remote version: 1.4.5
+[2025-12-11 10:53:54] [INFO] Versions are identical: 1.4.5
+[2025-12-11 10:53:54] [SUCCESS] No update needed
+[2025-12-11 11:17:26] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:17:26] [INFO] Local version: 1.4.8
+[2025-12-11 11:17:26] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:17:26] [INFO] Remote version: 1.4.8
+[2025-12-11 11:17:27] [INFO] Versions are identical: 1.4.8
+[2025-12-11 11:17:27] [SUCCESS] No update needed
+[2025-12-11 11:21:04] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:21:04] [INFO] Local version: 1.4.9
+[2025-12-11 11:21:04] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:21:05] [INFO] Remote version: 1.4.8
+[2025-12-11 11:21:05] [WARN] Local version is newer than remote
+[2025-12-11 11:21:05] [SUCCESS] No update needed
+[2025-12-11 11:21:40] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:21:41] [INFO] Local version: 1.4.9
+[2025-12-11 11:21:41] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:21:41] [INFO] Remote version: 1.4.8
+[2025-12-11 11:21:41] [WARN] Local version is newer than remote
+[2025-12-11 11:21:41] [SUCCESS] No update needed
+[2025-12-11 11:43:17] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:43:17] [INFO] Local version: 1.5.0
+[2025-12-11 11:43:17] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:43:17] [INFO] Remote version: 1.5.0
+[2025-12-11 11:43:17] [INFO] Versions are identical: 1.5.0
+[2025-12-11 11:43:17] [SUCCESS] No update needed
+[2025-12-11 11:44:17] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:44:17] [INFO] Local version: 1.5.0
+[2025-12-11 11:44:17] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:44:18] [INFO] Remote version: 1.5.0
+[2025-12-11 11:44:18] [INFO] Versions are identical: 1.5.0
+[2025-12-11 11:44:18] [SUCCESS] No update needed
+[2025-12-11 11:45:45] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:45:45] [INFO] Local version: 1.5.0
+[2025-12-11 11:45:45] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:45:45] [INFO] Remote version: 1.5.0
+[2025-12-11 11:45:45] [INFO] Versions are identical: 1.5.0
+[2025-12-11 11:45:45] [SUCCESS] No update needed
+[2025-12-11 11:50:32] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:50:32] [INFO] Local version: 1.5.0
+[2025-12-11 11:50:32] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:50:32] [INFO] Remote version: 1.5.0
+[2025-12-11 11:50:32] [INFO] Versions are identical: 1.5.0
+[2025-12-11 11:50:32] [SUCCESS] No update needed
+[2025-12-11 11:51:59] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:51:59] [INFO] Local version: 1.5.0
+[2025-12-11 11:51:59] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:51:59] [INFO] Remote version: 1.5.0
+[2025-12-11 11:51:59] [INFO] Versions are identical: 1.5.0
+[2025-12-11 11:51:59] [SUCCESS] No update needed
+[2025-12-11 11:53:05] [INFO] === termUI Update Check Started ===
+[2025-12-11 11:53:05] [INFO] Local version: 1.5.0
+[2025-12-11 11:53:05] [INFO] Checking GitHub for latest version...
+[2025-12-11 11:53:05] [INFO] Remote version: 1.5.0
+[2025-12-11 11:53:05] [INFO] Versions are identical: 1.5.0
+[2025-12-11 11:53:05] [SUCCESS] No update needed

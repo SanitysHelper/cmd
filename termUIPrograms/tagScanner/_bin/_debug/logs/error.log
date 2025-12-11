@@ -1,2 +1,3 @@
 ﻿[2025-12-11 11:25:44] ERROR: Exception calling "ReadKey" with "1" argument(s): "The Win32 internal error "The parameter is incorrect" 0x57 occurred while setting the console mode. Contact Microsoft Customer Support Services."
 [2025-12-11 11:25:57] ERROR: Exception calling "ReadKey" with "1" argument(s): "The Win32 internal error "The parameter is incorrect" 0x57 occurred while setting the console mode. Contact Microsoft Customer Support Services."
+[2025-12-11 11:45:07] ERROR: Exception calling "ReadKey" with "1" argument(s): "The Win32 internal error "The parameter is incorrect" 0x57 occurred while setting the console mode. Contact Microsoft Customer Support Services."

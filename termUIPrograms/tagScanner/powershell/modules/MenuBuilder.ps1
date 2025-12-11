@@ -25,8 +25,10 @@ function Get-MenuNode {
         $childRel = if ($Relative) { "$Relative/$($opt.BaseName)" } else { $opt.BaseName }
         $desc = ""
         try { $desc = (Get-Content -Path $opt.FullName -Raw -ErrorAction SilentlyContinue).Trim() } catch {}
+        # Strip numeric prefix pattern like "0 - ", "1 - " from display name
+        $displayName = $opt.BaseName -replace '^\d+\s*-\s*', ''
         $children += @{ 
-            Name = $opt.BaseName
+            Name = $displayName
             Type = "option"
             Path = $childRel
             Children = @()

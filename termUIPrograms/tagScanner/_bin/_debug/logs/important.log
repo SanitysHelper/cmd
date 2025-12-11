@@ -1,64 +1,39 @@
-﻿[2025-12-11 08:46:28] INFO: Running in interactive mode (console available)
-[2025-12-11 10:26:34] INFO: Running in interactive mode (console available)
-[2025-12-11 10:27:29] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 10:27:48] INFO: Running in interactive mode (console available)
-[2025-12-11 10:27:55] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 10:32:27] INFO: Running in interactive mode (console available)
-[2025-12-11 10:32:34] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 10:42:33] INFO: Running in interactive mode (console available)
-[2025-12-11 10:42:35] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 10:43:06] INFO: Running in interactive mode (console available)
-[2025-12-11 10:43:08] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 10:43:18] INFO: Running in interactive mode (console available)
-[2025-12-11 10:43:24] INFO: Selected option: mainUI/Dependencies
-[2025-12-11 10:43:27] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 10:43:32] INFO: Running in interactive mode (console available)
-[2025-12-11 10:43:34] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 10:43:58] INFO: Running in interactive mode (console available)
-[2025-12-11 10:44:11] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 10:44:14] INFO: Running in interactive mode (console available)
-[2025-12-11 10:44:15] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 10:45:39] INFO: Running in interactive mode (console available)
-[2025-12-11 10:45:40] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 10:45:46] INFO: Running in interactive mode (console available)
-[2025-12-11 10:45:49] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 10:46:07] INFO: Running in interactive mode (console available)
-[2025-12-11 10:46:09] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 10:59:20] INFO: Running in interactive mode (console available)
-[2025-12-11 10:59:30] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 11:00:14] INFO: Running in interactive mode (console available)
-[2025-12-11 11:00:19] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 11:02:13] INFO: Running in interactive mode (console available)
-[2025-12-11 11:02:20] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 11:02:24] INFO: Running in interactive mode (console available)
-[2025-12-11 11:02:29] INFO: Selected option: mainUI/Dependencies
-[2025-12-11 11:02:31] INFO: Selected option: mainUI/Read Mode
-[2025-12-11 11:02:32] INFO: Selected option: mainUI/Write Mode
-[2025-12-11 11:02:32] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 11:04:40] INFO: Running in interactive mode (console available)
-[2025-12-11 11:04:42] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 11:05:52] INFO: Running in interactive mode (console available)
-[2025-12-11 11:05:54] INFO: Selected option: mainUI/Write Mode
-[2025-12-11 11:05:56] INFO: Selected option: mainUI/Read Mode
-[2025-12-11 11:05:57] INFO: Selected option: mainUI/Dependencies
-[2025-12-11 11:05:58] INFO: Selected option: mainUI/Dependencies
-[2025-12-11 11:05:59] INFO: Selected option: mainUI/Dependencies
-[2025-12-11 11:06:00] INFO: Selected option: mainUI/Dependencies
-[2025-12-11 11:06:00] INFO: Selected option: mainUI/Dependencies
-[2025-12-11 11:06:00] INFO: Selected option: mainUI/Dependencies
-[2025-12-11 11:06:01] INFO: Selected option: mainUI/Dependencies
-[2025-12-11 11:06:04] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 11:06:07] INFO: Running in interactive mode (console available)
-[2025-12-11 11:06:08] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 11:14:07] INFO: Running in interactive mode (console available)
-[2025-12-11 11:14:09] INFO: Selected option: mainUI/Write Mode
-[2025-12-11 11:14:10] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 11:14:13] INFO: Running in interactive mode (console available)
-[2025-12-11 11:14:14] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 11:15:21] INFO: Running in interactive mode (console available)
-[2025-12-11 11:15:24] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 11:25:35] INFO: Running in interactive mode (console available)
-[2025-12-11 11:25:43] INFO: Selected option: mainUI/Dependencies
-[2025-12-11 11:25:53] INFO: Running in interactive mode (console available)
-[2025-12-11 11:25:57] INFO: Selected option: mainUI/Write Mode
-[2025-12-11 11:26:58] INFO: Running in interactive mode (console available)
+﻿[2025-12-11 11:21:05] INFO: Running in interactive mode (console available)
+[2025-12-11 11:21:10] INFO: Selected option: mainUI/About
+[2025-12-11 11:21:19] INFO: User quit with Q key (handler-mapped)
+[2025-12-11 11:21:41] INFO: Running in interactive mode (console available)
+[2025-12-11 11:21:42] INFO: User quit with Q key (handler-mapped)
+[2025-12-11 11:43:18] INFO: Running in interactive mode (console available)
+[2025-12-11 11:43:24] INFO: Selected option: mainUI/0 - Set Directory
+[2025-12-11 11:43:28] INFO: Selected option: mainUI/0 - Set Directory
+[2025-12-11 11:43:40] INFO: Selected option: mainUI/0 - Set Directory
+[2025-12-11 11:43:41] INFO: Selected option: mainUI/1 - Read Mode
+[2025-12-11 11:43:42] INFO: Selected option: mainUI/2 - Write Mode
+[2025-12-11 11:43:43] INFO: Selected option: mainUI/2 - Write Mode
+[2025-12-11 11:43:43] INFO: Selected option: mainUI/2 - Write Mode
+[2025-12-11 11:43:43] INFO: Selected option: mainUI/2 - Write Mode
+[2025-12-11 11:43:44] INFO: Selected option: mainUI/2 - Write Mode
+[2025-12-11 11:43:44] INFO: User quit with Q key (handler-mapped)
+[2025-12-11 11:44:18] INFO: Running in piped input mode (stdin redirected)
+[2025-12-11 11:45:02] INFO: Selected option: mainUI/2 - Write Mode
+[2025-12-11 11:45:04] INFO: Selected option: mainUI/2 - Write Mode
+[2025-12-11 11:45:06] INFO: Selected option: mainUI/2 - Write Mode
+[2025-12-11 11:45:07] INFO: Selected option: mainUI/2 - Write Mode
+[2025-12-11 11:45:07] INFO: Selected option: mainUI/2 - Write Mode
+[2025-12-11 11:45:46] INFO: Running in interactive mode (console available)
+[2025-12-11 11:45:48] INFO: Selected option: mainUI/0 - Set Directory
+[2025-12-11 11:45:50] INFO: Selected option: mainUI/0 - Set Directory
+[2025-12-11 11:45:53] INFO: Selected option: mainUI/1 - Read Mode
+[2025-12-11 11:45:54] INFO: Selected option: mainUI/2 - Write Mode
+[2025-12-11 11:45:55] INFO: Selected option: mainUI/3 - Dependencies
+[2025-12-11 11:48:53] INFO: Selected option: mainUI/0 - Set Directory
+[2025-12-11 11:48:54] INFO: User quit with Q key (handler-mapped)
+[2025-12-11 11:50:32] INFO: Running in interactive mode (console available)
+[2025-12-11 11:50:38] INFO: Selected option: mainUI/0 - Set Directory
+[2025-12-11 11:50:38] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\0 - Set Directory.ps1
+[2025-12-11 11:51:59] INFO: Running in interactive mode (console available)
+[2025-12-11 11:52:53] INFO: Selected option: mainUI/0 - Set Directory
+[2025-12-11 11:52:53] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\0 - Set Directory.ps1
+[2025-12-11 11:53:06] INFO: Running in piped input mode (stdin redirected)
+[2025-12-11 11:53:09] INFO: Selected option: mainUI/0 - Set Directory
+[2025-12-11 11:53:09] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\0 - Set Directory.ps1
