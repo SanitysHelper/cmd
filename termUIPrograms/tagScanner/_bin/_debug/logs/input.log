@@ -17,3 +17,15 @@
 [2025-12-11 10:32:32] INPUT #7 [handler] (+0.319s): {"key":"Down","char":null}
 [2025-12-11 10:32:34] INPUT #8 [handler] (+2.205s) [DELAY: 2.20s - MANUAL INPUT SUSPECTED]: {"key":"Q","char":"q"}
 [2025-12-11 10:42:35] INPUT #1 [handler] (+3.563s): {"key":"Q","char":"q"}
+[2025-12-11 10:43:08] INPUT #1 [handler] (+3.139s): {"key":"Q","char":"q"}
+[2025-12-11 10:43:22] INPUT #1 [handler] (+5.377s): {"key":"Up","char":null}
+[2025-12-11 10:43:23] INPUT #2 [handler] (+0.508s): {"key":"Up","char":null}
+[2025-12-11 10:43:23] INPUT #3 [handler] (+0.416s): {"key":"Up","char":null}
+[2025-12-11 10:43:25] INPUT #4 [handler] (+1.888s): {"key":"Enter","char":"\r"}
+[2025-12-11 10:43:26] INPUT #5 [handler] (+1.049s): {"key":"Down","char":null}
+[2025-12-11 10:43:27] INPUT #6 [handler] (+0.358s): {"key":"Down","char":null}
+[2025-12-11 10:43:27] INPUT #7 [handler] (+0.249s): {"key":"Down","char":null}
+[2025-12-11 10:43:27] INPUT #8 [handler] (+0.429s): {"key":"Q","char":"q"}
+[2025-12-11 10:43:34] INPUT #1 [handler] (+2.547s): {"key":"Q","char":"q"}
+[2025-12-11 10:44:11] INPUT #1 [handler] (+14.705s): {"key":"Q","char":"q"}
+[2025-12-11 10:44:15] INPUT #1 [handler] (+1.847s): {"key":"Q","char":"q"}

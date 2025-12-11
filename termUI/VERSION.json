@@ -10,7 +10,7 @@
           ]
         },
         {
-          "version": "1.4.3",
+          "version": "1.4.5",
           "date": "2025-12-11",
           "changes": [
             "FEATURE: Update system now excludes buttons folder to preserve user-created menus",

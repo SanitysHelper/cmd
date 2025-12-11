@@ -125,3 +125,99 @@
       [5] (option) Dependencies
       [6] (option) Read Mode
       [7] (option) Write Mode
+[2025-12-11 10:43:06] MENU FRAME Selected=0 Count=7 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+      [5] (option) Dependencies
+      [6] (option) Read Mode
+      [7] (option) Write Mode
+[2025-12-11 10:43:18] MENU FRAME Selected=0 Count=7 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+      [5] (option) Dependencies
+      [6] (option) Read Mode
+      [7] (option) Write Mode
+[2025-12-11 10:43:22] MENU FRAME Selected=6 Count=7 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+      [5] (option) Dependencies
+      [6] (option) Read Mode
+  >>> [7] (option) Write Mode
+[2025-12-11 10:43:23] MENU FRAME Selected=5 Count=7 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+      [5] (option) Dependencies
+  >>> [6] (option) Read Mode
+      [7] (option) Write Mode
+[2025-12-11 10:43:23] MENU FRAME Selected=4 Count=7 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+  >>> [5] (option) Dependencies
+      [6] (option) Read Mode
+      [7] (option) Write Mode
+[2025-12-11 10:43:25] MENU FRAME Selected=4 Count=7 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+  >>> [5] (option) Dependencies
+      [6] (option) Read Mode
+      [7] (option) Write Mode
+[2025-12-11 10:43:26] MENU FRAME Selected=5 Count=7 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+      [5] (option) Dependencies
+  >>> [6] (option) Read Mode
+      [7] (option) Write Mode
+[2025-12-11 10:43:27] MENU FRAME Selected=6 Count=7 Path=mainUI
+      [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+      [5] (option) Dependencies
+      [6] (option) Read Mode
+  >>> [7] (option) Write Mode
+[2025-12-11 10:43:27] MENU FRAME Selected=0 Count=7 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+      [5] (option) Dependencies
+      [6] (option) Read Mode
+      [7] (option) Write Mode
+[2025-12-11 10:43:32] MENU FRAME Selected=0 Count=7 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+      [5] (option) Dependencies
+      [6] (option) Read Mode
+      [7] (option) Write Mode
+[2025-12-11 10:43:58] MENU FRAME Selected=0 Count=7 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+      [5] (option) Dependencies
+      [6] (option) Read Mode
+      [7] (option) Write Mode
+[2025-12-11 10:44:14] MENU FRAME Selected=0 Count=7 Path=mainUI
+  >>> [1] (submenu) Settings
+      [2] (submenu) SettingsCommand
+      [3] (submenu) TextInput
+      [4] (submenu) Tools
+      [5] (option) Dependencies
+      [6] (option) Read Mode
+      [7] (option) Write Mode
