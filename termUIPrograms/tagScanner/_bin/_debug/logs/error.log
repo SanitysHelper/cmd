@@ -4,3 +4,21 @@
 [2025-12-11 12:12:30] ERROR: The property 'Children' cannot be found on this object. Verify that the property exists.
 [2025-12-11 12:15:34] ERROR: The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_bin\_debug\logs\menu-frame.log' because it is being used by another process.
 [2025-12-11 12:24:25] ERROR: Script execution failed: The term 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\config' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+[2025-12-11 12:28:41] ERROR: Script execution failed: At C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:75 char:56
++             $metaflacPath = (Test-Path $localMetaflac) ? $localMetafl ...
++                                                        ~
+Unexpected token '?' in expression or statement.
+
+At C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:76 char:55
++             $taglibDllPath = (Test-Path $localTaglib) ? $localTaglib  ...
++                                                       ~
+Unexpected token '?' in expression or statement.
+[2025-12-11 12:28:44] ERROR: Script execution failed: At C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:75 char:56
++             $metaflacPath = (Test-Path $localMetaflac) ? $localMetafl ...
++                                                        ~
+Unexpected token '?' in expression or statement.
+
+At C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:76 char:55
++             $taglibDllPath = (Test-Path $localTaglib) ? $localTaglib  ...
++                                                       ~
+Unexpected token '?' in expression or statement.

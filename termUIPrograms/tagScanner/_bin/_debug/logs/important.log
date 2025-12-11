@@ -81,3 +81,16 @@
 [2025-12-11 12:26:24] INFO: Selected option: mainUI/Write Mode
 [2025-12-11 12:26:24] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Write Mode.ps1
 [2025-12-11 12:26:26] INFO: User quit with Q key (handler-mapped)
+[2025-12-11 12:27:07] INFO: Running in interactive mode (console available)
+[2025-12-11 12:28:30] INFO: Entered submenu: mainUI/Directories
+[2025-12-11 12:28:31] INFO: Selected option: mainUI/Directories/C__Users_cmand_OneDrive_Desktop_Junk_Music
+[2025-12-11 12:28:31] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C__Users_cmand_OneDrive_Desktop_Junk_Music.ps1
+[2025-12-11 12:28:36] INFO: Navigated back to: mainUI
+[2025-12-11 12:28:37] INFO: Selected option: mainUI/Dependencies
+[2025-12-11 12:28:37] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies.ps1
+[2025-12-11 12:28:41] INFO: Selected option: mainUI/Read Mode
+[2025-12-11 12:28:41] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode.ps1
+[2025-12-11 12:28:44] INFO: Selected option: mainUI/Write Mode
+[2025-12-11 12:28:44] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Write Mode.ps1
+[2025-12-11 12:28:46] INFO: User quit with Q key (handler-mapped)
+[2025-12-11 12:29:18] INFO: Running in interactive mode (console available)

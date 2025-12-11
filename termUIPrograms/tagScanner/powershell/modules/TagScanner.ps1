@@ -72,8 +72,8 @@ function Test-Dependencies {
 
             # Re-check
             $missing = @()
-            $metaflacPath = (Test-Path $localMetaflac) ? $localMetaflac : (try { (Get-Command metaflac -EA Stop).Source } catch { $null })
-            $taglibDllPath = (Test-Path $localTaglib) ? $localTaglib : $null
+            if (Test-Path $localMetaflac) { $metaflacPath = $localMetaflac } else { try { $metaflacPath = (Get-Command metaflac -EA Stop).Source } catch { $metaflacPath = $null } }
+            if (Test-Path $localTaglib) { $taglibDllPath = $localTaglib } else { $taglibDllPath = $null }
             if (-not $metaflacPath) { $missing += "metaflac (FLAC metadata tool)" }
             if (-not $taglibDllPath) { $missing += "TagLibSharp.dll (MP3 tag library)" }
             if ($missing.Count -eq 0) { break }
