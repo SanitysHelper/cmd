@@ -326,27 +326,34 @@ function Install-Update {
                 Write-Log "Robocopy failed with exit code $robocopyExitCode" "ERROR"
                 Write-Log "Output: $robocopyOutput" "ERROR"
                 
-                # Fallback to manual copy for critical files
-                Write-Log "Falling back to manual file copy..." "WARN"
-                $criticalFiles = @('termUI.exe', 'VERSION.json', 'settings.ini')
-                foreach ($file in $criticalFiles) {
-                    $src = Join-Path $sourceFolder $file
-                    $dst = Join-Path $script:scriptRoot $file
-                    if (Test-Path $src) {
-                        try {
-                            Copy-Item -Path $src -Destination $dst -Force
-                            Write-Log "Copied critical file: $file" "SUCCESS"
+                # Fallback to recursive copy using PowerShell (preserves directory structure)
+                Write-Log "Falling back to recursive directory copy..." "WARN"
+                try {
+                    $items = Get-ChildItem -Path $sourceFolder -Recurse -Exclude '_debug', '_bin'
+                    foreach ($item in $items) {
+                        $relativePath = $item.FullName.Substring($sourceFolder.Length).TrimStart('\')
+                        $destination = Join-Path $script:scriptRoot $relativePath
+                        
+                        if ($item.PSIsContainer) {
+                            # Create directory if it doesn't exist
+                            if (-not (Test-Path $destination)) {
+                                $null = New-Item -ItemType Directory -Path $destination -Force
+                            }
                         }
-                        catch {
-                            if ($file -ne 'termUI.exe') {  # exe might be in use, that's OK
-                                Write-Log "Failed to copy critical file ${file}: $_" "ERROR"
-                                throw
+                        else {
+                            # Copy file (create parent directory if needed)
+                            $parentDir = Split-Path -Parent $destination
+                            if (-not (Test-Path $parentDir)) {
+                                $null = New-Item -ItemType Directory -Path $parentDir -Force
                             }
-                            else {
-                                Write-Log "Could not update termUI.exe (file in use). Will update on next launch." "WARN"
-                            }
+                            Copy-Item -Path $item.FullName -Destination $destination -Force
                         }
                     }
+                    Write-Log "Fallback copy completed with directory structure preserved" "SUCCESS"
+                }
+                catch {
+                    Write-Log "Fallback copy failed: $_" "ERROR"
+                    throw
                 }
             }
             else {
