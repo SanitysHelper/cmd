@@ -98,6 +98,29 @@ function Test-Dependencies {
     return $true
 }
 
+function Check-Dependencies {
+    $root = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+    $bin = Join-Path $root "_bin"
+    $localMetaflac = Join-Path $bin "metaflac.exe"
+    $localTaglib = Join-Path $bin "TagLibSharp.dll"
+    $haveMetaflac = Test-Path $localMetaflac
+    $haveTaglib = Test-Path $localTaglib
+
+    Write-Host "`n========================================" -ForegroundColor Cyan
+    Write-Host " DEPENDENCY CHECK" -ForegroundColor Green
+    Write-Host "========================================" -ForegroundColor Cyan
+    Write-Host ("Location: " + $bin) -ForegroundColor White
+    if ($haveMetaflac -and $haveTaglib) {
+        Write-Host "All required files found: TagLibSharp.dll, metaflac.exe" -ForegroundColor Green
+    } else {
+        Write-Host "Missing files:" -ForegroundColor Yellow
+        if (-not $haveTaglib) { Write-Host "  - TagLibSharp.dll" -ForegroundColor Red }
+        if (-not $haveMetaflac) { Write-Host "  - metaflac.exe" -ForegroundColor Red }
+    }
+    Write-Host "Press any key to continue..." -ForegroundColor Gray
+    $null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+}
+
 function Get-DirectoryHistory {
     if (Test-Path $script:historyFile) {
         $dirs = Get-Content $script:historyFile | Where-Object { -not [string]::IsNullOrWhiteSpace($_) } | Select-Object -Unique
@@ -541,5 +564,97 @@ function Start-WriteMode {
     $null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 }
 
-# Export functions
-Export-ModuleMember -Function Start-ReadMode, Start-WriteMode
+function Start-ReadModeTag {
+    param([string]$Tag)
+    if (-not (Test-Dependencies)) { return }
+    $dir = Select-Directory
+    if (-not $dir) { return }
+    Write-Host "`n========================================" -ForegroundColor Cyan
+    Write-Host (" READ MODE - " + $Tag) -ForegroundColor Green
+    Write-Host "========================================" -ForegroundColor Cyan
+    Write-Host ("Using configured directory: " + $dir) -ForegroundColor Gray
+    $files = Get-ChildItem -Path $dir -Recurse -File -ErrorAction SilentlyContinue | Where-Object { $_.Extension -match '\.(mp3|flac)$' }
+    foreach ($file in $files) {
+        Write-Host "`nFile: $($file.FullName)" -ForegroundColor Yellow
+        if ($file.Extension -eq '.flac') {
+            if ($script:metaflacCmd) {
+                try {
+                    $out = & $script:metaflacCmd --show-tag=$Tag $file.FullName 2>$null
+                    $val = ($out -split '=')[1]
+                    if ($null -eq $val) { $val = '' }
+                    Write-Host ("  " + $Tag + ": " + $val) -ForegroundColor White
+                } catch { Write-Host "  (no value)" -ForegroundColor DarkGray }
+            }
+        } elseif ($file.Extension -eq '.mp3' -and $script:taglibLoaded) {
+            try {
+                $t = [TagLib.File]::Create($file.FullName)
+                switch ($Tag) {
+                    'Artist' { Write-Host ("  Artist: " + ($t.Tag.FirstPerformer)) }
+                    'Album' { Write-Host ("  Album: " + ($t.Tag.Album)) }
+                    'Title' { Write-Host ("  Title: " + ($t.Tag.Title)) }
+                    'Comment' { Write-Host ("  Comment: " + ($t.Tag.Comment)) }
+                    'Description' { Write-Host ("  Description: " + ($t.Tag.Description)) }
+                    'Both' { Write-Host ("  Description: " + ($t.Tag.Description)); Write-Host ("  Comment: " + ($t.Tag.Comment)) }
+                    'Year' { Write-Host ("  Year: " + ($t.Tag.Year)) }
+                    'Genre' { Write-Host ("  Genre: " + ($t.Tag.FirstGenre)) }
+                    'Track' { Write-Host ("  Track: " + ($t.Tag.Track)) }
+                    'Disc' { Write-Host ("  Disc: " + ($t.Tag.Disc)) }
+                    'Composer' { Write-Host ("  Composer: " + ($t.Tag.Composers -join ', ')) }
+                    'AlbumArtist' { Write-Host ("  Album Artist: " + ($t.Tag.JoinedAlbumArtists)) }
+                    'ISRC' { Write-Host ("  ISRC: " + ($t.Tag.ISRC)) }
+                    'Publisher' { Write-Host ("  Publisher: " + ($t.Tag.Publisher)) }
+                    'Conductor' { Write-Host ("  Conductor: " + ($t.Tag.Conductor)) }
+                    'EncodedBy' { Write-Host ("  Encoded By: " + ($t.Tag.FirstEncoder)) }
+                    'Copyright' { Write-Host ("  Copyright: " + ($t.Tag.Copyright)) }
+                    default { Write-Host "  (unsupported tag for MP3)" -ForegroundColor DarkGray }
+                }
+            } catch { Write-Host "  (failed to read MP3 tags)" -ForegroundColor Red }
+        }
+    }
+    Write-Host "`nPress any key to continue..." -ForegroundColor Gray
+    $null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+}
+
+function Start-WriteModeTag {
+    param([string]$Tag)
+    if (-not (Test-Dependencies)) { return }
+    $dir = Select-Directory
+    if (-not $dir) { return }
+    $value = Read-Host ("Enter value for " + $Tag)
+    $files = Get-ChildItem -Path $dir -Recurse -File -ErrorAction SilentlyContinue | Where-Object { $_.Extension -match '\.(mp3|flac)$' }
+    foreach ($file in $files) {
+        if ($file.Extension -eq '.flac' -and $script:metaflacCmd) {
+            try { & $script:metaflacCmd --remove-tag=$Tag --set-tag="$Tag=$value" $file.FullName | Out-Null } catch {}
+        } elseif ($file.Extension -eq '.mp3' -and $script:taglibLoaded) {
+            try {
+                $t = [TagLib.File]::Create($file.FullName)
+                switch ($Tag) {
+                    'Artist' { $t.Tag.Performers = @($value) }
+                    'Album' { $t.Tag.Album = $value }
+                    'Title' { $t.Tag.Title = $value }
+                    'Comment' { $t.Tag.Comment = $value }
+                    'Description' { $t.Tag.Description = $value }
+                    'Both' { $t.Tag.Description = $value; $t.Tag.Comment = $value }
+                    'Year' { [int]$yr = 0; [void][int]::TryParse($value, [ref]$yr); $t.Tag.Year = $yr }
+                    'Genre' { $t.Tag.Genres = @($value) }
+                    'Track' { [uint]$n=0; [void][uint]::TryParse($value, [ref]$n); $t.Tag.Track = $n }
+                    'Disc' { [uint]$n=0; [void][uint]::TryParse($value, [ref]$n); $t.Tag.Disc = $n }
+                    'Composer' { $t.Tag.Composers = @($value) }
+                    'AlbumArtist' { $t.Tag.AlbumArtists = @($value) }
+                    'ISRC' { $t.Tag.ISRC = $value }
+                    'Publisher' { $t.Tag.Publisher = $value }
+                    'Conductor' { $t.Tag.Conductor = $value }
+                    'EncodedBy' { $t.Tag.Encoder = $value }
+                    'Copyright' { $t.Tag.Copyright = $value }
+                    default {}
+                }
+                $t.Save()
+            } catch {}
+        }
+    }
+    Write-Host "`nDone. Press any key to continue..." -ForegroundColor Gray
+    $null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+}
+
+# Export functions when loaded as a module (ignore in script usage)
+try { Export-ModuleMember -Function Start-ReadMode, Start-WriteMode, Start-ReadModeTag, Start-WriteModeTag } catch {}

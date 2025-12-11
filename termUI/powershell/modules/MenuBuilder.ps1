@@ -86,3 +86,50 @@ function Get-MenuItemsAtPath {
     return ,@($node.Children)
 }
 
+function Force-MenuRefresh {
+    <#
+    .SYNOPSIS
+    Forces a complete rebuild of the menu tree from the filesystem.
+    Used by termUI programs to trigger dynamic menu updates without restarting termUI.
+    
+    .PARAMETER RootPath
+    The root path of the buttons directory to rebuild from
+    
+    .PARAMETER ClearCache
+    If true, clears any cached menu structure before rebuilding
+    
+    .EXAMPLE
+    Force-MenuRefresh -RootPath "c:/path/to/termUI/buttons" -ClearCache $true
+    
+    .NOTES
+    This function is called by Refresh-TermUIMenu in TermUIFunctionLibrary.ps1
+    It forces MenuBuilder to re-scan the filesystem and return the latest menu structure.
+    #>
+    param(
+        [string]$RootPath = (Join-Path (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent) "buttons"),
+        [bool]$ClearCache = $true
+    )
+    
+    try {
+        if (-not (Test-Path $RootPath)) {
+            Write-Error "Menu root not found: $RootPath"
+            return $null
+        }
+        
+        # Force garbage collection to clear any cached directory listings
+        if ($ClearCache) {
+            [System.GC]::Collect()
+            [System.GC]::WaitForPendingFinalizers()
+        }
+        
+        # Rebuild menu tree from filesystem
+        $newTree = Build-MenuTree -RootPath $RootPath
+        
+        return $newTree
+    }
+    catch {
+        Write-Error "Failed to refresh menu: $_"
+        return $null
+    }
+}
+
