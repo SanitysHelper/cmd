@@ -8,6 +8,13 @@ This guide explains how to run and author automated UI tests for termUI and term
 - Test mode is activated by environment variables or CLI flags; in test mode, termUI pre-buffers all events and never blocks for manual input.
 - Logs and transcripts are written under _bin/_debug/logs for inspection.
 
+## What changed in 1.5.8 (testing-focused)
+- Log hygiene: logs are cleared per run with retry to avoid stale content or locked files.
+- Dependency preflight: termUI validates log/settings paths and required executables before startup.
+- Test-mode plumbing: the buffered `Get-TestInput` helper lives in InputBridge and the active handler/test-mode flag are exposed globally (`$global:TERMUI_HANDLER`, `$global:TERMUI_IS_TESTMODE`).
+- Exit codes: unexpected errors return 1; manual-input detection returns 2 for clearer CI signaling.
+- Test summary: when TERMUI_TEST_SUMMARY is not "0" (default on in test mode), a JSON summary is written to _bin/_debug/logs/test-summary.json (override path with TERMUI_TEST_SUMMARY_PATH).
+
 ## Required settings (settings.ini)
 - Input handler: [Input.handler_path] should point to powershell/InputHandler-Replay.ps1 (default is already set).
 - Keep-open behavior: [General.keep_open_after_selection] controls whether termUI exits after executing a button (default true). For automated tests, either leave true or use capture mode if you need post-run artifacts.

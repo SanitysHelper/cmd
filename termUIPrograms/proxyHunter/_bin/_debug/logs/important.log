@@ -1,0 +1,9 @@
+﻿[2025-12-13 00:13:33] INFO: Running in interactive mode (console available)
+[2025-12-13 00:13:34] INFO: Entered submenu: mainUI/Proxies
+[2025-12-13 00:13:36] INFO: Selected option: mainUI/Proxies/View Valid Proxies
+[2025-12-13 00:13:36] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\proxyHunter\powershell\..\buttons\mainUI\Proxies\View Valid Proxies.ps1
+[2025-12-13 00:13:40] INFO: Entered submenu: mainUI/Proxies
+[2025-12-13 00:13:41] INFO: Selected option: mainUI/Proxies/View Valid Proxies
+[2025-12-13 00:13:41] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\proxyHunter\powershell\..\buttons\mainUI\Proxies\View Valid Proxies.ps1
+[2025-12-13 13:15:30] INFO: User quit with Q key (handler-mapped)
+[2025-12-13 13:15:31] INFO: Test summary written to C:\cmdPrograms\cmd\termUIPrograms\proxyHunter\_bin\_debug\logs\test-summary.json

@@ -374,14 +374,6 @@ try {
     $global:TERMUI_IS_TESTMODE = ($handler.PSObject.Properties['IsTestMode'] -and $handler.IsTestMode)
     $numberBuffer = ""
 
-    # Global auto-navigation signal system (used by scripts to auto-navigate after completing tasks)
-    $autoNavSignalPath = Join-Path $script:paths.logs "auto-nav-signal.tmp"
-    function Request-AutoNavigation {
-        param([string]$Path)
-        Set-Content -Path $autoNavSignalPath -Value $Path -Encoding UTF8 -Force -ErrorAction SilentlyContinue
-    }
-    $global:Request-AutoNavigation = ${function:Request-AutoNavigation}
-
     function Emit-TestSummary {
         param(
             [int]$ExitCode,
@@ -783,22 +775,7 @@ try {
 
                                 # Rebuild menu tree to reflect any new/changed buttons added by the script
                                 $tree = Build-MenuTree -RootPath $script:paths.menuRoot
-                                
-                                # Check for auto-navigation signal from script
-                                $autoNavPath = $null
-                                if (Test-Path $autoNavSignalPath) {
-                                    try {
-                                        $autoNavPath = (Get-Content -Path $autoNavSignalPath -Raw -ErrorAction SilentlyContinue).Trim()
-                                        Remove-Item -Path $autoNavSignalPath -Force -ErrorAction SilentlyContinue
-                                    } catch {}
-                                }
-                                
-                                if ($autoNavPath) {
-                                    $currentPath = $autoNavPath
-                                    Write-Host "Auto-navigating to: $currentPath" -ForegroundColor Cyan
-                                } else {
-                                    $currentPath = "mainUI"  # Default: reset to root after executing button
-                                }
+                                $currentPath = "mainUI"  # Reset to root after executing button
                                 $selectedIndex = 0
 
                                 $skipPause = ($handler.PSObject.Properties['IsTestMode'] -and $handler.IsTestMode) -or $captureFile

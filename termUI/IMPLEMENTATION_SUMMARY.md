@@ -1,4 +1,4 @@
-# Global termUI Library - Force Refresh Implementation Complete
+# Global termUI Library - Recent Additions (v1.5.8)
 
 ## Status: ✅ READY FOR DEPLOYMENT
 
@@ -6,7 +6,33 @@
 
 ## What Was Implemented
 
-The global termUI library has been enhanced with **dynamic menu refresh capability** that allows programs to update their menus at runtime without restarting termUI.
+### 1) Test-mode plumbing and summaries
+- `Get-TestInput` lives in `InputBridge.ps1` and is available globally; the active handler is also exposed via `$global:TERMUI_HANDLER` and `$global:TERMUI_IS_TESTMODE`.
+- Optional JSON test summary (`test-summary.json`) is written per run when test mode is active or `TERMUI_TEST_SUMMARY` is not `0`; override path with `TERMUI_TEST_SUMMARY_PATH`.
+- Manual-input detection returns exit code `2`; unexpected exceptions return `1`.
+
+### 2) Log hygiene
+- Per-run log clearing with retry (error/important/input/menu-frame/transcript/output/test-summary).
+- Menu-frame logging now tracks frame count for summary/debugging.
+
+### 3) Dependency preflight
+- New `DependencyPreflight.ps1` provides helpers to kill lockers, ensure PATH entries, and validate required files/dirs/executables.
+- termUI runs a minimal preflight at startup for logs/settings and powershell.exe presence.
+
+### 4) Graceful shutdown
+- Cleanup always stops the input handler and transcript, then exits once using the normalized exit code.
+
+### 5) Dynamic menu refresh (from earlier work)
+- Still supported: Force-MenuRefresh architecture (helper/mid/core layers) documented below for reference.
+
+---
+
+## Developer Notes (1.5.8 behaviors)
+- Logs: cleared per run with retry; rotation still applies when size limits are reached.
+- Test summary: JSON at `_bin/_debug/logs/test-summary.json` by default; contains exit code, manual-input flag, timing, input/menu frame counts, resolved test file/handler, and environment echoes.
+- Exit codes: 0 = success, 1 = unhandled error, 2 = manual input detected in automated runs.
+- Preflight: minimal check runs before transcript/logging; extend via `Invoke-DependencyPreflight` in callers if needed.
+- Globals: `$global:TERMUI_HANDLER` and `$global:TERMUI_IS_TESTMODE` are available for advanced diagnostics or scripted hooks.
 
 ### Three-Layer Architecture
 

@@ -1,3 +1,0 @@
-# Directory History for tagScanner
-# One directory path per line
-C:\Users\cmand\Music
