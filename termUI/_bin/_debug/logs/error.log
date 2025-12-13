@@ -1,2 +1,1 @@
-﻿[2025-12-11 11:48:59] ERROR: Script not found: C:\Users\cmand\OneDrive\Desktop\cmd\termUI\powershell\..\buttons\mainUI\mainUI\About.ps1
-[2025-12-11 11:49:01] ERROR: Script not found: C:\Users\cmand\OneDrive\Desktop\cmd\termUI\powershell\..\buttons\mainUI\mainUI\Test.ps1
+﻿[2025-12-12 23:15:31] ERROR: Test mode requested but test file not found: _debug\test_basic.json

@@ -596,3 +596,192 @@ The string is missing the terminator: ".
 [2025-12-12 21:25:27] ERROR: Script execution failed: The term 'Test-Dependencies' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
 [2025-12-12 21:26:04] ERROR: Script execution failed: The term 'Test-Dependencies' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
 [2025-12-12 21:33:12] ERROR: Script execution failed: The term 'Test-Dependencies' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+[2025-12-12 21:56:27] ERROR: Script execution failed: The term 'Test-Dependencies' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+[2025-12-12 22:08:31] ERROR: Script execution failed: At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:409 char:1
++ }
++ ~
+Unexpected token '}' in expression or statement.
+[2025-12-12 22:09:35] ERROR: Script execution failed: At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:255 char:1
++ }
++ ~
+Unexpected token '}' in expression or statement.
+[2025-12-12 22:10:14] ERROR: Script execution failed: At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:362 char:1
++ }
++ ~
+Unexpected token '}' in expression or statement.
+[2025-12-12 22:11:44] ERROR: Script execution failed: At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:368 char:1
++ }
++ ~
+Unexpected token '}' in expression or statement.
+[2025-12-12 22:12:24] ERROR: Script execution failed: At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:102 char:9
++         } catch { Write-Host "  [ERROR] $($file.Name): $_" -Foregroun ...
++         ~
+Unexpected token '}' in expression or statement.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:103 char:5
++     }
++     ~
+Unexpected token '}' in expression or statement.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:105 char:1
++ }
++ ~
+Unexpected token '}' in expression or statement.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:232 char:38
++     elseif ($fileTypeChoice -eq "2") {
++                                      ~
+Unexpected token '{' in expression or statement.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:360 char:1
++ }
++ ~
+Unexpected token '}' in expression or statement.
+[2025-12-12 22:13:18] ERROR: Script execution failed: At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:93 char:9
++         } catch { Write-Host "  [ERROR] $($file.Name): $_" -Foregroun ...
++         ~
+Unexpected token '}' in expression or statement.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:94 char:5
++     }
++     ~
+Unexpected token '}' in expression or statement.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:96 char:1
++ }
++ ~
+Unexpected token '}' in expression or statement.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:223 char:38
++     elseif ($fileTypeChoice -eq "2") {
++                                      ~
+Unexpected token '{' in expression or statement.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:351 char:1
++ }
++ ~
+Unexpected token '}' in expression or statement.
+[2025-12-12 22:14:58] ERROR: Script execution failed: The variable '$dir' cannot be retrieved because it has not been set.
+[2025-12-12 22:16:21] ERROR: Script execution failed: At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:93 char:5
++     }
++     ~
+Unexpected token '}' in expression or statement.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:96 char:1
++ }
++ ~
+Unexpected token '}' in expression or statement.
+[2025-12-12 22:16:53] ERROR: Script execution failed: At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:102 char:9
++         } elseif ($file.Extension -eq '.mp3' -and $script:taglibLoade ...
++         ~
+Unexpected token '}' in expression or statement.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:102 char:73
++ ...     } elseif ($file.Extension -eq '.mp3' -and $script:taglibLoaded) {
++                                                                         ~
+Unexpected token '{' in expression or statement.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:114 char:5
++     }
++     ~
+Unexpected token '}' in expression or statement.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:117 char:1
++ }
++ ~
+Unexpected token '}' in expression or statement.
+[2025-12-12 22:17:30] ERROR: Script execution failed: At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:102 char:9
++         } elseif ($file.Extension -eq '.mp3' -and $script:taglibLoade ...
++         ~
+Unexpected token '}' in expression or statement.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:102 char:73
++ ...     } elseif ($file.Extension -eq '.mp3' -and $script:taglibLoaded) {
++                                                                         ~
+Unexpected token '{' in expression or statement.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:114 char:5
++     }
++     ~
+Unexpected token '}' in expression or statement.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:117 char:1
++ }
++ ~
+Unexpected token '}' in expression or statement.
+[2025-12-12 22:18:47] ERROR: Script execution failed: At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:101 char:9
++         } elseif ($file.Extension -eq '.mp3' -and $script:taglibLoade ...
++         ~
+Unexpected token '}' in expression or statement.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:101 char:73
++ ...     } elseif ($file.Extension -eq '.mp3' -and $script:taglibLoaded) {
++                                                                         ~
+Unexpected token '{' in expression or statement.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:113 char:5
++     }
++     ~
+Unexpected token '}' in expression or statement.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:116 char:1
++ }
++ ~
+Unexpected token '}' in expression or statement.
+[2025-12-12 22:19:22] ERROR: Script execution failed: At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:10 char:1
++ }
++ ~
+Unexpected token '}' in expression or statement.
+[2025-12-12 22:19:56] ERROR: Script execution failed: At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:97 char:5
++     }
++     ~
+Unexpected token '}' in expression or statement.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:147 char:1
++ }
++ ~
+Unexpected token '}' in expression or statement.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:91 char:9
++         'AlbumArtist' = 'ALBUMARTIST'
++         ~~~~~~~~~~~~~
+The assignment expression is not valid. The input to an assignment operator must be an object that is able to accept assignments, such as a variable or a property.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:92 char:9
++         'ISRC' = 'ISRC'
++         ~~~~~~
+The assignment expression is not valid. The input to an assignment operator must be an object that is able to accept assignments, such as a variable or a property.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:93 char:9
++         'Publisher' = 'ORGANIZATION'
++         ~~~~~~~~~~~
+The assignment expression is not valid. The input to an assignment operator must be an object that is able to accept assignments, such as a variable or a property.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:94 char:9
++         'Conductor' = 'CONDUCTOR'
++         ~~~~~~~~~~~
+The assignment expression is not valid. The input to an assignment operator must be an object that is able to accept assignments, such as a variable or a property.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:95 char:9
++         'EncodedBy' = 'ENCODEDBY'
++         ~~~~~~~~~~~
+The assignment expression is not valid. The input to an assignment operator must be an object that is able to accept assignments, such as a variable or a property.
+
+At C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\modules\TagScanner.ps1:96 char:9
++         'Copyright' = 'COPYRIGHT'
++         ~~~~~~~~~~~
+The assignment expression is not valid. The input to an assignment operator must be an object that is able to accept assignments, such as a variable or a property.
+[2025-12-12 22:29:46] ERROR: The property 'key' cannot be found on this object. Verify that the property exists.
+[2025-12-12 22:32:39] ERROR: Script execution failed: The term 'Start-ReadModeTag' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+[2025-12-12 22:39:15] ERROR: The property 'key' cannot be found on this object. Verify that the property exists.
+[2025-12-12 22:39:59] ERROR: Script execution failed: The term 'Start-WriteModeTag' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+[2025-12-12 22:39:59] ERROR: The property 'key' cannot be found on this object. Verify that the property exists.
+[2025-12-12 22:40:23] ERROR: The property 'key' cannot be found on this object. Verify that the property exists.
+[2025-12-12 22:41:00] ERROR: Script execution failed: The property 'tempTarget' cannot be found on this object. Verify that the property exists.
+[2025-12-12 22:46:10] ERROR: Script execution failed: The term 'Check-Dependencies' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+[2025-12-12 22:46:59] ERROR: The property 'key' cannot be found on this object. Verify that the property exists.
+[2025-12-12 22:51:53] ERROR: The property 'key' cannot be found on this object. Verify that the property exists.
+[2025-12-12 22:54:47] ERROR: The property 'key' cannot be found on this object. Verify that the property exists.
+[2025-12-12 22:55:27] ERROR: The property 'key' cannot be found on this object. Verify that the property exists.
+[2025-12-12 22:56:08] ERROR: Script execution failed: The term 'Start-ReadModeTag' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+[2025-12-12 23:07:08] ERROR: The process cannot access the file 'C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_bin\_debug\logs\input.log' because it is being used by another process.

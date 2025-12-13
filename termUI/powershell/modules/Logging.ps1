@@ -2,6 +2,51 @@ function Get-Timestamp {
     (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
 }
 
+function Clear-LogFile {
+    param(
+        [string]$Path,
+        [int]$MaxAttempts = 3
+    )
+
+    for ($attempt = 1; $attempt -le $MaxAttempts; $attempt++) {
+        try {
+            if (Test-Path $Path) {
+                Clear-Content -Path $Path -ErrorAction Stop
+            } else {
+                $parent = Split-Path $Path -Parent
+                if ($parent -and -not (Test-Path $parent)) {
+                    New-Item -ItemType Directory -Path $parent -Force | Out-Null
+                }
+                New-Item -ItemType File -Path $Path -Force | Out-Null
+            }
+            return
+        } catch {
+            if ($attempt -eq $MaxAttempts) { throw }
+            Start-Sleep -Milliseconds (50 * $attempt)
+        }
+    }
+}
+
+function Initialize-Logs {
+    param(
+        [string]$LogDirectory,
+        [string[]]$Files
+    )
+
+    if (-not (Test-Path $LogDirectory)) {
+        New-Item -ItemType Directory -Path $LogDirectory -Force | Out-Null
+    }
+
+    foreach ($file in $Files) {
+        $path = Join-Path $LogDirectory $file
+        try {
+            Clear-LogFile -Path $path -MaxAttempts 3
+        } catch {
+            # Non-blocking: continue even if a specific file cannot be cleared
+        }
+    }
+}
+
 function Rotate-LogIfNeeded {
     param(
         [string]$Path,
@@ -77,6 +122,9 @@ function Log-MenuFrame {
         $name = $Items[$i].Name
         $type = $Items[$i].Type
         $lines += "  $indicator [$($i+1)] ($type) $name"
+    }
+    if (Get-Variable -Name menuFrameCount -Scope Script -ErrorAction SilentlyContinue) {
+        $script:menuFrameCount++
     }
     # Write atomically with retry to avoid lock contention
     $maxAttempts = 3

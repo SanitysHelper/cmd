@@ -1,50 +1,7 @@
-﻿[2025-12-11 11:21:05] INFO: Running in interactive mode (console available)
-[2025-12-11 11:21:10] INFO: Selected option: mainUI/About
-[2025-12-11 11:21:19] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 11:21:41] INFO: Running in interactive mode (console available)
-[2025-12-11 11:21:42] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 11:44:30] INFO: Running in piped input mode (stdin redirected)
-[2025-12-11 11:44:37] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 11:48:57] INFO: Running in interactive mode (console available)
-[2025-12-11 11:48:59] INFO: Selected option: mainUI/About
-[2025-12-11 11:49:01] INFO: Selected option: mainUI/Test
-[2025-12-11 11:49:02] INFO: User quit with Q key (handler-mapped)
-[2025-12-11 11:49:42] INFO: Running in piped input mode (stdin redirected)
-[2025-12-11 11:49:48] INFO: Selected option: mainUI/About
-[2025-12-11 11:49:48] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUI\powershell\..\buttons\mainUI\About.ps1
-[2025-12-11 11:49:55] INFO: Running in piped input mode (stdin redirected)
-[2025-12-11 11:49:59] INFO: Selected option: mainUI/Test
-[2025-12-11 11:49:59] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUI\powershell\..\buttons\mainUI\Test.ps1
-[2025-12-11 11:50:02] INFO: Selected option: mainUI/Test
-[2025-12-11 11:50:02] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUI\powershell\..\buttons\mainUI\Test.ps1
-[2025-12-11 11:50:22] INFO: Selected option: mainUI/About
-[2025-12-11 11:50:22] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUI\powershell\..\buttons\mainUI\About.ps1
-[2025-12-11 11:50:34] INFO: Selected option: mainUI/About
-[2025-12-11 11:50:34] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUI\powershell\..\buttons\mainUI\About.ps1
-[2025-12-11 11:50:50] INFO: Selected option: mainUI/About
-[2025-12-11 11:50:50] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUI\powershell\..\buttons\mainUI\About.ps1
-[2025-12-11 11:50:53] INFO: User quit with Q key (handler-mapped)
-[2025-12-12 21:34:09] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUI\_debug\test_basic.json (buffered 2 events) using handler C:\cmdPrograms\cmd\termUI\powershell\..\powershell\InputHandler-Replay.ps1
-[2025-12-12 21:34:10] INFO: Selected option: mainUI/About
-[2025-12-12 21:34:10] INFO: Executing script: C:\cmdPrograms\cmd\termUI\powershell\..\buttons\mainUI\About.ps1
-[2025-12-12 21:34:10] INFO: User quit with Q key (handler-mapped)
-[2025-12-12 21:34:13] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUI\_debug\test_basic.json (buffered 2 events) using handler C:\cmdPrograms\cmd\termUI\powershell\..\powershell\InputHandler-Replay.ps1
-[2025-12-12 21:34:13] INFO: Selected option: mainUI/About
-[2025-12-12 21:34:13] INFO: Executing script: C:\cmdPrograms\cmd\termUI\powershell\..\buttons\mainUI\About.ps1
-[2025-12-12 21:34:14] INFO: User quit with Q key (handler-mapped)
-[2025-12-12 21:35:49] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUI\_debug\test_basic.json (buffered 2 events) using handler C:\cmdPrograms\cmd\termUI\powershell\..\powershell\InputHandler-Replay.ps1
-[2025-12-12 21:35:49] INFO: Selected option: mainUI/About
-[2025-12-12 21:35:49] INFO: Executing script: C:\cmdPrograms\cmd\termUI\powershell\..\buttons\mainUI\About.ps1
-[2025-12-12 21:35:49] INFO: User quit with Q key (handler-mapped)
-[2025-12-12 21:37:22] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUI\_debug\test_basic.json (buffered 2 events) using handler C:\cmdPrograms\cmd\termUI\powershell\..\powershell\InputHandler-Replay.ps1
-[2025-12-12 21:37:22] INFO: Selected option: mainUI/About
-[2025-12-12 21:37:22] INFO: Executing script: C:\cmdPrograms\cmd\termUI\powershell\..\buttons\mainUI\About.ps1
-[2025-12-12 21:37:46] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUI\_debug\test_basic.json (buffered 2 events) using handler C:\cmdPrograms\cmd\termUI\powershell\..\powershell\InputHandler-Replay.ps1
-[2025-12-12 21:37:46] INFO: Selected option: mainUI/About
-[2025-12-12 21:37:46] INFO: Executing script: C:\cmdPrograms\cmd\termUI\powershell\..\buttons\mainUI\About.ps1
-[2025-12-12 21:38:06] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUI\_debug\test_basic.json (buffered 2 events) using handler C:\cmdPrograms\cmd\termUI\powershell\..\powershell\InputHandler-Replay.ps1
-[2025-12-12 21:38:06] INFO: Selected option: mainUI/About
-[2025-12-12 21:38:06] INFO: Executing script: C:\cmdPrograms\cmd\termUI\powershell\..\buttons\mainUI\About.ps1
-[2025-12-12 21:38:27] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUI\_debug\test_basic.json (buffered 2 events) using handler C:\cmdPrograms\cmd\termUI\powershell\..\powershell\InputHandler-Replay.ps1
-[2025-12-12 21:38:27] INFO: Selected option: mainUI/About
-[2025-12-12 21:38:27] INFO: Executing script: C:\cmdPrograms\cmd\termUI\powershell\..\buttons\mainUI\About.ps1
+﻿[2025-12-12 23:15:31] INFO: Running in interactive mode (console available)
+[2025-12-12 23:15:36] INFO: Selected option: mainUI/About
+[2025-12-12 23:15:36] INFO: Executing script: C:\cmdPrograms\cmd\termUI\powershell\..\buttons\mainUI\About.ps1
+[2025-12-12 23:15:42] INFO: Selected option: mainUI/Test
+[2025-12-12 23:15:42] INFO: Executing script: C:\cmdPrograms\cmd\termUI\powershell\..\buttons\mainUI\Test.ps1
+[2025-12-12 23:15:43] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 23:15:44] INFO: Test summary written to C:\cmdPrograms\cmd\termUI\_bin\_debug\logs\test-summary.json

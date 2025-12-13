@@ -1,7 +1,17 @@
 {
-  "version": "1.5.7",
+  "version": "1.5.8",
   "lastUpdated": "2025-12-12T00:00:00Z",
   "changelog": [
+        {
+          "version": "1.5.8",
+          "date": "2025-12-12",
+          "changes": [
+            "TESTING: Shared Get-TestInput helper exposed globally for replay handlers and prompts",
+            "ROBUSTNESS: Added dependency preflight utilities and minimal runtime check for logs/settings",
+            "LOGGING: Per-run log clearing, menu-frame counter, and optional test summary emission",
+            "STABILITY: Graceful shutdown ensures handler/transcript cleanup with normalized exit codes"
+          ]
+        },
         {
           "version": "1.5.7",
           "date": "2025-12-12",

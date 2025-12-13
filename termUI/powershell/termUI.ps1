@@ -27,6 +27,7 @@ $script:requiredPaths = @(
     (Join-Path $script:moduleDir "Logging.ps1"),
     (Join-Path $script:moduleDir "Settings.ps1"),
     (Join-Path $script:moduleDir "MenuBuilder.ps1"),
+    (Join-Path $script:moduleDir "DependencyPreflight.ps1"),
     (Join-Path $script:moduleDir "InputBridge.ps1"),
     (Join-Path $script:moduleDir "VersionManager.ps1"),
     (Join-Path $script:moduleDir "Update-Manager.ps1"),
@@ -161,12 +162,18 @@ $script:paths.settings = Join-Path $script:scriptDir "..\settings.ini"
 $script:paths.menuRoot = $null
 $script:lastInputTime = Get-Date
 $script:inputCounter = 0
+$script:menuFrameCount = 0
+$script:sessionStart = Get-Date
+$script:exitCode = 0
+$script:testFilePathResolved = $null
+$script:testHandlerPath = $null
 
 # Core files required for a healthy install
 $script:requiredPaths = @(
     (Join-Path $script:scriptDir "modules\Logging.ps1"),
     (Join-Path $script:scriptDir "modules\Settings.ps1"),
     (Join-Path $script:scriptDir "modules\MenuBuilder.ps1"),
+    (Join-Path $script:scriptDir "modules\DependencyPreflight.ps1"),
     (Join-Path $script:scriptDir "modules\InputBridge.ps1"),
     (Join-Path $script:scriptDir "modules\VersionManager.ps1"),
     (Join-Path $script:scriptDir "termUI.ps1"),
@@ -183,16 +190,31 @@ if ($captureFile) {
 # Ensure directories
 @($script:paths.logs) | ForEach-Object { if (-not (Test-Path $_)) { New-Item -ItemType Directory -Path $_ -Force | Out-Null } }
 
+# Load modules
+. (Join-Path $script:scriptDir "modules\Logging.ps1")
+. (Join-Path $script:scriptDir "modules\DependencyPreflight.ps1")
+. (Join-Path $script:scriptDir "modules\Settings.ps1")
+. (Join-Path $script:scriptDir "modules\MenuBuilder.ps1")
+. (Join-Path $script:scriptDir "modules\InputBridge.ps1")
+
+Initialize-Logs -LogDirectory $script:paths.logs -Files @(
+    "error.log",
+    "important.log",
+    "input.log",
+    "input-timing.log",
+    "menu-frame.log",
+    "ui-transcript.log",
+    "output.log",
+    "test-summary.json"
+)
+
+# Basic dependency preflight (log directory + required executables)
+Invoke-DependencyPreflight -RequiredDirectories @($script:paths.logs) -RequiredPaths @($script:paths.settings) -RequiredExecutables @("powershell.exe") | Out-Null
+
 # Start output transcript logging (clears on each run)
 $script:outputLog = Join-Path $script:paths.logs "output.log"
 if (Test-Path $script:outputLog) { Remove-Item $script:outputLog -Force -ErrorAction SilentlyContinue }
 Start-Transcript -Path $script:outputLog -Force | Out-Null
-
-# Load modules
-. (Join-Path $script:scriptDir "modules\Logging.ps1")
-. (Join-Path $script:scriptDir "modules\Settings.ps1")
-. (Join-Path $script:scriptDir "modules\MenuBuilder.ps1")
-. (Join-Path $script:scriptDir "modules\InputBridge.ps1")
 
 try {
     Write-Host "[DEBUG] Initializing settings..." -ForegroundColor DarkGray
@@ -283,6 +305,9 @@ try {
         }
     }
 
+    $script:testHandlerPath = $testHandlerPath
+    $script:testFilePathResolved = $testFilePath
+
     $testReady = $testModeRequested -and $testFilePath -and (Test-Path $testFilePath) -and $testHandlerPath -and (Test-Path $testHandlerPath)
 
     if ($testReady) {
@@ -345,38 +370,57 @@ try {
     }
 
     $script:handler = $handler
+    $global:TERMUI_HANDLER = $handler
+    $global:TERMUI_IS_TESTMODE = ($handler.PSObject.Properties['IsTestMode'] -and $handler.IsTestMode)
     $numberBuffer = ""
 
-    function Get-TestInput {
-        param([object]$EventBuffer, [object]$Handler)
-        
-        # In test mode, collect characters until Enter is pressed
-        if ($Handler.PSObject.Properties['IsTestMode'] -and $Handler.IsTestMode) {
-            $inputBuffer = ""
-            while ($EventBuffer.Count -gt 0) {
-                $evt = $EventBuffer.Peek()
-                if ($evt.key -eq "Enter") {
-                    # Consume the Enter event
-                    $EventBuffer.Dequeue() | Out-Null
-                    return $inputBuffer
-                } elseif ($evt.key -eq "Backspace") {
-                    $EventBuffer.Dequeue() | Out-Null
-                    if ($inputBuffer.Length -gt 0) {
-                        $inputBuffer = $inputBuffer.Substring(0, $inputBuffer.Length - 1)
-                    }
-                } elseif ($evt.key -eq "Char") {
-                    $EventBuffer.Dequeue() | Out-Null
-                    $inputBuffer += $evt.char
-                } else {
-                    # Stop collecting if we hit a non-text input key
-                    break
-                }
-            }
-            return $inputBuffer
-        }
-        return $null
-    }
+    function Emit-TestSummary {
+        param(
+            [int]$ExitCode,
+            [datetime]$StartTime,
+            [datetime]$EndTime,
+            [bool]$ManualInputDetected
+        )
 
+        $shouldEmit = $env:TERMUI_TEST_SUMMARY -ne "0"
+        $isTestMode = ($handler.PSObject.Properties['IsTestMode'] -and $handler.IsTestMode)
+        if (-not $shouldEmit -and -not $isTestMode) { return }
+
+        $summaryPath = if ($env:TERMUI_TEST_SUMMARY_PATH) {
+            $env:TERMUI_TEST_SUMMARY_PATH
+        } else {
+            Join-Path $script:paths.logs "test-summary.json"
+        }
+
+        $summary = [ordered]@{
+            isTestMode        = $isTestMode
+            exitCode          = $ExitCode
+            manualInput       = $ManualInputDetected
+            start             = $StartTime.ToString("o")
+            end               = $EndTime.ToString("o")
+            durationMs        = [int](($EndTime - $StartTime).TotalMilliseconds)
+            inputsSeen        = $script:inputCounter
+            menuFramesLogged  = $script:menuFrameCount
+            testFile          = $script:testFilePathResolved
+            testHandler       = $script:testHandlerPath
+            environment       = [ordered]@{
+                TERMUI_TEST_MODE    = $env:TERMUI_TEST_MODE
+                TERMUI_TEST_FILE    = $env:TERMUI_TEST_FILE
+                TERMUI_TEST_HANDLER = $env:TERMUI_TEST_HANDLER
+            }
+        }
+
+        try {
+            Clear-LogFile -Path $summaryPath -MaxAttempts 2
+            $summary | ConvertTo-Json -Depth 4 | Set-Content -Path $summaryPath -Encoding UTF8
+            Log-Important "Test summary written to $summaryPath"
+            if ($shouldEmit) {
+                Write-Host "Test summary -> $summaryPath" -ForegroundColor DarkGray
+            }
+        } catch {
+            Log-Error "Failed to write test summary: $_"
+        }
+    }
 
     function Render-Menu { 
         param($Items, $Selected, $InputBuffer = "")
@@ -559,6 +603,7 @@ try {
                             Write-Host "========================================================================" -ForegroundColor Red
                             Write-Host ""
                             $script:quitRequested = $true
+                            $script:exitCode = 2
                             break
                         }
                     }
@@ -803,16 +848,24 @@ try {
 catch {
     Log-Error "$_"
     Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Red
+    $script:exitCode = 1
 }
 finally {
+    $sessionEnd = Get-Date
     Stop-InputHandler -Handler $script:handler
     
     # Stop transcript logging
     try { Stop-Transcript | Out-Null } catch { }
     
     # Report if manual input was detected
+    if ($script:manualInputDetected -and $script:exitCode -eq 0) {
+        $script:exitCode = 2
+    }
     if ($script:manualInputDetected) {
         Write-Host "`n[FAILURE] Test detected manual input requirement. See log for details." -ForegroundColor Red
-        exit 1
     }
+
+    Emit-TestSummary -ExitCode $script:exitCode -StartTime $script:sessionStart -EndTime $sessionEnd -ManualInputDetected:$script:manualInputDetected
 }
+
+exit $script:exitCode

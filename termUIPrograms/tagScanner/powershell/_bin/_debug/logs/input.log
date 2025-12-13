@@ -24,3 +24,13 @@
 [2025-12-11 11:50:42] INPUT #8 [handler] (+13.767s) [DELAY: 13.77s - MANUAL INPUT SUSPECTED]: {"key":"Enter","char":"\r"}
 [2025-12-11 11:50:51] INPUT #9 [handler] (+9.306s) [DELAY: 9.31s - MANUAL INPUT SUSPECTED]: {"key":"Enter","char":"\r"}
 [2025-12-11 11:50:53] INPUT #10 [handler] (+2.245s) [DELAY: 2.24s - MANUAL INPUT SUSPECTED]: {"key":"Q","char":"q"}
+[2025-12-12 21:34:10] INPUT #1 [handler] (+2.408s): {"key":"Enter"}
+[2025-12-12 21:34:10] INPUT #2 [handler] (+0.140s): {"key":"Q"}
+[2025-12-12 21:34:14] INPUT #1 [handler] (+2.024s): {"key":"Enter"}
+[2025-12-12 21:34:14] INPUT #2 [handler] (+0.113s): {"key":"Q"}
+[2025-12-12 21:35:49] INPUT #1 [handler] (+2.049s): {"key":"Enter"}
+[2025-12-12 21:35:49] INPUT #2 [handler] (+0.125s): {"key":"Q"}
+[2025-12-12 21:37:22] INPUT #1 [handler] (+1.944s): {"key":"Enter"}
+[2025-12-12 21:37:46] INPUT #1 [handler] (+1.800s): {"key":"Enter"}
+[2025-12-12 21:38:06] INPUT #1 [handler] (+1.787s): {"key":"Enter"}
+[2025-12-12 21:38:28] INPUT #1 [handler] (+1.756s): {"key":"Enter"}

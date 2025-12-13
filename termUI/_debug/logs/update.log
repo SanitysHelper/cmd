@@ -190,3 +190,38 @@
 [2025-12-12 21:37:21] [INFO] Remote version: 1.5.4
 [2025-12-12 21:37:21] [WARN] Local version is newer than remote
 [2025-12-12 21:37:21] [SUCCESS] No update needed
+[2025-12-12 21:49:46] [INFO] === termUI Update Check Started ===
+[2025-12-12 21:49:46] [INFO] Local version: 1.5.7
+[2025-12-12 21:49:46] [INFO] Checking GitHub for latest version...
+[2025-12-12 21:49:46] [INFO] Remote version: 1.5.7
+[2025-12-12 21:49:46] [INFO] Versions are identical: 1.5.7
+[2025-12-12 21:49:46] [SUCCESS] No update needed
+[2025-12-12 21:50:03] [INFO] === termUI Update Check Started ===
+[2025-12-12 21:50:03] [INFO] Local version: 1.5.7
+[2025-12-12 21:50:03] [INFO] Checking GitHub for latest version...
+[2025-12-12 21:50:04] [INFO] Remote version: 1.5.7
+[2025-12-12 21:50:04] [INFO] Versions are identical: 1.5.7
+[2025-12-12 21:50:04] [SUCCESS] No update needed
+[2025-12-12 21:51:10] [INFO] === termUI Update Check Started ===
+[2025-12-12 21:51:10] [INFO] Local version: 1.5.4
+[2025-12-12 21:51:10] [INFO] Checking GitHub for latest version...
+[2025-12-12 21:51:10] [INFO] Remote version: 1.5.7
+[2025-12-12 21:51:10] [SUCCESS] Update available: 1.5.4 -> 1.5.7
+[2025-12-12 21:51:28] [INFO] === termUI Update Check Started ===
+[2025-12-12 21:51:28] [INFO] Local version: 1.5.4
+[2025-12-12 21:51:28] [INFO] Checking GitHub for latest version...
+[2025-12-12 21:51:29] [INFO] Remote version: 1.5.7
+[2025-12-12 21:51:29] [SUCCESS] Update available: 1.5.4 -> 1.5.7
+[2025-12-12 21:51:29] [INFO] Update declined by user
+[2025-12-12 21:52:14] [INFO] === termUI Update Check Started ===
+[2025-12-12 21:52:14] [INFO] Local version: 1.5.7
+[2025-12-12 21:52:14] [INFO] Checking GitHub for latest version...
+[2025-12-12 21:52:15] [INFO] Remote version: 1.5.7
+[2025-12-12 21:52:15] [INFO] Versions are identical: 1.5.7
+[2025-12-12 21:52:15] [SUCCESS] No update needed
+[2025-12-12 23:15:30] [INFO] === termUI Update Check Started ===
+[2025-12-12 23:15:30] [INFO] Local version: 1.5.8
+[2025-12-12 23:15:30] [INFO] Checking GitHub for latest version...
+[2025-12-12 23:15:30] [INFO] Remote version: 1.5.7
+[2025-12-12 23:15:31] [WARN] Local version is newer than remote
+[2025-12-12 23:15:31] [SUCCESS] No update needed

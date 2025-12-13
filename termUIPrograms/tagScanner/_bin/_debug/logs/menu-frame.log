@@ -4068,3 +4068,21 @@
       [3] (submenu) Read Mode
       [4] (submenu) Write Mode
       [5] (option) Repair Metadata
+[2025-12-12 21:49:47] MENU FRAME Selected=0 Count=5 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+      [5] (option) Repair Metadata
+[2025-12-12 21:50:04] MENU FRAME Selected=0 Count=5 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+      [5] (option) Repair Metadata
+[2025-12-12 21:52:15] MENU FRAME Selected=0 Count=5 Path=mainUI
+  >>> [1] (submenu) Dependencies
+      [2] (submenu) Directories
+      [3] (submenu) Read Mode
+      [4] (submenu) Write Mode
+      [5] (option) Repair Metadata

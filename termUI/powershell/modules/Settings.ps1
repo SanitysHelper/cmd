@@ -5,7 +5,7 @@ function Get-DefaultSettings {
             ui_title = "termUI"
             menu_root = "buttons\mainUI"
             keep_open_after_selection = $true
-            show_selected_prompt = $false
+            show_selected_prompt = $true
         }
         Logging = @{ 
             log_input = $true
@@ -14,7 +14,7 @@ function Get-DefaultSettings {
             log_important = $true
             log_menu_frame = $true
             log_transcript = $true
-            log_rotation_mb = 5
+            log_rotation_mb = 10
         }
         Input = @{ 
             handler_path = "powershell\InputHandler-Replay.ps1"

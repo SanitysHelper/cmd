@@ -7,6 +7,39 @@ function Stop-InputHandler {
     } catch {}
 }
 
+function Get-TestInput {
+    param(
+        [object]$EventBuffer,
+        [object]$Handler
+    )
+
+    # In test mode, collect characters until Enter is pressed
+    if ($Handler.PSObject.Properties['IsTestMode'] -and $Handler.IsTestMode) {
+        $inputBuffer = ""
+        while ($EventBuffer.Count -gt 0) {
+            $evt = $EventBuffer.Peek()
+            if ($evt.key -eq "Enter") {
+                # Consume the Enter event
+                $EventBuffer.Dequeue() | Out-Null
+                return $inputBuffer
+            } elseif ($evt.key -eq "Backspace") {
+                $EventBuffer.Dequeue() | Out-Null
+                if ($inputBuffer.Length -gt 0) {
+                    $inputBuffer = $inputBuffer.Substring(0, $inputBuffer.Length - 1)
+                }
+            } elseif ($evt.key -eq "Char") {
+                $EventBuffer.Dequeue() | Out-Null
+                $inputBuffer += $evt.char
+            } else {
+                # Stop collecting if we hit a non-text input key
+                break
+            }
+        }
+        return $inputBuffer
+    }
+    return $null
+}
+
 function Get-NextInputEvent {
     param($Handler)
     

@@ -771,3 +771,267 @@
 [2025-12-12 21:33:12] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
 [2025-12-12 21:33:18] INFO: User quit with Q key (handler-mapped)
 [2025-12-12 21:33:28] INFO: Running in interactive mode (console available)
+[2025-12-12 21:47:29] INFO: Running in interactive mode (console available)
+[2025-12-12 21:47:34] INFO: Running in interactive mode (console available)
+[2025-12-12 21:47:38] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 21:47:39] INFO: Selected option: mainUI/Dependencies/Auto Download
+[2025-12-12 21:47:39] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Auto Download.ps1
+[2025-12-12 21:48:02] INFO: Running in interactive mode (console available)
+[2025-12-12 21:48:05] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 21:48:06] INFO: Selected option: mainUI/Dependencies/Check Dependencies
+[2025-12-12 21:48:06] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Check Dependencies.ps1
+[2025-12-12 21:49:47] INFO: Running in interactive mode (console available)
+[2025-12-12 21:49:48] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 21:50:04] INFO: Running in interactive mode (console available)
+[2025-12-12 21:50:06] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 21:52:15] INFO: Running in interactive mode (console available)
+[2025-12-12 21:52:17] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 21:54:41] INFO: Running in interactive mode (console available)
+[2025-12-12 21:54:45] INFO: Entered submenu: mainUI/Directories
+[2025-12-12 21:54:47] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-12 21:54:47] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-12 21:56:26] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_read_notes.json (buffered 8 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 21:56:27] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 21:56:27] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 21:56:27] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 21:56:28] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:08:29] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_read_notes.json (buffered 8 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:08:30] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:08:30] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:08:30] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:08:31] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:09:34] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_read_notes.json (buffered 8 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:09:34] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:09:35] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:09:35] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:09:35] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:10:13] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_read_notes.json (buffered 8 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:10:14] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:10:14] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:10:14] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:10:15] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:11:42] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_read_notes.json (buffered 8 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:11:43] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:11:43] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:11:43] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:11:44] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:12:23] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_read_notes.json (buffered 8 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:12:24] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:12:24] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:12:24] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:12:24] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:13:17] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_read_notes.json (buffered 8 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:13:18] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:13:18] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:13:18] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:13:19] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:14:56] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_read_notes.json (buffered 8 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:14:57] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:14:57] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:14:57] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:14:58] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:16:20] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_read_notes.json (buffered 8 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:16:20] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:16:21] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:16:21] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:16:21] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:16:52] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_read_notes.json (buffered 8 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:16:53] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:16:53] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:16:53] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:16:54] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:17:29] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_read_notes.json (buffered 8 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:17:29] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:17:30] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:17:30] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:17:30] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:18:46] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_read_notes.json (buffered 8 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:18:46] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:18:47] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:18:47] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:18:47] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:19:21] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_read_notes.json (buffered 8 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:19:22] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:19:22] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:19:22] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:19:23] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:19:55] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_read_notes.json (buffered 8 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:19:56] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:19:56] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:19:56] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:19:56] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:20:24] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_read_notes.json (buffered 8 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:20:25] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:20:26] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:20:26] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:20:26] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:27:14] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_read_notes.json (buffered 8 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:27:14] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:27:15] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:27:15] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:27:16] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:28:06] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_read_notes.json (buffered 8 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:28:07] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:28:07] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:28:07] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:28:08] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:29:46] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_write_read_notes.json (buffered 1 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:31:52] INFO: Running in interactive mode (console available)
+[2025-12-12 22:31:54] INFO: Entered submenu: mainUI/Directories
+[2025-12-12 22:31:56] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-12 22:31:56] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-12 22:31:58] INFO: Selected option: mainUI/Repair Metadata
+[2025-12-12 22:31:58] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Repair Metadata.ps1
+[2025-12-12 22:32:03] INFO: Entered submenu: mainUI/Directories
+[2025-12-12 22:32:03] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-12 22:32:03] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-12 22:32:05] INFO: Selected option: mainUI/Repair Metadata
+[2025-12-12 22:32:05] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Repair Metadata.ps1
+[2025-12-12 22:32:09] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:32:10] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:32:10] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:32:37] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:32:38] INFO: Selected option: mainUI/Read Mode/Album
+[2025-12-12 22:32:38] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Album.ps1
+[2025-12-12 22:32:41] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:32:44] INFO: Navigated back to: mainUI
+[2025-12-12 22:32:48] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 22:32:49] INFO: Selected option: mainUI/Dependencies/Auto Download
+[2025-12-12 22:32:49] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Auto Download.ps1
+[2025-12-12 22:33:18] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 22:33:18] INFO: Selected option: mainUI/Dependencies/Auto Download
+[2025-12-12 22:33:18] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Auto Download.ps1
+[2025-12-12 22:33:50] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:34:56] INFO: Running in interactive mode (console available)
+[2025-12-12 22:34:58] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 22:34:59] INFO: Selected option: mainUI/Dependencies/Auto Download
+[2025-12-12 22:34:59] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Auto Download.ps1
+[2025-12-12 22:36:42] INFO: Running in interactive mode (console available)
+[2025-12-12 22:36:45] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 22:36:46] INFO: Selected option: mainUI/Dependencies/Auto Download
+[2025-12-12 22:36:46] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Auto Download.ps1
+[2025-12-12 22:37:37] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:37:40] INFO: Running in interactive mode (console available)
+[2025-12-12 22:37:41] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 22:37:42] INFO: Selected option: mainUI/Dependencies/Auto Download
+[2025-12-12 22:37:42] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Auto Download.ps1
+[2025-12-12 22:39:14] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_write_read_notes.json (buffered 14 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:39:58] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_write_read_notes.json (buffered 27 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:39:58] INFO: Entered submenu: mainUI/Write Mode
+[2025-12-12 22:39:59] INFO: Selected option: mainUI/Write Mode/Artist
+[2025-12-12 22:39:59] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Write Mode\Artist.ps1
+[2025-12-12 22:40:21] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_write_read_notes.json (buffered 28 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:40:22] INFO: Entered submenu: mainUI/Write Mode
+[2025-12-12 22:40:22] INFO: Selected option: mainUI/Write Mode/Comment
+[2025-12-12 22:40:22] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Write Mode\Comment.ps1
+[2025-12-12 22:40:45] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_setup_dependencies.json (buffered 7 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:40:46] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 22:40:46] INFO: Selected option: mainUI/Dependencies/Auto Download
+[2025-12-12 22:40:46] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Auto Download.ps1
+[2025-12-12 22:41:00] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 22:41:00] INFO: Navigated back to: mainUI
+[2025-12-12 22:41:01] INFO: Entered submenu: mainUI/Directories
+[2025-12-12 22:42:47] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_setup_dependencies.json (buffered 7 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:42:47] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 22:42:47] INFO: Selected option: mainUI/Dependencies/Auto Download
+[2025-12-12 22:42:47] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Auto Download.ps1
+[2025-12-12 22:44:30] INFO: Running in interactive mode (console available)
+[2025-12-12 22:44:33] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 22:44:34] INFO: Selected option: mainUI/Dependencies/Auto Download
+[2025-12-12 22:44:34] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Auto Download.ps1
+[2025-12-12 22:45:11] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 22:45:12] INFO: Selected option: mainUI/Dependencies/Auto Download
+[2025-12-12 22:45:12] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Auto Download.ps1
+[2025-12-12 22:46:08] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 22:46:10] INFO: Selected option: mainUI/Dependencies/Check Dependencies
+[2025-12-12 22:46:10] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Check Dependencies.ps1
+[2025-12-12 22:46:57] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_write_read_notes.json (buffered 28 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:46:58] INFO: Entered submenu: mainUI/Write Mode
+[2025-12-12 22:46:58] INFO: Selected option: mainUI/Write Mode/Comment
+[2025-12-12 22:46:58] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Write Mode\Comment.ps1
+[2025-12-12 22:49:57] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_setup_dependencies.json (buffered 7 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:49:57] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 22:49:58] INFO: Selected option: mainUI/Dependencies/Auto Download
+[2025-12-12 22:49:58] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Auto Download.ps1
+[2025-12-12 22:51:52] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_write_read_notes.json (buffered 28 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:51:52] INFO: Entered submenu: mainUI/Write Mode
+[2025-12-12 22:51:53] INFO: Selected option: mainUI/Write Mode/Comment
+[2025-12-12 22:51:53] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Write Mode\Comment.ps1
+[2025-12-12 22:52:14] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_setup_dependencies.json (buffered 7 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:52:15] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 22:52:15] INFO: Selected option: mainUI/Dependencies/Auto Download
+[2025-12-12 22:52:15] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Auto Download.ps1
+[2025-12-12 22:53:50] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_setup_dependencies.json (buffered 7 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:53:50] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 22:53:50] INFO: Selected option: mainUI/Dependencies/Auto Download
+[2025-12-12 22:53:50] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Auto Download.ps1
+[2025-12-12 22:54:32] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_write_read_notes.json (buffered 28 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:54:32] INFO: Entered submenu: mainUI/Write Mode
+[2025-12-12 22:54:33] INFO: Selected option: mainUI/Write Mode/Comment
+[2025-12-12 22:54:33] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Write Mode\Comment.ps1
+[2025-12-12 22:55:08] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_write_read_notes.json (buffered 29 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:55:09] INFO: Entered submenu: mainUI/Write Mode
+[2025-12-12 22:55:10] INFO: Selected option: mainUI/Write Mode/Comment
+[2025-12-12 22:55:10] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Write Mode\Comment.ps1
+[2025-12-12 22:56:00] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_write_read_notes.json (buffered 29 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:56:01] INFO: Entered submenu: mainUI/Write Mode
+[2025-12-12 22:56:01] INFO: Selected option: mainUI/Write Mode/Comment
+[2025-12-12 22:56:02] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Write Mode\Comment.ps1
+[2025-12-12 22:56:07] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 22:56:07] INFO: Navigated back to: mainUI
+[2025-12-12 22:56:07] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:56:08] INFO: Selected option: mainUI/Read Mode/Artist
+[2025-12-12 22:56:08] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Artist.ps1
+[2025-12-12 22:56:08] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:56:26] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_write_read_notes.json (buffered 30 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:56:26] INFO: Entered submenu: mainUI/Write Mode
+[2025-12-12 22:56:27] INFO: Selected option: mainUI/Write Mode/Comment
+[2025-12-12 22:56:27] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Write Mode\Comment.ps1
+[2025-12-12 22:56:33] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 22:56:33] INFO: Navigated back to: mainUI
+[2025-12-12 22:56:34] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:56:34] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:56:34] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:56:35] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:57:22] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_write_read_notes.json (buffered 30 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:57:22] INFO: Entered submenu: mainUI/Write Mode
+[2025-12-12 22:57:23] INFO: Selected option: mainUI/Write Mode/Comment
+[2025-12-12 22:57:23] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Write Mode\Comment.ps1
+[2025-12-12 22:57:31] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 22:57:31] INFO: Navigated back to: mainUI
+[2025-12-12 22:57:32] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:57:32] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:57:32] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:57:33] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:57:48] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_write_read_notes.json (buffered 30 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:57:48] INFO: Entered submenu: mainUI/Write Mode
+[2025-12-12 22:57:49] INFO: Selected option: mainUI/Write Mode/Comment
+[2025-12-12 22:57:49] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Write Mode\Comment.ps1
+[2025-12-12 22:57:54] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 22:57:54] INFO: Navigated back to: mainUI
+[2025-12-12 22:57:55] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:57:55] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:57:55] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:57:56] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 22:59:17] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_write_read_notes.json (buffered 30 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 22:59:18] INFO: Entered submenu: mainUI/Write Mode
+[2025-12-12 22:59:18] INFO: Selected option: mainUI/Write Mode/Comment
+[2025-12-12 22:59:18] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Write Mode\Comment.ps1
+[2025-12-12 22:59:24] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 22:59:24] INFO: Navigated back to: mainUI
+[2025-12-12 22:59:24] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 22:59:25] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 22:59:25] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 22:59:25] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 23:00:12] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_write_read_notes.json (buffered 30 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 23:00:13] INFO: Entered submenu: mainUI/Write Mode
+[2025-12-12 23:00:14] INFO: Selected option: mainUI/Write Mode/Comment
+[2025-12-12 23:00:14] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Write Mode\Comment.ps1
+[2025-12-12 23:07:08] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_write_read_notes.json (buffered 30 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 23:15:53] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_read_artist.json (buffered 10 events) using handler C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\powershell\InputHandler-Replay.ps1
+[2025-12-12 23:15:53] INFO: Entered submenu: mainUI/Directories
+[2025-12-12 23:15:54] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-12 23:15:54] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-12 23:16:08] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 23:16:08] INFO: Entered submenu: mainUI/Read Mode/Extras
+[2025-12-12 23:16:09] INFO: User quit with Q key (handler-mapped)
