@@ -30,28 +30,15 @@ param(
 # Configuration
 $script:GITHUB_REPO = "SanitysHelper/cmd"
 $script:GITHUB_BRANCH = "main"
-$script:TERMUI_FOLDER = "termUI"
-$script:VERSION_URL = "https://raw.githubusercontent.com/$script:GITHUB_REPO/$script:GITHUB_BRANCH/$script:TERMUI_FOLDER/VERSION.json"
+# Always check termUI framework (not program-specific)
+$script:VERSION_URL = "https://raw.githubusercontent.com/$script:GITHUB_REPO/$script:GITHUB_BRANCH/termUI/VERSION.json"
 $script:DOWNLOAD_URL = "https://github.com/$script:GITHUB_REPO/archive/refs/heads/$script:GITHUB_BRANCH.zip"
 
-# Paths - ALWAYS target global termUI directory, not program-specific copies
-# Detect if we're running from a program folder (like termUIPrograms/tagScanner)
+# Paths: determined from calling script or module location
 $script:scriptRoot = if ($PSScriptRoot) { 
     Split-Path -Parent (Split-Path -Parent $PSScriptRoot) 
 } else { 
     Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path) 
-}
-
-# If scriptRoot points to a program folder (e.g., termUIPrograms/tagScanner), redirect to global termUI
-if ($script:scriptRoot -match 'termUIPrograms') {
-    # Navigate up to cmd folder and then to termUI
-    $cmdRoot = $script:scriptRoot
-    while ($cmdRoot -and (Split-Path -Leaf $cmdRoot) -ne 'cmd') {
-        $cmdRoot = Split-Path -Parent $cmdRoot
-    }
-    if ($cmdRoot) {
-        $script:scriptRoot = Join-Path $cmdRoot "termUI"
-    }
 }
 
 $script:versionFile = Join-Path $script:scriptRoot "VERSION.json"
@@ -267,12 +254,46 @@ function Backup-CurrentVersion {
     }
 }
 
+# Clean up temporary download files
+function Remove-UpdateTemporaryFiles {
+    param(
+        [string]$TempZip,
+        [string]$TempExtract
+    )
+    
+    try {
+        if (Test-Path $TempZip) {
+            Write-Log "Removing temporary ZIP: $TempZip" "INFO"
+            Remove-Item -Path $TempZip -Force -ErrorAction Stop
+            Write-Log "Temporary ZIP removed successfully" "SUCCESS"
+        }
+    }
+    catch {
+        Write-Log "Failed to remove temporary ZIP: $_" "WARN"
+    }
+    
+    try {
+        if (Test-Path $TempExtract) {
+            Write-Log "Removing temporary extraction folder: $TempExtract" "INFO"
+            Remove-Item -Path $TempExtract -Recurse -Force -ErrorAction Stop
+            Write-Log "Temporary extraction folder removed successfully" "SUCCESS"
+        }
+    }
+    catch {
+        Write-Log "Failed to remove temporary extraction folder: $_" "WARN"
+    }
+}
+
 # Download and install update
 function Install-Update {
     param(
         [string]$LocalVersion,
         [string]$RemoteVersion
     )
+    
+    # Initialize temp paths at function scope
+    $tempZip = Join-Path $script:debugPath "termUI_update.zip"
+    $tempExtract = Join-Path $script:debugPath "termUI_update_temp"
     
     try {
         Write-Log "Starting update from $LocalVersion to $RemoteVersion"
@@ -324,6 +345,7 @@ function Install-Update {
         }
         catch {
             Write-Log "Download failed: $_" "ERROR"
+            Remove-UpdateTemporaryFiles -TempZip $tempZip -TempExtract $tempExtract
             return $false
         }
         
@@ -339,7 +361,7 @@ function Install-Update {
         }
         catch {
             Write-Log "Extraction failed: $_" "ERROR"
-            Remove-Item -Path $tempZip -Force -ErrorAction SilentlyContinue
+            Remove-UpdateTemporaryFiles -TempZip $tempZip -TempExtract $tempExtract
             return $false
         }
         
@@ -349,8 +371,7 @@ function Install-Update {
         
         if (-not (Test-Path $sourceFolder)) {
             Write-Log "Source folder not found in archive: $sourceFolder" "ERROR"
-            Remove-Item -Path $tempZip -Force -ErrorAction SilentlyContinue
-            Remove-Item -Path $tempExtract -Recurse -Force -ErrorAction SilentlyContinue
+            Remove-UpdateTemporaryFiles -TempZip $tempZip -TempExtract $tempExtract
             return $false
         }
         
@@ -443,14 +464,15 @@ function Install-Update {
         
         # Step 5: Cleanup
         Write-Log "Cleaning up temporary files..."
-        Remove-Item -Path $tempZip -Force -ErrorAction SilentlyContinue
-        Remove-Item -Path $tempExtract -Recurse -Force -ErrorAction SilentlyContinue
+        Remove-UpdateTemporaryFiles -TempZip $tempZip -TempExtract $tempExtract
         
         Write-Log "Update completed successfully: $LocalVersion -> $RemoteVersion" "SUCCESS"
         return $true
     }
     catch {
         Write-Log "Update installation failed: $_" "ERROR"
+        Write-Log "Performing cleanup of downloaded files due to failure..." "WARN"
+        Remove-UpdateTemporaryFiles -TempZip $tempZip -TempExtract $tempExtract
         return $false
     }
 }

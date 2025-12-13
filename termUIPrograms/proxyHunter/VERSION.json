@@ -1,23 +1,29 @@
 {
-  "version": "1.5.0",
+  "version": "1.5.8",
   "lastUpdated": "2025-12-13T00:00:00Z",
   "changelog": [
     {
-      "version": "1.5.0",
+      "version": "1.5.9",
       "date": "2025-12-13",
       "changes": [
-        "FEATURE: Proxy Hunter h, validate, and manage proxy lists",
-        "FEATURE: Find Proxies button with batch validation and auto-continue",
-        "FEATURE: Proxies submenu with auto-navigation and clipboard copy",
-        "FEATURE: Export, clear, and settings management for proxies",
-        "TESTING: Python-threaded validator with progress bars",
-        "IMPROVEMENT: Color-coded batch results (green for success)"
+        "FEATURE: Added global Request-AutoNavigation system for auto-menu navigation",
+        "IMPROVEMENT: Simplified update handler to check local version without complex path detection",
+        "FRAMEWORK: Auto-navigation for submenu flows after button execution"
+      ]
+    },
+    {
+      "version": "1.5.8",
+      "date": "2025-12-12",
+      "changes": [
+        "TESTING: Shared Get-TestInput helper for replay handlers",
+        "ROBUSTNESS: Dependency preflight utilities",
+        "LOGGING: Per-run log clearing and menu-frame counter",
+        "STABILITY: Graceful shutdown with normalized exit codes"
       ]
     }
   ],
   "compatibility": {
     "minPowerShellVersion": "5.0",
-    "targetPlatform": "Windows",
-    "requiredDependencies": ["Python 3.x", "termUI 1.5.9+"]
+    "targetPlatform": "Windows"
   }
 }

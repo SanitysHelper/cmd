@@ -214,7 +214,11 @@ Invoke-DependencyPreflight -RequiredDirectories @($script:paths.logs) -RequiredP
 # Start output transcript logging (clears on each run)
 $script:outputLog = Join-Path $script:paths.logs "output.log"
 if (Test-Path $script:outputLog) { Remove-Item $script:outputLog -Force -ErrorAction SilentlyContinue }
-Start-Transcript -Path $script:outputLog -Force | Out-Null
+try {
+    Start-Transcript -Path $script:outputLog -Force | Out-Null
+} catch {
+    # If transcript is already running, just continue without it
+}
 
 try {
     Write-Host "[DEBUG] Initializing settings..." -ForegroundColor DarkGray
@@ -374,6 +378,14 @@ try {
     $global:TERMUI_IS_TESTMODE = ($handler.PSObject.Properties['IsTestMode'] -and $handler.IsTestMode)
     $numberBuffer = ""
 
+    # Global auto-navigation signal system (used by scripts to auto-navigate after completing tasks)
+    $autoNavSignalPath = Join-Path $script:paths.logs "auto-nav-signal.tmp"
+    function Request-AutoNavigation {
+        param([string]$Path)
+        Set-Content -Path $autoNavSignalPath -Value $Path -Encoding UTF8 -Force -ErrorAction SilentlyContinue
+    }
+    Set-Item -Path "Function:Global:Request-AutoNavigation" -Value ${function:Request-AutoNavigation}
+
     function Emit-TestSummary {
         param(
             [int]$ExitCode,
@@ -431,8 +443,26 @@ try {
         $remoteVer = $null
         $localVer = $null
         try {
-            # Load local version first (proxyHunter-specific)
-            $vf = Join-Path $script:termUIRoot "VERSION.json"
+            # Try to get version from GitHub first (suppress web progress noise)
+            $githubVersionUrl = "https://raw.githubusercontent.com/SanitysHelper/cmd/main/termUI/VERSION.json"
+            $prevProgress = $global:ProgressPreference
+            $global:ProgressPreference = 'SilentlyContinue'
+            try {
+                $response = Invoke-WebRequest -Uri $githubVersionUrl -UseBasicParsing -TimeoutSec 5 -ErrorAction SilentlyContinue
+                if ($response.StatusCode -eq 200) {
+                    $githubData = $response.Content | ConvertFrom-Json -ErrorAction SilentlyContinue
+                    if ($githubData -and $githubData.version) {
+                        $remoteVer = [version]$githubData.version
+                    }
+                }
+            } catch {
+                # GitHub fetch failed, fall back to local version
+            } finally {
+                $global:ProgressPreference = $prevProgress
+            }
+
+            # Always load local version for comparison
+            $vf = Join-Path (Split-Path -Parent $script:scriptDir) "VERSION.json"
             if (Test-Path $vf) {
                 $jsonData = Get-Content $vf -Raw -ErrorAction SilentlyContinue | ConvertFrom-Json -ErrorAction SilentlyContinue
                 if ($jsonData -and $jsonData.version) {
@@ -440,8 +470,12 @@ try {
                 }
             }
 
-            if ($localVer) {
+            if ($localVer -and $remoteVer) {
+                if ($localVer -gt $remoteVer) { $versionStr = $localVer.ToString() } else { $versionStr = $remoteVer.ToString() }
+            } elseif ($localVer) {
                 $versionStr = $localVer.ToString()
+            } elseif ($remoteVer) {
+                $versionStr = $remoteVer.ToString()
             }
         } catch {}
         Write-Host "=== $($script:settings.General.ui_title) " -ForegroundColor Cyan -NoNewline
@@ -753,7 +787,22 @@ try {
 
                                 # Rebuild menu tree to reflect any new/changed buttons added by the script
                                 $tree = Build-MenuTree -RootPath $script:paths.menuRoot
-                                $currentPath = "mainUI"  # Reset to root after executing button
+                                
+                                # Check for auto-navigation signal from script
+                                $autoNavPath = $null
+                                if (Test-Path $autoNavSignalPath) {
+                                    try {
+                                        $autoNavPath = (Get-Content -Path $autoNavSignalPath -Raw -ErrorAction SilentlyContinue).Trim()
+                                        Remove-Item -Path $autoNavSignalPath -Force -ErrorAction SilentlyContinue
+                                    } catch {}
+                                }
+                                
+                                if ($autoNavPath) {
+                                    $currentPath = $autoNavPath
+                                    Write-Host "Auto-navigating to: $currentPath" -ForegroundColor Cyan
+                                } else {
+                                    $currentPath = "mainUI"  # Default: reset to root after executing button
+                                }
                                 $selectedIndex = 0
 
                                 $skipPause = ($handler.PSObject.Properties['IsTestMode'] -and $handler.IsTestMode) -or $captureFile

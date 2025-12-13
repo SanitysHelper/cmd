@@ -1,0 +1,17 @@
+﻿{
+    "isTestMode":  false,
+    "exitCode":  0,
+    "manualInput":  false,
+    "start":  "2025-12-13T13:43:47.9941482-06:00",
+    "end":  "2025-12-13T13:44:54.6891946-06:00",
+    "durationMs":  66695,
+    "inputsSeen":  0,
+    "menuFramesLogged":  1,
+    "testFile":  null,
+    "testHandler":  "C:\\cmdPrograms\\cmd\\termUIPrograms\\proxyHunter\\powershell\\..\\powershell\\InputHandler-Replay.ps1",
+    "environment":  {
+                        "TERMUI_TEST_MODE":  null,
+                        "TERMUI_TEST_FILE":  null,
+                        "TERMUI_TEST_HANDLER":  null
+                    }
+}

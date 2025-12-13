@@ -1,0 +1,4 @@
+﻿[2025-12-13 13:34:08] MENU FRAME Selected=0 Count=3 Path=mainUI
+  >>> [1] (submenu) Proxies
+      [2] (submenu) Settings
+      [3] (option) Find Proxies

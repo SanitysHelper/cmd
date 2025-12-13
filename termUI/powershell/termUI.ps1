@@ -214,7 +214,11 @@ Invoke-DependencyPreflight -RequiredDirectories @($script:paths.logs) -RequiredP
 # Start output transcript logging (clears on each run)
 $script:outputLog = Join-Path $script:paths.logs "output.log"
 if (Test-Path $script:outputLog) { Remove-Item $script:outputLog -Force -ErrorAction SilentlyContinue }
-Start-Transcript -Path $script:outputLog -Force | Out-Null
+try {
+    Start-Transcript -Path $script:outputLog -Force | Out-Null
+} catch {
+    # If transcript is already running, just continue without it
+}
 
 try {
     Write-Host "[DEBUG] Initializing settings..." -ForegroundColor DarkGray
@@ -380,7 +384,7 @@ try {
         param([string]$Path)
         Set-Content -Path $autoNavSignalPath -Value $Path -Encoding UTF8 -Force -ErrorAction SilentlyContinue
     }
-    $global:Request-AutoNavigation = ${function:Request-AutoNavigation}
+    Set-Item -Path "Function:Global:Request-AutoNavigation" -Value ${function:Request-AutoNavigation}
 
     function Emit-TestSummary {
         param(

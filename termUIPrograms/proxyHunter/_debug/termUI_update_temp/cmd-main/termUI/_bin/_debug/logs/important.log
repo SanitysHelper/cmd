@@ -1,0 +1,7 @@
+﻿[2025-12-12 23:15:31] INFO: Running in interactive mode (console available)
+[2025-12-12 23:15:36] INFO: Selected option: mainUI/About
+[2025-12-12 23:15:36] INFO: Executing script: C:\cmdPrograms\cmd\termUI\powershell\..\buttons\mainUI\About.ps1
+[2025-12-12 23:15:42] INFO: Selected option: mainUI/Test
+[2025-12-12 23:15:42] INFO: Executing script: C:\cmdPrograms\cmd\termUI\powershell\..\buttons\mainUI\Test.ps1
+[2025-12-12 23:15:43] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 23:15:44] INFO: Test summary written to C:\cmdPrograms\cmd\termUI\_bin\_debug\logs\test-summary.json

@@ -225,3 +225,35 @@
 [2025-12-12 23:15:30] [INFO] Remote version: 1.5.7
 [2025-12-12 23:15:31] [WARN] Local version is newer than remote
 [2025-12-12 23:15:31] [SUCCESS] No update needed
+[2025-12-13 13:40:09] [INFO] === termUI Update Check Started ===
+[2025-12-13 13:40:09] [INFO] Local version: 1.5.9
+[2025-12-13 13:40:09] [INFO] Checking GitHub for latest version...
+[2025-12-13 13:40:09] [INFO] Remote version: 1.5.9
+[2025-12-13 13:40:09] [INFO] Versions are identical: 1.5.9
+[2025-12-13 13:40:09] [SUCCESS] No update needed
+[2025-12-13 13:40:56] [INFO] === termUI Update Check Started ===
+[2025-12-13 13:40:56] [INFO] Local version: 1.5.9
+[2025-12-13 13:40:56] [INFO] Checking GitHub for latest version...
+[2025-12-13 13:40:56] [INFO] Remote version: 1.5.9
+[2025-12-13 13:40:56] [INFO] Versions are identical: 1.5.9
+[2025-12-13 13:40:56] [SUCCESS] No update needed
+[2025-12-13 13:42:38] [INFO] === termUI Update Check Started ===
+[2025-12-13 13:42:38] [INFO] Local version: 1.5.9
+[2025-12-13 13:42:38] [INFO] Checking GitHub for latest version...
+[2025-12-13 13:42:38] [INFO] Remote version: 1.5.9
+[2025-12-13 13:42:38] [INFO] Versions are identical: 1.5.9
+[2025-12-13 13:42:38] [SUCCESS] No update needed
+[2025-12-13 13:43:48] [INFO] === termUI Update Check Started ===
+[2025-12-13 13:43:48] [INFO] Local version: 1.5.8
+[2025-12-13 13:43:48] [INFO] Checking GitHub for latest version...
+[2025-12-13 13:43:48] [INFO] Remote version: 1.5.9
+[2025-12-13 13:43:48] [SUCCESS] Update available: 1.5.8 -> 1.5.9
+[2025-12-13 13:43:51] [INFO] Starting update from 1.5.8 to 1.5.9
+[2025-12-13 13:43:51] [INFO] Skipping backup (debug_mode=false)
+[2025-12-13 13:43:51] [INFO] Downloading update from GitHub...
+[2025-12-13 13:43:52] [INFO] Download complete
+[2025-12-13 13:43:52] [INFO] Extracting update...
+[2025-12-13 13:43:52] [INFO] Extraction complete
+[2025-12-13 13:43:52] [INFO] Installing updated files...
+[2025-12-13 13:43:52] [ERROR] Update installation failed: The variable '$script:TERMUI_FOLDER' cannot be retrieved because it has not been set.
+[2025-12-13 13:43:52] [INFO] === Update Check Completed ===
