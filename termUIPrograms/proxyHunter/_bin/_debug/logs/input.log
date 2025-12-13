@@ -1,3 +1,1 @@
-﻿[2025-12-13 13:26:51] INPUT #1 [handler] (+2.178s): {"key":"Up","char":null}
-[2025-12-13 13:26:51] INPUT #2 [handler] (+0.331s): {"key":"Down","char":null}
-[2025-12-13 13:26:53] INPUT #3 [handler] (+2.486s) [DELAY: 2.49s - MANUAL INPUT SUSPECTED]: {"key":"Q","char":"q"}
+﻿[2025-12-13 13:28:10] INPUT #1 [handler] (+7.278s): {"key":"Q","char":"q"}
