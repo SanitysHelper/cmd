@@ -6,19 +6,19 @@
       "version": "1.5.9",
       "date": "2025-12-13",
       "changes": [
-        "FEATURE: Added global Request-AutoNavigation system for scripts to auto-navigate menus after execution",
-        "IMPROVEMENT: Script execution now checks for auto-navigation signal and jumps to target submenu instead of defaulting to mainUI",
-        "FRAMEWORK: Auto-navigation signal file stored in logs directory with automatic cleanup"
+        "FEATURE: Added global Request-AutoNavigation system for auto-menu navigation",
+        "IMPROVEMENT: Simplified update handler to check local version without complex path detection",
+        "FRAMEWORK: Auto-navigation for submenu flows after button execution"
       ]
     },
     {
       "version": "1.5.8",
       "date": "2025-12-12",
       "changes": [
-        "TESTING: Shared Get-TestInput helper exposed globally for replay handlers and prompts",
-        "ROBUSTNESS: Added dependency preflight utilities and minimal runtime check for logs/settings",
-        "LOGGING: Per-run log clearing, menu-frame counter, and optional test summary emission",
-        "STABILITY: Graceful shutdown ensures handler/transcript cleanup with normalized exit codes"
+        "TESTING: Shared Get-TestInput helper for replay handlers",
+        "ROBUSTNESS: Dependency preflight utilities",
+        "LOGGING: Per-run log clearing and menu-frame counter",
+        "STABILITY: Graceful shutdown with normalized exit codes"
       ]
     }
   ],

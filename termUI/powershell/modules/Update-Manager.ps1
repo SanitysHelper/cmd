@@ -30,29 +30,16 @@ param(
 # Configuration
 $script:GITHUB_REPO = "SanitysHelper/cmd"
 $script:GITHUB_BRANCH = "main"
-$script:TERMUI_FOLDER = "termUI"
-# VERSION_URL and DOWNLOAD_URL are now computed dynamically based on program root (see below)
+# Always check termUI framework (not program-specific)
+$script:VERSION_URL = "https://raw.githubusercontent.com/$script:GITHUB_REPO/$script:GITHUB_BRANCH/termUI/VERSION.json"
+$script:DOWNLOAD_URL = "https://github.com/$script:GITHUB_REPO/archive/refs/heads/$script:GITHUB_BRANCH.zip"
 
-# Paths
+# Paths: determined from calling script or module location
 $script:scriptRoot = if ($PSScriptRoot) { 
     Split-Path -Parent (Split-Path -Parent $PSScriptRoot) 
 } else { 
     Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path) 
 }
-
-# Determine if running from global termUI or a program folder (proxyHunter, tagScanner, etc.)
-$script:programName = Split-Path -Leaf $script:scriptRoot
-if ($script:scriptRoot -match 'termUIPrograms') {
-    # Program-specific folder: proxyHunter, tagScanner, etc.
-    # Use GitHub repo path for the program if it exists; otherwise fall back to global termUI
-    $script:TERMUI_FOLDER = $script:programName
-} else {
-    # Global termUI folder
-    $script:TERMUI_FOLDER = "termUI"
-}
-
-$script:VERSION_URL = "https://raw.githubusercontent.com/$script:GITHUB_REPO/$script:GITHUB_BRANCH/$script:TERMUI_FOLDER/VERSION.json"
-$script:DOWNLOAD_URL = "https://github.com/$script:GITHUB_REPO/archive/refs/heads/$script:GITHUB_BRANCH.zip"
 
 $script:versionFile = Join-Path $script:scriptRoot "VERSION.json"
 $script:debugPath = Join-Path $script:scriptRoot "_debug"
