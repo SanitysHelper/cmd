@@ -1,12 +1,12 @@
 {
-  "version": "1.0.0",
+  "version": "1.5.0",
   "lastUpdated": "2025-12-13T00:00:00Z",
   "changelog": [
     {
-      "version": "1.0.0",
+      "version": "1.5.0",
       "date": "2025-12-13",
       "changes": [
-        "FEATURE: Proxy Hunter - fetch, validate, and manage proxy lists",
+        "FEATURE: Proxy Hunter h, validate, and manage proxy lists",
         "FEATURE: Find Proxies button with batch validation and auto-continue",
         "FEATURE: Proxies submenu with auto-navigation and clipboard copy",
         "FEATURE: Export, clear, and settings management for proxies",

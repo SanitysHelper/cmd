@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20251213133043
+Start time: 20251213133407
 Username: THEHULK\cmand
 RunAs User: THEHULK\cmand
 Configuration Name: 
 Machine: THEHULK (Microsoft Windows NT 10.0.26200.0)
 Host Application: powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\cmdPrograms\cmd\termUIPrograms\proxyHunter\powershell\termUI.ps1
-Process ID: 32884
+Process ID: 36632
 PSVersion: 5.1.26100.7462
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7462
@@ -20,13 +20,14 @@ SerializationVersion: 1.1.0.1
 [INFO] === termUI Update Check Started ===
 [INFO] Local version: 1.5.9
 [INFO] Checking GitHub for latest version...
+PS>TerminatingError(Add-Content): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: The process cannot access the file 'C:\cmdPrograms\cmd\termUI\_debug\logs\update.log' because it is being used by another process."
 [INFO] Remote version: 1.5.9
 [INFO] Versions are identical: 1.5.9
 [SUCCESS] No update needed
 [DEBUG] Loading menu tree...
 [2J[H
 === termUI
-1.5.8
+1.5.9
  ===
 Path: mainUI
 
@@ -35,7 +36,3 @@ Path: mainUI
   [3] (option) Find Proxies
 
 [Up/Down] Navigate  [#] Quick Select  [Escape] Back  [Q] Quit
-**********************
-Windows PowerShell transcript end
-End time: 20251213133048
-**********************
