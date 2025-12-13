@@ -31,28 +31,28 @@ param(
 $script:GITHUB_REPO = "SanitysHelper/cmd"
 $script:GITHUB_BRANCH = "main"
 $script:TERMUI_FOLDER = "termUI"
-$script:VERSION_URL = "https://raw.githubusercontent.com/$script:GITHUB_REPO/$script:GITHUB_BRANCH/$script:TERMUI_FOLDER/VERSION.json"
-$script:DOWNLOAD_URL = "https://github.com/$script:GITHUB_REPO/archive/refs/heads/$script:GITHUB_BRANCH.zip"
+# VERSION_URL and DOWNLOAD_URL are now computed dynamically based on program root (see below)
 
-# Paths - ALWAYS target global termUI directory, not program-specific copies
-# Detect if we're running from a program folder (like termUIPrograms/tagScanner)
+# Paths
 $script:scriptRoot = if ($PSScriptRoot) { 
     Split-Path -Parent (Split-Path -Parent $PSScriptRoot) 
 } else { 
     Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path) 
 }
 
-# If scriptRoot points to a program folder (e.g., termUIPrograms/tagScanner), redirect to global termUI
+# Determine if running from global termUI or a program folder (proxyHunter, tagScanner, etc.)
+$script:programName = Split-Path -Leaf $script:scriptRoot
 if ($script:scriptRoot -match 'termUIPrograms') {
-    # Navigate up to cmd folder and then to termUI
-    $cmdRoot = $script:scriptRoot
-    while ($cmdRoot -and (Split-Path -Leaf $cmdRoot) -ne 'cmd') {
-        $cmdRoot = Split-Path -Parent $cmdRoot
-    }
-    if ($cmdRoot) {
-        $script:scriptRoot = Join-Path $cmdRoot "termUI"
-    }
+    # Program-specific folder: proxyHunter, tagScanner, etc.
+    # Use GitHub repo path for the program if it exists; otherwise fall back to global termUI
+    $script:TERMUI_FOLDER = $script:programName
+} else {
+    # Global termUI folder
+    $script:TERMUI_FOLDER = "termUI"
 }
+
+$script:VERSION_URL = "https://raw.githubusercontent.com/$script:GITHUB_REPO/$script:GITHUB_BRANCH/$script:TERMUI_FOLDER/VERSION.json"
+$script:DOWNLOAD_URL = "https://github.com/$script:GITHUB_REPO/archive/refs/heads/$script:GITHUB_BRANCH.zip"
 
 $script:versionFile = Join-Path $script:scriptRoot "VERSION.json"
 $script:debugPath = Join-Path $script:scriptRoot "_debug"

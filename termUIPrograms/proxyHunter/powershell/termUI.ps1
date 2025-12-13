@@ -431,26 +431,8 @@ try {
         $remoteVer = $null
         $localVer = $null
         try {
-            # Try to get version from GitHub first (suppress web progress noise)
-            $githubVersionUrl = "https://raw.githubusercontent.com/SanitysHelper/cmd/main/termUI/VERSION.json"
-            $prevProgress = $global:ProgressPreference
-            $global:ProgressPreference = 'SilentlyContinue'
-            try {
-                $response = Invoke-WebRequest -Uri $githubVersionUrl -UseBasicParsing -TimeoutSec 5 -ErrorAction SilentlyContinue
-                if ($response.StatusCode -eq 200) {
-                    $githubData = $response.Content | ConvertFrom-Json -ErrorAction SilentlyContinue
-                    if ($githubData -and $githubData.version) {
-                        $remoteVer = [version]$githubData.version
-                    }
-                }
-            } catch {
-                # GitHub fetch failed, fall back to local version
-            } finally {
-                $global:ProgressPreference = $prevProgress
-            }
-
-            # Always load local version for comparison
-            $vf = Join-Path (Split-Path -Parent $script:scriptDir) "VERSION.json"
+            # Load local version first (proxyHunter-specific)
+            $vf = Join-Path $script:termUIRoot "VERSION.json"
             if (Test-Path $vf) {
                 $jsonData = Get-Content $vf -Raw -ErrorAction SilentlyContinue | ConvertFrom-Json -ErrorAction SilentlyContinue
                 if ($jsonData -and $jsonData.version) {
@@ -458,12 +440,8 @@ try {
                 }
             }
 
-            if ($localVer -and $remoteVer) {
-                if ($localVer -gt $remoteVer) { $versionStr = $localVer.ToString() } else { $versionStr = $remoteVer.ToString() }
-            } elseif ($localVer) {
+            if ($localVer) {
                 $versionStr = $localVer.ToString()
-            } elseif ($remoteVer) {
-                $versionStr = $remoteVer.ToString()
             }
         } catch {}
         Write-Host "=== $($script:settings.General.ui_title) " -ForegroundColor Cyan -NoNewline

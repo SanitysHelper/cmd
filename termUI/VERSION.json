@@ -22,6 +22,44 @@
           ]
         },
         {
+          "version": "1.5.7",
+          "date": "2025-12-12",
+          "changes": [
+            "FIX: Updates settings now normalize booleans so check_on_startup/auto_install honor settings.ini",
+            "CONFIG: Global settings.ini updated for manual verification (debug_mode on, show_selected_prompt on, keep_open_after_selection off, log_menu_frame off, smaller log rotation, startup update check disabled)"
+          ]
+        },
+        {
+          "version": "1.5.6",
+          "date": "2025-12-12",
+          "changes": [
+            "FEATURE: InitializeButtons seeds default About/Test/Show Version buttons only when no buttons exist",
+            "IMPROVEMENT: Default About/Test buttons skip blocking prompts in automated test mode",
+            "TESTING: Added _debug/test_basic.json replay for smoke validation"
+          ]
+        },
+        {
+          "version": "1.5.5",
+          "date": "2025-12-12",
+          "changes": [
+            "FEATURE: Added --test-file flag that auto-enables replay mode and defaults to powershell/InputHandler-Replay.ps1",
+            "FEATURE: Added --test-handler flag and TERMUI_TEST_HANDLER override for custom replay handlers",
+            "IMPROVEMENT: Default settings now include handler_path to avoid missing test handler configs",
+            "DOC: Documented test CLI overrides in architecture summary"
+          ]
+        },
+        {
+          "version": "1.5.4",
+          "date": "2025-12-11",
+          "changes": [
+            "FEATURE: Added output.log transcript logging that captures all terminal output",
+            "FEATURE: Created InputHandler-Replay.ps1 for automated UI testing support",
+            "IMPROVEMENT: Backups now only created when debug_mode=true in settings.ini",
+            "IMPROVEMENT: Output log clears on each program start for clean test runs",
+            "TESTING: Complete automated testing infrastructure for termUI programs"
+          ]
+        },
+        {
           "version": "1.5.3",
           "date": "2025-12-11",
           "changes": [
@@ -29,73 +67,6 @@
             "FIX: Programs can now add buttons dynamically and have them appear immediately (no restart needed)"
           ]
         },
-        {
-          "version": "1.5.2",
-          "date": "2025-12-11",
-          "changes": [
-            "FEATURE: Added configurable show_selected_prompt setting to disable selected button display",
-            "IMPROVEMENT: Selected button prompt can now be disabled via settings.ini (show_selected_prompt = false)"
-          ]
-        },
-        {
-          "version": "1.5.1",
-          "date": "2025-12-11",
-          "changes": [
-            "CRITICAL FIX: Buttons now actually execute their .ps1 scripts when selected",
-            "CRITICAL FIX: Fixed duplicate buttons folder creation (was creating termUIPrograms/buttons)",
-            "FIX: MenuBuilder strips numeric sorting prefixes from display names (0 - Set Directory shows as Set Directory)",
-            "FIX: Corrected path calculation in InitializeButtons - buttons created in correct location",
-            "FIX: Normalized menu root path to prevent weird folder structures",
-            "IMPROVEMENT: Proper error handling when scripts are missing or fail to execute"
-          ]
-        },
-        {
-          "version": "1.5.0",
-          "date": "2025-12-11",
-          "changes": [
-            "CRITICAL FIX: Write-Log now handles file locks gracefully with retry logic",
-            "FIX: Multiple termUI instances can run simultaneously without logging errors",
-            "FIX: Update log file no longer blocks VERSION.json reads",
-            "IMPROVEMENT: Silent fallback for logging failures - updates continue even if logging fails"
-          ]
-        },
-        {
-          "version": "1.4.9",
-          "date": "2025-12-11",
-          "changes": [
-            "CRITICAL FIX: Update-Manager now excludes .exe files from robocopy and fallback copy",
-            "FIX: Silently skips running executable during updates (no more scary error messages)",
-            "IMPROVEMENT: Reduced retry attempts to 0 for faster update completion",
-            "UX: Users no longer see file-locking errors during successful updates"
-          ]
-        },
-        {
-          "version": "1.4.8",
-          "date": "2025-12-11",
-          "changes": [
-            "CRITICAL FIX: Removed program-specific buttons from standalone termUI",
-            "CRITICAL: termUI buttons directory now contains ONLY generic test buttons",
-            "CRITICAL: Program-specific buttons (tagScanner, etc.) stay in their own directories",
-            "SAFEGUARD: Added comments to prevent future button contamination",
-            "VERIFIED: Update-Manager excludes buttons, _bin, _debug directories"
-          ]
-        },
-        {
-          "version": "1.4.7",
-          "date": "2025-12-11",
-          "changes": [
-            "CRITICAL: termUI now auto-runs InitializeButtons.ps1 before loading menu tree",
-            "FIX: Programs can now dynamically create buttons on startup",
-            "IMPROVEMENT: Button initialization cleaned to prevent leftover folders"
-          ]
-        },
-        {
-          "version": "1.4.6",
-          "date": "2025-12-11",
-          "changes": [
-            "FIX: Resolved button loading and menu rendering issues",
-            "FIX: Fixed external program button initialization paths",
-            "IMPROVEMENT: Verified update system, button creation, and menu smoothness",
             "TESTING: Full end-to-end validation of core features completed"
           ]
         },
