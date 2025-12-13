@@ -1901,3 +1901,347 @@
 [2025-12-13 13:28:03] [INFO] Checking GitHub for latest version...
 [2025-12-13 13:28:03] [INFO] Remote version: 1.5.9
 [2025-12-13 13:28:03] [ERROR] Cannot proceed without local version
+[2025-12-13 13:29:27] [INFO] === termUI Update Check Started ===
+[2025-12-13 13:29:27] [ERROR] Failed to read local VERSION.json: Invalid JSON primitive: 
+          "version": "1.5.9",
+          "date": "2025-12-13",
+          "changes": [
+            "FEATURE: Added global Request-AutoNavigation system for scripts to auto-navigate menus after execution",
+            "IMPROVEMENT: Script execution now checks for auto-navigation signal and jumps to target submenu instead of defaulting to mainUI",
+            "FRAMEWORK: Auto-navigation signal file stored in logs directory with automatic cleanup"
+          ]
+        },
+        {
+          "version": "1.5.8",
+          "date": "2025-12-12",
+          "changes": [
+            "TESTING: Shared Get-TestInput helper exposed globally for replay handlers and prompts",
+            "ROBUSTNESS: Added dependency preflight utilities and minimal runtime check for logs/settings",
+            "LOGGING: Per-run log clearing, menu-frame counter, and optional test summary emission",
+            "STABILITY: Graceful shutdown ensures handler/transcript cleanup with normalized exit codes"
+          ]
+        },
+        {
+          "version": "1.5.7",
+          "date": "2025-12-12",
+          "changes": [
+            "FIX: Updates settings now normalize booleans so check_on_startup/auto_install honor settings.ini",
+            "CONFIG: Global settings.ini updated for manual verification (debug_mode on, show_selected_prompt on, keep_open_after_selection off, log_menu_frame off, smaller log rotation, startup update check disabled)"
+          ]
+        },
+        {
+          "version": "1.5.6",
+          "date": "2025-12-12",
+          "changes": [
+            "FEATURE: InitializeButtons seeds default About/Test/Show Version buttons only when no buttons exist",
+            "IMPROVEMENT: Default About/Test buttons skip blocking prompts in automated test mode",
+            "TESTING: Added _debug/test_basic.json replay for smoke validation"
+          ]
+        },
+        {
+          "version": "1.5.5",
+          "date": "2025-12-12",
+          "changes": [
+            "FEATURE: Added --test-file flag that auto-enables replay mode and defaults to powershell/InputHandler-Replay.ps1",
+            "FEATURE: Added --test-handler flag and TERMUI_TEST_HANDLER override for custom replay handlers",
+            "IMPROVEMENT: Default settings now include handler_path to avoid missing test handler configs",
+            "DOC: Documented test CLI overrides in architecture summary"
+          ]
+        },
+        {
+          "version": "1.5.4",
+          "date": "2025-12-11",
+          "changes": [
+            "FEATURE: Added output.log transcript logging that captures all terminal output",
+            "FEATURE: Created InputHandler-Replay.ps1 for automated UI testing support",
+            "IMPROVEMENT: Backups now only created when debug_mode=true in settings.ini",
+            "IMPROVEMENT: Output log clears on each program start for clean test runs",
+            "TESTING: Complete automated testing infrastructure for termUI programs"
+          ]
+        },
+        {
+          "version": "1.5.3",
+          "date": "2025-12-11",
+          "changes": [
+            "IMPROVEMENT: Menu automatically rebuilds after button execution to reflect dynamic changes",
+            "FIX: Programs can now add buttons dynamically and have them appear immediately (no restart needed)"
+          ]
+        },
+            "TESTING: Full end-to-end validation of core features completed"
+          ]
+        },
+        {
+          "version": "1.4.5",
+          "date": "2025-12-11",
+          "changes": [
+            "MAINTENANCE: termUI startup now clears leftover update temp files before any work begins",
+            "FEATURE: Update system now excludes buttons folder to preserve user-created menus",
+            "FEATURE: Added script execution support for .opt buttons with matching .ps1 files",
+            "FIX: Robocopy and fallback copy now properly exclude buttons directory",
+            "IMPROVEMENT: Programs can now use dynamic button creation via TermUIButtonLibrary"
+          ]
+        },
+    {
+      "version": "1.4.2",
+      "date": "2025-12-10",
+      "changes": [
+        "BUGFIX: Menu rendering now redraws only on navigation/selection (reduced flicker)",
+        "BUGFIX: Removed broken InputHandler handler_path defaults; interactive mode is default",
+        "BUGFIX: Fallback copy preserves subdirectories when robocopy fails",
+        "DOC: Added explicit v1.4.1 changelog entry",
+        "MAINTENANCE: Documentation consolidated into docs/ALL.md"
+      ]
+    },
+    {
+      "version": "1.4.1",
+      "date": "2025-12-10",
+      "changes": [
+        "BUGFIX: Added missing changelog entry for v1.4.1",
+        "BUGFIX: Improved Update-Manager subdirectory handling in fallback copy",
+        "BUGFIX: Reconciled InputHandler settings path inconsistencies",
+        "BUGFIX: Optimized menu rendering to reduce unnecessary redraws",
+        "MAINTENANCE: Documentation consolidated into docs/ALL.md"
+      ]
+    },
+    {
+      "version": "1.4.0",
+      "date": "2025-12-10",
+      "changes": [
+        "PERFORMANCE: 10x faster downloads - streaming HTTP with 8KB chunks (C# bootstrap)",
+        "PERFORMANCE: 8x faster extraction - .NET ZipFile instead of PowerShell Expand-Archive",
+        "PERFORMANCE: Fast file operations - robocopy for backup and installation",
+        "PERFORMANCE: Full update now completes in ~11s (was 50s+)",
+        "FEATURE: Auto-launch termUI after successful update",
+        "FEATURE: Comprehensive edge case handling (repair, check-only, force modes)",
+        "FIX: Update now properly overwrites VERSION.json and all files",
+        "FIX: Removed /XO flag from robocopy to ensure all files update correctly",
+        "TESTED: Bootstrap, update, repair, check-only, auto-launch, CLI flags"
+      ]
+    },
+    {
+      "version": "1.3.9",
+      "date": "2025-12-10",
+      "changes": [
+        "Added download progress bar with percentage and file size display",
+        "Shows remote version being downloaded during bootstrap",
+        "Prevents duplicate downloads - skips update check after bootstrap/repair",
+        "Optimized space usage - only extracts termUI folder, deletes archive after",
+        "Fixed bootstrap to skip auto-update when files were just downloaded"
+      ]
+    },
+    {
+      "version": "1.3.8",
+      "date": "2025-12-09",
+      "changes": [
+        "Fixed bootstrap file-lock issue when exe repairs itself from GitHub",
+        "Skips overwriting the running executable during online repair",
+        "Improved bootstrap reliability and error handling"
+      ]
+    },
+    {
+      "version": "1.3.7",
+      "date": "2025-12-09",
+      "changes": [
+        "Added self-bootstrap so exe-only copies download and restore full termUI from GitHub",
+        "Enabled launcher flags --check-update/--update/--repair using Update-Manager",
+        "Auto-repair missing settings.ini or core modules on startup",
+        "Silenced web progress output and reduced screen flicker",
+        "Normalized exit codes for update checks"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2025-12-08",
+      "changes": [
+        "Initial release with core termUI framework",
+        "Added TermUIButtonLibrary for dynamic button creation",
+        "Added TermUIFunctionLibrary for attaching executable code to buttons",
+        "Capture mode for external program integration",
+        "Support for 11 programming languages",
+        "Comprehensive logging system with rotation",
+        "Menu descriptions via .opt file content",
+        "Auto-select and timeout features"
+      ]
+    }
+  ],
+  "compatibility": {
+    "minPowerShellVersion": "5.0",
+    "targetPlatform": "Windows"
+  }
+}
+.
+[2025-12-13 13:29:27] [INFO] Checking GitHub for latest version...
+[2025-12-13 13:29:27] [INFO] Remote version: 1.5.9
+[2025-12-13 13:29:27] [ERROR] Cannot proceed without local version
+[2025-12-13 13:29:30] [INFO] === termUI Update Check Started ===
+[2025-12-13 13:29:30] [ERROR] Failed to read local VERSION.json: Invalid JSON primitive: 
+          "version": "1.5.9",
+          "date": "2025-12-13",
+          "changes": [
+            "FEATURE: Added global Request-AutoNavigation system for scripts to auto-navigate menus after execution",
+            "IMPROVEMENT: Script execution now checks for auto-navigation signal and jumps to target submenu instead of defaulting to mainUI",
+            "FRAMEWORK: Auto-navigation signal file stored in logs directory with automatic cleanup"
+          ]
+        },
+        {
+          "version": "1.5.8",
+          "date": "2025-12-12",
+          "changes": [
+            "TESTING: Shared Get-TestInput helper exposed globally for replay handlers and prompts",
+            "ROBUSTNESS: Added dependency preflight utilities and minimal runtime check for logs/settings",
+            "LOGGING: Per-run log clearing, menu-frame counter, and optional test summary emission",
+            "STABILITY: Graceful shutdown ensures handler/transcript cleanup with normalized exit codes"
+          ]
+        },
+        {
+          "version": "1.5.7",
+          "date": "2025-12-12",
+          "changes": [
+            "FIX: Updates settings now normalize booleans so check_on_startup/auto_install honor settings.ini",
+            "CONFIG: Global settings.ini updated for manual verification (debug_mode on, show_selected_prompt on, keep_open_after_selection off, log_menu_frame off, smaller log rotation, startup update check disabled)"
+          ]
+        },
+        {
+          "version": "1.5.6",
+          "date": "2025-12-12",
+          "changes": [
+            "FEATURE: InitializeButtons seeds default About/Test/Show Version buttons only when no buttons exist",
+            "IMPROVEMENT: Default About/Test buttons skip blocking prompts in automated test mode",
+            "TESTING: Added _debug/test_basic.json replay for smoke validation"
+          ]
+        },
+        {
+          "version": "1.5.5",
+          "date": "2025-12-12",
+          "changes": [
+            "FEATURE: Added --test-file flag that auto-enables replay mode and defaults to powershell/InputHandler-Replay.ps1",
+            "FEATURE: Added --test-handler flag and TERMUI_TEST_HANDLER override for custom replay handlers",
+            "IMPROVEMENT: Default settings now include handler_path to avoid missing test handler configs",
+            "DOC: Documented test CLI overrides in architecture summary"
+          ]
+        },
+        {
+          "version": "1.5.4",
+          "date": "2025-12-11",
+          "changes": [
+            "FEATURE: Added output.log transcript logging that captures all terminal output",
+            "FEATURE: Created InputHandler-Replay.ps1 for automated UI testing support",
+            "IMPROVEMENT: Backups now only created when debug_mode=true in settings.ini",
+            "IMPROVEMENT: Output log clears on each program start for clean test runs",
+            "TESTING: Complete automated testing infrastructure for termUI programs"
+          ]
+        },
+        {
+          "version": "1.5.3",
+          "date": "2025-12-11",
+          "changes": [
+            "IMPROVEMENT: Menu automatically rebuilds after button execution to reflect dynamic changes",
+            "FIX: Programs can now add buttons dynamically and have them appear immediately (no restart needed)"
+          ]
+        },
+            "TESTING: Full end-to-end validation of core features completed"
+          ]
+        },
+        {
+          "version": "1.4.5",
+          "date": "2025-12-11",
+          "changes": [
+            "MAINTENANCE: termUI startup now clears leftover update temp files before any work begins",
+            "FEATURE: Update system now excludes buttons folder to preserve user-created menus",
+            "FEATURE: Added script execution support for .opt buttons with matching .ps1 files",
+            "FIX: Robocopy and fallback copy now properly exclude buttons directory",
+            "IMPROVEMENT: Programs can now use dynamic button creation via TermUIButtonLibrary"
+          ]
+        },
+    {
+      "version": "1.4.2",
+      "date": "2025-12-10",
+      "changes": [
+        "BUGFIX: Menu rendering now redraws only on navigation/selection (reduced flicker)",
+        "BUGFIX: Removed broken InputHandler handler_path defaults; interactive mode is default",
+        "BUGFIX: Fallback copy preserves subdirectories when robocopy fails",
+        "DOC: Added explicit v1.4.1 changelog entry",
+        "MAINTENANCE: Documentation consolidated into docs/ALL.md"
+      ]
+    },
+    {
+      "version": "1.4.1",
+      "date": "2025-12-10",
+      "changes": [
+        "BUGFIX: Added missing changelog entry for v1.4.1",
+        "BUGFIX: Improved Update-Manager subdirectory handling in fallback copy",
+        "BUGFIX: Reconciled InputHandler settings path inconsistencies",
+        "BUGFIX: Optimized menu rendering to reduce unnecessary redraws",
+        "MAINTENANCE: Documentation consolidated into docs/ALL.md"
+      ]
+    },
+    {
+      "version": "1.4.0",
+      "date": "2025-12-10",
+      "changes": [
+        "PERFORMANCE: 10x faster downloads - streaming HTTP with 8KB chunks (C# bootstrap)",
+        "PERFORMANCE: 8x faster extraction - .NET ZipFile instead of PowerShell Expand-Archive",
+        "PERFORMANCE: Fast file operations - robocopy for backup and installation",
+        "PERFORMANCE: Full update now completes in ~11s (was 50s+)",
+        "FEATURE: Auto-launch termUI after successful update",
+        "FEATURE: Comprehensive edge case handling (repair, check-only, force modes)",
+        "FIX: Update now properly overwrites VERSION.json and all files",
+        "FIX: Removed /XO flag from robocopy to ensure all files update correctly",
+        "TESTED: Bootstrap, update, repair, check-only, auto-launch, CLI flags"
+      ]
+    },
+    {
+      "version": "1.3.9",
+      "date": "2025-12-10",
+      "changes": [
+        "Added download progress bar with percentage and file size display",
+        "Shows remote version being downloaded during bootstrap",
+        "Prevents duplicate downloads - skips update check after bootstrap/repair",
+        "Optimized space usage - only extracts termUI folder, deletes archive after",
+        "Fixed bootstrap to skip auto-update when files were just downloaded"
+      ]
+    },
+    {
+      "version": "1.3.8",
+      "date": "2025-12-09",
+      "changes": [
+        "Fixed bootstrap file-lock issue when exe repairs itself from GitHub",
+        "Skips overwriting the running executable during online repair",
+        "Improved bootstrap reliability and error handling"
+      ]
+    },
+    {
+      "version": "1.3.7",
+      "date": "2025-12-09",
+      "changes": [
+        "Added self-bootstrap so exe-only copies download and restore full termUI from GitHub",
+        "Enabled launcher flags --check-update/--update/--repair using Update-Manager",
+        "Auto-repair missing settings.ini or core modules on startup",
+        "Silenced web progress output and reduced screen flicker",
+        "Normalized exit codes for update checks"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2025-12-08",
+      "changes": [
+        "Initial release with core termUI framework",
+        "Added TermUIButtonLibrary for dynamic button creation",
+        "Added TermUIFunctionLibrary for attaching executable code to buttons",
+        "Capture mode for external program integration",
+        "Support for 11 programming languages",
+        "Comprehensive logging system with rotation",
+        "Menu descriptions via .opt file content",
+        "Auto-select and timeout features"
+      ]
+    }
+  ],
+  "compatibility": {
+    "minPowerShellVersion": "5.0",
+    "targetPlatform": "Windows"
+  }
+}
+.
+[2025-12-13 13:29:30] [INFO] Checking GitHub for latest version...
+[2025-12-13 13:29:30] [INFO] Remote version: 1.5.9
+[2025-12-13 13:29:30] [ERROR] Cannot proceed without local version
