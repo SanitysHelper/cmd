@@ -1,44 +1,4 @@
-﻿[2025-12-13 00:13:33] MENU FRAME Selected=0 Count=3 Path=mainUI
-  >>> [1] (submenu) Proxies
-      [2] (submenu) Settings
-      [3] (option) Find Proxies
-[2025-12-13 00:13:34] MENU FRAME Selected=0 Count=3 Path=mainUI/Proxies
-  >>> [1] (submenu) Proxies
-      [2] (submenu) Settings
-      [3] (option) Find Proxies
-[2025-12-13 00:13:34] MENU FRAME Selected=0 Count=3 Path=mainUI/Proxies
-  >>> [1] (option) Clear Working Set
-      [2] (option) Export Valid Proxies
-      [3] (option) View Valid Proxies
-[2025-12-13 00:13:36] MENU FRAME Selected=2 Count=3 Path=mainUI/Proxies
-      [1] (option) Clear Working Set
-      [2] (option) Export Valid Proxies
-  >>> [3] (option) View Valid Proxies
-[2025-12-13 00:13:39] MENU FRAME Selected=0 Count=3 Path=mainUI
-  >>> [1] (option) Clear Working Set
-      [2] (option) Export Valid Proxies
-      [3] (option) View Valid Proxies
-[2025-12-13 00:13:39] MENU FRAME Selected=0 Count=3 Path=mainUI
-  >>> [1] (submenu) Proxies
-      [2] (submenu) Settings
-      [3] (option) Find Proxies
-[2025-12-13 00:13:40] MENU FRAME Selected=0 Count=3 Path=mainUI/Proxies
-  >>> [1] (submenu) Proxies
-      [2] (submenu) Settings
-      [3] (option) Find Proxies
-[2025-12-13 00:13:40] MENU FRAME Selected=0 Count=3 Path=mainUI/Proxies
-  >>> [1] (option) Clear Working Set
-      [2] (option) Export Valid Proxies
-      [3] (option) View Valid Proxies
-[2025-12-13 00:13:41] MENU FRAME Selected=2 Count=3 Path=mainUI/Proxies
-      [1] (option) Clear Working Set
-      [2] (option) Export Valid Proxies
-  >>> [3] (option) View Valid Proxies
-[2025-12-13 00:13:42] MENU FRAME Selected=0 Count=3 Path=mainUI
-  >>> [1] (option) Clear Working Set
-      [2] (option) Export Valid Proxies
-      [3] (option) View Valid Proxies
-[2025-12-13 00:13:43] MENU FRAME Selected=0 Count=3 Path=mainUI
+﻿[2025-12-13 13:19:26] MENU FRAME Selected=0 Count=3 Path=mainUI
   >>> [1] (submenu) Proxies
       [2] (submenu) Settings
       [3] (option) Find Proxies

@@ -1,7 +1,0 @@
-﻿[2025-12-13 00:13:34] INPUT #1 [handler] (+2.405s): {"key":"Enter","char":"\r"}
-[2025-12-13 00:13:36] INPUT #2 [handler] (+1.285s): {"key":"Up","char":null}
-[2025-12-13 00:13:39] INPUT #3 [handler] (+3.591s) [DELAY: 3.59s - MANUAL INPUT SUSPECTED]: {"key":"Enter","char":"\r"}
-[2025-12-13 00:13:40] INPUT #4 [handler] (+1.060s): {"key":"Enter","char":"\r"}
-[2025-12-13 00:13:41] INPUT #5 [handler] (+0.589s): {"key":"Up","char":null}
-[2025-12-13 00:13:42] INPUT #6 [handler] (+1.664s): {"key":"Enter","char":"\r"}
-[2025-12-13 13:15:30] INPUT #7 [handler] (+46907.964s) [DELAY: 46907.96s - MANUAL INPUT SUSPECTED]: {"key":"Q","char":"q"}
