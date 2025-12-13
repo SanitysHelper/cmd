@@ -1,51 +1,83 @@
-#Requires -Version 5.0
-# TagScanner Module - Audio file tag reading and writing for FLAC and MP3
-Set-StrictMode -Version Latest
+# Repairs metadata for all FLAC and MP3 files in the selected directory
+function Repair-Metadata {
+    function Start-ReadModeDescriptionComment {
+        # For FLAC: show DESCRIPTION
+        # For MP3: show Comment
+        if (-not (Test-Dependencies)) { return }
+        $dir = Select-Directory
+        if (-not $dir) { return }
+        Write-Host "`n========================================" -ForegroundColor Cyan
+        Write-Host " READ MODE - Description/Comment" -ForegroundColor Green
+        Write-Host "========================================" -ForegroundColor Cyan
+        Write-Host ("Using directory: " + $dir) -ForegroundColor Gray
+    
+        $files = Get-ChildItem -Path $dir -Recurse -File -ErrorAction SilentlyContinue | Where-Object { $_.Extension -match '\\.(mp3|flac)$' }
+        foreach ($file in $files) {
+            Write-Host "`nFile: $($file.FullName)" -ForegroundColor Yellow
+            if ($file.Extension -eq '.flac' -and $script:metaflacCmd) {
+                try {
+                    $desc = & $script:metaflacCmd --show-tag=DESCRIPTION $file.FullName 2>$null
+                    $descVal = if ($desc) { ($desc -split '=', 2)[1] } else { "(empty)" }
+                    Write-Host "  Description (FLAC): $descVal" -ForegroundColor White
+                } catch { 
+                    Write-Host "  (error reading DESCRIPTION)" -ForegroundColor Red 
+                }
+            } elseif ($file.Extension -eq '.mp3' -and $script:taglibLoaded) {
+                try {
+                    $t = [TagLib.File]::Create($file.FullName)
+                    $commentVal = if ($t.Tag.Comment) { $t.Tag.Comment } else { "(empty)" }
+                    Write-Host "  Comment (MP3): $commentVal" -ForegroundColor White
+                    $t.Dispose()
+                } catch { 
+                    Write-Host "  (error reading Comment)" -ForegroundColor Red 
+                }
+            }
+        }
+        Write-Host "`nPress any key to continue..." -ForegroundColor Gray
+        $null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+    }
 
-$script:historyFile = Join-Path (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)) "directory_history.txt"
-$script:lastSelectedDir = $null
-
-# FLAC tag names commonly used (metaflac uses Vorbis comment field names)
-$script:flacCommonTags = @(
-    "TITLE", "ARTIST", "ALBUM", "ALBUMARTIST", "DATE", "GENRE", "TRACKNUMBER", 
-    "DISCNUMBER", "COMMENT", "COMPOSER", "PERFORMER", "COPYRIGHT", "LICENSE",
-    "ORGANIZATION", "DESCRIPTION", "LOCATION", "CONTACT", "ISRC"
-)
-
-# MP3 ID3v2 frame names (id3v2 uses frame IDs)
-$script:mp3FrameMap = @{
-    "TIT2" = "Title"
-    "TPE1" = "Artist"
-    "TALB" = "Album"
-    "TPE2" = "Album Artist"
-    "TDRC" = "Year"
-    "TCON" = "Genre"
-    "TRCK" = "Track"
-    "TPOS" = "Disc"
-    "COMM" = "Comment"
-    "TCOM" = "Composer"
-    "TPE3" = "Conductor"
-    "TPUB" = "Publisher"
-    "TCOP" = "Copyright"
-    "TENC" = "Encoded by"
-    "TSRC" = "ISRC"
-}
-
-function Test-Dependencies {
-    $missing = @()
-    $metaflacPath = $null
-    $taglibDllPath = $null
-
-    # Preferred local bin locations inside tagScanner (program-local override)
-    $localBin = Join-Path (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)) "_bin"
-    $localMetaflac = Join-Path $localBin "metaflac.exe"
-    $localTaglib = Join-Path $localBin "TagLibSharp.dll"
-
-    # Check for metaflac
-    if (Test-Path $localMetaflac) {
-        $metaflacPath = $localMetaflac
-    } else {
-        try { $cmd = Get-Command metaflac -ErrorAction Stop; $metaflacPath = $cmd.Source } catch {}
+    function Start-WriteModeDescriptionComment {
+        # For FLAC: write DESCRIPTION
+        # For MP3: write Comment
+        if (-not (Test-Dependencies)) { return }
+        $dir = Select-Directory
+        if (-not $dir) { return }
+    
+        Write-Host "`n========================================" -ForegroundColor Cyan
+        Write-Host " EDIT - Description/Comment" -ForegroundColor Green
+        Write-Host "========================================" -ForegroundColor Cyan
+    
+        $value = Read-Host "Enter value (blank to clear)"
+        $files = Get-ChildItem -Path $dir -Recurse -File -ErrorAction SilentlyContinue | Where-Object { $_.Extension -match '\\.(mp3|flac)$' }
+        $successCount = 0
+        $failCount = 0
+    
+        foreach ($file in $files) {
+            $success = $false
+            if ($file.Extension -eq '.flac' -and $script:metaflacCmd) {
+                try {
+                    $success = Write-FlacTag -File $file -TagName "DESCRIPTION" -TagValue $value
+                } catch { $success = $false }
+            } elseif ($file.Extension -eq '.mp3' -and $script:taglibLoaded) {
+                try {
+                    $t = [TagLib.File]::Create($file.FullName)
+                    $t.Tag.Comment = $value
+                    $t.Save(); $t.Dispose()
+                    $success = $true
+                } catch { $success = $false }
+            }
+            if ($success) { $successCount++ } else { $failCount++ }
+        }
+    
+        Write-Host "`n========================================" -ForegroundColor Cyan
+        Write-Host " OPERATION COMPLETE" -ForegroundColor Green
+        Write-Host "========================================" -ForegroundColor Cyan
+        Write-Host "Successful: $successCount" -ForegroundColor Green
+        Write-Host "Failed: $failCount" -ForegroundColor $(if ($failCount -gt 0) { "Red" } else { "Gray" })
+        Write-Host "" -ForegroundColor Gray
+        Write-Host "Press any key to continue..." -ForegroundColor Gray
+        $null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
     }
 
     # Check for TagLibSharp.dll
@@ -282,15 +314,26 @@ function Write-FlacTag {
     )
     
     try {
-        # Remove existing tag first
-            $null = & $script:metaflacCmd --remove-tag="$TagName" "$($File.FullName)" 2>&1
-        
-        # Set new tag value
-        if (-not [string]::IsNullOrWhiteSpace($TagValue)) {
-                $null = & $script:metaflacCmd --set-tag="${TagName}=${TagValue}" "$($File.FullName)" 2>&1
+        if (-not $script:metaflacCmd) {
+            Write-Host "[ERROR] metaflac not available for file $($File.Name)" -ForegroundColor Red
+            return $false
         }
         
-        return $LASTEXITCODE -eq 0
+        $tagEscaped = $TagName -replace '"', '\"'
+        $valueEscaped = $TagValue -replace '"', '\"'
+        
+        & $script:metaflacCmd --remove-tag="$tagEscaped" "$($File.FullName)" 2>&1 | Out-Null
+        
+        if (-not [string]::IsNullOrWhiteSpace($TagValue)) {
+            & $script:metaflacCmd --set-tag="${tagEscaped}=${valueEscaped}" "$($File.FullName)" 2>&1 | Out-Null
+        }
+        
+        if ($LASTEXITCODE -eq 0) {
+            return $true
+        } else {
+            Write-Host "[ERROR] metaflac failed for $($File.Name): exit code $LASTEXITCODE" -ForegroundColor Red
+            return $false
+        }
     } catch {
         Write-Host "[ERROR] Failed to write FLAC tag to $($File.Name): $_" -ForegroundColor Red
         return $false
@@ -543,7 +586,7 @@ function Start-WriteMode {
             $success = Write-FlacTag -File $file -TagName $selectedTag -TagValue $tagValue
         }
         else {
-            $success = Write-Mp3Tag -File $file -FrameId $selectedTag -TagValue $tagValue
+            $success = Write-Mp3Tag -File $file -Field $selectedTag -TagValue $tagValue
         }
         
         if ($success) {
@@ -641,6 +684,107 @@ function Start-ReadModeTag {
     $null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 }
 
+function Start-ReadModeDescriptionComment {
+    if (-not (Test-Dependencies)) { return }
+    $dir = Select-Directory
+    if (-not $dir) { return }
+    Write-Host "`n========================================" -ForegroundColor Cyan
+    Write-Host " READ MODE - Description & Comment" -ForegroundColor Green
+    Write-Host "========================================" -ForegroundColor Cyan
+    Write-Host ("Using directory: " + $dir) -ForegroundColor Gray
+    
+    $files = Get-ChildItem -Path $dir -Recurse -File -ErrorAction SilentlyContinue | Where-Object { $_.Extension -match '\.(mp3|flac)$' }
+    foreach ($file in $files) {
+        Write-Host "`nFile: $($file.FullName)" -ForegroundColor Yellow
+        if ($file.Extension -eq '.flac' -and $script:metaflacCmd) {
+            try {
+                $desc = & $script:metaflacCmd --show-tag=DESCRIPTION $file.FullName 2>$null
+                $comment = & $script:metaflacCmd --show-tag=COMMENT $file.FullName 2>$null
+                $descVal = if ($desc) { ($desc -split '=', 2)[1] } else { "(empty)" }
+                $commentVal = if ($comment) { ($comment -split '=', 2)[1] } else { "(empty)" }
+                Write-Host "  Description: $descVal" -ForegroundColor White
+                Write-Host "  Comment: $commentVal" -ForegroundColor White
+            } catch { 
+                Write-Host "  (error reading tags)" -ForegroundColor Red 
+            }
+        } elseif ($file.Extension -eq '.mp3' -and $script:taglibLoaded) {
+            try {
+                $t = [TagLib.File]::Create($file.FullName)
+                $desc = if ($t.Tag.Description) { $t.Tag.Description } else { "(empty)" }
+                $comment = if ($t.Tag.Comment) { $t.Tag.Comment } else { "(empty)" }
+                Write-Host "  Description: $desc" -ForegroundColor White
+                Write-Host "  Comment: $comment" -ForegroundColor White
+                $t.Dispose()
+            } catch { 
+                Write-Host "  (error reading tags)" -ForegroundColor Red 
+            }
+        }
+    }
+    Write-Host "`nPress any key to continue..." -ForegroundColor Gray
+    $null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+}
+
+function Start-WriteModeDescriptionComment {
+    if (-not (Test-Dependencies)) { return }
+    $dir = Select-Directory
+    if (-not $dir) { return }
+    
+    Write-Host "`n========================================" -ForegroundColor Cyan
+    Write-Host " EDIT - Description & Comment" -ForegroundColor Green
+    Write-Host "========================================" -ForegroundColor Cyan
+    
+    $description = Read-Host "Enter Description (or press Enter to skip)"
+    $comment = Read-Host "Enter Comment (or press Enter to skip)"
+    
+    if ([string]::IsNullOrWhiteSpace($description) -and [string]::IsNullOrWhiteSpace($comment)) {
+        Write-Host "[CANCELLED] No values entered" -ForegroundColor Yellow
+        Write-Host "Press any key to continue..." -ForegroundColor Gray
+        $null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+        return
+    }
+    
+    $files = Get-ChildItem -Path $dir -Recurse -File -ErrorAction SilentlyContinue | Where-Object { $_.Extension -match '\.(mp3|flac)$' }
+    $successCount = 0
+    $failCount = 0
+    
+    foreach ($file in $files) {
+        $success = $false
+        if ($file.Extension -eq '.flac' -and $script:metaflacCmd) {
+            try {
+                if (-not [string]::IsNullOrWhiteSpace($description)) {
+                    Write-FlacTag -File $file -TagName "DESCRIPTION" -TagValue $description
+                }
+                if (-not [string]::IsNullOrWhiteSpace($comment)) {
+                    Write-FlacTag -File $file -TagName "COMMENT" -TagValue $comment
+                }
+                $successCount++
+            } catch { $failCount++ }
+        } elseif ($file.Extension -eq '.mp3' -and $script:taglibLoaded) {
+            try {
+                $t = [TagLib.File]::Create($file.FullName)
+                if (-not [string]::IsNullOrWhiteSpace($description)) {
+                    $t.Tag.Description = $description
+                }
+                if (-not [string]::IsNullOrWhiteSpace($comment)) {
+                    $t.Tag.Comment = $comment
+                }
+                $t.Save()
+                $t.Dispose()
+                $successCount++
+            } catch { $failCount++ }
+        }
+    }
+    
+    Write-Host "`n========================================" -ForegroundColor Cyan
+    Write-Host " OPERATION COMPLETE" -ForegroundColor Green
+    Write-Host "========================================" -ForegroundColor Cyan
+    Write-Host "Successful: $successCount" -ForegroundColor Green
+    Write-Host "Failed: $failCount" -ForegroundColor $(if ($failCount -gt 0) { "Red" } else { "Gray" })
+    Write-Host ""
+    Write-Host "Press any key to continue..." -ForegroundColor Gray
+    $null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+}
+
 function Start-WriteModeTag {
     param([string]$Tag)
     if (-not (Test-Dependencies)) { return }
@@ -719,4 +863,4 @@ function Start-WriteModeTag {
 }
 
 # Export functions when loaded as a module (ignore in script usage)
-try { Export-ModuleMember -Function Start-ReadMode, Start-WriteMode, Start-ReadModeTag, Start-WriteModeTag } catch {}
+# When dot-sourced (normal button execution), Export-ModuleMember is unnecessary and throws; leave functions in scope.

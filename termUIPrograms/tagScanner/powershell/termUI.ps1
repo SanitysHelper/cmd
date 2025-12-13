@@ -4,7 +4,7 @@ $ErrorActionPreference = "Stop"
 
 # Bootstrap metadata
 $script:scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$script:termUIRoot = Split-Path -Parent $script:scriptDir
+$script:termUIRoot = $script:scriptDir
 $script:moduleDir = Join-Path $script:scriptDir "modules"
 
 # Remove any leftover update temp artifacts from previous runs
@@ -169,6 +169,11 @@ if ($captureFile) {
 # Ensure directories
 @($script:paths.logs) | ForEach-Object { if (-not (Test-Path $_)) { New-Item -ItemType Directory -Path $_ -Force | Out-Null } }
 
+# Start output transcript logging (clears on each run)
+$script:outputLog = Join-Path $script:paths.logs "output.log"
+if (Test-Path $script:outputLog) { Remove-Item $script:outputLog -Force -ErrorAction SilentlyContinue }
+Start-Transcript -Path $script:outputLog -Force | Out-Null
+
 # Load modules
 . (Join-Path $script:scriptDir "modules\Logging.ps1")
 . (Join-Path $script:scriptDir "modules\Settings.ps1")
@@ -185,6 +190,7 @@ try {
         if (-not $repairResult) { Write-Host "Repair failed." -ForegroundColor Red; exit 1 }
     }
 
+
     try {
         Initialize-Settings -SettingsPath $script:paths.settings
     } catch {
@@ -193,6 +199,17 @@ try {
         if (-not $repairResult) { Write-Host "Repair failed." -ForegroundColor Red; exit 1 }
         Initialize-Settings -SettingsPath $script:paths.settings
         $script:justBootstrapped = $true
+    }
+
+    # Ensure logLimitBytes is always set (fallback to 5MB if missing)
+    if (-not $script:paths.ContainsKey('logLimitBytes') -or -not $script:paths.logLimitBytes) {
+        $defaultLimitMB = 5
+        try {
+            if ($script:settings -and $script:settings.Logging -and $script:settings.Logging.log_rotation_mb) {
+                $defaultLimitMB = [int]$script:settings.Logging.log_rotation_mb
+            }
+        } catch {}
+        $script:paths.logLimitBytes = 1024 * 1024 * $defaultLimitMB
     }
 
     # Repair if core files are missing
@@ -744,6 +761,9 @@ catch {
 }
 finally {
     Stop-InputHandler -Handler $script:handler
+    
+    # Stop transcript logging
+    try { Stop-Transcript | Out-Null } catch { }
     
     # Report if manual input was detected
     if ($script:manualInputDetected) {

@@ -1,7 +1,0 @@
-﻿The property 'Count' cannot be found on this object. Verify that the property exists.
-At C:\Users\cmand\OneDrive\Desktop\cmd\uiBuilder\_debug\comprehensive_ui_test.ps1:142 char:17
-+             if ($inputLog.Count -gt 0) {
-+                 ~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (:) [], PropertyNotFoundException
-    + FullyQualifiedErrorId : PropertyNotFoundStrict
- 

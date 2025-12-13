@@ -584,3 +584,190 @@
 [2025-12-11 14:52:02] INFO: Selected option: mainUI/Read Mode/Both (Description+Comment)
 [2025-12-11 14:52:02] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Both (Description+Comment).ps1
 [2025-12-11 14:57:56] INFO: User quit with Q key (handler-mapped)
+[2025-12-11 15:05:24] INFO: Running in interactive mode (console available)
+[2025-12-11 15:05:39] INFO: User quit with Q key (handler-mapped)
+[2025-12-11 15:05:57] INFO: Running in interactive mode (console available)
+[2025-12-11 15:06:40] INFO: User quit with Q key (handler-mapped)
+[2025-12-11 21:30:26] INFO: Running in interactive mode (console available)
+[2025-12-11 21:30:29] INFO: Entered submenu: mainUI/Directories
+[2025-12-11 21:30:32] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-11 21:30:32] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-11 21:30:41] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-11 21:30:46] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-11 21:30:46] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-11 21:31:22] INFO: Entered submenu: mainUI/Write Mode
+[2025-12-11 21:31:27] INFO: Navigated back to: mainUI
+[2025-12-11 21:31:29] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-11 21:31:30] INFO: Selected option: mainUI/Read Mode/Description
+[2025-12-11 21:31:30] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Description.ps1
+[2025-12-11 21:31:46] INFO: Running in interactive mode (console available)
+[2025-12-11 21:31:48] INFO: Entered submenu: mainUI/Directories
+[2025-12-11 21:31:49] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-11 21:31:49] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-11 21:31:55] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-11 21:31:57] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-11 21:31:57] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-11 21:32:31] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-11 21:32:34] INFO: Selected option: mainUI/Read Mode/Description
+[2025-12-11 21:32:34] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Description.ps1
+[2025-12-12 11:12:36] INFO: Started input handler in TEST mode: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_tests\test_read_artist.json (buffered 10 events)
+[2025-12-12 11:12:36] INFO: Entered submenu: mainUI/Directories
+[2025-12-12 11:12:37] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-12 11:12:37] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-12 11:14:38] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 11:14:38] INFO: Entered submenu: mainUI/Read Mode/Extras
+[2025-12-12 11:14:38] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 11:15:25] INFO: Running in interactive mode (console available)
+[2025-12-12 11:15:26] INFO: Entered submenu: mainUI/Directories
+[2025-12-12 11:15:28] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-12 11:15:29] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-12 11:15:32] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 11:15:34] INFO: Selected option: mainUI/Read Mode/Description & Comment
+[2025-12-12 11:15:34] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Description & Comment.ps1
+[2025-12-12 11:18:24] INFO: Running in interactive mode (console available)
+[2025-12-12 11:18:26] INFO: Entered submenu: mainUI/Directories
+[2025-12-12 11:18:30] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-12 11:18:30] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-12 11:18:32] INFO: Entered submenu: mainUI/Write Mode
+[2025-12-12 11:18:34] INFO: Selected option: mainUI/Write Mode/Description & Comment
+[2025-12-12 11:18:34] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Write Mode\Description & Comment.ps1
+[2025-12-12 11:19:43] INFO: Running in interactive mode (console available)
+[2025-12-12 11:20:45] INFO: Entered submenu: mainUI/Directories
+[2025-12-12 11:20:48] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-12 11:20:48] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-12 11:20:51] INFO: Entered submenu: mainUI/Write Mode
+[2025-12-12 11:20:54] INFO: Selected option: mainUI/Write Mode/Description & Comment
+[2025-12-12 11:20:54] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Write Mode\Description & Comment.ps1
+[2025-12-12 11:21:25] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 11:26:18] INFO: Running in interactive mode (console available)
+[2025-12-12 11:26:24] INFO: Entered submenu: mainUI/Directories
+[2025-12-12 11:26:27] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-12 11:26:27] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-12 11:26:29] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 11:26:31] INFO: Selected option: mainUI/Read Mode/Description & Comment
+[2025-12-12 11:26:31] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Description & Comment.ps1
+[2025-12-12 11:26:46] INFO: Running in interactive mode (console available)
+[2025-12-12 11:26:48] INFO: Entered submenu: mainUI/Directories
+[2025-12-12 11:26:50] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-12 11:26:50] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-12 11:26:55] INFO: Entered submenu: mainUI/Write Mode
+[2025-12-12 11:27:01] INFO: Selected option: mainUI/Write Mode/Description
+[2025-12-12 11:27:01] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Write Mode\Description.ps1
+[2025-12-12 11:29:05] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 11:40:56] INFO: Running in interactive mode (console available)
+[2025-12-12 11:40:59] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 11:42:37] INFO: Running in interactive mode (console available)
+[2025-12-12 11:42:42] INFO: Entered submenu: mainUI/Directories
+[2025-12-12 11:42:43] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-12 11:42:43] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-12 11:42:45] INFO: Selected option: mainUI/Repair Metadata
+[2025-12-12 11:42:45] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Repair Metadata.ps1
+[2025-12-12 11:42:48] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 11:43:20] INFO: Running in interactive mode (console available)
+[2025-12-12 11:43:35] INFO: Entered submenu: mainUI/Directories
+[2025-12-12 11:43:37] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-12 11:43:37] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-12 11:43:41] INFO: Selected option: mainUI/Repair Metadata
+[2025-12-12 11:43:41] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Repair Metadata.ps1
+[2025-12-12 11:43:58] INFO: Running in interactive mode (console available)
+[2025-12-12 11:44:02] INFO: Entered submenu: mainUI/Directories
+[2025-12-12 11:44:04] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-12 11:44:04] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-12 11:44:07] INFO: Selected option: mainUI/Repair Metadata
+[2025-12-12 11:44:07] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Repair Metadata.ps1
+[2025-12-12 11:45:58] INFO: Running in interactive mode (console available)
+[2025-12-12 11:46:01] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 11:46:04] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 11:47:12] INFO: Running in interactive mode (console available)
+[2025-12-12 11:47:13] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 11:47:14] INFO: Selected option: mainUI/Dependencies/Auto Download
+[2025-12-12 11:47:14] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Auto Download.ps1
+[2025-12-12 11:48:12] INFO: Running in interactive mode (console available)
+[2025-12-12 11:48:14] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 11:48:14] INFO: Selected option: mainUI/Dependencies/Auto Download
+[2025-12-12 11:48:14] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Auto Download.ps1
+[2025-12-12 11:48:27] INFO: Entered submenu: mainUI/Directories
+[2025-12-12 11:48:33] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-12 11:48:33] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-12 11:48:38] INFO: Selected option: mainUI/Repair Metadata
+[2025-12-12 11:48:38] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Repair Metadata.ps1
+[2025-12-12 11:49:57] INFO: Running in interactive mode (console available)
+[2025-12-12 11:50:01] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 11:50:02] INFO: Selected option: mainUI/Dependencies/Auto Download
+[2025-12-12 11:50:02] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Auto Download.ps1
+[2025-12-12 11:50:34] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 11:50:35] INFO: Selected option: mainUI/Dependencies/Check Dependencies
+[2025-12-12 11:50:35] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Check Dependencies.ps1
+[2025-12-12 11:50:38] INFO: Entered submenu: mainUI/Directories
+[2025-12-12 11:50:40] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-12 11:50:40] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-12 11:50:42] INFO: Selected option: mainUI/Repair Metadata
+[2025-12-12 11:50:42] INFO: Executing script: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Repair Metadata.ps1
+[2025-12-12 11:54:57] INFO: Running in interactive mode (console available)
+[2025-12-12 11:55:00] INFO: Entered submenu: mainUI/Directories
+[2025-12-12 11:55:02] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-12 11:55:02] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-12 11:55:05] INFO: Selected option: mainUI/Repair Metadata
+[2025-12-12 11:55:05] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Repair Metadata.ps1
+[2025-12-12 11:55:10] INFO: Selected option: mainUI/Repair Metadata
+[2025-12-12 11:55:10] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Repair Metadata.ps1
+[2025-12-12 21:10:20] INFO: Running in interactive mode (console available)
+[2025-12-12 21:10:23] INFO: Entered submenu: mainUI/Directories
+[2025-12-12 21:10:25] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-12 21:10:25] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-12 21:10:27] INFO: Selected option: mainUI/Repair Metadata
+[2025-12-12 21:10:27] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Repair Metadata.ps1
+[2025-12-12 21:10:31] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 21:11:07] INFO: Running in interactive mode (console available)
+[2025-12-12 21:11:08] INFO: Selected option: mainUI/Repair Metadata
+[2025-12-12 21:11:08] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Repair Metadata.ps1
+[2025-12-12 21:15:09] INFO: Running in interactive mode (console available)
+[2025-12-12 21:15:11] INFO: Entered submenu: mainUI/Directories
+[2025-12-12 21:15:12] INFO: Selected option: mainUI/Directories/C_Users_cmand_Music
+[2025-12-12 21:15:12] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Directories\C_Users_cmand_Music.ps1
+[2025-12-12 21:15:14] INFO: Selected option: mainUI/Repair Metadata
+[2025-12-12 21:15:14] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Repair Metadata.ps1
+[2025-12-12 21:16:41] INFO: Entered submenu: mainUI/Write Mode
+[2025-12-12 21:16:45] INFO: Navigated back to: mainUI
+[2025-12-12 21:16:47] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 21:16:48] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 21:16:48] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 21:17:10] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 21:17:11] INFO: Selected option: mainUI/Read Mode/Description
+[2025-12-12 21:17:11] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Description.ps1
+[2025-12-12 21:17:30] INFO: Entered submenu: mainUI/Write Mode
+[2025-12-12 21:17:33] INFO: Selected option: mainUI/Write Mode/Comment
+[2025-12-12 21:17:33] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Write Mode\Comment.ps1
+[2025-12-12 21:17:52] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 21:17:54] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 21:17:54] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 21:18:14] INFO: Entered submenu: mainUI/Write Mode
+[2025-12-12 21:18:15] INFO: Selected option: mainUI/Write Mode/Description
+[2025-12-12 21:18:15] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Write Mode\Description.ps1
+[2025-12-12 21:18:35] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 21:18:37] INFO: Selected option: mainUI/Read Mode/Description
+[2025-12-12 21:18:37] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Description.ps1
+[2025-12-12 21:18:54] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 21:19:01] INFO: Selected option: mainUI/Read Mode/Title
+[2025-12-12 21:19:01] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Title.ps1
+[2025-12-12 21:19:57] INFO: Selected option: mainUI/Repair Metadata
+[2025-12-12 21:19:57] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Repair Metadata.ps1
+[2025-12-12 21:25:26] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_read_notes.json (buffered 7 events)
+[2025-12-12 21:25:26] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 21:25:26] INFO: Selected option: mainUI/Read Mode/Artist
+[2025-12-12 21:25:27] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Artist.ps1
+[2025-12-12 21:25:27] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 21:26:03] INFO: Started input handler in TEST mode: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\_tests\test_read_notes.json (buffered 8 events)
+[2025-12-12 21:26:03] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 21:26:04] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 21:26:04] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 21:26:04] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 21:32:15] INFO: Running in interactive mode (console available)
+[2025-12-12 21:32:19] INFO: Entered submenu: mainUI/Dependencies
+[2025-12-12 21:32:25] INFO: Selected option: mainUI/Dependencies/Auto Download
+[2025-12-12 21:32:25] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Dependencies\Auto Download.ps1
+[2025-12-12 21:33:07] INFO: Entered submenu: mainUI/Read Mode
+[2025-12-12 21:33:12] INFO: Selected option: mainUI/Read Mode/Comment
+[2025-12-12 21:33:12] INFO: Executing script: C:\cmdPrograms\cmd\termUIPrograms\tagScanner\powershell\..\buttons\mainUI\Read Mode\Comment.ps1
+[2025-12-12 21:33:18] INFO: User quit with Q key (handler-mapped)
+[2025-12-12 21:33:28] INFO: Running in interactive mode (console available)

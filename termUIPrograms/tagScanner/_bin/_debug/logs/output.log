@@ -1,0 +1,43 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20251212213327
+Username: THEHULK\cmand
+RunAs User: THEHULK\cmand
+Configuration Name: 
+Machine: THEHULK (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -Command cd /d C:\cmdPrograms\cmd\termUI; ./powershell/termUI.ps1 --test-file ./_debug/test_basic.json
+Process ID: 28376
+PSVersion: 5.1.26100.7462
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7462
+BuildVersion: 10.0.26100.7462
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+[DEBUG] Initializing settings...
+[INFO] === termUI Update Check Started ===
+[INFO] Local version: 1.5.4
+[INFO] Checking GitHub for latest version...
+[INFO] Remote version: 1.5.4
+[INFO] Versions are identical: 1.5.4
+[SUCCESS] No update needed
+[DEBUG] Loading menu tree...
+[2J[H
+=== termUI
+1.5.4
+ ===
+Path: mainUI
+
+> [1] (submenu) Dependencies
+  [2] (submenu) Directories
+  [3] (submenu) Read Mode
+  [4] (submenu) Write Mode
+  [5] (option) Repair Metadata
+
+[Up/Down] Navigate  [#] Quick Select  [Escape] Back  [Q] Quit
+**********************
+Windows PowerShell transcript end
+End time: 20251212213402
+**********************

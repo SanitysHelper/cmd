@@ -32,24 +32,11 @@ function Invoke-TermUIMenuRefresh {
     param()
     
     try {
-        # Detect termUI root
-        $termUIRoot = $null
-        
-        # Try environment variable first
-        if ($env:TERMUI_ROOT -and (Test-Path $env:TERMUI_ROOT)) {
-            $termUIRoot = $env:TERMUI_ROOT
-        }
-        
-        # Try to find it relative to this script
-        if (-not $termUIRoot) {
-            # This script is at: termUI/powershell/modules/RefreshHelper.ps1
-            # termUI root is 3 levels up
-            $termUIRoot = Split-Path (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent) -Parent
-            
-            if (-not (Test-Path (Join-Path $termUIRoot "powershell/modules/MenuBuilder.ps1"))) {
-                Write-Warning "Could not find termUI installation for menu refresh"
-                return
-            }
+        # Detect termUI root (local only)
+        $termUIRoot = Split-Path (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent) -Parent
+        if (-not (Test-Path (Join-Path $termUIRoot "powershell/modules/MenuBuilder.ps1"))) {
+            Write-Warning "Could not find termUI installation for menu refresh"
+            return
         }
         
         # Load required modules

@@ -58,8 +58,7 @@ Write-Host "The new directory has been added." -ForegroundColor Cyan
 
 # Refresh termUI menu to show new directory button
 try {
-    $termUIRoot = "c:/Users/cmand/OneDrive/Desktop/cmd/termUI"
-    $refreshHelper = Join-Path $termUIRoot "powershell/modules/RefreshHelper.ps1"
+    $refreshHelper = Join-Path (Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))) "powershell/modules/RefreshHelper.ps1"
     if (Test-Path $refreshHelper) {
         . $refreshHelper
         Invoke-TermUIMenuRefresh

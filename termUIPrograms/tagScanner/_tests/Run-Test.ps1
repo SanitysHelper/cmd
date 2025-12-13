@@ -22,8 +22,7 @@ $ErrorActionPreference = "Stop"
 # Paths
 $script:testRoot = Split-Path -Parent $PSCommandPath
 $script:tagScannerRoot = Split-Path -Parent $script:testRoot
-$script:termUIRoot = Join-Path (Split-Path -Parent $script:tagScannerRoot) "termUI"
-$script:termUIExe = Join-Path $script:termUIRoot "termUI.exe"
+$script:termUIExe = Join-Path $script:tagScannerRoot "termUI.exe"
 $script:testInputFile = Join-Path $script:testRoot $TestFile
 
 if (-not (Test-Path $script:testInputFile)) {
@@ -31,9 +30,10 @@ if (-not (Test-Path $script:testInputFile)) {
     exit 1
 }
 
+
 if (-not (Test-Path $script:termUIExe)) {
-    Write-Host "[ERROR] termUI.exe not found: $script:termUIExe" -ForegroundColor Red
-    exit 1
+    Write-Host "[WARN] termUI.exe not found in local tagScanner root: $script:termUIExe" -ForegroundColor Yellow
+    # Fallback: use termUI.ps1 for test
 }
 
 Write-Host "========================================" -ForegroundColor Cyan
@@ -54,9 +54,8 @@ try {
     Write-Host "[INFO] Test input: $script:testInputFile" -ForegroundColor Gray
     Write-Host ""
     
-    # Launch tagScanner's termUI.ps1 directly
+    # Launch tagScanner's termUI.ps1 directly (always local)
     $termUIPS1 = Join-Path $script:tagScannerRoot "powershell\termUI.ps1"
-    
     $result = & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $termUIPS1
     
     $exitCode = $LASTEXITCODE

@@ -159,11 +159,8 @@ function Refresh-TermUIMenu {
     try {
         # If TermUIRoot not specified, try to detect it
         if (-not $TermUIRoot) {
-            $TermUIRoot = $env:TERMUI_ROOT
-            if (-not $TermUIRoot) {
-                # Try to find it by looking up from this module's location
-                $TermUIRoot = Split-Path (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent) -Parent
-            }
+            # Try to find it by looking up from this module's location (local only)
+            $TermUIRoot = Split-Path (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent) -Parent
         }
         
         # Verify it's a valid termUI installation

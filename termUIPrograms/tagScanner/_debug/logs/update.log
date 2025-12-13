@@ -1739,3 +1739,218 @@
 [2025-12-11 14:51:30] [INFO] Remote version: 1.5.3
 [2025-12-11 14:51:30] [INFO] Versions are identical: 1.5.3
 [2025-12-11 14:51:30] [SUCCESS] No update needed
+[2025-12-11 15:05:07] [INFO] === termUI Update Check Started ===
+[2025-12-11 15:05:07] [INFO] Local version: 1.5.3
+[2025-12-11 15:05:07] [INFO] Checking GitHub for latest version...
+[2025-12-11 15:05:08] [INFO] Remote version: 1.5.4
+[2025-12-11 15:05:08] [SUCCESS] Update available: 1.5.3 -> 1.5.4
+[2025-12-11 15:05:12] [INFO] Starting update from 1.5.3 to 1.5.4
+[2025-12-11 15:05:12] [INFO] Creating backup: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\backups\termUI_v1.5.3_2025-12-11_150512
+[2025-12-11 15:05:13] [SUCCESS] Backup created successfully
+[2025-12-11 15:05:13] [INFO] Downloading update from GitHub...
+[2025-12-11 15:05:17] [INFO] Download complete
+[2025-12-11 15:05:17] [INFO] Extracting update...
+[2025-12-11 15:05:23] [ERROR] Extraction failed: Exception calling "ExtractToDirectory" with "2" argument(s): "The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\termUI_update_temp\cmd-main\Old Projects\uiBuilder\app\processor.exe' because it is being used by another process."
+[2025-12-11 15:05:23] [INFO] === Update Check Completed ===
+[2025-12-11 15:05:45] [INFO] === termUI Update Check Started ===
+[2025-12-11 15:05:45] [INFO] Local version: 1.5.3
+[2025-12-11 15:05:45] [INFO] Checking GitHub for latest version...
+[2025-12-11 15:05:45] [INFO] Remote version: 1.5.4
+[2025-12-11 15:05:46] [SUCCESS] Update available: 1.5.3 -> 1.5.4
+[2025-12-11 15:05:48] [INFO] Starting update from 1.5.3 to 1.5.4
+[2025-12-11 15:05:48] [INFO] Creating backup: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\backups\termUI_v1.5.3_2025-12-11_150548
+[2025-12-11 15:05:48] [SUCCESS] Backup created successfully
+[2025-12-11 15:05:48] [INFO] Downloading update from GitHub...
+[2025-12-11 15:05:53] [INFO] Download complete
+[2025-12-11 15:05:53] [INFO] Extracting update...
+[2025-12-11 15:05:56] [ERROR] Extraction failed: Exception calling "ExtractToDirectory" with "2" argument(s): "The process cannot access the file 'C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\termUI_update_temp\cmd-main\Old Projects\termUI\_debug\termUI_update_temp\cmd-main\uiBuilder\app\processor.exe' because it is being used by another process."
+[2025-12-11 15:05:56] [INFO] === Update Check Completed ===
+[2025-12-11 21:29:44] [INFO] === termUI Update Check Started ===
+[2025-12-11 21:29:45] [INFO] Local version: 1.5.3
+[2025-12-11 21:29:45] [INFO] Checking GitHub for latest version...
+[2025-12-11 21:29:45] [INFO] Remote version: 1.5.4
+[2025-12-11 21:29:45] [SUCCESS] Update available: 1.5.3 -> 1.5.4
+[2025-12-11 21:29:46] [INFO] Starting update from 1.5.3 to 1.5.4
+[2025-12-11 21:29:47] [INFO] Creating backup: C:\Users\cmand\OneDrive\Desktop\cmd\termUIPrograms\tagScanner\_debug\backups\termUI_v1.5.3_2025-12-11_212947
+[2025-12-11 21:29:47] [SUCCESS] Backup created successfully
+[2025-12-11 21:29:47] [INFO] Downloading update from GitHub...
+[2025-12-11 21:29:50] [INFO] Download complete
+[2025-12-11 21:29:50] [INFO] Extracting update...
+[2025-12-11 21:29:57] [INFO] Extraction complete
+[2025-12-11 21:29:57] [INFO] Installing updated files...
+[2025-12-11 21:29:57] [SUCCESS] Files installed successfully (robocopy exit code: 3)
+[2025-12-11 21:29:57] [INFO] Cleaning up temporary files...
+[2025-12-11 21:30:00] [SUCCESS] Update completed successfully: 1.5.3 -> 1.5.4
+[2025-12-11 21:30:00] [INFO] === Update Check Completed ===
+[2025-12-11 21:30:00] [SUCCESS] Launched updated termUI
+[2025-12-11 21:30:06] [INFO] === termUI Update Check Started ===
+[2025-12-11 21:30:06] [INFO] Local version: 1.5.4
+[2025-12-11 21:30:06] [INFO] Checking GitHub for latest version...
+[2025-12-11 21:30:24] [INFO] === termUI Update Check Started ===
+[2025-12-11 21:30:25] [INFO] Local version: 1.5.4
+[2025-12-11 21:30:25] [INFO] Checking GitHub for latest version...
+[2025-12-11 21:30:25] [INFO] Remote version: 1.5.4
+[2025-12-11 21:30:25] [INFO] Versions are identical: 1.5.4
+[2025-12-11 21:30:25] [SUCCESS] No update needed
+[2025-12-11 21:31:45] [INFO] === termUI Update Check Started ===
+[2025-12-11 21:31:45] [INFO] Local version: 1.5.4
+[2025-12-11 21:31:45] [INFO] Checking GitHub for latest version...
+[2025-12-11 21:31:45] [INFO] Remote version: 1.5.4
+[2025-12-11 21:31:45] [INFO] Versions are identical: 1.5.4
+[2025-12-11 21:31:45] [SUCCESS] No update needed
+[2025-12-12 11:12:34] [INFO] === termUI Update Check Started ===
+[2025-12-12 11:12:34] [INFO] Local version: 1.5.4
+[2025-12-12 11:12:34] [INFO] Checking GitHub for latest version...
+[2025-12-12 11:12:34] [INFO] Remote version: 1.5.4
+[2025-12-12 11:12:34] [INFO] Versions are identical: 1.5.4
+[2025-12-12 11:12:34] [SUCCESS] No update needed
+[2025-12-12 11:15:23] [INFO] === termUI Update Check Started ===
+[2025-12-12 11:15:23] [INFO] Local version: 1.5.4
+[2025-12-12 11:15:23] [INFO] Checking GitHub for latest version...
+[2025-12-12 11:15:24] [INFO] Remote version: 1.5.4
+[2025-12-12 11:15:24] [INFO] Versions are identical: 1.5.4
+[2025-12-12 11:15:24] [SUCCESS] No update needed
+[2025-12-12 11:18:23] [INFO] === termUI Update Check Started ===
+[2025-12-12 11:18:23] [INFO] Local version: 1.5.4
+[2025-12-12 11:18:23] [INFO] Checking GitHub for latest version...
+[2025-12-12 11:18:23] [INFO] Remote version: 1.5.4
+[2025-12-12 11:18:23] [INFO] Versions are identical: 1.5.4
+[2025-12-12 11:18:23] [SUCCESS] No update needed
+[2025-12-12 11:19:42] [INFO] === termUI Update Check Started ===
+[2025-12-12 11:19:42] [INFO] Local version: 1.5.4
+[2025-12-12 11:19:42] [INFO] Checking GitHub for latest version...
+[2025-12-12 11:19:43] [INFO] Remote version: 1.5.4
+[2025-12-12 11:19:43] [INFO] Versions are identical: 1.5.4
+[2025-12-12 11:19:43] [SUCCESS] No update needed
+[2025-12-12 11:26:16] [INFO] === termUI Update Check Started ===
+[2025-12-12 11:26:16] [INFO] Local version: 1.5.4
+[2025-12-12 11:26:16] [INFO] Checking GitHub for latest version...
+[2025-12-12 11:26:17] [INFO] Remote version: 1.5.4
+[2025-12-12 11:26:17] [INFO] Versions are identical: 1.5.4
+[2025-12-12 11:26:17] [SUCCESS] No update needed
+[2025-12-12 11:26:45] [INFO] === termUI Update Check Started ===
+[2025-12-12 11:26:45] [INFO] Local version: 1.5.4
+[2025-12-12 11:26:45] [INFO] Checking GitHub for latest version...
+[2025-12-12 11:26:46] [INFO] Remote version: 1.5.4
+[2025-12-12 11:26:46] [INFO] Versions are identical: 1.5.4
+[2025-12-12 11:26:46] [SUCCESS] No update needed
+[2025-12-12 11:35:45] [INFO] === termUI Update Check Started ===
+[2025-12-12 11:35:45] [INFO] Local version: 1.5.4
+[2025-12-12 11:35:45] [INFO] Checking GitHub for latest version...
+[2025-12-12 11:35:46] [INFO] Remote version: 1.5.4
+[2025-12-12 11:35:46] [INFO] Versions are identical: 1.5.4
+[2025-12-12 11:35:46] [SUCCESS] No update needed
+[2025-12-12 11:36:01] [INFO] === termUI Update Check Started ===
+[2025-12-12 11:36:01] [INFO] Local version: 1.5.4
+[2025-12-12 11:36:01] [INFO] Checking GitHub for latest version...
+[2025-12-12 11:36:02] [INFO] Remote version: 1.5.4
+[2025-12-12 11:36:02] [INFO] Versions are identical: 1.5.4
+[2025-12-12 11:36:02] [SUCCESS] No update needed
+[2025-12-12 11:39:26] [INFO] === termUI Update Check Started ===
+[2025-12-12 11:39:26] [INFO] Local version: 1.5.4
+[2025-12-12 11:39:26] [INFO] Checking GitHub for latest version...
+[2025-12-12 11:39:26] [INFO] Remote version: 1.5.4
+[2025-12-12 11:39:26] [INFO] Versions are identical: 1.5.4
+[2025-12-12 11:39:26] [SUCCESS] No update needed
+[2025-12-12 11:39:59] [INFO] === termUI Update Check Started ===
+[2025-12-12 11:39:59] [INFO] Local version: 1.5.4
+[2025-12-12 11:39:59] [INFO] Checking GitHub for latest version...
+[2025-12-12 11:39:59] [INFO] Remote version: 1.5.4
+[2025-12-12 11:39:59] [INFO] Versions are identical: 1.5.4
+[2025-12-12 11:39:59] [SUCCESS] No update needed
+[2025-12-12 11:40:54] [INFO] === termUI Update Check Started ===
+[2025-12-12 11:40:55] [INFO] Local version: 1.5.4
+[2025-12-12 11:40:55] [INFO] Checking GitHub for latest version...
+[2025-12-12 11:40:55] [INFO] Remote version: 1.5.4
+[2025-12-12 11:40:55] [INFO] Versions are identical: 1.5.4
+[2025-12-12 11:40:55] [SUCCESS] No update needed
+[2025-12-12 11:42:35] [INFO] === termUI Update Check Started ===
+[2025-12-12 11:42:35] [INFO] Local version: 1.5.4
+[2025-12-12 11:42:35] [INFO] Checking GitHub for latest version...
+[2025-12-12 11:42:36] [INFO] Remote version: 1.5.4
+[2025-12-12 11:42:36] [INFO] Versions are identical: 1.5.4
+[2025-12-12 11:42:36] [SUCCESS] No update needed
+[2025-12-12 11:43:18] [INFO] === termUI Update Check Started ===
+[2025-12-12 11:43:18] [INFO] Local version: 1.5.4
+[2025-12-12 11:43:18] [INFO] Checking GitHub for latest version...
+[2025-12-12 11:43:19] [INFO] Remote version: 1.5.4
+[2025-12-12 11:43:19] [INFO] Versions are identical: 1.5.4
+[2025-12-12 11:43:19] [SUCCESS] No update needed
+[2025-12-12 11:43:56] [INFO] === termUI Update Check Started ===
+[2025-12-12 11:43:56] [INFO] Local version: 1.5.4
+[2025-12-12 11:43:56] [INFO] Checking GitHub for latest version...
+[2025-12-12 11:43:56] [INFO] Remote version: 1.5.4
+[2025-12-12 11:43:57] [INFO] Versions are identical: 1.5.4
+[2025-12-12 11:43:57] [SUCCESS] No update needed
+[2025-12-12 11:45:56] [INFO] === termUI Update Check Started ===
+[2025-12-12 11:45:57] [INFO] Local version: 1.5.4
+[2025-12-12 11:45:57] [INFO] Checking GitHub for latest version...
+[2025-12-12 11:45:57] [INFO] Remote version: 1.5.4
+[2025-12-12 11:45:57] [INFO] Versions are identical: 1.5.4
+[2025-12-12 11:45:57] [SUCCESS] No update needed
+[2025-12-12 11:47:11] [INFO] === termUI Update Check Started ===
+[2025-12-12 11:47:11] [INFO] Local version: 1.5.4
+[2025-12-12 11:47:11] [INFO] Checking GitHub for latest version...
+[2025-12-12 11:47:11] [INFO] Remote version: 1.5.4
+[2025-12-12 11:47:11] [INFO] Versions are identical: 1.5.4
+[2025-12-12 11:47:11] [SUCCESS] No update needed
+[2025-12-12 11:48:11] [INFO] === termUI Update Check Started ===
+[2025-12-12 11:48:11] [INFO] Local version: 1.5.4
+[2025-12-12 11:48:11] [INFO] Checking GitHub for latest version...
+[2025-12-12 11:48:11] [INFO] Remote version: 1.5.4
+[2025-12-12 11:48:11] [INFO] Versions are identical: 1.5.4
+[2025-12-12 11:48:11] [SUCCESS] No update needed
+[2025-12-12 11:49:55] [INFO] === termUI Update Check Started ===
+[2025-12-12 11:49:55] [INFO] Local version: 1.5.4
+[2025-12-12 11:49:55] [INFO] Checking GitHub for latest version...
+[2025-12-12 11:49:56] [INFO] Remote version: 1.5.4
+[2025-12-12 11:49:56] [INFO] Versions are identical: 1.5.4
+[2025-12-12 11:49:56] [SUCCESS] No update needed
+[2025-12-12 11:54:56] [INFO] === termUI Update Check Started ===
+[2025-12-12 11:54:56] [INFO] Local version: 1.5.4
+[2025-12-12 11:54:56] [INFO] Checking GitHub for latest version...
+[2025-12-12 11:54:56] [INFO] Remote version: 1.5.4
+[2025-12-12 11:54:56] [INFO] Versions are identical: 1.5.4
+[2025-12-12 11:54:56] [SUCCESS] No update needed
+[2025-12-12 21:10:19] [INFO] === termUI Update Check Started ===
+[2025-12-12 21:10:19] [INFO] Local version: 1.5.4
+[2025-12-12 21:10:19] [INFO] Checking GitHub for latest version...
+[2025-12-12 21:10:20] [INFO] Remote version: 1.5.4
+[2025-12-12 21:10:20] [INFO] Versions are identical: 1.5.4
+[2025-12-12 21:10:20] [SUCCESS] No update needed
+[2025-12-12 21:11:06] [INFO] === termUI Update Check Started ===
+[2025-12-12 21:11:06] [INFO] Local version: 1.5.4
+[2025-12-12 21:11:06] [INFO] Checking GitHub for latest version...
+[2025-12-12 21:11:06] [INFO] Remote version: 1.5.4
+[2025-12-12 21:11:06] [INFO] Versions are identical: 1.5.4
+[2025-12-12 21:11:06] [SUCCESS] No update needed
+[2025-12-12 21:15:08] [INFO] === termUI Update Check Started ===
+[2025-12-12 21:15:08] [INFO] Local version: 1.5.4
+[2025-12-12 21:15:08] [INFO] Checking GitHub for latest version...
+[2025-12-12 21:15:09] [INFO] Remote version: 1.5.4
+[2025-12-12 21:15:09] [INFO] Versions are identical: 1.5.4
+[2025-12-12 21:15:09] [SUCCESS] No update needed
+[2025-12-12 21:25:24] [INFO] === termUI Update Check Started ===
+[2025-12-12 21:25:24] [INFO] Local version: 1.5.4
+[2025-12-12 21:25:24] [INFO] Checking GitHub for latest version...
+[2025-12-12 21:25:24] [INFO] Remote version: 1.5.4
+[2025-12-12 21:25:24] [INFO] Versions are identical: 1.5.4
+[2025-12-12 21:25:24] [SUCCESS] No update needed
+[2025-12-12 21:26:01] [INFO] === termUI Update Check Started ===
+[2025-12-12 21:26:01] [INFO] Local version: 1.5.4
+[2025-12-12 21:26:01] [INFO] Checking GitHub for latest version...
+[2025-12-12 21:26:02] [INFO] Remote version: 1.5.4
+[2025-12-12 21:26:02] [INFO] Versions are identical: 1.5.4
+[2025-12-12 21:26:02] [SUCCESS] No update needed
+[2025-12-12 21:32:14] [INFO] === termUI Update Check Started ===
+[2025-12-12 21:32:15] [INFO] Local version: 1.5.4
+[2025-12-12 21:32:15] [INFO] Checking GitHub for latest version...
+[2025-12-12 21:32:15] [INFO] Remote version: 1.5.4
+[2025-12-12 21:32:15] [INFO] Versions are identical: 1.5.4
+[2025-12-12 21:32:15] [SUCCESS] No update needed
+[2025-12-12 21:33:27] [INFO] === termUI Update Check Started ===
+[2025-12-12 21:33:27] [INFO] Local version: 1.5.4
+[2025-12-12 21:33:27] [INFO] Checking GitHub for latest version...
+[2025-12-12 21:33:28] [INFO] Remote version: 1.5.4
+[2025-12-12 21:33:28] [INFO] Versions are identical: 1.5.4
+[2025-12-12 21:33:28] [SUCCESS] No update needed

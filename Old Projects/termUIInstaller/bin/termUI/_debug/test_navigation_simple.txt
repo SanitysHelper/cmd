@@ -1,8 +1,0 @@
-{"key":"Down","char":""}
-{"key":"Down","char":""}
-{"key":"Enter","char":""}
-{"key":"Down","char":""}
-{"key":"Enter","char":""}
-{"key":"Escape","char":""}
-{"key":"Escape","char":""}
-{"key":"Q","char":""}

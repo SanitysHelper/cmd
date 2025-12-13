@@ -1,3 +1,0 @@
-{"key":"Down"}
-{"key":"Down"}
-{"key":"Enter"}

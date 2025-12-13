@@ -1,4 +1,0 @@
-{"key":"Down"}
-{"key":"Enter"}
-{"key":"Escape"}
-{"key":"Q"}

@@ -118,6 +118,9 @@ $captureOnce = $false
 $captureAutoIndex = -1
 $captureAutoName = $null
 $captureTimeoutMs = 0
+$explicitTestFile = $null
+$explicitTestHandler = $null
+$forceTestMode = $false
 
 # Parse capture arguments
 for ($i = 0; $i -lt $args.Count; $i++) {
@@ -128,7 +131,18 @@ for ($i = 0; $i -lt $args.Count; $i++) {
         "--capture-auto-index" { $captureAutoIndex = [int]$args[++$i] }
         "--capture-auto-name" { $captureAutoName = $args[++$i] }
         "--capture-timeout-ms" { $captureTimeoutMs = [int]$args[++$i] }
+        "--test-file" { $explicitTestFile = $args[++$i]; $forceTestMode = $true }
+        "--test-handler" { $explicitTestHandler = $args[++$i]; $forceTestMode = $true }
     }
+}
+
+if ($explicitTestFile) {
+    $env:TERMUI_TEST_MODE = "1"
+    $env:TERMUI_TEST_FILE = $explicitTestFile
+}
+
+if ($explicitTestHandler) {
+    $env:TERMUI_TEST_HANDLER = $explicitTestHandler
 }
 
 # Track quit requests and handler reference for cleanup
@@ -241,18 +255,47 @@ try {
     # Check if test environment and initialize handler
     $script:isTestEnvironment = (Test-Path "$script:scriptDir\..\..\automated_testing_environment") -or (Test-Path "$script:scriptDir\..\..\..\automated_testing_environment")
     
-    if (($env:TERMUI_TEST_MODE -eq "1") -and $env:TERMUI_TEST_FILE -and (Test-Path $env:TERMUI_TEST_FILE)) {
+    $testModeRequested = (($env:TERMUI_TEST_MODE -eq "1") -or $forceTestMode)
+    $testFilePath = $null
+    if ($env:TERMUI_TEST_FILE) { $testFilePath = $env:TERMUI_TEST_FILE }
+    if ($explicitTestFile) { $testFilePath = $explicitTestFile }
+    if ($testFilePath) {
+        $resolvedTestPath = Resolve-Path -LiteralPath $testFilePath -ErrorAction SilentlyContinue
+        if ($resolvedTestPath) { $testFilePath = $resolvedTestPath.ProviderPath }
+    }
+
+    $testHandlerSpec = $null
+    if ($env:TERMUI_TEST_HANDLER) {
+        $testHandlerSpec = $env:TERMUI_TEST_HANDLER
+    } elseif ($explicitTestHandler) {
+        $testHandlerSpec = $explicitTestHandler
+    } elseif ($script:settings.Input.PSObject.Properties['handler_path']) {
+        $testHandlerSpec = $script:settings.Input.handler_path
+    }
+    if (-not $testHandlerSpec) { $testHandlerSpec = "powershell\InputHandler-Replay.ps1" }
+
+    $testHandlerPath = $null
+    if ($testHandlerSpec) {
+        if ([IO.Path]::IsPathRooted($testHandlerSpec)) {
+            $testHandlerPath = $testHandlerSpec
+        } else {
+            $testHandlerPath = Join-Path (Join-Path $script:scriptDir "..") $testHandlerSpec
+        }
+    }
+
+    $testReady = $testModeRequested -and $testFilePath -and (Test-Path $testFilePath) -and $testHandlerPath -and (Test-Path $testHandlerPath)
+
+    if ($testReady) {
         # Test mode: load buffered events
-        $handlerPath = Join-Path (Join-Path $script:scriptDir "..") $script:settings.Input.handler_path
         $psi = New-Object System.Diagnostics.ProcessStartInfo
         
         # Determine if handler is PS1 or executable
-        if ($handlerPath.EndsWith(".ps1")) {
+        if ($testHandlerPath.EndsWith(".ps1")) {
             $psi.FileName = "powershell.exe"
-            $psi.Arguments = "-NoProfile -ExecutionPolicy Bypass -File `"$handlerPath`" -Replay `"$env:TERMUI_TEST_FILE`""
+            $psi.Arguments = "-NoProfile -ExecutionPolicy Bypass -File `"$testHandlerPath`" -Replay `"$testFilePath`""
         } else {
-            $psi.FileName = $handlerPath
-            $psi.Arguments = "--replay `"$env:TERMUI_TEST_FILE`""
+            $psi.FileName = $testHandlerPath
+            $psi.Arguments = "--replay `"$testFilePath`""
         }
         
         $psi.RedirectStandardOutput = $true
@@ -279,8 +322,14 @@ try {
         $proc.WaitForExit()
         
         $handler = [pscustomobject]@{ Process = $proc; Reader = $null; EventBuffer = $eventBuffer; IsTestMode = $true }
-        Log-Important "Started input handler in TEST mode: $env:TERMUI_TEST_FILE (buffered $($eventBuffer.Count) events)"
+        Log-Important "Started input handler in TEST mode: $testFilePath (buffered $($eventBuffer.Count) events) using handler $testHandlerPath"
     } else {
+        if ($testModeRequested -and $testFilePath -and -not (Test-Path $testFilePath)) {
+            Log-Error "Test mode requested but test file not found: $testFilePath"
+        } elseif ($testModeRequested -and $testHandlerPath -and -not (Test-Path $testHandlerPath)) {
+            Log-Error "Test mode requested but handler missing: $testHandlerPath"
+        }
+
         # Check if input is piped (stdin redirected)
         $isPipedInput = [Console]::IsInputRedirected
         
@@ -335,6 +384,8 @@ try {
         $esc = [char]27
         Write-Host ("{0}[2J{0}[H" -f $esc) -NoNewline
         $versionStr = ""
+        $remoteVer = $null
+        $localVer = $null
         try {
             # Try to get version from GitHub first (suppress web progress noise)
             $githubVersionUrl = "https://raw.githubusercontent.com/SanitysHelper/cmd/main/termUI/VERSION.json"
@@ -345,7 +396,7 @@ try {
                 if ($response.StatusCode -eq 200) {
                     $githubData = $response.Content | ConvertFrom-Json -ErrorAction SilentlyContinue
                     if ($githubData -and $githubData.version) {
-                        $versionStr = $githubData.version
+                        $remoteVer = [version]$githubData.version
                     }
                 }
             } catch {
@@ -353,16 +404,22 @@ try {
             } finally {
                 $global:ProgressPreference = $prevProgress
             }
-            
-            # If GitHub fetch failed, use local VERSION.json
-            if (-not $versionStr) {
-                $vf = Join-Path (Split-Path -Parent $script:scriptDir) "VERSION.json"
-                if (Test-Path $vf) {
-                    $jsonData = Get-Content $vf -Raw -ErrorAction SilentlyContinue | ConvertFrom-Json -ErrorAction SilentlyContinue
-                    if ($jsonData -and $jsonData.version) { 
-                        $versionStr = $jsonData.version 
-                    }
+
+            # Always load local version for comparison
+            $vf = Join-Path (Split-Path -Parent $script:scriptDir) "VERSION.json"
+            if (Test-Path $vf) {
+                $jsonData = Get-Content $vf -Raw -ErrorAction SilentlyContinue | ConvertFrom-Json -ErrorAction SilentlyContinue
+                if ($jsonData -and $jsonData.version) {
+                    $localVer = [version]$jsonData.version
                 }
+            }
+
+            if ($localVer -and $remoteVer) {
+                if ($localVer -gt $remoteVer) { $versionStr = $localVer.ToString() } else { $versionStr = $remoteVer.ToString() }
+            } elseif ($localVer) {
+                $versionStr = $localVer.ToString()
+            } elseif ($remoteVer) {
+                $versionStr = $remoteVer.ToString()
             }
         } catch {}
         Write-Host "=== $($script:settings.General.ui_title) " -ForegroundColor Cyan -NoNewline

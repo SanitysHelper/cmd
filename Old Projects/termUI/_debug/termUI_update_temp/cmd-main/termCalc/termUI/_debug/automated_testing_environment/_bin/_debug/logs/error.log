@@ -1,3 +1,0 @@
-﻿[2025-12-08 23:02:25] ERROR: Cannot see if a key has been pressed when either application does not have a console or when console input has been redirected from a file. Try Console.In.Peek.
-[2025-12-08 23:02:55] ERROR: Cannot see if a key has been pressed when either application does not have a console or when console input has been redirected from a file. Try Console.In.Peek.
-[2025-12-08 23:02:56] ERROR: Cannot see if a key has been pressed when either application does not have a console or when console input has been redirected from a file. Try Console.In.Peek.

@@ -3,7 +3,7 @@ Set-StrictMode -Version Latest
 
 function Clear-TermUIButtons {
     param([Parameter(Mandatory)][string]$TermUIRoot)
-    
+    # Always use local path for mainUIRoot
     $mainUIRoot = Join-Path $TermUIRoot "buttons\mainUI"
     if (Test-Path $mainUIRoot) {
         Remove-Item $mainUIRoot -Recurse -Force -ErrorAction SilentlyContinue

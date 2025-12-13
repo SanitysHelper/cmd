@@ -1,3 +1,0 @@
-C:\Users\cmand\OneDrive\Desktop\cmd\tagScanner
-C:\Users\cmand\OneDrive\Desktop\cmd\killprocess
-C:\Users\cmand\OneDrive\Desktop\cmd\updatingExecutor

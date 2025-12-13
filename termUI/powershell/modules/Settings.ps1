@@ -17,6 +17,11 @@ function Get-DefaultSettings {
             log_rotation_mb = 5
         }
         Input = @{ 
+            handler_path = "powershell\InputHandler-Replay.ps1"
+        }
+        Updates = @{
+            check_on_startup = $true
+            auto_install = $false
         }
     }
 }
@@ -74,6 +79,7 @@ function Normalize-Settings {
     $boolKeys = @{
         General = @("debug_mode","keep_open_after_selection","show_selected_prompt")
         Logging = @("log_input","log_input_timing","log_error","log_important","log_menu_frame","log_transcript")
+        Updates = @("check_on_startup","auto_install")
     }
     $intKeys = @{
         Logging = @("log_rotation_mb")

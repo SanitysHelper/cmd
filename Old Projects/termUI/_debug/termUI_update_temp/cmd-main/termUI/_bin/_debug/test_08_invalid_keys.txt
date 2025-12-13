@@ -1,8 +1,0 @@
-{"key":"Char","char":"a"}
-{"key":"Char","char":"b"}
-{"key":"Char","char":"1"}
-{"key":"Char","char":"@"}
-{"key":"Left"}
-{"key":"Right"}
-{"key":"Tab"}
-{"key":"Q"}

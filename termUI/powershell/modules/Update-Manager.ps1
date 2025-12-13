@@ -34,12 +34,26 @@ $script:TERMUI_FOLDER = "termUI"
 $script:VERSION_URL = "https://raw.githubusercontent.com/$script:GITHUB_REPO/$script:GITHUB_BRANCH/$script:TERMUI_FOLDER/VERSION.json"
 $script:DOWNLOAD_URL = "https://github.com/$script:GITHUB_REPO/archive/refs/heads/$script:GITHUB_BRANCH.zip"
 
-# Paths
+# Paths - ALWAYS target global termUI directory, not program-specific copies
+# Detect if we're running from a program folder (like termUIPrograms/tagScanner)
 $script:scriptRoot = if ($PSScriptRoot) { 
     Split-Path -Parent (Split-Path -Parent $PSScriptRoot) 
 } else { 
     Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path) 
 }
+
+# If scriptRoot points to a program folder (e.g., termUIPrograms/tagScanner), redirect to global termUI
+if ($script:scriptRoot -match 'termUIPrograms') {
+    # Navigate up to cmd folder and then to termUI
+    $cmdRoot = $script:scriptRoot
+    while ($cmdRoot -and (Split-Path -Leaf $cmdRoot) -ne 'cmd') {
+        $cmdRoot = Split-Path -Parent $cmdRoot
+    }
+    if ($cmdRoot) {
+        $script:scriptRoot = Join-Path $cmdRoot "termUI"
+    }
+}
+
 $script:versionFile = Join-Path $script:scriptRoot "VERSION.json"
 $script:debugPath = Join-Path $script:scriptRoot "_debug"
 $script:backupPath = Join-Path $script:debugPath "backups"

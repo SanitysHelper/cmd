@@ -591,3 +591,8 @@ Missing closing '}' in statement block or type definition.
 + $null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 +                                                      ~~
 The string is missing the terminator: ".
+[2025-12-12 11:39:26] ERROR: The variable '$script:buttonsRoot' cannot be retrieved because it has not been set.
+[2025-12-12 11:39:59] ERROR: The variable '$script:buttonsRoot' cannot be retrieved because it has not been set.
+[2025-12-12 21:25:27] ERROR: Script execution failed: The term 'Test-Dependencies' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+[2025-12-12 21:26:04] ERROR: Script execution failed: The term 'Test-Dependencies' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+[2025-12-12 21:33:12] ERROR: Script execution failed: The term 'Test-Dependencies' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.

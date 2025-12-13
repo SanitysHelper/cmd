@@ -68,6 +68,7 @@ Each test file is a JSON array of input events:
 ## Test Files
 
 - `test_read_artist.json` - Navigate to Directories → Music → Read Mode → Artist
+- `test_read_notes.json`  - Navigate to Read Mode → Comment (combined: FLAC Description, MP3 Comment)
 
 ## Prerequisites
 

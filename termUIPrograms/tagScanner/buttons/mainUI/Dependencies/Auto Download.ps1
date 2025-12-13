@@ -6,7 +6,6 @@
     try {
         $url = "https://drive.google.com/uc?export=download&id=$FileId"
         $response = Invoke-WebRequest -Uri $url -SessionVariable session -ErrorAction Stop
-        
         if ($response.Content -match 'confirm=([^&]+)') {
             $confirmToken = $matches[1]
             $url = "https://drive.google.com/uc?export=download&id=$FileId&confirm=$confirmToken"
@@ -33,7 +32,7 @@ $folderUrl = "https://drive.google.com/drive/folders/$folderId"
 
 $filesToDownload = @(
     @{ name = "TagLibSharp.dll"; fileId = "1bvKyw6iryJg37VucN7R7vKeTiHuGZLQv"; path = "$binPath\TagLibSharp.dll" },
-    @{ name = "metaflac.exe"; fileId = "1C3U2Dr-XvQJrd5xk_ipnhLlzPqhUeCjG"; path = "$binPath\metaflac.exe" }
+    @{ name = "metaflac.exe"; fileId = "1_7B0jdEOKd6P3N5nsBdefY7PNTwrVBB_"; path = "$binPath\metaflac.exe" }
 )
 
 Write-Host "Downloading dependencies from Google Drive..." -ForegroundColor White
@@ -42,9 +41,21 @@ Write-Host "Folder: $folderUrl`n" -ForegroundColor Gray
 $downloadSuccessCount = 0
 $downloadFailCount = 0
 
+# Always delete files before download
+foreach ($file in $filesToDownload) {
+    if (Test-Path $file.path) {
+        try {
+            Remove-Item -Path $file.path -Force -ErrorAction Stop
+            Write-Host "  [INFO] Deleted old: $($file.path)" -ForegroundColor DarkGray
+        } catch {
+            Write-Host "  [WARN] Could not delete: $($file.path) ($_ )" -ForegroundColor Yellow
+        }
+    }
+}
+
+# Always download, never skip
 foreach ($file in $filesToDownload) {
     Write-Host "Processing $($file.name)..." -ForegroundColor Yellow
-    
     if ([string]::IsNullOrWhiteSpace($file.fileId)) {
         Write-Host "  [!] File ID not configured. To set up auto-download:" -ForegroundColor Cyan
         Write-Host "    1. Open the Google Drive folder" -ForegroundColor Gray
@@ -54,19 +65,13 @@ foreach ($file in $filesToDownload) {
         $downloadFailCount++
         continue
     }
-    
-    if (Test-Path $file.path) {
-        Write-Host "  [OK] Already exists: $($file.path)" -ForegroundColor Green
+    Write-Host "  Downloading from: https://drive.google.com/file/d/$($file.fileId)" -ForegroundColor Gray
+    if (Invoke-GoogleDriveDownload -FileId $file.fileId -OutputPath $file.path) {
+        Write-Host "  [OK] Downloaded: $($file.name)" -ForegroundColor Green
         $downloadSuccessCount++
     } else {
-        Write-Host "  Downloading from: https://drive.google.com/file/d/$($file.fileId)" -ForegroundColor Gray
-        if (Invoke-GoogleDriveDownload -FileId $file.fileId -OutputPath $file.path) {
-            Write-Host "  [OK] Downloaded: $($file.name)" -ForegroundColor Green
-            $downloadSuccessCount++
-        } else {
-            Write-Host "  [FAIL] Failed to download: $($file.name)" -ForegroundColor Red
-            $downloadFailCount++
-        }
+        Write-Host "  [FAIL] Failed to download: $($file.name)" -ForegroundColor Red
+        $downloadFailCount++
     }
 }
 

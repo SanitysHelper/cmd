@@ -1,9 +1,0 @@
-{"key":"Up"}
-{"key":"Down"}
-{"key":"Down"}
-{"key":"Down"}
-{"key":"Down"}
-{"key":"Down"}
-{"key":"Down"}
-{"key":"Up"}
-{"key":"Q"}
