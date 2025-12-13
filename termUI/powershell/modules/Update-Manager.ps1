@@ -31,6 +31,7 @@ param(
 $script:GITHUB_REPO = "SanitysHelper/cmd"
 $script:GITHUB_BRANCH = "main"
 # Always check termUI framework (not program-specific)
+$script:TERMUI_FOLDER = "termUI"
 $script:VERSION_URL = "https://raw.githubusercontent.com/$script:GITHUB_REPO/$script:GITHUB_BRANCH/termUI/VERSION.json"
 $script:DOWNLOAD_URL = "https://github.com/$script:GITHUB_REPO/archive/refs/heads/$script:GITHUB_BRANCH.zip"
 

@@ -257,3 +257,61 @@
 [2025-12-13 13:43:52] [INFO] Installing updated files...
 [2025-12-13 13:43:52] [ERROR] Update installation failed: The variable '$script:TERMUI_FOLDER' cannot be retrieved because it has not been set.
 [2025-12-13 13:43:52] [INFO] === Update Check Completed ===
+[2025-12-13 13:45:33] [INFO] === termUI Update Check Started ===
+[2025-12-13 13:45:33] [INFO] Local version: 1.5.8
+[2025-12-13 13:45:33] [INFO] Checking GitHub for latest version...
+[2025-12-13 13:45:34] [INFO] Remote version: 1.5.9
+[2025-12-13 13:45:34] [SUCCESS] Update available: 1.5.8 -> 1.5.9
+[2025-12-13 13:45:35] [INFO] Starting update from 1.5.8 to 1.5.9
+[2025-12-13 13:45:35] [INFO] Skipping backup (debug_mode=false)
+[2025-12-13 13:45:35] [INFO] Downloading update from GitHub...
+[2025-12-13 13:45:36] [INFO] Download complete
+[2025-12-13 13:45:36] [INFO] Extracting update...
+[2025-12-13 13:45:36] [INFO] Extraction complete
+[2025-12-13 13:45:36] [INFO] Installing updated files...
+[2025-12-13 13:45:36] [ERROR] Update installation failed: The variable '$script:TERMUI_FOLDER' cannot be retrieved because it has not been set.
+[2025-12-13 13:45:36] [WARN] Performing cleanup of downloaded files due to failure...
+[2025-12-13 13:45:36] [INFO] Removing temporary ZIP: C:\cmdPrograms\cmd\termUIPrograms\proxyHunter\_debug\termUI_update.zip
+[2025-12-13 13:45:36] [SUCCESS] Temporary ZIP removed successfully
+[2025-12-13 13:45:36] [INFO] Removing temporary extraction folder: C:\cmdPrograms\cmd\termUIPrograms\proxyHunter\_debug\termUI_update_temp
+[2025-12-13 13:45:37] [SUCCESS] Temporary extraction folder removed successfully
+[2025-12-13 13:45:37] [INFO] === Update Check Completed ===
+[2025-12-13 13:46:58] [INFO] === termUI Update Check Started ===
+[2025-12-13 13:46:58] [INFO] Local version: 1.5.8
+[2025-12-13 13:46:58] [INFO] Checking GitHub for latest version...
+[2025-12-13 13:46:58] [INFO] Remote version: 1.5.9
+[2025-12-13 13:46:58] [SUCCESS] Update available: 1.5.8 -> 1.5.9
+[2025-12-13 13:48:33] [INFO] Starting update from 1.5.8 to 1.5.9
+[2025-12-13 13:48:33] [INFO] Skipping backup (debug_mode=false)
+[2025-12-13 13:48:33] [INFO] Downloading update from GitHub...
+[2025-12-13 13:48:34] [INFO] Download complete
+[2025-12-13 13:48:34] [INFO] Extracting update...
+[2025-12-13 13:48:34] [INFO] Extraction complete
+[2025-12-13 13:48:34] [INFO] Installing updated files...
+[2025-12-13 13:48:34] [SUCCESS] Files installed successfully (robocopy exit code: 1)
+[2025-12-13 13:48:34] [INFO] Cleaning up temporary files...
+[2025-12-13 13:48:34] [INFO] Removing temporary ZIP: C:\cmdPrograms\cmd\termUIPrograms\proxyHunter\_debug\termUI_update.zip
+[2025-12-13 13:48:34] [SUCCESS] Temporary ZIP removed successfully
+[2025-12-13 13:48:34] [INFO] Removing temporary extraction folder: C:\cmdPrograms\cmd\termUIPrograms\proxyHunter\_debug\termUI_update_temp
+[2025-12-13 13:48:34] [SUCCESS] Temporary extraction folder removed successfully
+[2025-12-13 13:48:34] [SUCCESS] Update completed successfully: 1.5.8 -> 1.5.9
+[2025-12-13 13:48:34] [INFO] === Update Check Completed ===
+[2025-12-13 13:48:34] [SUCCESS] Launched updated termUI
+[2025-12-13 13:48:36] [INFO] === termUI Update Check Started ===
+[2025-12-13 13:48:36] [INFO] Local version: 1.5.9
+[2025-12-13 13:48:36] [INFO] Checking GitHub for latest version...
+[2025-12-13 13:48:36] [INFO] Remote version: 1.5.9
+[2025-12-13 13:48:36] [INFO] Versions are identical: 1.5.9
+[2025-12-13 13:48:36] [SUCCESS] No update needed
+[2025-12-13 13:48:43] [INFO] === termUI Update Check Started ===
+[2025-12-13 13:48:43] [INFO] Local version: 1.5.9
+[2025-12-13 13:48:43] [INFO] Checking GitHub for latest version...
+[2025-12-13 13:48:43] [INFO] Remote version: 1.5.9
+[2025-12-13 13:48:43] [INFO] Versions are identical: 1.5.9
+[2025-12-13 13:48:43] [SUCCESS] No update needed
+[2025-12-13 13:49:08] [INFO] === termUI Update Check Started ===
+[2025-12-13 13:49:08] [INFO] Local version: 1.5.9
+[2025-12-13 13:49:08] [INFO] Checking GitHub for latest version...
+[2025-12-13 13:49:09] [INFO] Remote version: 1.5.9
+[2025-12-13 13:49:09] [INFO] Versions are identical: 1.5.9
+[2025-12-13 13:49:09] [SUCCESS] No update needed
